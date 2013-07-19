@@ -33,7 +33,7 @@ public class SmallTest {
 
 			System.out.println(kbuilder.getErrors().toString());
 
-			throw new RuntimeException("Unable to compile \"test.drl\".");
+			throw new RuntimeException("Unable to compile \"newRule.drl\".");
 
 		}
 
@@ -59,7 +59,7 @@ public class SmallTest {
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 		
 		Product shoes = new Product(1, "shoes", 50 , 10, 2);
-		Product hat = new Product(2, "hat", 10 , 3, 5);
+		Product hat = new Product(2, "hat", 10 , 4, 2);
 		Product shirt = new Product(3, "shirt", 20 , 10 ,5);
 		
 		Store s1 = new Store(2);
