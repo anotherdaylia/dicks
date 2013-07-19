@@ -129,6 +129,8 @@ public class createRule {
 	      
 	     String content = writeDrl(ruleType, objectTypeBuffer.toString(),attributeBuffer.toString(), operatorBuffer.toString()
 	    		 ,valueBuffer.toString(),actions);
+	     
+	     //create txt file for the new rule
 	     try {
 	    	 for (int i = 0 ; rules[i] != null; i++){
 	    		 if (rules[i+1] == null){
@@ -154,32 +156,13 @@ public class createRule {
 	    				break;
 	    	 
 	    			} 
-	    	 }}catch (IOException e) {
-	    				e.printStackTrace();
+	    	 }
+	    }
+	     catch (IOException e) {
+	    	 e.printStackTrace();
+	     }			 
 	    			 
-	    			 
-	    			 
-	    		 
-	    	 
-	    	 File file = new File("./ruleTxt/newRule.drl");      
-             FileOutputStream fos = new FileOutputStream(file);
-             int i = 0;
-             FileInputStream fis;
-             while (rules[i] != null){
-            	 fis = new FileInputStream(new File(rules[i]));
-            	 byte[] b = new byte[1];
-            	 System.out.print(b);
-            	 while((fis.read(b)) != -1){
-                     fos.write(b);
-                 }
-            	 i++;
-             }
-            
-            fos.flush();
-            System.out.println("success!");
-       }
-      catch(Exception e){System.out.println("error: " + e);}
-	     
+	    //combining all rules
 	     try {
              File file = new File("./ruleTxt/newRule.drl");         
              FileOutputStream fos = new FileOutputStream(file);

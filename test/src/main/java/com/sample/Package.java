@@ -1,75 +1,79 @@
 package com.sample;
-
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
+import com.sample.ShoppingExample.Customer;
+
 public class Package {
-	private int packageID;
-	private HashMap<Product, Integer> products = new HashMap<Product, Integer>();
-	private int deliveryDays;
-	private String shippingStatus;
-	private String shippingCompany;
-	private String source;
+	private CustomerInfo cusInfo;
+	private HashMap<Product, Integer> productList;
+	private double desireScore;
+	private Date estimatedDate;
+	private Date orderDate;
+	private int maxItem;
+	private int zoneID;
+	
+	public Package(Product p, int amount) {
+		
+		productList = new HashMap<Product, Integer>();
+		productList.put(p,amount);
+		System.out.println("new package!");
+		
 
-	private Order order;
-	
-	public Package(int packageID, Order order) {
-		this.packageID = packageID;
-		this.order = order;
-	}
-	
-	public void addProduct(Product product) {
-		Integer qty = products.get(product);
-		if (qty == null) {
-			products.put(product, 1);
-		} else {
-			products.put(product, qty + 1);
-		}
-	}
-	
-	public String getSource() {
-		return source;
+		
 	}
 
-	public void setSource(String source) {
-		this.source = source;
-	}
-	
-	public int getPackageID() {
-		return packageID;
+	public ArrayList<Product> getProducts () {
+		ArrayList<Product> list =  new ArrayList<Product>();
+		list.addAll(productList.keySet());
+		return list;
 	}
 
-	public void setPackageID(int packageID) {
-		this.packageID = packageID;
+	public void addProducts(Product prod,int number){
+		productList.put(prod, number);
 	}
-	
-	public HashMap<Product, Integer> getProducts() {
-		return products;
+	public int getZoneID() {
+		return zoneID;
 	}
-	public void setProducts(HashMap<Product, Integer> products) {
-		this.products = products;
+	public void setZoneID(int zoneID) {
+		this.zoneID = zoneID;
 	}
-	public int getDeliveryDays() {
-		return deliveryDays;
+	public CustomerInfo getCusInfo() {
+		return cusInfo;
 	}
-	public void setDeliveryDays(int deliveryDays) {
-		this.deliveryDays = deliveryDays;
+	public void setCusInfo(CustomerInfo cusInfo) {
+		this.cusInfo = cusInfo;
 	}
-	public String getShippingStatus() {
-		return shippingStatus;
+	public HashMap<Product, Integer> getProductList() {
+		return productList;
 	}
-	public void setShippingStatus(String shippingStatus) {
-		this.shippingStatus = shippingStatus;
+	public void setProductList(HashMap<Product, Integer> productList) {
+		this.productList = productList;
 	}
-	public String getShippingCompany() {
-		return shippingCompany;
+	public double getDesireScore() {
+		return desireScore;
 	}
-	public void setShippingCompany(String shippingCompany) {
-		this.shippingCompany = shippingCompany;
+	public void setDesireScore(double desireScore) {
+		this.desireScore = desireScore;
 	}
-	public Order getOrder() {
-		return order;
+	public Date getEstimatedDate() {
+		return estimatedDate;
 	}
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setEstimatedDate(Date estimatedDate) {
+		this.estimatedDate = estimatedDate;
 	}
+	public Date getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+	public int getMaxItem() {
+		return maxItem;
+	}
+	public void setMaxItem(int maxItem) {
+		this.maxItem = maxItem;
+	}
+
 }
