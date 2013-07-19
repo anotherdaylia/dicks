@@ -4,12 +4,11 @@ package com.sample;
 //list any import classes here.
 import com.sample.Order
 import com.sample.Store
+import com.sample.Product
 import java.util.ArrayList
 import java.*;
 
 //declare any global variables here
-
-
 rule "Explode Cart"
     agenda-group "init"
     auto-focus true
@@ -40,7 +39,7 @@ rule "summarize"
     then
         System.out.println(store.getZoneID());
 end
-        
+
 rule  "Mininum Packagethreshold0"
     when
         $o : Order()
@@ -49,3 +48,4 @@ rule  "Mininum Packagethreshold0"
         $i.minPackage();
         retract($i);
 end
+

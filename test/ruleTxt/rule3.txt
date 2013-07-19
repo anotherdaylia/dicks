@@ -1,0 +1,7 @@
+rule "summarize"   
+    when
+        store : Store()
+    then
+        System.out.println(store.getZoneID());
+end
+

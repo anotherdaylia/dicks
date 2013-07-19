@@ -19,10 +19,15 @@ public class createRule {
     public static StringBuffer attributeBuffer = new StringBuffer();
     public static StringBuffer operatorBuffer = new StringBuffer();
     public static StringBuffer valueBuffer = new StringBuffer();
+    public static String[] rules = new String[10];
+   
 
 	
 	   public static void main (String[] args) throws IOException {
-
+		  rules[0] = "./ruleTxt/ruleHeader.txt";
+		  rules[1] = "./ruleTxt/rule1.txt";
+		  rules[2] = "./ruleTxt/rule2.txt";
+		  rules[3] = "./ruleTxt/rule3.txt";
 	      //  prompt the user to enter their name
 
 	      //  open up standard input
@@ -122,17 +127,90 @@ public class createRule {
 	      System.out.println("thank you for your input, are you trying to make a rule of type of\n "+ ruleType+ "which will do action: "
 	      +actions+" when the value of object "+ objectTypeBuffer.toString() + " is "+ operator + values);
 	      
-	     writeDrl(ruleType, objectTypeBuffer.toString(),attributeBuffer.toString(), operatorBuffer.toString()
+	     String content = writeDrl(ruleType, objectTypeBuffer.toString(),attributeBuffer.toString(), operatorBuffer.toString()
 	    		 ,valueBuffer.toString(),actions);
+	     try {
+	    	 for (int i = 0 ; rules[i] != null; i++){
+	    		 if (rules[i+1] == null){
+	    			 System.out.println("new file is"+"./ruleTxt/rule"+(i+1)+".txt");
+	    			 File file = new File("./ruleTxt/rule"+(i+1)+".txt");  
+	    			 rules[i+1] = "./ruleTxt/rule"+(i+1)+".txt";
+	    			 
+	    			 FileOutputStream fop = new FileOutputStream(file);
+	    	 
+	    				// if file doesnt exists, then create it
+	    				if (!file.exists()) {
+	    					file.createNewFile();
+	    				}
+	    	 
+	    				// get the content in bytes
+	    				byte[] contentInBytes = content.getBytes();
+	    	 
+	    				fop.write(contentInBytes);
+	    				fop.flush();
+	    				fop.close();
+	    	 
+	    				System.out.println("Done");
+	    				break;
+	    	 
+	    			} 
+	    	 }}catch (IOException e) {
+	    				e.printStackTrace();
+	    			 
+	    			 
+	    			 
+	    		 
+	    	 
+	    	 File file = new File("./ruleTxt/newRule.drl");      
+             FileOutputStream fos = new FileOutputStream(file);
+             int i = 0;
+             FileInputStream fis;
+             while (rules[i] != null){
+            	 fis = new FileInputStream(new File(rules[i]));
+            	 byte[] b = new byte[1];
+            	 System.out.print(b);
+            	 while((fis.read(b)) != -1){
+                     fos.write(b);
+                 }
+            	 i++;
+             }
+            
+            fos.flush();
+            System.out.println("success!");
+       }
+      catch(Exception e){System.out.println("error: " + e);}
+	     
+	     try {
+             File file = new File("./ruleTxt/newRule.drl");         
+             FileOutputStream fos = new FileOutputStream(file);
+             int i = 0;
+             FileInputStream fis;
+             while (rules[i] != null){
+            	 System.out.println("combing rule "+i);
+            	 fis = new FileInputStream(new File(rules[i]));
+            	 byte[] b = new byte[1];
+            	 System.out.print(b);
+            	 while((fis.read(b)) != -1){
+                     fos.write(b);
+                 }
+            	 i++;
+             }
+            
+            fos.flush();
+            System.out.println("success!");
+       }
+      catch(Exception e){System.out.println("error: " + e);}
+    
+	     
 	} 	
-	   public static void writeDrl(String type, String object, String attribute, 
+	   public static String writeDrl(String type, String object, String attribute, 
 			   String operator, String values, String actions ){
 		   StringBuffer newRule = new StringBuffer();
 		   newRule.append(writeRuleType(type));
 		   newRule.append(writeWhen(object,attribute,operator,values));
 		   newRule.append(writeThen(actions));
 		   System.out.println(newRule.toString());
-		   
+		   return newRule.toString();
 		   
 	   }
 	   
@@ -212,13 +290,95 @@ public class createRule {
 		   return tmp.toString();
 	   }
 	   
+	   
 	   public static String writeThen(String action){
 		   StringBuffer tmp = new StringBuffer();
 		   tmp.append(myTab+"then"+myReturn);
 		   tmp.append(myTab+myTab+"$i.minPackage();"+myReturn);
-		   tmp.append("end");
+		   tmp.append("end"+myReturn+myReturn);
 		   return tmp.toString();
 	   }
-}
+	   
+	   
+	  
+
+	   
+	   /*public static void uniteTextFile(String dirPath,String newFilePathAndName,FileOutputStream pFOS)
+	   {
+	      FileInputStream fIS = null;
+	      FileOutputStream fOS = null;   
+	      File DirFile = new File(dirPath);
+	      File newFile = new File(newFilePathAndName);
+	     
+	      try
+	      {
+	       if(!newFile.exists())newFile.createNewFile();
+	       if(newFile.isDirectory())
+	       {
+	        System.out.println("you has to select a file not a dir");
+	        return ;
+	       }
+	       if(pFOS == null)
+	        fOS = new FileOutputStream(newFile);
+	       else
+	        fOS = pFOS;
+	       byte [] buffer = null;
+	       if(DirFile.exists())
+	       {
+	        if(DirFile.isDirectory())
+	        {
+	         File [] files = DirFile.listFiles();
+	         for(int i=0;i<files.length;i++)
+	         {
+	          if(files[i].isFile())
+	          {
+	           if("txt".equals(files[i].getName().substring(files[i].getName().lastIndexOf(".")+1)))
+	           {
+	            System.out.println(files[i].getName());
+	            fIS = new FileInputStream(files[i]);
+	            buffer = new byte[fIS.available()];        
+	            fIS.read(buffer);    
+	            fOS.write(buffer);
+	            fIS.close();
+	            fOS.flush();
+	           }
+	          }
+	          else if(files[i].isDirectory())
+	          {
+	          
+	           uniteTextFile(files[i].getAbsolutePath(),newFilePathAndName,fOS);
+	          }
+	         }
+	        }
+	        else
+	        {
+	         System.out.println("its not a path but a file.");
+	        }
+	       }
+	       else
+	       {
+	        System.out.println("file does not exit!");
+	       }
+	       if(pFOS == null)
+	        fOS.close();
+	      
+	      
+	      }
+	      catch(Exception e)
+	      {
+	       e.printStackTrace();
+	       try
+	       {
+	        if(fOS != null) fOS.close();
+	        if(fIS != null) fIS.close();
+	       }
+	       catch(Exception ie)
+	       {
+	       
+	       }
+	      }
+	   }*/
+	   }
+
 
 
