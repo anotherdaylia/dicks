@@ -1,4 +1,4 @@
-package src.main.java.com.sample;
+package com.sample;
 
 import java.util.Collection;
 
@@ -11,7 +11,7 @@ import org.kie.internal.definition.KnowledgePackage;
 import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
-import src.main.java.com.sample.HelloWorld.Message;
+import com.sample.HelloWorld.Message;
 
 public class FibonacciTest {
 	public static void main(String[] args) {

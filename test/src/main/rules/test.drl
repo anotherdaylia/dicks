@@ -1,9 +1,9 @@
 //created on: Jul 4, 2013
-package src.main.java.com.sample;
+package com.sample;
 
 //list any import classes here.
-import src.main.java.com.sample.Order
-import src.main.java.com.sample.Store
+import com.sample.Order
+import com.sample.Store
 import java.util.ArrayList
 import java.*;
 

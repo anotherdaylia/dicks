@@ -1,5 +1,5 @@
 
-package src.main.java.com.sample;
+package com.sample;
 
 import java.io.*;
 
@@ -24,10 +24,6 @@ public class createRule {
 	   public static void main (String[] args) throws IOException {
 
 	      //  prompt the user to enter their name
-	      
-	     
-	      
-	      
 
 	      //  open up standard input
 	      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -212,13 +208,7 @@ public class createRule {
 		   tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+
 		   		"from $o.getProducts()"+myReturn);
 		   //tmp.append(myTab+myTab+"$p : Purchase( customer == $c, $"+attribute.charAt(0)+" : product."+attribute+mySpace+operator+mySpace+values+" )");
-		   
-		   
-		   
-		   
-		   
-		  
-		   
+	   
 		   return tmp.toString();
 	   }
 	   

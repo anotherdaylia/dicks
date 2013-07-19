@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package src.main.java.com.sample;
+package com.sample;
 
 import org.kie.internal.KnowledgeBase;
 import org.kie.internal.KnowledgeBaseFactory;
