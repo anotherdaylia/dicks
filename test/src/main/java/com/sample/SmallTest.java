@@ -1,4 +1,4 @@
-package com.sample;
+package src.main.java.com.sample;
 
 import java.util.Collection;
 
@@ -13,7 +13,7 @@ import org.kie.internal.logger.KnowledgeRuntimeLogger;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
-import com.sample.FibonacciTest.Fibonacci;
+import src.main.java.com.sample.FibonacciTest.Fibonacci;
 
 public class SmallTest {
 

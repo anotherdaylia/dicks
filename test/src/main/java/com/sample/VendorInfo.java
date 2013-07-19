@@ -1,4 +1,4 @@
-package com.sample;
+package src.main.java.com.sample;
 
 public class VendorInfo {
 	private String vendorName;

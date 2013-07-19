@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.drools.examples.shopping
+package src.main.java.com.sample;
  
 dialect "mvel"
 
-import com.sample.ShoppingExample.Customer
-import com.sample.ShoppingExample.Product
-import com.sample.ShoppingExample.Purchase
-import com.sample.ShoppingExample.Discount
+import src.main.java.com.sample.ShoppingExample.Customer
+import src.main.java.com.sample.ShoppingExample.Product
+import src.main.java.com.sample.ShoppingExample.Purchase
+import src.main.java.com.sample.ShoppingExample.Discount
  
 rule "Purchase notification"
     salience 10

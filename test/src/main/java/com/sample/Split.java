@@ -1,4 +1,4 @@
-package com.sample;
+package src.main.java.com.sample;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

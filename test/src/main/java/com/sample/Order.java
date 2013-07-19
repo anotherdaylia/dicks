@@ -1,4 +1,5 @@
-package com.sample;
+package src.main.java.com.sample;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
