@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class Order {
+	private int orderID;
 	private CustomerInfo cusInfo;
 	private HashMap<Product, Integer> productList;
 	private double desireScore;
@@ -18,6 +19,14 @@ public class Order {
 		productList = new HashMap<Product, Integer>();
 	}
 
+	public int getOrderID() {
+		return orderID;
+	}
+
+	public void setOrderID(int orderID) {
+		this.orderID = orderID;
+	}
+	
 	public ArrayList<Product> getProducts () {
 		ArrayList<Product> list =  new ArrayList<Product>();
 		list.addAll(productList.keySet());

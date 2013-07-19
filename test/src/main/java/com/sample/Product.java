@@ -58,4 +58,10 @@ public class Product {
 		System.out.println(productName+" has been splited to another package");
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Product)) return false;
+		Product p = (Product) obj;
+		return p.productID == this.productID;
+	}
 }
