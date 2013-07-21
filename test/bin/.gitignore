@@ -8,4 +8,8 @@
 /rule3.txt
 /rule4.txt
 /newRule_withGroup.drl
+<<<<<<< HEAD
 /newRule_joe.drl
+=======
+/test.drl
+>>>>>>> branch 'master' of https://github.com/claire921/dicks.git
