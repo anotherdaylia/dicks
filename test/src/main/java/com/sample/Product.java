@@ -55,7 +55,13 @@ public class Product {
 		this.size = size;
 	}
 	public void minPackage(){
+		
 		System.out.println(productName+" has been splited to another package");
+	}
+	
+	@Override
+	public String toString() {
+		return productName;
 	}
 
 	@Override

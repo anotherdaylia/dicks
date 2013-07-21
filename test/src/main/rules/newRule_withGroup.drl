@@ -5,7 +5,6 @@ package com.sample;
 import com.sample.Order
 import com.sample.Store
 import com.sample.Package
-import com.sample.PackageTestResult
 import java.util.ArrayList
 import java.*;
 
@@ -47,17 +46,6 @@ rule "filter stock"
     	$store : Store()
     	eval(!$store.containProduct($item))
     then
-        retract($store);
-end
-
-rule "record stores"
-	salience 9
-	agenda-group "first"
-    when    	
-    	$order : Order()
-		$store : Store()
-    then
-    	modify ($order) { addStore($store) }
         retract($store);
 end
 
@@ -131,31 +119,14 @@ rule "for not splitable packages"
 	salience 5
 //	agenda-group "split"
 	when
-		$p : Package(getSplitNum() == getProducts().size())
+		$p : Package()
 //		$order : Order()
 	then
-		System.out.println("Unable to handle this package " + $p + ", handed to vendor");
-//		System.out.println("handle this package " + $p);
+		System.out.println("handle this package " + $p);
 //		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
 end
 
-rule "for splitable packages"
-	salience 4
-	agenda-group "split"
-	when
-		$p : Package(getSplitNum() < getProducts().size() && !isAllocated())
-		$order : Order()
-	then	
-		ArrayList r = Split.getTestResult($p, $order);
-		if (r !=  null || r.size() == 0) {
-			modify ($p) { setAllocated(true) }
-			System.out.println("Get result for " + $p);
-		} else {
-			modify ($p) { setSplitNum($p.getSplitNum() + 1) }
-			System.out.println("cannot solve in split " + $p.getSplitNum());
-		}
-//		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
-end
+
 
 /*
 rule "for not splitable packages"

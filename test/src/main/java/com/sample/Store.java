@@ -1,5 +1,6 @@
 package com.sample;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Store {
@@ -21,9 +22,20 @@ public class Store {
 		stock.get(product).instockNum--;
 	}
 	
+	public boolean containProducts(ArrayList<Product> products) {
+		for (Product p : products) {
+			if (!this.containProduct(p)) {
+				System.out.println("rule out product: " + p.getProductName());
+				return false;
+			}
+		}		
+		return true;
+	}
+	
 	public boolean containProduct(Product product) {
 		Inventory in = stock.get(product);
 		if (in == null) return false;
+		System.out.println("store: " + this.zoneID + " margin: " + in.getMargin());
 		if (in.getMargin() > 0) return true;
 		return false;
 	}
@@ -74,5 +86,10 @@ public class Store {
 		public void setSafetyStock(int safetyStock) {
 			this.safetyStock = safetyStock;
 		}		
+	}
+	
+	@Override
+	public String toString() {
+		return "store zoneID: " + this.getZoneID();
 	}
 }

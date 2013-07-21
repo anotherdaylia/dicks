@@ -1,28 +1,70 @@
 package com.sample;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
 
 public class Split {
-	public static void main(String[] args) {
-//		String str=args[0];
-//		String[] aStr=str.split(",");
-//		int[] a = new int[aStr.length];
-//		for(int i=0;i<aStr.length;i++){
-//			a[i]=Integer.parseInt(aStr[i]);
-//		}
-		int[] a = {1,2,3,4,5,6,7,8,9,10};
+	public static void main(String[] args) {	
+		Product shoes = new Product(1, "shoes", 50 , 10, 2);
+		Product hat = new Product(2, "hat", 10 , 4, 2);
+		Product shirt = new Product(3, "shirt", 20 , 8 ,5);
+		Product[] a = {shoes, hat, shirt};
 		Combination[][] matrix = setUpMatrix(a);
 		//printMatrix(matrix);
 				
 		printMatrix(matrix);
 		
-		for (int i = 1; i < a.length; i++) {
-			//System.out.println(i);
-			printCombinations(a.length, i, a, matrix);
+//		for (int i = 1; i < a.length; i++) {
+//			//System.out.println(i);
+//			printCombinations(a.length, i, a, matrix);
+//		}
+		
+		Order order = new Order(2);
+		order.addProducts(shoes, 1);
+		order.addProducts(hat, 1);
+		order.addProducts(shirt, 1);
+		
+		Package p1 = new Package(order);
+		p1.addProduct(shoes);
+		Package p2 = new Package(order);
+		p2.addProduct(hat);
+		p2.addProduct(shirt);
+		
+		Store s1 = new Store(2);
+		Store s2 = new Store(4);
+		Store s3 = new Store(5);
+		Store s4 = new Store(6);
+		Store s5 = new Store(8);
+	
+		s1.addItem(shoes, 5, 5);
+		s1.addItem(hat, 7, 5);
+		s1.addItem(shirt, 7, 5);
+		s2.addItem(shoes, 7, 5);
+		s2.addItem(hat, 7, 5);
+		s2.addItem(shirt, 7, 5);
+		s3.addItem(shoes, 7, 5);
+		s3.addItem(hat, 7, 5);
+		s3.addItem(shirt, 7, 5);
+		s4.addItem(shoes, 7, 5);
+		s4.addItem(hat, 7, 5);
+		s4.addItem(shirt, 7, 5);
+		s5.addItem(shoes, 7, 5);
+		s5.addItem(hat, 7, 5);
+		s5.addItem(shirt, 7, 5);
+		
+		order.addStore(s1);
+		order.addStore(s2);
+		order.addStore(s3);
+		order.addStore(s4);
+		order.addStore(s5);
+		
+		ArrayList<PackageTestResult> results = getTestResult(p1, order);
+		
+		for (PackageTestResult r : results) {
+			System.out.println(r);
 		}
 		
 //        try {
@@ -50,7 +92,96 @@ public class Split {
 //		}  
 	}
 	
-	public static Combination[][] setUpMatrix(int[] a) {
+	public static ArrayList<PackageTestResult> getTestResult(Package p, Order order) {
+		Product[] products = p.getProducts().toArray(new Product[p.getProducts().size()]);
+		Combination[][] matrix = setUpMatrix(products);
+		for (int i = 1; i < p.getSplitNum(); i++) {
+			//System.out.println(i);
+			printCombinations(products.length, i, products, matrix);
+		}
+		
+		ArrayList<Store> stores = order.getStores();
+		
+		System.out.println("Store size: " + stores.size());
+		Combination c = matrix[products.length - 1][p.getSplitNum()];
+		
+		ArrayList<Bag> list = c.list;
+		double lowestCost = Double.MAX_VALUE;
+		ArrayList<PackageTestResult> testResults = null;
+		for (int i = 0; i < list.size(); i++) {
+			Bag bag = list.get(i);
+			ArrayList<ArrayList<Product>> allocations = bag.list;
+			ArrayList<ArrayList<Store>> testStores = filterStores(allocations, stores);
+			
+			if (testStores == null || testStores.size() == 0) continue;
+			
+			//System.out.println(testStores.size());
+			
+			double cost = 0;
+			ArrayList<PackageTestResult> results = new ArrayList<PackageTestResult>();
+			for (int j = 0; j < allocations.size(); j++) {
+				PackageTest test = new PackageTest(p);
+				for (Product product : allocations.get(j)) {
+					test.addProduct(product);
+				}
+//				System.out.println("j: " + j);
+				PackageTestResult r = getTestResult(order, test, testStores.get(j));
+				results.add(r);
+				cost += r.getCost();
+			}
+			if (cost < lowestCost) {
+				lowestCost = cost;
+				testResults = results;
+			}
+		}	
+		
+		return testResults;
+	}
+	
+	public static ArrayList<ArrayList<Store>> filterStores(ArrayList<ArrayList<Product>> allocations, ArrayList<Store> stores) {
+		ArrayList<ArrayList<Store>> r = new ArrayList<ArrayList<Store>>();
+		System.out.println("possible combination size: " + allocations.size());
+		for (int i = 0; i < allocations.size(); i++) {
+			ArrayList<Product> products = allocations.get(i);
+			LinkedList<Store> testStores = new LinkedList<Store>();
+			for (int j = 0; j < stores.size(); j++) {
+				Store s = stores.get(j);
+				if (s.containProducts(products)) {
+					testStores.add(s);
+				} else {
+					System.out.println("filter out: " + s.getZoneID());
+				}
+			}
+			//System.out.println("test Store size: " + testStores.size());
+			if(testStores.size() == 0) return null;			
+			ArrayList<Store> newStores = new ArrayList<Store>(testStores);
+			r.add(newStores);
+		}
+		
+		return r;
+	}
+	
+	public static PackageTestResult getTestResult(final Order order, PackageTest test, ArrayList<Store> stores) {
+		PackageTestResult r = new PackageTestResult(test);
+		Collections.sort(stores, new Comparator<Store>() {
+			@Override
+			public int compare(Store arg0, Store arg1) {
+				return (int) (Util.getShippingCosts(arg0.getZoneID(), order.getZoneID()) 
+								- Util.getShippingCosts(arg1.getZoneID(), order.getZoneID())); 
+			}
+			
+		});
+		
+		System.out.println("stores: " + Arrays.toString(stores.toArray()));
+		
+		Store source = stores.get(0);
+		//System.out.println("source: " + source.getZoneID());
+		r.setSource(source.getZoneID() + "");
+		r.setCost(Util.getShippingCosts(source.getZoneID(), order.getZoneID()));
+		return r;
+	}
+	
+	public static Combination[][] setUpMatrix(Product[] a) {
 		Combination[][] matrix = new Combination[a.length][a.length];
 		matrix[0][0] = new Combination();
 		Bag origin = new Bag();
@@ -80,8 +211,7 @@ public class Split {
 		return matrix;
 	}
 	
-	public static void printCombinations(int n, int m, int[] a, Combination[][] matrix) {
-
+	public static void printCombinations(int n, int m, Product[] a, Combination[][] matrix) {
 		if (m == 1) {
 			return;
 		}
@@ -111,7 +241,7 @@ public class Split {
 	public static class Combination {
 		ArrayList<Bag> list = new ArrayList<Bag>();
 	
-		public void addNewItem(int item, Combination c1, Combination c2) {
+		public void addNewItem(Product item, Combination c1, Combination c2) {
 			for (int i = 0; i < c1.list.size(); i++) {
 				Bag b = new Bag();
 				b.addNewItemAsPackage(item, c1.list.get(i));
@@ -136,44 +266,44 @@ public class Split {
 	}
 	
 	public static class Bag {
-		ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
+		ArrayList<ArrayList<Product>> list = new ArrayList<ArrayList<Product>>();
 	
 		public void copyBag(Bag bag) {
-			ArrayList<ArrayList<Integer>> from = bag.list;
+			ArrayList<ArrayList<Product>> from = bag.list;
 			for (int i = 0; i < from.size(); i++) {
-				ArrayList<Integer> sub = new ArrayList<Integer>();
+				ArrayList<Product> sub = new ArrayList<Product>();
 				sub.addAll(from.get(i));
 				list.add(sub);
 			}
 		}
 		
-		public void addNewItemAsPackage(int item, Bag bag) {
-			ArrayList<ArrayList<Integer>> from = bag.list;
-			list = new ArrayList<ArrayList<Integer>>();
+		public void addNewItemAsPackage(Product item, Bag bag) {
+			ArrayList<ArrayList<Product>> from = bag.list;
+			list = new ArrayList<ArrayList<Product>>();
 			for (int i = 0; i < from.size(); i++) {
-				ArrayList<Integer> sub = new ArrayList<Integer>();
+				ArrayList<Product> sub = new ArrayList<Product>();
 				sub.addAll(from.get(i));
 				list.add(sub);
 			}
-			ArrayList<Integer> newItem = new ArrayList<Integer>();
+			ArrayList<Product> newItem = new ArrayList<Product>();
 			newItem.add(item);
 			list.add(newItem);
 		}		
 		
-		public void addNewItemTo(int item, Bag bag, int index) {
-			ArrayList<ArrayList<Integer>> from = bag.list;
-			list = new ArrayList<ArrayList<Integer>>();
+		public void addNewItemTo(Product item, Bag bag, int index) {
+			ArrayList<ArrayList<Product>> from = bag.list;
+			list = new ArrayList<ArrayList<Product>>();
 			for (int i = 0; i < from.size(); i++) {
-				ArrayList<Integer> sub = new ArrayList<Integer>();
+				ArrayList<Product> sub = new ArrayList<Product>();
 				sub.addAll(from.get(i));
 				list.add(sub);
 			}
 			list.get(index).add(item);
 		}
 		
-		public void addToBag(int item, int bag) {
+		public void addToBag(Product item, int bag) {
 			if (list.size() <= bag) {
-				ArrayList<Integer> newBag = new ArrayList<Integer>();
+				ArrayList<Product> newBag = new ArrayList<Product>();
 				newBag.add(item);
 				list.add(newBag);
 				//System.out.println("in create");
@@ -186,7 +316,7 @@ public class Split {
 		public String toString() {
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < list.size(); i++) {
-				ArrayList<Integer> sub = list.get(i);
+				ArrayList<Product> sub = list.get(i);
 				for (int j = 0; j < sub.size(); j++) {
 					sb.append(sub.get(j));
 					if (j != sub.size() - 1) {
