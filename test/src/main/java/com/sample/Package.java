@@ -1,79 +1,89 @@
 package com.sample;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 
-import com.sample.ShoppingExample.Customer;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Package {
-	private CustomerInfo cusInfo;
-	private HashMap<Product, Integer> productList;
-	private double desireScore;
-	private Date estimatedDate;
-	private Date orderDate;
-	private int maxItem;
-	private int zoneID;
+	private ArrayList<Product> products = new ArrayList<Product>();
+	private int splitNum;
+	private Order order;
+	private boolean forRemain;
+	private boolean allocated;
 	
-	public Package(Product p, int amount) {
-		
-		productList = new HashMap<Product, Integer>();
-		productList.put(p,amount);
-		System.out.println("new package!");
-		
-
-		
+	public Package(Order order) {
+		this.order = order;
+	}
+	
+	public boolean isAllocated() {
+		return allocated;
 	}
 
-	public ArrayList<Product> getProducts () {
-		ArrayList<Product> list =  new ArrayList<Product>();
-		list.addAll(productList.keySet());
-		return list;
+	public void setAllocated(boolean allocated) {
+		this.allocated = allocated;
+	}
+	
+	public boolean isForRemain() {
+		return forRemain;
 	}
 
-	public void addProducts(Product prod,int number){
-		productList.put(prod, number);
+	public void setForRemain(boolean forRemain) {
+		this.forRemain = forRemain;
 	}
-	public int getZoneID() {
-		return zoneID;
+	
+	public void addProduct(Product p) {
+		products.add(p);
 	}
-	public void setZoneID(int zoneID) {
-		this.zoneID = zoneID;
+	
+	public boolean isSplitable() {
+		return splitNum < products.size();
 	}
-	public CustomerInfo getCusInfo() {
-		return cusInfo;
+	
+	public boolean isSeperable() {
+		return products.size() > 1;
 	}
-	public void setCusInfo(CustomerInfo cusInfo) {
-		this.cusInfo = cusInfo;
-	}
-	public HashMap<Product, Integer> getProductList() {
-		return productList;
-	}
-	public void setProductList(HashMap<Product, Integer> productList) {
-		this.productList = productList;
-	}
-	public double getDesireScore() {
-		return desireScore;
-	}
-	public void setDesireScore(double desireScore) {
-		this.desireScore = desireScore;
-	}
-	public Date getEstimatedDate() {
-		return estimatedDate;
-	}
-	public void setEstimatedDate(Date estimatedDate) {
-		this.estimatedDate = estimatedDate;
-	}
-	public Date getOrderDate() {
-		return orderDate;
-	}
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
-	}
-	public int getMaxItem() {
-		return maxItem;
-	}
-	public void setMaxItem(int maxItem) {
-		this.maxItem = maxItem;
+	
+	public int getSplitNum() {
+		return splitNum;
 	}
 
+	public void setSplitNum(int splitNum) {
+		this.splitNum = splitNum;
+	}
+	
+//	public void addProduct(Product product) {
+//		Integer qty = products.get(product);
+//		if (qty == null) {
+//			products.put(product, 1);
+//		} else {
+//			products.put(product, qty + 1);
+//		}
+//	}
+	
+	public ArrayList<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(ArrayList<Product> products) {
+		this.products = products;
+	}
+	
+//	public int getPackageID() {
+//		return packageID;
+//	}
+//
+//	public void setPackageID(int packageID) {
+//		this.packageID = packageID;
+//	}
+
+	public Order getOrder() {
+		return order;
+	}
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+	
+	@Override
+	public String toString() {
+		return Arrays.toString(products.toArray());
+	}
 }
