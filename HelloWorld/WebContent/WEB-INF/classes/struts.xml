@@ -5,7 +5,9 @@
 <struts>
 <constant name="struts.devMode" value="true" />
    <package name="helloworld" extends="struts-default">
-     
+     <action name="index">
+            <result >/index.jsp</result>
+      </action>
       <action name="hello" 
             class="com.tutorialspoint.struts.HelloWorldAction" 
             method="execute">
