@@ -61,12 +61,13 @@ public class SmallTest {
 		Product shoes = new Product(1, "shoes", 50 , 10, 2);
 		Product hat = new Product(2, "hat", 10 , 4, 2);
 		Product shirt = new Product(3, "shirt", 20 , 8 ,5);
+		Product shirts = new Product(5, "hahahah", 20 , 8 ,5);
 		
-		Store s1 = new Store(2);
-		Store s2 = new Store(4);
-		Store s3 = new Store(5);
-		Store s4 = new Store(6);
-		Store s5 = new Store(8);
+		Store s1 = new Store(1,2);
+		Store s2 = new Store(2,4);
+		Store s3 = new Store(3,5);
+		Store s4 = new Store(4,6);
+		Store s5 = new Store(5,8);
 	
 		s1.addItem(shoes, 5, 5);
 		s1.addItem(hat, 7, 5);
@@ -83,11 +84,13 @@ public class SmallTest {
 		s5.addItem(shoes, 7, 5);
 		s5.addItem(hat, 7, 5);
 		s5.addItem(shirt, 7, 5);
+		s5.addItem(shirts, 7,5);
 		
 		Order order = new Order(2);
 		order.addProducts(shoes, 1);
 		order.addProducts(hat, 1);
 		order.addProducts(shirt, 1);	
+		order.addProducts(shirts,1);
 		
 		ksession.insert(s1);
 		ksession.insert(s2);

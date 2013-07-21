@@ -33,11 +33,11 @@ public class Split {
 		p2.addProduct(hat);
 		p2.addProduct(shirt);
 		
-		Store s1 = new Store(2);
-		Store s2 = new Store(4);
-		Store s3 = new Store(5);
-		Store s4 = new Store(6);
-		Store s5 = new Store(8);
+		Store s1 = new Store(1,2);
+		Store s2 = new Store(2,4);
+		Store s3 = new Store(3,5);
+		Store s4 = new Store(4,6);
+		Store s5 = new Store(5,8);
 	
 		s1.addItem(shoes, 5, 5);
 		s1.addItem(hat, 7, 5);

@@ -28,6 +28,7 @@ public class createRule {
 		  rules[1] = "./ruleTxt/rule1.txt";
 		  rules[2] = "./ruleTxt/rule2.txt";
 		  rules[3] = "./ruleTxt/rule3.txt";
+		  
 	      //  prompt the user to enter their name
 
 	      //  open up standard input

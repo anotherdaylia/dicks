@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Store {
-	private String storeID;
+	private int storeID;
 	private String location;
 	private HashMap<Product, Inventory> stock;
 	private int zoneID;
 	
-	public Store(int zoneID) {
+	public Store(int storeID, int zoneID) {
+		this.storeID = storeID;
 		this.zoneID = zoneID;
 		stock = new HashMap<Product, Inventory>();
 	}
@@ -40,10 +41,10 @@ public class Store {
 		return false;
 	}
 	
-	public String getStoreID() {
+	public int getStoreID() {
 		return storeID;
 	}
-	public void setStoreID(String storeID) {
+	public void setStoreID(int storeID) {
 		this.storeID = storeID;
 	}
 	public String getLocation() {

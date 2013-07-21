@@ -7,6 +7,7 @@ public class Product {
 	private double weight;
 	private int size;
 	private int productID;
+	private String special;
 	
 	public Product (int productID, String productName, double price, double weight, int size) {
 		this.productID = productID;
@@ -14,6 +15,13 @@ public class Product {
 		this.price = price;
 		this.weight = weight;
 		this.size = size;
+	}
+	
+	public String getSpecial(){
+		return special;
+	}
+	public void setSpecial(String special){
+		this.special = special;
 	}
 	
 	public int getProductID() {
