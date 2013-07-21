@@ -183,7 +183,7 @@ public class createRule {
             System.out.println("success!");
        }
       catch(Exception e){System.out.println("error: " + e);}
-    
+	     threshold abc = new threshold("hold");
 	     
 	} 	
 	   public static String writeDrl(String type, String object, String attribute, 

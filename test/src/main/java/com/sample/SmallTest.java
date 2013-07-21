@@ -22,7 +22,7 @@ public class SmallTest {
 
 		// this will parse and compile in one step
 
-		kbuilder.add(ResourceFactory.newClassPathResource("newRule.drl",
+		kbuilder.add(ResourceFactory.newClassPathResource("test.drl",
 
 				HelloWorld.class), ResourceType.DRL);
 
@@ -59,7 +59,7 @@ public class SmallTest {
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 		
 		Product shoes = new Product(1, "shoes", 50 , 10, 2);
-		Product hat = new Product(2, "hat", 10 , 4, 1);
+		Product hat = new Product(2, "hat", 10 , 4, 2);
 		Product shirt = new Product(3, "shirt", 20 , 10 ,5);
 		
 		Store s1 = new Store(2);
