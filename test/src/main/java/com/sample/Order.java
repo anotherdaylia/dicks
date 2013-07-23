@@ -99,6 +99,7 @@ public class Order {
 		this.cusInfo = cusInfo;
 	}
 	public HashMap<Product, Integer> getProductList() {
+		System.out.println(productList);
 		return productList;
 	}
 	public void setProductList(HashMap<Product, Integer> productList) {
@@ -128,5 +129,7 @@ public class Order {
 	public void setMaxItem(int maxItem) {
 		this.maxItem = maxItem;
 	}
+	
+	
 
 }

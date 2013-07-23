@@ -1,5 +1,5 @@
 rule "filter stock"
-	salience 10
+	salience 98
 	agenda-group "first"
     when    	
     	$item : Product()

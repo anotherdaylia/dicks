@@ -38,24 +38,19 @@ public class createStoreRule {
 	      
 	      //read rule type till get the correct one
 	      do{
-	    	  System.out.print("Enter your type of the rule you want to create (threshold, evaluation): ");
+	    	  System.out.print("Enter your type of the rule you want to create (threshold, evaluation, special route, store filter): ");
 	    	  input = br.readLine();
 	      }
-	      while (!input.equalsIgnoreCase("evaluation"));
+	      while (!input.equalsIgnoreCase("storeFilter"));
 	      ruleType = input;
 	      System.out.println("Thanks for the type, " + ruleType);
 	      
 	      
-	      do{
-	    	  System.out.print("Which store (storeID or all) ");
+	      
+	      
+	    	  System.out.print("please type storeid (or type all to represent all stores) to apply the rule ");
 	    	  input = br.readLine();
-	      }
-	      while (!input.equalsIgnoreCase("product"));
-	      objectTypeBuffer.append("product");
-	      if (input.equalsIgnoreCase("product")){
-	    	  System.out.print("please type SKU of the product to apply the rule ");
-	    	  input = br.readLine();
-	    	  
+	    	  objectTypeBuffer.append("store");
 	    	  if (input.equalsIgnoreCase("all")){
 	    		  objectTypeBuffer.append(",ALL");
 	    	  }
@@ -63,7 +58,7 @@ public class createStoreRule {
 	    	  
 		    	  do {
 		    		  objectTypeBuffer.append(","+input);
-		    		  System.out.print("type SKU to add more or NEXT to continue");
+		    		  System.out.print("type storeid to add more or NEXT to continue");
 		    		  
 			    	  input = br.readLine();
 			    	  
@@ -72,9 +67,9 @@ public class createStoreRule {
 	    	}
 	    	  
 
-	      }
 	      
-	      System.out.print("Enter the attribute of the product to apply the rule ");
+	      
+	      System.out.print("Enter the attribute of the store to apply the rule ");
 	      input = br.readLine();
 	      attributeBuffer.append(input);
 	      
@@ -169,10 +164,12 @@ public class createStoreRule {
              int i = 0;
              FileInputStream fis;
              while (rules[i] != null){
-            	 System.out.println("combing rule "+i);
+            	 //System.out.println("combing rule "+i);
+            	 
+            	
             	 fis = new FileInputStream(new File(rules[i]));
             	 byte[] b = new byte[1];
-            	 System.out.print(b);
+            	 //System.out.print(b);
             	 while((fis.read(b)) != -1){
                      fos.write(b);
                  }
@@ -183,7 +180,7 @@ public class createStoreRule {
             System.out.println("success!");
        }
       catch(Exception e){System.out.println("error: " + e);}
-	     threshold abc = new threshold("hold");
+	     //threshold abc = new threshold("hold");
 	     
 	} 	
 	   public static String writeDrl(String type, String object, String attribute, 
@@ -199,7 +196,7 @@ public class createStoreRule {
 	   
 	   public static String writeRuleType(String type){
 		   StringBuffer tmp = new StringBuffer();
-		   tmp.append("rule  \"Mininum Package"+type+ruleCount+"\""+myReturn);
+		   tmp.append("rule  \"StoreFilter"+type+ruleCount+"\""+myReturn);
 		  
 		   //need to add more statement such as no-loop true dialect "java", will decide later
 		   
@@ -217,10 +214,10 @@ public class createStoreRule {
 		   //first product, special case it if the input is "all"
 		   StringBuffer multiObject = new StringBuffer();
 		   if (splits[1].equals("ALL")){
-			   multiObject.append("");
+			   multiObject.append(")");
 		   }
 		   else{
-		   multiObject.append("&& (( productID == "+splits[1]+" )");
+		   multiObject.append("( productID == "+splits[1]+" )");
 		   
 		   //combing all the other products
 		   System.out.println("splits.size: " + splits.length);
@@ -228,7 +225,7 @@ public class createStoreRule {
 			   multiObject.append("|| (productID == "+splits[i]+" )");
 			   System.out.println("add second product");
 		   }
-		   multiObject.append("))");
+		   multiObject.append(")");
 		   }
 		   
 		   //split the attribute
@@ -264,10 +261,19 @@ public class createStoreRule {
 		   //appending the whole "when" part
 
 		   StringBuffer tmp = new StringBuffer();
+		   
+		   
 		   tmp.append(myTab+"when"+myReturn);
-		   tmp.append(myTab+myTab+"$o : Order()"+myReturn);
-		   tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+
-		   		"from $o.getProducts()"+myReturn);
+		   
+		   
+		   tmp.append(myTab+myTab+"$i : Product( "+multiObject.toString()+myReturn);
+		   tmp.append(myTab+myTab+"$store : Store()"+myReturn);
+		   tmp.append(myTab+myTab+"eval($s.checkStore($i, "+"\""+splitAttribute[0]+"\","+"\""+splitOperator[0]+"\","+splitValue[0]+ ")"+myReturn);
+			  for (int i = 1; i < splitAttribute.length; i++){
+			   tmp.append(myTab+myTab+"eval($s.checkStore($i, "+"\""+splitAttribute[i]+"\","+"\""+splitOperator[i]+"\","+splitValue[i]+ ")"+myReturn);
+			   
+		   }
+		   
 		   //tmp.append(myTab+myTab+"$p : Purchase( customer == $c, $"+attribute.charAt(0)+" : product."+attribute+mySpace+operator+mySpace+values+" )");
 	   
 		   return tmp.toString();
@@ -277,7 +283,7 @@ public class createStoreRule {
 	   public static String writeThen(String action){
 		   StringBuffer tmp = new StringBuffer();
 		   tmp.append(myTab+"then"+myReturn);
-		   tmp.append(myTab+myTab+"$i.minPackage();"+myReturn);
+		   tmp.append(myTab+myTab+"retract($store);"+myReturn);
 		   tmp.append("end"+myReturn+myReturn);
 		   return tmp.toString();
 	   }

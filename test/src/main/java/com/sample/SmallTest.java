@@ -22,7 +22,7 @@ public class SmallTest {
 
 		// this will parse and compile in one step
 
-		kbuilder.add(ResourceFactory.newClassPathResource("newRule.drl",
+		kbuilder.add(ResourceFactory.newClassPathResource("newRule_joe.drl",
 
 				HelloWorld.class), ResourceType.DRL);
 
@@ -33,7 +33,7 @@ public class SmallTest {
 
 			System.out.println(kbuilder.getErrors().toString());
 
-			throw new RuntimeException("Unable to compile \"newRule.drl\".");
+			throw new RuntimeException("Unable to compile \"newRule_joe.drl\".");
 
 		}
 
@@ -58,10 +58,10 @@ public class SmallTest {
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 		
-		Product shoes = new Product(1, "shoes", 50 , 10, 2);
+		Product shoes = new Product(1, "shoes", 50 ,10, 2);
 		Product hat = new Product(2, "hat", 10 , 4, 2);
 		Product shirt = new Product(3, "shirt", 20 , 8 ,5);
-		Product shirts = new Product(5, "hahahah", 20 , 8 ,5);
+		//Product shirts = new Product(5, "hahahah", 20 , 8 ,5);
 		
 		Store s1 = new Store(1,2);
 		Store s2 = new Store(2,4);
@@ -75,22 +75,22 @@ public class SmallTest {
 		s2.addItem(shoes, 7, 5);
 		s2.addItem(hat, 7, 5);
 		s2.addItem(shirt, 7, 5);
-		s3.addItem(shoes, 7, 5);
-		s3.addItem(hat, 7, 5);
-		s3.addItem(shirt, 7, 5);
-		s4.addItem(shoes, 7, 5);
-		s4.addItem(hat, 7, 5);
-		s4.addItem(shirt, 7, 5);
-		s5.addItem(shoes, 7, 5);
-		s5.addItem(hat, 7, 5);
-		s5.addItem(shirt, 7, 5);
-		s5.addItem(shirts, 7,5);
+		s3.addItem(shoes, 7, 4);
+		s3.addItem(hat, 7, 4);
+		s3.addItem(shirt, 7, 4);
+		s4.addItem(shoes, 7, 4);
+		s4.addItem(hat, 7, 4);
+		s4.addItem(shirt, 7, 4);
+		s5.addItem(shoes, 7, 4);
+		s5.addItem(hat, 7, 4);
+		s5.addItem(shirt, 7, 4);
+		
 		
 		Order order = new Order(2);
 		order.addProducts(shoes, 1);
 		order.addProducts(hat, 1);
 		order.addProducts(shirt, 1);	
-		order.addProducts(shirts,1);
+		//order.addProducts(shirts,1);
 		
 		ksession.insert(s1);
 		ksession.insert(s2);
@@ -102,7 +102,7 @@ public class SmallTest {
 		ksession.fireAllRules();
 
 		// Remove comment if using logging
-		// logger.close();
+		logger.close();
 
 		ksession.dispose();
 	}
