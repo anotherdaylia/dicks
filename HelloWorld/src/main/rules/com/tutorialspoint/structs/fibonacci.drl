@@ -1,0 +1,36 @@
+//created on: Jul 5, 2013
+package src.main.rules.com.tutorialspoint.struts;
+
+//list any import classes here.
+
+import  main.java.com.tutorialspoint.struts.FibonacciTest.Fibonacci
+
+//declare any global variables here
+
+rule "recurse"
+	salience 10
+    when
+        not (Fibonacci (sequence == 1))
+        f : Fibonacci (value == -1)
+    then
+        insert(new Fibonacci(f.getSequence() - 1));
+        System.out.println("recurse for " + f.getSequence() );
+end
+
+rule "base"
+    when
+        f : Fibonacci ((sequence == 1 || sequence == 2) && value == -1)
+    then
+        modify ( f ){ setValue(1) };
+        System.out.println( f.getSequence() + " == " + f.getValue() );
+end
+
+rule "calculate"
+	when
+		f1 : Fibonacci (s1: sequence, value != -1)
+		f2 : Fibonacci (sequence == s1 + 1, value != -1)
+		f3 : Fibonacci (sequence == f2.sequence + 1, value == -1 )
+	then
+		modify (f3) {setValue(f1.getValue() + f2.getValue())}
+		System.out.println( f3.getSequence() + " == " + f3.getValue() );
+end

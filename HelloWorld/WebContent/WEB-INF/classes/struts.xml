@@ -9,7 +9,7 @@
             <result >/index.jsp</result>
       </action>
       <action name="hello" 
-            class="com.tutorialspoint.struts.HelloWorldAction" 
+            class="main.java.com.tutorialspoint.struts.HelloWorldAction" 
             method="execute">
             <result name="success">/HelloWorld.jsp</result>
       </action>
