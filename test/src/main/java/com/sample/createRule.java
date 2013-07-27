@@ -305,7 +305,7 @@ public class createRule {
 			   multiObject.append("|| (productID == "+splits[i]+" )");
 			   System.out.println("add second product");
 		   }
-		   multiObject.append("))");
+		   multiObject.append(")");
 		   }
 		   
 		   //split the attribute
@@ -344,7 +344,7 @@ public class createRule {
 		   tmp.append(myTab+"when"+myReturn);
 		   tmp.append(myTab+myTab+"$o : Order()"+myReturn);
 		   tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+
-		   		"from $o.getProducts()"+myReturn);
+		   		") from $o.getProducts()"+myReturn);
 		   //tmp.append(myTab+myTab+"$p : Purchase( customer == $c, $"+attribute.charAt(0)+" : product."+attribute+mySpace+operator+mySpace+values+" )");
 	   
 		   return tmp.toString();
