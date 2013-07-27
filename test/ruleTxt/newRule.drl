@@ -12,7 +12,7 @@ import java.*;
 rule  "Mininum Packagethreshold0"
     when
         $o : Order()
-        $i : Product( ((weight > 5))from $o.getProducts()
+        $i : Product( (weight > 5)) from $o.getProducts()
     then
         $i.minPackage();
 end

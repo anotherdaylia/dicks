@@ -1,19 +1,7 @@
-/com
-/rule1.txt
-/newRule.txt
-/ruleHeader.txt
-/rule2.txt
-/newRule
+/HelloWorld.drl
+/fibonacci.drl
 /newRule.drl
-/rule3.txt
-/rule4.txt
-/newRule_withGroup.drl
-<<<<<<< HEAD
-<<<<<<< HEAD
 /newRule_joe.drl
-=======
+/newRule_withGroup.drl
+/shopping.drl
 /test.drl
->>>>>>> branch 'master' of https://github.com/claire921/dicks.git
-=======
-/test.drl
->>>>>>> 98ad6231b0a0a4dcf01157ba361130843b2576fa
