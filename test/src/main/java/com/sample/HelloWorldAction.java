@@ -1,4 +1,4 @@
-package com.tutorialspoint.struts;
+package com.sample;
 
 public class HelloWorldAction {
 	   private String name;
