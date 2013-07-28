@@ -14,5 +14,11 @@
       <input type="text" name="name"/>
       <input type="submit" value="Say Hello"/>
    </form>
+   <form action="test">
+   	  <input type="submit" value="Small Test"/>
+   </form>
+   <form action="gotocreate">
+   	  <input type="submit" value="Go to Create New Rules"/>
+   </form>
 </body>
 </html>

@@ -26,7 +26,7 @@ public class SmallTest {
 
 				HelloWorld.class), ResourceType.DRL);
 
-
+		
 		// Check the builder for errors
 
 		if (kbuilder.hasErrors()) {
