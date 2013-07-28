@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+        
+<hibernate-mapping>
+	
+	<class name="com.miqicheng.model.Order" table="order_table">
+		<id name="orderID" column="order_id" type="string"></id>
+			
+		<property name="customerID" column="cust_id" type="string"></property>
+		<property name="totalAmount" column="tot_amt" type="int"></property>
+		<property name="orderStatus" column="order_status" type="String"></property>
+		<property name="orderDate" column="order_date" type="date"></property>
+		<property name="address" column="addr" type="string"></property>
+		<property name="zip" column="zip" type="string"></property>
+		<property name="tel" column="tel_no" type="string"></property>
+		<property name="customerName" column="cust_name" type="string"></property>
+		
+	</class>
+</hibernate-mapping>

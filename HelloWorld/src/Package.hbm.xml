@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+        
+<hibernate-mapping>
+	
+	<class name="com.miqicheng.model.Package" table="package_table">
+		<id name="packageID" column="package_id" type="string">
+		</id>
+			
+		<property name="customerID" column="cust_id" type="string"></property>
+		<property name="orderID" column="order_id" type="string"></property>
+		<property name="deliveryDate" column="deliv_date" type="date"></property>
+		<property name="totalAmount" column="tot_amt" type="int"></property>
+		<property name="shippingStatus" column="shipping_status" type="string"></property>
+		<property name="shippingCompany" column="shipping_company" type="string"></property>
+		<property name="shippingDay" column="shipping_day" type="int"></property>
+		<property name="weight" column="weight" type="float"></property>
+	</class>
+</hibernate-mapping>

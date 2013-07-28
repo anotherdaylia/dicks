@@ -49,12 +49,7 @@ rule  "Mininum Packagethreshold0"
         $o : Order()
         $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
     then
-<<<<<<< HEAD
-        
-        //insertLogical( new Package($i, 1) );
-=======
     	//insertLogical( new Package($i, 1) );
->>>>>>> 98ad6231b0a0a4dcf01157ba361130843b2576fa
         retract($i);
        // $i.minPackage();
 end
