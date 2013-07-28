@@ -2,10 +2,11 @@
 package com.sample;
 
 //list any import classes here.
-import com.sample.Order
-import com.sample.Store
-import com.sample.Package
-import com.sample.PackageTestResult
+import com.dicks.engine.Order
+import com.dicks.engine.Store
+import com.dicks.engine.Package
+import com.dicks.engine.Product
+import com.dicks.engine.PackageTestResult
 import java.util.ArrayList
 import java.*;
 import java.String.*;

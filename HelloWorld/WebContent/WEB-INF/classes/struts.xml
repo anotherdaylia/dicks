@@ -8,19 +8,11 @@
      <action name="index">
             <result >/index.jsp</result>
       </action>
-      <action name="hello" 
-            class="com.dicks.engine.HelloWorldAction" 
-            method="execute">
-            <result name="success">/HelloWorld.jsp</result>
+      <action name="gotocreatenew" class="com.dicks.engine.CreateRuleWeb" method="gotocreatenew">
+          <result name="gotocreatenew">/CreateRule.jsp</result>
       </action>
-      <action name="test" class="com.dicks.engine.SmallTestWeb" method="smallTest">
-          <result name="smallTest">/SmallTest.jsp</result>
-      </action>
-      <action name="createrule" class="com.dicks.engine.CreateNewRuleWeb" method="createrule">
-          <result name="createnewrule">/CreateNewRulesResulte.jsp</result>
-      </action>
-      <action name="gotocreate" class="com.dicks.engine.CreateNewRuleWeb" method="gotocreate">
-          <result name="gotocreatenewrule">/CreateNewRules.jsp</result>
+      <action name="cnr" class="com.dicks.engine.CreateRuleWeb" method="cnr">
+          <result name="cnr">/CreateRule.jsp</result>
       </action>
    </package>
 </struts>

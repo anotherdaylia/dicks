@@ -18,6 +18,9 @@
    	  <input type="submit" value="Small Test"/>
    </form>
    <form action="gotocreate">
+   	  <input type="submit" value="Go to Create"/>
+   </form>
+   <form action="gotocreatenew">
    	  <input type="submit" value="Go to Create New Rules"/>
    </form>
 </body>
