@@ -1,8 +1,10 @@
 package com.sample;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.kie.api.io.ResourceType;
+import org.kie.api.runtime.ClassObjectFilter;
 import org.kie.internal.KnowledgeBase;
 import org.kie.internal.KnowledgeBaseFactory;
 import org.kie.internal.builder.KnowledgeBuilder;
@@ -100,7 +102,18 @@ public class SmallTest {
 		ksession.insert(order);
 
 		ksession.fireAllRules();
+		
+		Collection<Package> packages = (Collection<Package>) ksession.getObjects( new ClassObjectFilter(Package.class) );
+		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 
+		System.out.println("---------------------------------");
+		System.out.println("package size: " + packages.size());
+		System.out.println(Arrays.toString(packages.toArray()));
+		System.out.println("store list: " + stores.size());
+		System.out.println(Arrays.toString(stores.toArray()));
+			
+		System.out.println("end");
+		
 		// Remove comment if using logging
 		logger.close();
 

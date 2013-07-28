@@ -2,6 +2,7 @@ package com.sample;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class Store {
 	private int storeID;
@@ -24,6 +25,30 @@ public class Store {
 		stock.get(product).instockNum--;
 	}
 	
+	public boolean containProductsInOrder(Order order) {
+		Set<Product> products = order.getProductList().keySet();
+		int notContainingNum = 0;
+		for (Product p : products) {
+			if (!this.containProduct(p)) notContainingNum++;
+		}
+		return notContainingNum < order.getProducts().size();
+	}
+	
+	public boolean containParcel(Parcel parcel) {
+		HashMap<Product, Integer> products = parcel.getProducts();
+		Set<Product> productSet = products.keySet();
+		
+		for (Product p : productSet) {
+			int qty = products.get(p);
+			if (!containNumProduct(p, qty)) {
+//				System.out.println("rule out product: " + p + ", qty: " + qty);
+				return false;
+			}
+		}
+		
+		return true;		
+	}
+	
 	public boolean containProducts(ArrayList<Product> products) {
 		for (Product p : products) {
 			if (!this.containProduct(p)) {
@@ -32,6 +57,14 @@ public class Store {
 			}
 		}		
 		return true;
+	}
+	
+	public boolean containNumProduct(Product product, int num) {
+		Inventory in = stock.get(product);
+		if (in == null) return false;
+		//System.out.println("store: " + this.zoneID + " margin: " + in.getMargin());
+		if (in.getMargin() >= num) return true;
+		return false;
 	}
 	
 	public boolean containProduct(Product product) {
