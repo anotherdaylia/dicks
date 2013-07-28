@@ -9,17 +9,7 @@
 </head>
 <body>
    <h1>Hello World From Struts2</h1>
-   <form action="hello">
-      <label for="name">Please enter your name</label><br/>
-      <input type="text" name="name"/>
-      <input type="submit" value="Say Hello"/>
-   </form>
-   <form action="test">
-   	  <input type="submit" value="Small Test"/>
-   </form>
-   <form action="gotocreate">
-   	  <input type="submit" value="Go to Create"/>
-   </form>
+
    <form action="gotocreatenew">
    	  <input type="submit" value="Go to Create New Rules"/>
    </form>
