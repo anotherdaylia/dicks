@@ -1,56 +1,62 @@
 package com.sample;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PackageTest {
-//	private int packageTestID;
-	private HashMap<Product, Integer> products = new HashMap<Product, Integer>();
-	private int deliveryDays;
-//	private String source;
-	private Package p;
+	private boolean tested;
+	private ArrayList<Parcel> parcels = new ArrayList<Parcel>();
+	private Package pack;
+	private int zoneID;
 	
-	public PackageTest(Package p) {
-		this.p = p;
-	}
-	
-//	public int getPackageTestID() {
-//		return packageTestID;
-//	}
-//	public void setPackageTestID(int packageTestID) {
-//		this.packageTestID = packageTestID;
-//	}
-	
-	public void addProduct(Product p) {
-		Integer qty = products.get(p);
-		if (qty == null) {
-			products.put(p, qty);
-		} else {
-			products.put(p, qty + 1);
-		}
+	public PackageTest(Package pack, int zoneID) {
+		this.pack = pack;
 	}
 	
-	public HashMap<Product, Integer> getProducts() {
-		return products;
+	public int getZoneID() {
+		return zoneID;
 	}
-	public void setProducts(HashMap<Product, Integer> products) {
-		this.products = products;
+
+	public void setZoneID(int zoneID) {
+		this.zoneID = zoneID;
 	}
-	public int getDeliveryDays() {
-		return deliveryDays;
+	
+	public boolean isTested() {
+		return tested;
 	}
-	public void setDeliveryDays(int deliveryDays) {
-		this.deliveryDays = deliveryDays;
+
+	public void setTested(boolean tested) {
+		this.tested = tested;
 	}
-//	public String getSource() {
-//		return source;
-//	}
-//	public void setSource(String source) {
-//		this.source = source;
-//	}
-	public Package getP() {
-		return p;
+
+	
+	public ArrayList<Parcel> getParcels() {
+		return parcels;
 	}
-	public void setP(Package p) {
-		this.p = p;
+
+	public void setParcels(ArrayList<Parcel> parcels) {
+		this.parcels = parcels;
+	}
+
+	public Package getPack() {
+		return pack;
+	}
+
+	public void setPack(Package pack) {
+		this.pack = pack;
+	}
+	
+	public void addParcel(Parcel parcel) {
+		parcels.add(parcel);
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Package test: [");
+		sb.append(Arrays.toString(parcels.toArray()));
+		sb.append("]");
+		
+		return sb.toString();
 	}
 }

@@ -17,7 +17,7 @@ public class Order {
 	private int exploredItem;
 	private int quantity;
 	private ArrayList<Package> packages = new ArrayList<Package>();
-	private ArrayList<Store> stores = new ArrayList<Store>();
+//	private ArrayList<Store> stores = new ArrayList<Store>();
 	
 	public Order(int zoneID) {
 		this.zoneID = zoneID;
@@ -32,17 +32,17 @@ public class Order {
 		this.packages = packages;
 	}
 
-	public ArrayList<Store> getStores() {
-		return stores;
-	}
-
-	public void setStores(ArrayList<Store> stores) {
-		this.stores = stores;
-	}
-	
-	public void addStore(Store s) {
-		stores.add(s);
-	}
+//	public ArrayList<Store> getStores() {
+//		return stores;
+//	}
+//
+//	public void setStores(ArrayList<Store> stores) {
+//		this.stores = stores;
+//	}
+//	
+//	public void addStore(Store s) {
+//		stores.add(s);
+//	}
 	
 	public String packages() {
 		return Arrays.toString(packages.toArray());

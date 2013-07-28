@@ -1,9 +1,9 @@
 package com.sample;
 
-public class threshold {
+public class Threshold {
 
 	
-	public threshold (String input){
+	public Threshold (String input){
 		System.out.println(input);
 		String[] splits = input.split("|");
 		String[] object;

@@ -7,23 +7,25 @@ import com.sample.Store
 import com.sample.Package
 import com.sample.PackageTestResult
 import java.util.ArrayList
+import java.util.Arrays;
 import java.*;
+
 
 //declare any global variables here
 rule "Explode Cart"
     agenda-group "init"
     auto-focus true
-    salience 10
+    salience 100
     dialect "java"
     when
         $order : Order()
         $item : Product() from $order.getProducts()
     then
         insert( $item );
+//        System.out.println();
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
 //        System.out.println("order quantity: " + $order.getQuantity());
-//        System.out.println("exlored: " + $order.getExploredItem());
-		
+//        System.out.println("exlored: " + $item.getProductName());
         drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
 end
 
@@ -42,18 +44,19 @@ end
 
 rule "filter stock"
 	salience 10
+	auto-focus true
 	agenda-group "first"
     when    	
-    	$item : Product()
+    	$order : Order()
     	$store : Store()
-    	eval(!$store.containProduct($item))
+    	eval(!$store.containProductsInOrder($order))
     then
         retract($store);
 end
 
 /*
 rule "record stores"
-	salience 10
+	salience 9
 	agenda-group "first"
     when    	
     	$order : Order()
@@ -64,38 +67,13 @@ rule "record stores"
 end
 */
 
-rule  "special 1"
-	salience 9
-	agenda-group "first"
-    when
-    	//$store : Store(StoreID == 5);
-       
-//        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
-        $o : Order()
-        $i : Product(productID == 5) 
-        $store : Store(storeID == 5)
-        eval($store.containProduct($i))
-        
-        
-    then     
-    	System.out.println("special routes allocated");
-    	Package p = new Package($o);
-    	p.addProduct($i);
-    	insert (p);  
-    	p.setAllocated(true); 
-        
-        retract($i);
-end
-
-
 rule  "Mininum Packagethreshold0"
-	salience 7
+	salience 8
 	agenda-group "first"
     when
         $o : Order()
 //        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
-        $i : Product(weight >= 10 && special == null)
-        
+        $i : Product(weight >= 10)
     then     
     	Package p = new Package($o);
     	p.addProduct($i);
@@ -133,16 +111,26 @@ rule "wrap up remaining products"
 end
 
 /*
+rule "summarizePackage1"
+	salience 100
+//	agenda-group "split"  
+    when
+        $p : Package()
+    then
+        System.out.println("first: " + $p);        
+end
+
+
 rule "set to next group"
 	agenda-group "first"
 	when
 		not Product()
 	then
-		System.out.println("set to split");
-//		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();		
+//		System.out.println("set to split");
+		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();		
 end
-
-
+*/
+/*
 rule "add all packages"
 	salience 10
 //	agenda-group "split"
@@ -154,36 +142,18 @@ rule "add all packages"
 //		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
 end
 
-
-rule "for not splitable packages"
-	salience 5
-//	agenda-group "split"
-	when
-		$p : Package(getSplitNum() == getProducts().size())
-//		$order : Order()
-	then
-		System.out.println("Unable to handle this package " + $p + ", handed to vendor");
-//		System.out.println("handle this package " + $p);
-//		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
+*/
+rule "summarizePackage1"
+	salience 100
+//	agenda-group "split"   
+    when
+        $p : Package()
+    then
+        System.out.println($p);        
 end
 
-rule "for splitable packages"
-	salience 4
-	agenda-group "split"
-	when
-		$p : Package(getSplitNum() < getProducts().size() && !isAllocated())
-		$order : Order()
-	then	
-		ArrayList r = Split.getTestResult($p, $order);
-		if (r !=  null || r.size() == 0) {
-			modify ($p) { setAllocated(true) }
-			System.out.println("Get result for " + $p);
-		} else {
-			modify ($p) { setSplitNum($p.getSplitNum() + 1) }
-			System.out.println("cannot solve in split " + $p.getSplitNum());
-		}
-//		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
-end*/
+
+
 
 /*
 rule "for not splitable packages"
@@ -205,7 +175,7 @@ rule "for splitable packages"
 		modify ($p) { setSplitNum($p.getSplitNum() + 1) }
 		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
 end
-*/
+
 
 rule "summarize"   
 //	agenda-group "report"
@@ -230,3 +200,5 @@ rule "summarizePackage"
     then
         System.out.println($p);        
 end
+*/
+
