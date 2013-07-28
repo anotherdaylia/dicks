@@ -1,12 +1,11 @@
 //created on: Jul 4, 2013
-package com.dicks.rules;
+package com.sample;
 
 //list any import classes here.
-import com.dicks.engine.Product;
-import com.dicks.engine.Order
-import com.dicks.engine.Store
-import com.dicks.engine.Package
-import com.dicks.engine.PackageTestResult
+import com.sample.Order
+import com.sample.Store
+import com.sample.Package
+import com.sample.PackageTestResult
 import java.util.ArrayList
 import java.*;
 
@@ -24,6 +23,7 @@ rule "Explode Cart"
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
 //        System.out.println("order quantity: " + $order.getQuantity());
 //        System.out.println("exlored: " + $order.getExploredItem());
+		
         drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
 end
 
@@ -51,6 +51,7 @@ rule "filter stock"
         retract($store);
 end
 
+/*
 rule "record stores"
 	salience 10
 	agenda-group "first"
@@ -61,6 +62,7 @@ rule "record stores"
     	modify ($order) { addStore($store) }
         retract($store);
 end
+*/
 
 rule  "special 1"
 	salience 9

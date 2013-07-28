@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class Order {
 	private int orderID;
-	private CustomerInfo cusInfo;
+//	private CustomerInfo cusInfo;
 	private HashMap<Product, Integer> productList;
 	private double desireScore;
 	private Date estimatedDate;
@@ -92,12 +92,12 @@ public class Order {
 	public void setZoneID(int zoneID) {
 		this.zoneID = zoneID;
 	}
-	public CustomerInfo getCusInfo() {
-		return cusInfo;
-	}
-	public void setCusInfo(CustomerInfo cusInfo) {
-		this.cusInfo = cusInfo;
-	}
+//	public CustomerInfo getCusInfo() {
+//		return cusInfo;
+//	}
+//	public void setCusInfo(CustomerInfo cusInfo) {
+//		this.cusInfo = cusInfo;
+//	}
 	public HashMap<Product, Integer> getProductList() {
 		System.out.println(productList);
 		return productList;

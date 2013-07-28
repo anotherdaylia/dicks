@@ -171,9 +171,7 @@ public class Store {
 		
 		else{
 			return false;
-		}
-		
-		
+		}		
 	}
 	
 	public int getStoreID() {

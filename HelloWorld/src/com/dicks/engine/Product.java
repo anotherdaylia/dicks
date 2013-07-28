@@ -1,7 +1,7 @@
 package com.dicks.engine;
 
 public class Product {
-	private VendorInfo vendorInfo;
+//	private VendorInfo vendorInfo;
 	private String productName;
 	private double price;
 	private double weight;
@@ -32,12 +32,6 @@ public class Product {
 		this.productID = productID;
 	}
 	
-	public VendorInfo getVendorInfo() {
-		return vendorInfo;
-	}
-	public void setVendorInfo(VendorInfo vendorInfo) {
-		this.vendorInfo = vendorInfo;
-	}
 	public String getProductName() {
 		return productName;
 	}

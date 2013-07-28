@@ -1,9 +1,9 @@
 //created on: Jul 4, 2013
-package com.dicks.rules;
+package src.main.java.com.sample;
 
 //list any import classes here.
 
-import com.dicks.engine.HelloWorld.Message
+import com.sample.HelloWorld.Message
 
 //declare any global variables here
 global java.util.List list

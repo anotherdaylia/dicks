@@ -1,10 +1,10 @@
 //created on: Jul 4, 2013
-package com.dicks.rules;
+package com.sample;
 
 //list any import classes here.
-import com.dicks.engine.Order
-import com.dicks.engine.Store
-import com.dicks.engine.Product
+import com.sample.Order
+import com.sample.Store
+import com.sample.Product
 import java.util.ArrayList
 import java.*;
 

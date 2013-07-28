@@ -1,21 +1,20 @@
 //created on: Jul 4, 2013
-package com.dicks.rules;
-
+package com.sample;
 
 //list any import classes here.
-import com.dicks.engine.Product;
-import com.dicks.engine.Order;
-import com.dicks.engine.Store;
-import com.dicks.engine.Package;
-import com.dicks.engine.PackageTestResult;
-import java.util.ArrayList;
+import com.sample.Order
+import com.sample.Store
+import com.sample.Package
+import com.sample.PackageTestResult
+import java.util.ArrayList
 import java.*;
+import java.String.*;
 
 //declare any global variables here
 rule "Explode Cart"
     agenda-group "init"
     auto-focus true
-    salience 10
+    salience 30
     dialect "java"
     when
         $order : Order()
@@ -25,7 +24,10 @@ rule "Explode Cart"
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
 //        System.out.println("order quantity: " + $order.getQuantity());
 //        System.out.println("exlored: " + $order.getExploredItem());
-        drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
+
+
+        
+        
 end
 
 /*
@@ -40,19 +42,61 @@ rule "Explode Cart end"
         drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
 end
 */
+rule "test"
+	salience 17
+	//agenda-group "first"
+    when    	
+    	
+    	$store : Store(StoreID !=5) 
+    	
+    	
+    then
+    	$store.change(2);
+    	System.out.println("store "+$store.getStoreID()+"value changed"+$store.getValue());
+        
+end
+
+rule "test2"
+	salience 15
+	//agenda-group "first"
+    when    	
+    	
+    	$store : Store()
+    	
+    then
+    	$store.change(1);
+    	System.out.println("store "+$store.getStoreID()+"value changed"+$store.getValue());
+        
+end
 
 rule "filter stock"
-	salience 10
-	agenda-group "first"
+	salience 13
+	//agenda-group "first"
     when    	
     	$item : Product()
     	$store : Store()
     	eval(!$store.containProduct($item))
     then
+    	System.out.println("store "+ $store.getStoreID()+ " retracted by rule filter stock");
         retract($store);
 end
 
-rule "record stores"
+rule "filter stock2"
+	salience 10
+	//agenda-group "first2"
+    when
+    	//$o : Order()
+        $item : Product()
+    	$store : Store()
+        //eval($store.checkStore($item, $o,"zone","<",2))
+        eval(!$store.checkStore($item,"margin",">",2)) 
+    then
+    	
+    	System.out.println("store "+$store.getStoreID()+ " retracted by rule filter stock2");
+        retract($store);
+end
+
+/*rule "record stores"
 	salience 10
 	agenda-group "first"
     when    	
@@ -61,35 +105,31 @@ rule "record stores"
     then
     	modify ($order) { addStore($store) }
         retract($store);
-end
+end*/
+
+
+
 
 rule  "special 1"
 	salience 9
-	agenda-group "first"
-    when
-    	//$store : Store(StoreID == 5);
-       
-//        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
-        $o : Order()
-        $i : Product(productID == 5) 
-        $store : Store(storeID == 5)
-        eval($store.containProduct($i))
-        
-        
-    then     
-    	System.out.println("special routes allocated");
-    	Package p = new Package($o);
-    	p.addProduct($i);
-    	insert (p);  
-    	p.setAllocated(true); 
-        
+	//agenda-group "special"
+	when
+       $o : Order()
+        $i : Product(  ( productID == 3 ))
+        $s : Store( storeID == 4 )
+        //eval(!$s.checkProduct($i,">",1))
+	then
+		System.out.println("product "+$i.getProductID()+" get inserted into a new package by speical route rule");
+        Package p = new Package($o);
+        p.addProduct($i);
+        insert (p);
+        p.setAllocated(true); 
         retract($i);
 end
 
-
 rule  "Mininum Packagethreshold0"
 	salience 7
-	agenda-group "first"
+	//agenda-group "first6"
     when
         $o : Order()
 //        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
@@ -105,7 +145,7 @@ end
 
 rule "insert package for remaining products"
 	salience 5
-	agenda-group "first"
+	//agenda-group "first7"
 	when
 		$i : Product()
 		$o : Order()
@@ -121,7 +161,7 @@ end
 
 rule "wrap up remaining products"
 	salience 3
-	agenda-group "first"
+	//agenda-group "first8"
 	when
 		$i : Product()
 		$p : Package(isForRemain())
@@ -206,12 +246,14 @@ rule "for splitable packages"
 end
 */
 
+
+
 rule "summarize"   
 //	agenda-group "report"
     when
         store : Store()
     then
-        System.out.println(store.getZoneID());        
+        System.out.println("Remaining store"+store.getStoreID());        
 end
 
 rule "summarizeProduct"  
@@ -227,5 +269,9 @@ rule "summarizePackage"
     when
         $p : Package()
     then
-        System.out.println($p);        
+        System.out.println($p);     
+           
 end
+
+
+
