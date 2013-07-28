@@ -142,17 +142,27 @@ public class createRule {
 		      
     	  }
     	  
-	      System.out.println("Where would you put your new rule at ");
+	      
 	      int i = 0;
 	      while (ruleFile[i]!= null){
-	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription());
+	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Piority: "+ruleFile[i].getPiority());
 	    	  i++;
 	      }
-	      ruleFile[i+1] = new Rule();
+	      //ruleFile[i+1] = new Rule();
+	      System.out.println("Where would you put your new rule at ");
+	      input = br.readLine();
+	      //ruleInt = 1;
+	      int ruleInt = Integer.parseInt(input);
+	      //System.out.println("rule is at  " +ruleInt + "current rule number is "+i);
 	      
-	      ruleInt = 1;
-	      reRank(1);
+	      if (ruleInt < (i)){
 	      
+	      reRank(ruleInt);
+	      }
+	      else{
+	    	  ruleFile[i] = new Rule();
+	    	  ruleInt = i;
+	      }
 	      
 	      
 	      System.out.print("Enter the action you want to do");
@@ -177,8 +187,15 @@ public class createRule {
 	    			 System.out.println("new file is"+"./ruleTxt/rule"+(i+1)+".txt");
 	    			 String newPath = "./ruleTxt/rule"+(i+1)+".txt";
 	    			 File file = new File(newPath);  
-	    			 
-	    			 ruleFile[ruleInt] = new Rule(ruleInt+1, newPath, "abc", ruleFile[ruleInt-1].getPiority()-2);
+	    			// System.out.println("current rule is "+ruleFile[ruleInt]+ "with piority"+ruleFile[ruleInt].getPiority());
+	    			 if (ruleInt > 0){
+	    				 
+	    				 ruleFile[ruleInt] = new Rule(ruleInt+1, newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt-1].getPiority()-2);
+	    			 }
+	    			 else{
+	    				 ruleFile[ruleInt] = new Rule(ruleInt+1, newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt].getPiority()+2);
+	 	    			
+	    			 }
 	    			 
 	    			 FileOutputStream fop = new FileOutputStream(file);
 	    	 
@@ -237,10 +254,11 @@ public class createRule {
 	     
 	     i = 0;
 	      while (ruleFile[i]!= null){
-	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription());
+	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Piority: "+ruleFile[i].getPiority());
+	    	  
 	    	  i++;
 	      }
-	      System.out.println ("Rule :"+i+"  "+ ruleFile[i+1].getDescription());
+	      //System.out.println ("Rule :"+i+"  "+ ruleFile[i+1].getDescription());
 	     
 	     //re-ordering rules
 	     
@@ -287,7 +305,7 @@ public class createRule {
 			   multiObject.append("|| (productID == "+splits[i]+" )");
 			   System.out.println("add second product");
 		   }
-		   multiObject.append("))");
+		   multiObject.append(")");
 		   }
 		   
 		   //split the attribute
@@ -326,7 +344,7 @@ public class createRule {
 		   tmp.append(myTab+"when"+myReturn);
 		   tmp.append(myTab+myTab+"$o : Order()"+myReturn);
 		   tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+
-		   		"from $o.getProducts()"+myReturn);
+		   		") from $o.getProducts()"+myReturn);
 		   //tmp.append(myTab+myTab+"$p : Purchase( customer == $c, $"+attribute.charAt(0)+" : product."+attribute+mySpace+operator+mySpace+values+" )");
 	   
 		   return tmp.toString();
@@ -342,18 +360,32 @@ public class createRule {
 	   }
 	   
 	   public static void reRank (int rank){
-		   Rule tmp = new Rule();
-		   tmp = ruleFile[rank];
-		   System.out.println("Shifting rule"+tmp.getDescription());
-		   while (ruleFile[rank] != null){
+		  
+		   Rule tmp = ruleFile[rank];
+		   Rule tmp2 = new Rule();
+		   System.out.println("Shifting rule"+ruleFile[rank].getDescription());
+		  
+		   while (ruleFile[rank+1] != null){
+			  System.out.println("shift rule  "+rank);
+			  
+			   tmp2 = ruleFile[rank+1];
+			   ruleFile[rank+1] =tmp;
+			   ruleFile[rank+1].setPiority(ruleFile[rank+1].getPiority()-2);
+			   tmp = tmp2;
 			   
-			   ruleFile[rank] = tmp;
-			   tmp = ruleFile[rank+1];
-			   ruleFile[rank+1] = ruleFile[rank]; 
+			   
+			   
+			   
+			   //System.out.println("round 1 "+"rank  ="+rank+"tmp = "+ tmp.getDescription()
+					  // +"rule[rank]"+ruleFile[rank].getDescription()+
+					   //"rule[rank+1]  "+ruleFile[rank+1].getDescription());
 			  // ruleFile[rank+1].setPiority(ruleFile[rank+1].getPiority()-2);
 			   
 			   rank ++;
 		   }
+		   ruleFile[rank+1]=tmp;
+		   ruleFile[rank+1].setPiority(ruleFile[rank+1].getPiority()-2);
+		   System.out.println("last index is "+(rank+1));
 	   }
 	  
 

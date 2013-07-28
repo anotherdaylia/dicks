@@ -1,12 +1,32 @@
 package com.sample;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class PackageTestResult {
 	private PackageTest test;
-	private String source;
+	private Store source;
 	private double cost;
+	private ArrayList<ParcelResult> results = new ArrayList<ParcelResult>();
 	
 	public PackageTestResult(PackageTest test) {
 		this.test = test;
+	}
+	
+	public PackageTestResult(Parcel test) {
+
+	}
+	
+	public void addResult(ParcelResult r) {
+		results.add(r);
+	}
+	
+	public ArrayList<ParcelResult> getResults() {
+		return results;
+	}
+
+	public void setResults(ArrayList<ParcelResult> results) {
+		this.results = results;
 	}
 	
 	public double getCost() {
@@ -25,16 +45,16 @@ public class PackageTestResult {
 		this.test = test;
 	}
 
-	public String getSource() {
+	public Store getSource() {
 		return source;
 	}
 
-	public void setSource(String source) {
+	public void setSource(Store source) {
 		this.source = source;
 	}
 
 	@Override
 	public String toString() {		
-		return "Package: " + this.test.getP() + " source: " + this.source + ", cost: " + this.cost;
+		return "Package result: " + " result: " + Arrays.toString(results.toArray()) + ", Total cost: " + this.cost;
 	}
 }

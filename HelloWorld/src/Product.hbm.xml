@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+        
+<hibernate-mapping>
+	
+	<class name="com.miqicheng.model.Person" table="person">
+		<id name="productID" column="prod_id" type="string">
+		</id>
+			
+		<property name="productName" column="prod_name" type="string"></property>
+		<property name="sku" column="sku" type="string"></property>
+		<property name="vendorID" column="vend_id" type="string"></property>
+		<property name="productDescr" column="prod_descr" type="string"></property>
+		<property name="productDescr" column="prod_descr" type="string"></property>
+		<property name="ruleID" column="rule_id" type="string"></property>
+		<property name="factoryPrice" column="factory_price" type="int"></property>
+		
+	</class>
+</hibernate-mapping>
