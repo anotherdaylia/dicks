@@ -1,5 +1,5 @@
 //created on: Jul 25, 2013
-package com.dicks.rules
+package com.dicks.rules;
 
 //list any import classes here.
 import com.dicks.engine.Order
@@ -12,12 +12,14 @@ import com.dicks.engine.Parcel
 import com.dicks.engine.Product
 import com.dicks.engine.Split
 import com.dicks.engine.Util
-import java.util.ArrayList
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Arrays;
 import java.*;
 import java.util.Collections;
 import java.util.Collection;
 import java.util.Comparator;
+
 
 
 //declare any global variables here

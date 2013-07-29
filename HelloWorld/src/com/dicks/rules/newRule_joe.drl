@@ -1,5 +1,5 @@
 //created on: Jul 4, 2013
-package com.sample;
+package com.dicks.rules;
 
 //list any import classes here.
 import com.dicks.engine.Order
@@ -10,6 +10,7 @@ import com.dicks.engine.PackageTestResult
 import java.util.ArrayList
 import java.*;
 import java.String.*;
+import java.util.HashMap
 
 //declare any global variables here
 rule "Explode Cart"

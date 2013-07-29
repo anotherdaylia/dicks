@@ -39,7 +39,11 @@ rule "filter stock"
     	eval(!$store.containProduct($item))
     then
         retract($store);
+
 end
+
+
+
 
 rule "summarize"   
 salience -5
