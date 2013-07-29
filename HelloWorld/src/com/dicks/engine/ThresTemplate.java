@@ -164,7 +164,7 @@ public class ThresTemplate {
 			   multiObject.append("");
 		   }
 		   else{
-		   multiObject.append("&& (( productID == "+splits[1]+" )");
+		   multiObject.append("&& (( productID == "+splits[0]+" )");
 		   
 		   //combing all the other products
 		   System.out.println("splits.size: " + splits.length);
