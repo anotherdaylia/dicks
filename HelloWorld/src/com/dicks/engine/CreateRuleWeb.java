@@ -88,6 +88,8 @@ public class CreateRuleWeb {
 		System.out.println(operatorArray.get(0));
 		System.out.println(valuenumberArray.get(0));
 		System.out.println(actionArray.get(0));
+		
+//		ThresTemplate test= new ThresTemplate(type,product,attribute,operator,value,action);
 		return "cnr";
 	}
 
