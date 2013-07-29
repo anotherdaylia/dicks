@@ -22,14 +22,6 @@ rule "Explode Cart"
         drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
 end
 
-rule  "Mininum Packagethreshold0"
-    when
-        $o : Order()
-        $i : Product( ((weight > 5))) from $o.getProducts()
-    then
-        $i.minPackage();
-end
-
 rule "filter stock"
 	salience 98
 	agenda-group "first"
@@ -39,6 +31,14 @@ rule "filter stock"
     	eval(!$store.containProduct($item))
     then
         retract($store);
+end
+
+rule  "Mininum Packagethreshold0"
+    when
+        $o : Order()
+        $i : Product( ((size bigger ))&& (( productID ==  ))) from $o.getProducts()
+    then
+        $i.minPackage();
 end
 
 rule "summarize"   

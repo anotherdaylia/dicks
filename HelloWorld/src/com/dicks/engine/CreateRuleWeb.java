@@ -91,6 +91,16 @@ public class CreateRuleWeb {
 		System.out.println(valuenumberArray.get(0));
 		System.out.println(actionArray.get(0));
 
+		String[] skuStr=new String[1];
+		String[] attributeStr=new String[1];
+		String[] operatorStr=new String[1];
+		String[] valueStr=new String[1];
+		skuStr[0]=sku;
+		attributeStr[0]=attribute;
+		operatorStr[0]=operator;
+		valueStr[0]=valuenumber;
+		ThresTemplate test= new ThresTemplate(type,skuStr,attributeStr,operatorStr,valueStr,action);
+		
 		return "cnr";
 	}
 
