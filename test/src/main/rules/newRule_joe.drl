@@ -56,17 +56,12 @@ rule "test"
         
 end
 
-rule "test2"
-	salience 15
-	//agenda-group "first"
-    when    	
-    	
-    	$store : Store()
-    	
+rule  "Mininum Packagethreshold0"
+    when
+        $o : Order()
+        $i : Product( ((weight > 5)|| ( size < 3))&& (( productID == 2 )|| (productID == 5 )|| (productID == 1 ))) from $o.getProducts()
     then
-    	$store.change(1);
-    	System.out.println("store "+$store.getStoreID()+"value changed"+$store.getValue());
-        
+        $i.minPackage();
 end
 
 rule "filter stock"
@@ -127,7 +122,7 @@ rule  "special 1"
         retract($i);
 end
 
-rule  "Mininum Packagethreshold0"
+rule  "Mininum Packagethreshold2"
 	salience 7
 	//agenda-group "first6"
     when

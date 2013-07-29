@@ -31,9 +31,9 @@ public class createRule {
 		  rules[3] = "./ruleTxt/rule3.txt";
 		  
 		  
-		  ruleFile[0] = new Rule(1,"./ruleTxt/rule1.txt","\"Explode Cart\"",100);
-		  ruleFile[1] = new Rule(2,"./ruleTxt/rule2.txt","\"filter stock\"",98);
-		  ruleFile[2] = new Rule(3,"./ruleTxt/rule3.txt","\"Summarize\"",-5);
+		  ruleFile[0] = new Rule(1,"ruleTxt/rule1.txt","\"Explode Cart\"",100);
+		  ruleFile[1] = new Rule(2,"ruleTxt/rule2.txt","\"filter stock\"",98);
+		  ruleFile[2] = new Rule(3,"ruleTxt/rule3.txt","\"Summarize\"",-5);
 		  
 	      //  prompt the user to enter their name
 
@@ -177,7 +177,7 @@ public class createRule {
 	     String content = writeDrl(ruleType, objectTypeBuffer.toString(),attributeBuffer.toString(), operatorBuffer.toString()
 	    		 ,valueBuffer.toString(),actions);
 	     
-	     //create txt file for the new rule
+	     //create txt file for the new
 	     
 		 
 		 
@@ -185,7 +185,7 @@ public class createRule {
 	    	 for (i  = 0 ; rules[i] != null; i++){
 	    		 if (rules[i+1] == null){
 	    			 System.out.println("new file is"+"./ruleTxt/rule"+(i+1)+".txt");
-	    			 String newPath = "./ruleTxt/rule"+(i+1)+".txt";
+	    			 String newPath = "ruleTxt/rule"+(i+1)+".txt";
 	    			 File file = new File(newPath);  
 	    			// System.out.println("current rule is "+ruleFile[ruleInt]+ "with piority"+ruleFile[ruleInt].getPiority());
 	    			 if (ruleInt > 0){
