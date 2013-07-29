@@ -1,7 +1,7 @@
 rule  "Mininum Packagethreshold0"
     when
         $o : Order()
-        $i : Product( ((size bigger ))&& (( productID ==  ))) from $o.getProducts()
+        $i : Product( ((weight bigger 5))&& (( productID == all ))) from $o.getProducts()
     then
         $i.minPackage();
 end

@@ -36,7 +36,7 @@ end
 rule  "Mininum Packagethreshold0"
     when
         $o : Order()
-        $i : Product( ((weight > 5)|| ( size < 3))&& (( productID == def234 )|| (productID == def234 )|| (productID == ghi456 ))) from $o.getProducts()
+        $i : Product( ((weight > 5)|| ( size < 3))&& (( productID == 234 )|| (productID == 234 )|| (productID == 456 ))) from $o.getProducts()
     then
         $i.minPackage();
 end
