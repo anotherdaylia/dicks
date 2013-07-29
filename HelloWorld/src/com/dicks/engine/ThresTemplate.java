@@ -16,15 +16,15 @@ public class ThresTemplate {
     
 	public ThresTemplate  (String type, String[] object, String[] attribute, 
 			String[] operator, String[] values, String actions ){
-		  rules[0] = "./ruleTxt/ruleHeader.txt";
-		  rules[1] = "./ruleTxt/rule1.txt";
-		  rules[2] = "./ruleTxt/rule2.txt";
-		  rules[3] = "./ruleTxt/rule3.txt";
+		  rules[0] = "com/dicks/ruleTxt/ruleHeader.txt";
+		  rules[1] = "com/dicks/ruleTxt/rule1.txt";
+		  rules[2] = "com/dicks/ruleTxt/rule2.txt";
+		  rules[3] = "com/dicks/ruleTxt/rule3.txt";
 		  
 		  
-		  ruleFile[0] = new Rule(1,"./ruleTxt/rule1.txt","\"Explode Cart\"",100);
-		  ruleFile[1] = new Rule(2,"./ruleTxt/rule2.txt","\"filter stock\"",98);
-		  ruleFile[2] = new Rule(3,"./ruleTxt/rule3.txt","\"Summarize\"",-5);
+		  ruleFile[0] = new Rule(1,"com/dicks/ruleTxt/rule1.txt","\"Explode Cart\"",100);
+		  ruleFile[1] = new Rule(2,"com/dicks/ruleTxt/rule2.txt","\"filter stock\"",98);
+		  ruleFile[2] = new Rule(3,"com/dicks/ruleTxt/rule3.txt","\"Summarize\"",-5);
 		  
 		  
 		  //get piority, hardcoded for 2 for demo
@@ -64,8 +64,8 @@ public class ThresTemplate {
 		   try {
 		    	 for (i  = 0 ; rules[i] != null; i++){
 		    		 if (rules[i+1] == null){
-		    			 System.out.println("new file is"+"./ruleTxt/rule"+(i+1)+".txt");
-		    			 String newPath = "./ruleTxt/rule"+(i+1)+".txt";
+		    			 System.out.println("new file is"+" com/dicks/ruleTxt/rule"+(i+1)+".txt");
+		    			 String newPath = "com/dicks/ruleTxt/rule"+(i+1)+".txt";
 		    			 File file = new File(newPath);  
 		    			// System.out.println("current rule is "+ruleFile[ruleInt]+ "with piority"+ruleFile[ruleInt].getPiority());
 		    			 if (ruleInt > 0){
@@ -103,11 +103,11 @@ public class ThresTemplate {
 		    			 
 		    //combining all rules
 		     try {
-	             File file = new File("./ruleTxt/newRule.drl");         
+	             File file = new File("com/dicks/ruleTxt/newRule.drl");         
 	             FileOutputStream fos = new FileOutputStream(file);
 	             i = 0;
 	             FileInputStream fis;
-	             fis = new FileInputStream(new File("./ruleTxt/ruleHeader.txt"));
+	             fis = new FileInputStream(new File("com/dicks/ruleTxt/ruleHeader.txt"));
 	        	 byte[] b = new byte[1];
 	        	 //System.out.print(b);
 	        	 while((fis.read(b)) != -1){
