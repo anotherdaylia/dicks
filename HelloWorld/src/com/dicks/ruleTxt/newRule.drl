@@ -2,9 +2,9 @@
 package com.sample;
 
 //list any import classes here.
-import com.sample.Order
-import com.sample.Store
-import com.sample.Product
+import com.dicks.engine.Order
+import com.dicks.engine.Store
+import com.dicks.engine.Product
 import java.util.ArrayList
 import java.*;
 
@@ -22,14 +22,6 @@ rule "Explode Cart"
         drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
 end
 
-rule  "Mininum Packagethreshold0"
-    when
-        $o : Order()
-        $i : Product( ((weight > 5))) from $o.getProducts()
-    then
-        $i.minPackage();
-end
-
 rule "filter stock"
 	salience 98
 	agenda-group "first"
@@ -39,11 +31,15 @@ rule "filter stock"
     	eval(!$store.containProduct($item))
     then
         retract($store);
-
 end
 
-
-
+rule  "Mininum Packagethreshold0"
+    when
+        $o : Order()
+        $i : Product( ((weight > 5)|| ( size < 3))&& (( productID == 234 )|| (productID == 234 )|| (productID == 456 ))) from $o.getProducts()
+    then
+        $i.minPackage();
+end
 
 rule "summarize"   
 salience -5

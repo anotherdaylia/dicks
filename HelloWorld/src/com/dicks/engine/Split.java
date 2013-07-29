@@ -30,9 +30,9 @@ import com.dicks.engine.Util;
 
 public class Split {
 	public static void main(String[] args) {	
-		Product shoes = new Product(1, "shoes", 50 , 10, 2);
-		Product hat = new Product(2, "hat", 10 , 4, 2);
-		Product shirt = new Product(3, "shirt", 20 , 8 ,5);
+		Product shoes = new Product(1+"", "shoes", 50 , 10, 2);
+		Product hat = new Product(2+"", "hat", 10 , 4, 2);
+		Product shirt = new Product(3+"", "shirt", 20 , 8 ,5);
 		Product[] a = {shoes, hat, shirt};
 		Combination[][] matrix = setUpMatrix(a);
 		//printMatrix(matrix);
