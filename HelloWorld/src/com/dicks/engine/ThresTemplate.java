@@ -16,6 +16,17 @@ public class ThresTemplate {
     
 	public ThresTemplate  (String type, String[] object, String[] attribute, 
 			String[] operator, String[] values, String actions ){
+		 String current="";
+		try {
+			current = new java.io.File( "." ).getCanonicalPath();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	        System.out.println("Current dir:"+current);
+	 String currentDir = System.getProperty("user.dir");
+	        System.out.println("Current dir using System:" +currentDir);
+		
 		  rules[0] = "/Users/yingli/Documents/github/dicks/HelloWorld/ruleTxt/ruleHeader.txt";
 		  rules[1] = "/Users/yingli/Documents/github/dicks/HelloWorld/ruleTxt/rule1.txt";
 		  rules[2] = "/Users/yingli/Documents/github/dicks/HelloWorld/ruleTxt/rule2.txt";

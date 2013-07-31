@@ -24,6 +24,14 @@ public class Package {
 		this.zoneID = zoneID;
 	}
 	
+	// n is index
+	public Product getProduct(int index) {
+//		System.out.println("index: " + index);
+//		System.out.println("boolean: " + );
+		if (index > products.size() - 1) return null;
+		return products.get(index);
+	}
+	
 	public boolean isAllocated() {
 		return allocated;
 	}

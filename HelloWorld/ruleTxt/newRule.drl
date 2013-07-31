@@ -1,14 +1,11 @@
 //created on: Jul 4, 2013
-
-//package com.dicks.ruleTxt;
-
+package com.sample;
 
 //list any import classes here.
-import com.dicks.engine.Order
-import com.dicks.engine.Store
-import com.dicks.engine.Product
+import com.sample.Order
+import com.sample.Store
+import com.sample.Product
 import java.util.ArrayList
-import java.util.HashMap
 import java.*;
 
 //declare any global variables here
@@ -39,7 +36,7 @@ end
 rule  "Mininum Packagethreshold0"
     when
         $o : Order()
-        $i : Product( ((weight > 5))&& (( productID == all ))) from $o.getProducts()
+        $i : Product( ((size bigger 4))&& (( productID == 1 ))) from $o.getProducts()
     then
         $i.minPackage();
 end
@@ -51,5 +48,4 @@ salience -5
     then
         System.out.println(store.getZoneID());
 end
-
 

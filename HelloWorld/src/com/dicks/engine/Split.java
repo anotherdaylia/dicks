@@ -1,5 +1,6 @@
 package com.dicks.engine;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -49,12 +50,12 @@ public class Split {
 		order.addProducts(hat, 1);
 		order.addProducts(shirt, 1);
 		
-//		Package p1 = new Package(order);
-//		p1.addProduct(shoes);
+		Package p1 = new Package(order);
+		p1.addProduct(shoes);
 		Package p2 = new Package(order);
 		p2.addProduct(hat);
 		p2.addProduct(shirt);
-		p2.addProduct(shoes);
+//		p2.addProduct(shoes);
 		
 		Store s1 = new Store(1, 2);
 		Store s2 = new Store(2, 4);
@@ -84,10 +85,24 @@ public class Split {
 //		order.addStore(s4);
 //		order.addStore(s5);
 		
+		SplitGenerater.cache(10);
+		SplitGenerater.buildIndex(10);
+		
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
 		// this will parse and compile in one step
 
+		 String current = "";
+		try {
+			current = new java.io.File( "." ).getCanonicalPath();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	        System.out.println("Current dir:"+current);
+	 String currentDir = System.getProperty("user.dir");
+	        System.out.println("Current dir using System:" +currentDir);
+		
 		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/evaluate.drl",
 
 				Split.class), ResourceType.DRL);
@@ -129,7 +144,7 @@ public class Split {
 		ksession.insert(s3);
 		ksession.insert(s4);
 		ksession.insert(s5);
-//		ksession.insert(p1);
+		ksession.insert(p1);
 		ksession.insert(p2);
 		
 		System.out.println("----------------------");
