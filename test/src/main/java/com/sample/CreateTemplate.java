@@ -23,7 +23,7 @@ public class CreateTemplate {
     
     
 	public CreateTemplate  (String type, String[] objects, String[] attributes, 
-			String[] operators, String[] values, String[] routes, String[] actions, String flag ){
+			String[] operators, String[] values, String[] routes, String[] actions, String flag, int ruleInt ){
 		
 		  
 		  /*
@@ -60,7 +60,7 @@ public class CreateTemplate {
 	      
 	      
 	      //ruleInt = 1;
-	      int ruleInt = 2;
+	      
 	      //System.out.println("rule is at  " +ruleInt + "current rule number is "+i);
 	      
 	      if (ruleInt < (i)){
