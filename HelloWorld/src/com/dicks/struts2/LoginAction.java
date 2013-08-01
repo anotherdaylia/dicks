@@ -22,6 +22,6 @@ public class LoginAction {
 	}
 	
 	public String execute(){
-		return "sucess";
+		return "success";
 	}
 }
