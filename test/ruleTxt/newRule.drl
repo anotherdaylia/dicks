@@ -22,6 +22,17 @@ rule "Explode Cart"
         drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
 end
 
+rule  "Store Filter0"
+    salience 98
+    when
+        $item: Product( (( productID.equals("store001")))&& (flag.equals("TH-A,ST-C,SP-A ")))
+        $store: Store()
+        eval(!$store.checkStore($item, "zone",">",5))
+        eval(!$store.checkStore($item, "Safety Stock","<",15))
+    then
+        retract($store);
+end
+
 rule "filter stock"
 	salience 98
 	agenda-group "first"
@@ -34,7 +45,7 @@ rule "filter stock"
 end
 
 rule  "Special Route0"
-    salience 96
+    salience 94
     when
         $o : Order()
         $i : Product( ((weight > 5)|| ( size < 3))&& (( productID.equals("005")))&& (flag.equals("TH-A,ST-A,SP-B")))
@@ -47,22 +58,11 @@ rule  "Special Route0"
         retract($i);
 end
 
-rule  "Store Filter0"
-    salience 94
-    when
-        $item: Product( (( productID.equals("store001")))&& (flag.equals("TH-A,ST-C,SP-A ")))
-        $store: Store()
-        eval(!$store.checkStore($item, "zone",">",5))
-        eval(!$store.checkStore($item, "Safety Stock","<",15))
-    then
-        retract($store);
-end
-
 rule  "Threshold0"
     salience 92
     when
         $o : Order()
-        $i : Product( ((weight > 5)|| ( size < 3))&& (( productID.equals("1 "))|| (productID.equals("2 "))|| (productID.equals("4 "))|| (productID.equals("def234 ")))&& (flag.equals("TH-B,ST-A,SP-A")))
+        $i : Product( ((weight > 5)|| ( size < 3))&& (( productID.equals("1"))|| (productID.equals("2 "))|| (productID.equals("4 "))|| (productID.equals("def234 ")))&& (flag.equals("TH-B,ST-A,SP-A")))
     then
         $i.minPackage();
 end
