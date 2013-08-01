@@ -8,6 +8,7 @@ public class Product {
 	private int size;
 	private String productID;
 	private String special;
+	private String flag = "TH-A,ST-A,SP-A";
 	
 	public Product (String productID, String productName, double price, double weight, int size) {
 		this.productID = productID;
@@ -15,6 +16,13 @@ public class Product {
 		this.price = price;
 		this.weight = weight;
 		this.size = size;
+	}
+	public String getFlag(){
+		return flag;
+	}
+	
+	public void setFlag(String flag){
+		this.flag = flag;
 	}
 	
 	public String getSpecial(){
