@@ -1,3 +1,4 @@
+
 rule  "Mininum Packagethreshold0"
     when
         $o : Order()
@@ -5,4 +6,5 @@ rule  "Mininum Packagethreshold0"
     then
         $i.minPackage();
 end
+
 

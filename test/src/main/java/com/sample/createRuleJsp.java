@@ -9,23 +9,78 @@ public class createRuleJsp {
 
 	
 	   public static void main (String[] args) throws IOException {
-		 String type ="threshold";
-		 String[] product = new String[1];
-		 product[0] ="abc123";
+		   //String current = new java.io.File( "." ).getCanonicalPath();
+           //System.out.println("Current dir:"+current);
+		   //String currentDir = System.getProperty("user.dir");
+           //System.out.println("Current dir using System:" +currentDir);
+		 String type ="Threshold";
+		 String[] product = new String[4];
+		 product[0] ="1";
+		 product[1] ="2";
+	     product[2] = "4";
+		 product[3] = "def234";
+		 //product[2] ="ghi456";
+		 String[] attribute = new String[2];
+		 attribute[0] = "weight";
+		 attribute[1] ="size";
+		 String[] operator = new String[2];
+		 operator[0] = ">";
+		 operator[1]= "<";
+		 String value[] = new String[2];
+		 value[0] = "5";
+		 value[1] ="3";
+		 String action[] = new String[1];
+		 action[0] = "minPackage";
+		 String route[] = new String[0];
+		 String flag = "TH-B,ST-A,SP-A";
+		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,null,action,flag);
+		 
+		 
+		 type ="Store Filter";
+		 product = new String[1];
+		 product[0] ="store001";
+		 //product[1] ="store13";
 		 //product[1] = "def234";
 		 //product[2] ="ghi456";
-		 String[] attribute = new String[1];
-		 attribute[0] = "weight";
+		 attribute = new String[2];
+		 attribute[0] = "zone";
+		 attribute[1] = "Safety Stock";
 		 //attribute[1] ="size";
-		 String[] operator = new String[1];
+		 operator = new String[2];
 		 operator[0] = ">";
+		 operator[1] = "<";
 		 //operator[1]= "<";
-		 String value[] = new String[1];
+		 value = new String[2];
 		 value[0] = "5";
+		 value[1] = "15";
 		 //value[1] ="3";
-		 String action = new String();
-		 action = "minPackage";
+		 action = new String[1];
+		 action[0] = "retract";
+		 route = new String[0];
+		 flag = "TH-A,ST-C,SP-A";
 		 
-		 ThresTemplate test= new ThresTemplate(type,product,attribute,operator,value,action);
+		test= new CreateTemplate(type,product,attribute,operator,value,null,action,flag);
+		
+		type ="Special Route";
+		 product = new String[1];
+		 product[0] ="005";
+		 //product[1] ="002";
+		 //product[1] = "def234";
+		 //product[2] ="ghi456";
+		 attribute = new String[2];
+		 attribute[0] = "weight";
+		 attribute[1] ="size";
+		 operator = new String[2];
+		 operator[0] = ">";
+		 operator[1]= "<";
+		 value = new String[2];
+		 value[0] = "5";
+		 value[1] ="3";
+		 action = new String[1];
+		 action[0] = "special";
+		 route = new String[1];
+		 route[0] = "store002";
+		 flag = "TH-A,ST-A,SP-B";
+		test= new CreateTemplate(type,product,attribute,operator,value,route,action,flag);
 	   }
 }
