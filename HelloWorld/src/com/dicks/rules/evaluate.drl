@@ -21,8 +21,6 @@ import java.util.Collections;
 import java.util.Collection;
 import java.util.Comparator;
 
-
-
 //declare any global variables here
 
 rule "Explode Package"
@@ -57,7 +55,6 @@ rule "for splitable packages"
 //		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
 end
 
-
 rule "generate test results"
 	salience 4
 	agenda-group "split"
@@ -76,7 +73,7 @@ rule "generate test results"
 end
 
 rule "add splits"
-	salience 3
+	salience 1
 	agenda-group "split"
 	when
 		$p : Package(isSplitable() && !isAllocated())
@@ -87,7 +84,7 @@ end
 
 
 rule "for not splitable packages"
-	salience 1
+	salience -1
 	agenda-group "split"
 	when
 		$p : Package((!$p.isSplitable()) && !isAllocated())
