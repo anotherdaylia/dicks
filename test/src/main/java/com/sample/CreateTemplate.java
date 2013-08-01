@@ -23,7 +23,7 @@ public class CreateTemplate {
     
     
 	public CreateTemplate  (String type, String[] objects, String[] attributes, 
-			String[] operators, String[] values, String[] routes, String[] actions, String flag ){
+			String[] operators, String[] values, String[] routes, String[] actions, String flag, int ruleInt ){
 		
 		  
 		  /*
@@ -60,7 +60,7 @@ public class CreateTemplate {
 	      
 	      
 	      //ruleInt = 1;
-	      int ruleInt = 2;
+	      
 	      //System.out.println("rule is at  " +ruleInt + "current rule number is "+i);
 	      
 	      if (ruleInt < (i)){
@@ -282,12 +282,12 @@ public class CreateTemplate {
 			   multiObject.append("");
 		   }
 		   else{
-		   multiObject.append("&& (( productID.equals(\""+splits[0]+" \"))");
+		   multiObject.append("&& (( productID.equals(\""+splits[0]+"\"))");
 		   
 		   //combing all the other products
 		  //sS System.out.println("splits.size: " + splits.length);
 		   for (int i = 1; i < splits.length; i++){
-			   multiObject.append("|| (productID.equals(\""+splits[i]+" \"))");
+			   multiObject.append("|| (productID.equals(\""+splits[i]+"\"))");
 			   //System.out.println("add second product");
 		   }
 		   multiObject.append(")");

@@ -33,7 +33,8 @@ public class createRuleJsp {
 		 action[0] = "minPackage";
 		 String route[] = new String[0];
 		 String flag = "TH-B,ST-A,SP-A";
-		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,null,action,flag);
+		 int position = 2;
+		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,null,action,flag,position);
 		 
 		 
 		 type ="Store Filter";
@@ -58,10 +59,11 @@ public class createRuleJsp {
 		 action[0] = "retract";
 		 route = new String[0];
 		 flag = "TH-A,ST-C,SP-A";
-		 
-		test= new CreateTemplate(type,product,attribute,operator,value,null,action,flag);
+		 position = 1;
+		test= new CreateTemplate(type,product,attribute,operator,value,null,action,flag,position);
 		
 		type ="Special Route";
+		position = 3;
 		 product = new String[1];
 		 product[0] ="005";
 		 //product[1] ="002";
@@ -81,6 +83,6 @@ public class createRuleJsp {
 		 route = new String[1];
 		 route[0] = "store002";
 		 flag = "TH-A,ST-A,SP-B";
-		test= new CreateTemplate(type,product,attribute,operator,value,route,action,flag);
+		test= new CreateTemplate(type,product,attribute,operator,value,route,action,flag,position);
 	   }
 }
