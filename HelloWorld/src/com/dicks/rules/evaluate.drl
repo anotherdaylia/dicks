@@ -176,7 +176,4 @@ function ParcelResult getParcelResult(Parcel parcel, Store store) {
 	return r;
 }
 
-function boolean compare(Parcel p, Store s1, Store s2) {
-	return true;
-}
 
