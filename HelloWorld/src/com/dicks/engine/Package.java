@@ -9,9 +9,27 @@ public class Package {
 	private Order order;
 	private boolean forRemain;
 	private boolean allocated;
+	private boolean splitable = true;
+	private int zoneID;
 	
 	public Package(Order order) {
 		this.order = order;
+	}
+	
+	public int getZoneID() {
+		return zoneID;
+	}
+
+	public void setZoneID(int zoneID) {
+		this.zoneID = zoneID;
+	}
+	
+	// n is index
+	public Product getProduct(int index) {
+//		System.out.println("index: " + index);
+//		System.out.println("boolean: " + );
+		if (index > products.size() - 1) return null;
+		return products.get(index);
 	}
 	
 	public boolean isAllocated() {
@@ -34,12 +52,20 @@ public class Package {
 		products.add(p);
 	}
 	
-	public boolean isSplitable() {
-		return splitNum < products.size();
+	public boolean isSeparable() {
+		return this.splitNum < this.products.size();
 	}
 	
-	public boolean isSeperable() {
-		return products.size() > 1;
+	public int getQuantity() {
+		return this.products.size();
+	}
+	
+	public boolean isSplitable() {
+		return this.splitable;
+	}
+	
+	public void setSplitable(boolean splitable) {
+		this.splitable = splitable;
 	}
 	
 	public int getSplitNum() {
@@ -48,6 +74,7 @@ public class Package {
 
 	public void setSplitNum(int splitNum) {
 		this.splitNum = splitNum;
+		if (splitNum == this.products.size()) this.splitable = false;
 	}
 	
 //	public void addProduct(Product product) {

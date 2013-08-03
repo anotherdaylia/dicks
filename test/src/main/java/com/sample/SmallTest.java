@@ -60,11 +60,11 @@ public class SmallTest {
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 		
-		Product shoes = new Product(1, "shoes", 50 ,10, 2);
-		Product hat = new Product(2, "hat", 10 , 4, 2);
-		Product shirt = new Product(3, "shirt", 20 , 8 ,5);
+		Product shoes = new Product(1+"", "shoes", 50 ,10, 2);
+		Product hat = new Product(2+"", "hat", 10 , 4, 2);
+		Product shirt = new Product(3+"", "shirt", 20 , 8 ,6);
 		//Product shirts = new Product(5, "hahahah", 20 , 8 ,5);
-		
+		shirt.setFlag("TH-B,ST-A,SP-A");
 		Store s1 = new Store(1,2);
 		Store s2 = new Store(2,4);
 		Store s3 = new Store(3,5);

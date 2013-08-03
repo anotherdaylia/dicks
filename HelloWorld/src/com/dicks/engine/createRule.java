@@ -3,6 +3,7 @@ package com.dicks.engine;
 
 import java.io.*;
 
+
 public class createRule {
 
 	public static String ruleType = new String();
@@ -20,7 +21,8 @@ public class createRule {
     public static StringBuffer operatorBuffer = new StringBuffer();
     public static StringBuffer valueBuffer = new StringBuffer();
     public static String[] rules = new String[10];
-   
+    public static Rule[] ruleFile = new Rule[100];
+    public static int ruleInt;
 
 	
 	   public static void main (String[] args) throws IOException {
@@ -28,6 +30,11 @@ public class createRule {
 		  rules[1] = "./ruleTxt/rule1.txt";
 		  rules[2] = "./ruleTxt/rule2.txt";
 		  rules[3] = "./ruleTxt/rule3.txt";
+		  
+		  
+		  ruleFile[0] = new Rule(1,"./ruleTxt/rule1.txt","\"Explode Cart\"",100);
+		  ruleFile[1] = new Rule(2,"./ruleTxt/rule2.txt","\"filter stock\"",98);
+		  ruleFile[2] = new Rule(3,"./ruleTxt/rule3.txt","\"Summarize\"",-5);
 		  
 	      //  prompt the user to enter their name
 
@@ -47,14 +54,13 @@ public class createRule {
 	      System.out.println("Thanks for the type, " + ruleType);
 	      
 	      
-	      do{
-	    	  System.out.print("Enter the object you want to put your rules on (store, product) ");
-	    	  input = br.readLine();
-	      }
-	      while (!input.equalsIgnoreCase("product"));
+	      System.out.print("Enter the object you want to put your rules on (store, product) ");
+	      input = br.readLine();
+	      
+	      
 	      objectTypeBuffer.append("product");
 	      if (input.equalsIgnoreCase("product")){
-	    	  System.out.print("please type SKU of the product to apply the rule ");
+	    	  System.out.print("please type SKU to apply the rule ");
 	    	  input = br.readLine();
 	    	  
 	    	  if (input.equalsIgnoreCase("all")){
@@ -65,6 +71,28 @@ public class createRule {
 		    	  do {
 		    		  objectTypeBuffer.append(","+input);
 		    		  System.out.print("type SKU to add more or NEXT to continue");
+		    		  
+			    	  input = br.readLine();
+			    	  
+		    	  }
+		    	  while (!input.equalsIgnoreCase("next"));
+	    	}
+	    	  
+
+	      }
+	      
+	      if (input.equalsIgnoreCase("store")){
+	    	  System.out.print("please type storeID to apply the rule ");
+	    	  input = br.readLine();
+	    	  
+	    	  if (input.equalsIgnoreCase("all")){
+	    		  objectTypeBuffer.append(",ALL");
+	    	  }
+	    	  else{ 
+	    	  
+		    	  do {
+		    		  objectTypeBuffer.append(","+input);
+		    		  System.out.print("type storeID to add more or NEXT to continue");
 		    		  
 			    	  input = br.readLine();
 			    	  
@@ -116,7 +144,26 @@ public class createRule {
     	  }
     	  
 	      
+	      int i = 0;
+	      while (ruleFile[i]!= null){
+	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Piority: "+ruleFile[i].getPiority());
+	    	  i++;
+	      }
+	      //ruleFile[i+1] = new Rule();
+	      System.out.println("Where would you put your new rule at ");
+	      input = br.readLine();
+	      //ruleInt = 1;
+	      int ruleInt = Integer.parseInt(input);
+	      //System.out.println("rule is at  " +ruleInt + "current rule number is "+i);
 	      
+	      if (ruleInt < (i)){
+	      
+	      reRank(ruleInt);
+	      }
+	      else{
+	    	  ruleFile[i] = new Rule();
+	    	  ruleInt = i;
+	      }
 	      
 	      
 	      System.out.print("Enter the action you want to do");
@@ -132,12 +179,24 @@ public class createRule {
 	    		 ,valueBuffer.toString(),actions);
 	     
 	     //create txt file for the new rule
+	     
+		 
+		 
 	     try {
-	    	 for (int i = 0 ; rules[i] != null; i++){
+	    	 for (i  = 0 ; rules[i] != null; i++){
 	    		 if (rules[i+1] == null){
 	    			 System.out.println("new file is"+"./ruleTxt/rule"+(i+1)+".txt");
-	    			 File file = new File("./ruleTxt/rule"+(i+1)+".txt");  
-	    			 rules[i+1] = "./ruleTxt/rule"+(i+1)+".txt";
+	    			 String newPath = "./ruleTxt/rule"+(i+1)+".txt";
+	    			 File file = new File(newPath);  
+	    			// System.out.println("current rule is "+ruleFile[ruleInt]+ "with piority"+ruleFile[ruleInt].getPiority());
+	    			 if (ruleInt > 0){
+	    				 
+	    				 ruleFile[ruleInt] = new Rule(ruleInt+1, newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt-1].getPiority()-2);
+	    			 }
+	    			 else{
+	    				 ruleFile[ruleInt] = new Rule(ruleInt+1, newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt].getPiority()+2);
+	 	    			
+	    			 }
 	    			 
 	    			 FileOutputStream fop = new FileOutputStream(file);
 	    	 
@@ -167,13 +226,21 @@ public class createRule {
 	     try {
              File file = new File("./ruleTxt/newRule.drl");         
              FileOutputStream fos = new FileOutputStream(file);
-             int i = 0;
+             i = 0;
              FileInputStream fis;
-             while (rules[i] != null){
-            	 System.out.println("combing rule "+i);
-            	 fis = new FileInputStream(new File(rules[i]));
-            	 byte[] b = new byte[1];
-            	 System.out.print(b);
+             fis = new FileInputStream(new File("./ruleTxt/ruleHeader.txt"));
+        	 byte[] b = new byte[1];
+        	 //System.out.print(b);
+        	 while((fis.read(b)) != -1){
+                 fos.write(b);
+             }
+        	 
+             while (ruleFile[i] != null){
+            	 //System.out.println("combing rule "+i);
+            	 fis = new FileInputStream(new File(ruleFile[i].getPath()));
+            	 System.out.println("Gettting new path-----"+ruleFile[i].getPath()+"i is  "+i);
+            	 b = new byte[1];
+            	 //System.out.print(b);
             	 while((fis.read(b)) != -1){
                      fos.write(b);
                  }
@@ -184,7 +251,17 @@ public class createRule {
             System.out.println("success!");
        }
       catch(Exception e){System.out.println("error: " + e);}
-	     threshold abc = new threshold("hold");
+	     //threshold abc = new threshold("hold");
+	     
+	     i = 0;
+	      while (ruleFile[i]!= null){
+	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Piority: "+ruleFile[i].getPiority());
+	    	  
+	    	  i++;
+	      }
+	      //System.out.println ("Rule :"+i+"  "+ ruleFile[i+1].getDescription());
+	     
+	     //re-ordering rules
 	     
 	} 	
 	   public static String writeDrl(String type, String object, String attribute, 
@@ -229,7 +306,7 @@ public class createRule {
 			   multiObject.append("|| (productID == "+splits[i]+" )");
 			   System.out.println("add second product");
 		   }
-		   multiObject.append("))");
+		   multiObject.append(")");
 		   }
 		   
 		   //split the attribute
@@ -268,7 +345,7 @@ public class createRule {
 		   tmp.append(myTab+"when"+myReturn);
 		   tmp.append(myTab+myTab+"$o : Order()"+myReturn);
 		   tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+
-		   		"from $o.getProducts()"+myReturn);
+		   		") from $o.getProducts()"+myReturn);
 		   //tmp.append(myTab+myTab+"$p : Purchase( customer == $c, $"+attribute.charAt(0)+" : product."+attribute+mySpace+operator+mySpace+values+" )");
 	   
 		   return tmp.toString();
@@ -283,7 +360,34 @@ public class createRule {
 		   return tmp.toString();
 	   }
 	   
-	   
+	   public static void reRank (int rank){
+		  
+		   Rule tmp = ruleFile[rank];
+		   Rule tmp2 = new Rule();
+		   System.out.println("Shifting rule"+ruleFile[rank].getDescription());
+		  
+		   while (ruleFile[rank+1] != null){
+			  System.out.println("shift rule  "+rank);
+			  
+			   tmp2 = ruleFile[rank+1];
+			   ruleFile[rank+1] =tmp;
+			   ruleFile[rank+1].setPiority(ruleFile[rank+1].getPiority()-2);
+			   tmp = tmp2;
+			   
+			   
+			   
+			   
+			   //System.out.println("round 1 "+"rank  ="+rank+"tmp = "+ tmp.getDescription()
+					  // +"rule[rank]"+ruleFile[rank].getDescription()+
+					   //"rule[rank+1]  "+ruleFile[rank+1].getDescription());
+			  // ruleFile[rank+1].setPiority(ruleFile[rank+1].getPiority()-2);
+			   
+			   rank ++;
+		   }
+		   ruleFile[rank+1]=tmp;
+		   ruleFile[rank+1].setPiority(ruleFile[rank+1].getPiority()-2);
+		   System.out.println("last index is "+(rank+1));
+	   }
 	  
 
 	   

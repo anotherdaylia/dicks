@@ -2,12 +2,14 @@ package com.dicks.engine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class Store {
 	private int storeID;
 	private String location;
 	private HashMap<Product, Inventory> stock;
 	private int zoneID;
+	private int value=0;
 	
 	public Store(int storeID, int zoneID) {
 		this.storeID = storeID;
@@ -23,6 +25,30 @@ public class Store {
 		stock.get(product).instockNum--;
 	}
 	
+	public boolean containProductsInOrder(Order order) {
+		Set<Product> products = order.getProductList().keySet();
+		int notContainingNum = 0;
+		for (Product p : products) {
+			if (!this.containProduct(p)) notContainingNum++;
+		}
+		return notContainingNum < order.getProducts().size();
+	}
+	
+	public boolean containParcel(Parcel parcel) {
+		HashMap<Product, Integer> products = parcel.getProducts();
+		Set<Product> productSet = products.keySet();
+		
+		for (Product p : productSet) {
+			int qty = products.get(p);
+			if (!containNumProduct(p, qty)) {
+//				System.out.println("rule out product: " + p + ", qty: " + qty);
+				return false;
+			}
+		}
+		
+		return true;		
+	}
+	
 	public boolean containProducts(ArrayList<Product> products) {
 		for (Product p : products) {
 			if (!this.containProduct(p)) {
@@ -33,12 +59,119 @@ public class Store {
 		return true;
 	}
 	
-	public boolean containProduct(Product product) {
+	public boolean containNumProduct(Product product, int num) {
 		Inventory in = stock.get(product);
 		if (in == null) return false;
-		System.out.println("store: " + this.zoneID + " margin: " + in.getMargin());
-		if (in.getMargin() > 0) return true;
+		//System.out.println("store: " + this.zoneID + " margin: " + in.getMargin());
+		if (in.getMargin() >= num) return true;
 		return false;
+	}
+	
+	public boolean containProduct(Product product) {
+		//System.out.println("-----------");
+		//System.out.println("checking filter1 for store "+this.storeID);
+		Inventory in = stock.get(product);
+		if (in == null) return false;
+		//System.out.println("store: " + this.storeID + " margin: " + in.getMargin());
+		if (in.getMargin() > 0) {
+			
+			//System.out.println("filter1 return true");
+			return true;
+		}
+		else{
+			//System.out.println("filter1 return false");
+			return false;
+		}
+	}
+	
+	public void change(int a){
+		this.value = value +a;
+		
+	}
+	
+	public int getValue(){
+		return value;
+	}
+	
+	public boolean checkProduct(Product product, String operator , int mar) {
+		//System.out.println("-----------");
+		//System.out.println("checking filter2 for store "+this.storeID);
+		Inventory in = stock.get(product);
+		//System.out.println("operator  "+operator+"   "+mar);
+		if (operator.equals(">")){
+			//System.out.println(">>>>>>>>>>>>"+in.getMargin());
+			if (in == null || in.getMargin() <= mar) 
+			{
+				
+				//System.out.println("filter2 return false");
+				return false;
+			}
+			//System.out.println("store: " + this.storeID + " margin: " + in.getMargin());
+			if (in.getMargin() > mar) 
+				{
+				//System.out.println("filter2 return true");
+				return true;}
+			else{
+				//System.out.println("filter2 return false");
+			return false;
+			}
+		}
+		else if (operator.equals("<")){
+			if (in == null || in.getMargin() >= mar) return false;
+			System.out.println("store: " + this.storeID + " margin: " + in.getMargin());
+			if (in.getMargin() < mar) return true;
+			return false;
+			
+		}
+		else if (operator.equals("=")){
+			if (in == null || in.getMargin() != mar) return false;
+			System.out.println("store: " + this.storeID + " margin: " + in.getMargin());
+			if (in.getMargin() == mar) return true;
+			return false;
+			
+		}
+		else{
+			return false;
+		}
+		
+	}
+	
+	public boolean checkStore(Product product, String attribute, String operator , int mar) {
+		Inventory in = stock.get(product);
+		if (attribute.equalsIgnoreCase("UPS Zone")){
+			/*if (operator.equals(">")){
+				
+				System.out.println("Order Zone: " + order.getZoneID() + "Store Zone: " + this.zoneID);
+				if ((order.getZoneID()-this.zoneID) > mar) return true;
+				return false;
+			}
+			else if (operator.equals("<")){
+				System.out.println("Order Zone: " + order.getZoneID() + "Store Zone: " + this.zoneID);
+				if ((order.getZoneID()-this.zoneID) < mar)  return true;
+				return false;
+				
+			}
+			else if (operator.equals("=")){
+				System.out.println("Order Zone: " + order.getZoneID() + "Store Zone: " + this.zoneID);
+				if ((order.getZoneID()-this.zoneID) == mar)  return true;
+				return false;
+				
+			}
+			else{
+				return false;
+			}*/
+			return false;
+		}
+		else if (attribute.equalsIgnoreCase("margin")){
+			
+			return this.checkProduct(product, operator, mar);
+		}
+		
+		
+		
+		else{
+			return false;
+		}		
 	}
 	
 	public int getStoreID() {

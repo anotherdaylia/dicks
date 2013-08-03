@@ -31,9 +31,9 @@ public class createRule {
 		  rules[3] = "./ruleTxt/rule3.txt";
 		  
 		  
-		  ruleFile[0] = new Rule(1,"./ruleTxt/rule1.txt","\"Explode Cart\"",100);
-		  ruleFile[1] = new Rule(2,"./ruleTxt/rule2.txt","\"filter stock\"",98);
-		  ruleFile[2] = new Rule(3,"./ruleTxt/rule3.txt","\"Summarize\"",-5);
+		  ruleFile[0] = new Rule(1,"ruleTxt/rule1.txt","\"Explode Cart\"",100);
+		  ruleFile[1] = new Rule(2,"ruleTxt/rule2.txt","\"filter stock\"",98);
+		  ruleFile[2] = new Rule(3,"ruleTxt/rule3.txt","\"Summarize\"",-5);
 		  
 	      //  prompt the user to enter their name
 
@@ -145,7 +145,7 @@ public class createRule {
 	      
 	      int i = 0;
 	      while (ruleFile[i]!= null){
-	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Piority: "+ruleFile[i].getPiority());
+	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Priority: "+ruleFile[i].getPriority());
 	    	  i++;
 	      }
 	      //ruleFile[i+1] = new Rule();
@@ -177,7 +177,7 @@ public class createRule {
 	     String content = writeDrl(ruleType, objectTypeBuffer.toString(),attributeBuffer.toString(), operatorBuffer.toString()
 	    		 ,valueBuffer.toString(),actions);
 	     
-	     //create txt file for the new rule
+	     //create txt file for the new
 	     
 		 
 		 
@@ -185,15 +185,15 @@ public class createRule {
 	    	 for (i  = 0 ; rules[i] != null; i++){
 	    		 if (rules[i+1] == null){
 	    			 System.out.println("new file is"+"./ruleTxt/rule"+(i+1)+".txt");
-	    			 String newPath = "./ruleTxt/rule"+(i+1)+".txt";
+	    			 String newPath = "ruleTxt/rule"+(i+1)+".txt";
 	    			 File file = new File(newPath);  
-	    			// System.out.println("current rule is "+ruleFile[ruleInt]+ "with piority"+ruleFile[ruleInt].getPiority());
+	    			// System.out.println("current rule is "+ruleFile[ruleInt]+ "with priority"+ruleFile[ruleInt].getPriority());
 	    			 if (ruleInt > 0){
 	    				 
-	    				 ruleFile[ruleInt] = new Rule(ruleInt+1, newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt-1].getPiority()-2);
+	    				 ruleFile[ruleInt] = new Rule(ruleInt+1, newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2);
 	    			 }
 	    			 else{
-	    				 ruleFile[ruleInt] = new Rule(ruleInt+1, newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt].getPiority()+2);
+	    				 ruleFile[ruleInt] = new Rule(ruleInt+1, newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt].getPriority()+2);
 	 	    			
 	    			 }
 	    			 
@@ -254,7 +254,7 @@ public class createRule {
 	     
 	     i = 0;
 	      while (ruleFile[i]!= null){
-	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Piority: "+ruleFile[i].getPiority());
+	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Priority: "+ruleFile[i].getPriority());
 	    	  
 	    	  i++;
 	      }
@@ -370,7 +370,7 @@ public class createRule {
 			  
 			   tmp2 = ruleFile[rank+1];
 			   ruleFile[rank+1] =tmp;
-			   ruleFile[rank+1].setPiority(ruleFile[rank+1].getPiority()-2);
+			   ruleFile[rank+1].setPriority(ruleFile[rank+1].getPriority()-2);
 			   tmp = tmp2;
 			   
 			   
@@ -379,12 +379,12 @@ public class createRule {
 			   //System.out.println("round 1 "+"rank  ="+rank+"tmp = "+ tmp.getDescription()
 					  // +"rule[rank]"+ruleFile[rank].getDescription()+
 					   //"rule[rank+1]  "+ruleFile[rank+1].getDescription());
-			  // ruleFile[rank+1].setPiority(ruleFile[rank+1].getPiority()-2);
+			  // ruleFile[rank+1].setPriority(ruleFile[rank+1].getPriority()-2);
 			   
 			   rank ++;
 		   }
 		   ruleFile[rank+1]=tmp;
-		   ruleFile[rank+1].setPiority(ruleFile[rank+1].getPiority()-2);
+		   ruleFile[rank+1].setPriority(ruleFile[rank+1].getPriority()-2);
 		   System.out.println("last index is "+(rank+1));
 	   }
 	  

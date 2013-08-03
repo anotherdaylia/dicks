@@ -5,6 +5,7 @@ package com.sample;
 import com.sample.Order
 import com.sample.Store
 import com.sample.Package
+import com.sample.Product
 import com.sample.PackageTestResult
 import java.util.ArrayList
 import java.*;
@@ -43,7 +44,7 @@ rule "Explode Cart end"
 end
 */
 rule "test"
-	salience 17
+	salience 19
 	//agenda-group "first"
     when    	
     	
@@ -56,18 +57,32 @@ rule "test"
         
 end
 
-rule "test2"
-	salience 15
-	//agenda-group "first"
-    when    	
-    	
-    	$store : Store()
-    	
+rule  "Threshold1"
+    salience 17
+    when
+        $o : Order()
+        $i : Product( ((weight > 5))&& (( productID.equals("1") )|| (productID.equals("2")  )|| (productID.equals("3")  ))&& (flag.equals("TH-A,ST-A,SP-A")))
     then
-    	$store.change(1);
-    	System.out.println("store "+$store.getStoreID()+"value changed"+$store.getValue());
-        
+    	System.out.print($i.getProductID());
+        System.out.println("no flag !!!");
+        $i.minPackage();
 end
+
+rule  "Speical Route0"
+    salience 96
+    when
+        $o : Order()
+        $i : Product( ((weight > 5)|| ( size < 3))&& (( productID.equals("001")))&& (flag.equals("TH-A,ST-A,SP-B")))
+    then
+        System.out.println("special routes allocated");
+        Package p = new Package($o);
+        p.addProduct($i);
+        insert (p);
+        p.setAllocated(true); 
+        retract($i);
+end
+
+
 
 rule "filter stock"
 	salience 13
@@ -75,24 +90,43 @@ rule "filter stock"
     when    	
     	$item : Product()
     	$store : Store()
-    	eval(!$store.containProduct($item))
+    	eval(!$store.containProduct($item))  
     then
     	System.out.println("store "+ $store.getStoreID()+ " retracted by rule filter stock");
         retract($store);
 end
+
+
 
 rule "filter stock2"
 	salience 10
 	//agenda-group "first2"
     when
     	//$o : Order()
-        $item : Product()
+        $item : Product( (( productID.equals("store001"))|| (productID.equals("store13"))|| (productID.equals("store23"))))
+        
     	$store : Store()
+    	
+    	
         //eval($store.checkStore($item, $o,"zone","<",2))
         eval(!$store.checkStore($item,"margin",">",2)) 
+        eval(!$store.checkStore($item,"zone",">",2)) 
+        eval(!$store.checkStore($item,"zone",">",5))
+        
     then
     	
     	System.out.println("store "+$store.getStoreID()+ " retracted by rule filter stock2");
+        retract($store);
+end
+
+rule  "Store Filter0"
+    salience 96
+    when
+        $item: Product( (( productID.equals("store001")))&& (flag.equals("TH-A,ST-C,SP-A ")))
+        $store: Store()
+        eval(!$store.checkStore($item, "zone",">",5))
+        eval(!$store.checkStore($item, "Safety Stock","<",15))
+    then
         retract($store);
 end
 
@@ -127,7 +161,7 @@ rule  "special 1"
         retract($i);
 end
 
-rule  "Mininum Packagethreshold0"
+rule  "Mininum Packagethreshold2"
 	salience 7
 	//agenda-group "first6"
     when

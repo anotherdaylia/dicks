@@ -1,8 +1,10 @@
 package com.dicks.engine;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.kie.api.io.ResourceType;
+import org.kie.api.runtime.ClassObjectFilter;
 import org.kie.internal.KnowledgeBase;
 import org.kie.internal.KnowledgeBaseFactory;
 import org.kie.internal.builder.KnowledgeBuilder;
@@ -13,7 +15,7 @@ import org.kie.internal.logger.KnowledgeRuntimeLogger;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
-import com.dicks.engine.FibonacciTest.Fibonacci;
+
 
 public class SmallTest {
 
@@ -22,9 +24,9 @@ public class SmallTest {
 
 		// this will parse and compile in one step
 
-		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/newRule.drl",
+		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/newRule_LY.drl",
 
-				HelloWorld.class), ResourceType.DRL);
+				SmallTest.class), ResourceType.DRL);
 
 
 		// Check the builder for errors
@@ -33,7 +35,7 @@ public class SmallTest {
 
 			System.out.println(kbuilder.getErrors().toString());
 
-			throw new RuntimeException("Unable to compile \"newRule.drl\".");
+			throw new RuntimeException("Unable to compile \"newRule_joe.drl\".");
 
 		}
 
@@ -58,10 +60,10 @@ public class SmallTest {
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 		
-		Product shoes = new Product(1, "shoes", 50 , 10, 2);
-		Product hat = new Product(2, "hat", 10 , 4, 2);
-		Product shirt = new Product(3, "shirt", 20 , 8 ,5);
-		Product shirts = new Product(5, "hahahah", 20 , 8 ,5);
+		Product shoes = new Product(1+"", "shoes", 50 ,10, 2);
+		Product hat = new Product(2+"", "hat", 10 , 4, 2);
+		Product shirt = new Product(3+"", "shirt", 20 , 8 ,5);
+		//Product shirts = new Product(5, "hahahah", 20 , 8 ,5);
 		
 		Store s1 = new Store(1,2);
 		Store s2 = new Store(2,4);
@@ -75,22 +77,22 @@ public class SmallTest {
 		s2.addItem(shoes, 7, 5);
 		s2.addItem(hat, 7, 5);
 		s2.addItem(shirt, 7, 5);
-		s3.addItem(shoes, 7, 5);
-		s3.addItem(hat, 7, 5);
-		s3.addItem(shirt, 7, 5);
-		s4.addItem(shoes, 7, 5);
-		s4.addItem(hat, 7, 5);
-		s4.addItem(shirt, 7, 5);
-		s5.addItem(shoes, 7, 5);
-		s5.addItem(hat, 7, 5);
-		s5.addItem(shirt, 7, 5);
-		s5.addItem(shirts, 7,5);
+		s3.addItem(shoes, 7, 4);
+		s3.addItem(hat, 7, 4);
+		s3.addItem(shirt, 7, 4);
+		s4.addItem(shoes, 7, 4);
+		s4.addItem(hat, 7, 4);
+		s4.addItem(shirt, 7, 4);
+		s5.addItem(shoes, 7, 4);
+		s5.addItem(hat, 7, 4);
+		s5.addItem(shirt, 7, 4);
+		
 		
 		Order order = new Order(2);
 		order.addProducts(shoes, 1);
 		order.addProducts(hat, 1);
 		order.addProducts(shirt, 1);	
-		order.addProducts(shirts,1);
+		//order.addProducts(shirts,1);
 		
 		ksession.insert(s1);
 		ksession.insert(s2);
@@ -100,9 +102,20 @@ public class SmallTest {
 		ksession.insert(order);
 
 		ksession.fireAllRules();
+		
+		Collection<Package> packages = (Collection<Package>) ksession.getObjects( new ClassObjectFilter(Package.class) );
+		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 
+		System.out.println("---------------------------------");
+		System.out.println("package size: " + packages.size());
+		System.out.println(Arrays.toString(packages.toArray()));
+		System.out.println("store list: " + stores.size());
+		System.out.println(Arrays.toString(stores.toArray()));
+			
+		System.out.println("end");
+		
 		// Remove comment if using logging
-		// logger.close();
+		logger.close();
 
 		ksession.dispose();
 	}

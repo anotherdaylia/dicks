@@ -20,7 +20,9 @@
      
      	  <property name="connection.password">62811816</property>
      	  
+
           <property name="connection.url">jdbc:mysql://localhost:3306/dicks</property>  
+
   			
   		<mapping resource="Customer.hbm.xml"></mapping>
   		<mapping resource="Inventory.hbm.xml"></mapping>

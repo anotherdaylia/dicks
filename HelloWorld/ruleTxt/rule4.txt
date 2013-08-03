@@ -1,0 +1,10 @@
+
+rule  "Mininum Packagethreshold0"
+    when
+        $o : Order()
+        $i : Product( ((size bigger 4))&& (( productID == 1 ))) from $o.getProducts()
+    then
+        $i.minPackage();
+end
+
+

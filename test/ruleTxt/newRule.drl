@@ -9,14 +9,6 @@ import java.util.ArrayList
 import java.*;
 
 //declare any global variables here
-rule  "Mininum Packagethreshold0"
-    when
-        $o : Order()
-        $i : Product( ((weight > 5)|| ( size == 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 ))) from $o.getProducts()
-    then
-        $i.minPackage();
-end
-
 rule "Explode Cart"
     agenda-group "init"
     auto-focus true
@@ -30,6 +22,17 @@ rule "Explode Cart"
         drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
 end
 
+rule  "Store Filter0"
+    salience 98
+    when
+        $item: Product( (( productID.equals("store001")))&& (flag.equals("TH-A,ST-C,SP-A ")))
+        $store: Store()
+        eval(!$store.checkStore($item, "zone",">",5))
+        eval(!$store.checkStore($item, "Safety Stock","<",15))
+    then
+        retract($store);
+end
+
 rule "filter stock"
 	salience 98
 	agenda-group "first"
@@ -39,6 +42,29 @@ rule "filter stock"
     	eval(!$store.containProduct($item))
     then
         retract($store);
+end
+
+rule  "Special Route0"
+    salience 94
+    when
+        $o : Order()
+        $i : Product( ((weight > 5)|| ( size < 3))&& (( productID.equals("005")))&& (flag.equals("TH-A,ST-A,SP-B")))
+    then
+        System.out.println("special routes allocated");
+        Package p = new Package($o);
+        p.addProduct($i);
+        insert (p);
+        p.setAllocated(true); 
+        retract($i);
+end
+
+rule  "Threshold0"
+    salience 92
+    when
+        $o : Order()
+        $i : Product( ((weight > 5)|| ( size < 3))&& (( productID.equals("1"))|| (productID.equals("2"))|| (productID.equals("4"))|| (productID.equals("def234")))&& (flag.equals("TH-B,ST-A,SP-A")))
+    then
+        $i.minPackage();
 end
 
 rule "summarize"   

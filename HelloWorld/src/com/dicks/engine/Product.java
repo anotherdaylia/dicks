@@ -1,15 +1,15 @@
 package com.dicks.engine;
 
 public class Product {
-	private VendorInfo vendorInfo;
+//	private VendorInfo vendorInfo;
 	private String productName;
 	private double price;
 	private double weight;
 	private int size;
-	private int productID;
+	private String productID;
 	private String special;
 	
-	public Product (int productID, String productName, double price, double weight, int size) {
+	public Product (String productID, String productName, double price, double weight, int size) {
 		this.productID = productID;
 		this.productName = productName;
 		this.price = price;
@@ -24,20 +24,14 @@ public class Product {
 		this.special = special;
 	}
 	
-	public int getProductID() {
+	public String getProductID() {
 		return productID;
 	}
 
-	public void setProductID(int productID) {
+	public void setProductID(String productID) {
 		this.productID = productID;
 	}
 	
-	public VendorInfo getVendorInfo() {
-		return vendorInfo;
-	}
-	public void setVendorInfo(VendorInfo vendorInfo) {
-		this.vendorInfo = vendorInfo;
-	}
 	public String getProductName() {
 		return productName;
 	}
