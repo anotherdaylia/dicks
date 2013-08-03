@@ -27,5 +27,14 @@
       <action name="gotorulelist" class="com.dicks.action.Redirect" method="gotorulelist">
           <result name="gotorulelist">/RuleList.jsp</result>
       </action>
+      <action name="gotonewbizrulelist" class="com.dicks.action.Redirect" method="gotonewbizrulelist">
+          <result name="gotonewbizrulelist">/NewRule.jsp</result>
+      </action>
+      <action name="gototemplate" class="com.dicks.action.CreateNewBizRule" method="gototemplate">
+           <result name="gototemplate" type="dispatcher">/TemplateStoreThreshold.jsp</result>
+      </action>
+       <action name="newrule" class="com.dicks.action.CreateNewBizRule" method="newrule">
+          <result name="newrule">/TemplateStoreThreshold.jsp</result>
+      </action>
    </package>
 </struts>

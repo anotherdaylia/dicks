@@ -60,14 +60,14 @@ $( "#datepickerend" ).datepicker();
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
             <ul class="nav-two" id="navone">
                 <li class=""><a href="<%=basePath%>gotocategorylist.action">Category List</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="#">New Category</a><span class="normal">&nbsp;</span></li>  
+                <li class=""><a href="<%=basePath%>gotonewbizrulelist.action">New Category</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
         <li class=""><a class="recordable open" href="#" id="toggletwo"
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
             <ul class="nav-two" id="navtwo">
                 <li class=""><a href="<%=basePath%>gotorulelist.action">Business Rule List</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="newrule.html">New Business Rule</a><span class="normal">&nbsp;</span></li>
+                <li class=""><a href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
         </li>   

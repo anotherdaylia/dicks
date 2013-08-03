@@ -7,7 +7,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+	/*vertical-align: baseline;*/
 }
 
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section
@@ -299,6 +299,7 @@ body.fix-layout .site-selector {
 	padding-top: 22px;
 	min-height: 500px;
 	_height: 500px;
+
 }
 
 .fix-layout .main {
@@ -1995,6 +1996,7 @@ table tr.line td {
 
 table.text{
 	margin-left: 50px; 
+	margin-top: 50px;
 	width: 700px;
 }
 
@@ -2004,9 +2006,6 @@ table.text tr{
 
 .drl{
 	width: 100%;
-	height: 150px;
-	border-style:solid;
-	border: 1px solid;
 }
 
 table.text .drl-height{
