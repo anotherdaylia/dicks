@@ -14,17 +14,17 @@
       <action name="cnr" class="com.dicks.engine.CreateRuleWeb" method="cnr">
           <result name="cnr">/CreateRule.jsp</result>
       </action>
-      <action name="login" class="com.dicks.struts2.LoginAction" method="execute">
+      <action name="login" class="com.dicks.action.LoginAction" method="execute">
           <result name="error">/login.jsp</result>
           <result name="success">/OrderList.jsp</result>
       </action>
-      <action name="gotocategorylist" class="com.dicks.redirect.Redirect" method="gotocategorylist">
+      <action name="gotocategorylist" class="com.dicks.action.Redirect" method="gotocategorylist">
           <result name="gotocategorylist">/CategoryList.jsp</result>
       </action>
-      <action name="gotoorderlist" class="com.dicks.redirect.Redirect" method="gotoorderlist">
+      <action name="gotoorderlist" class="com.dicks.action.Redirect" method="gotoorderlist">
           <result name="gotoorderlist">/OrderList.jsp</result>
       </action>
-      <action name="gotorulelist" class="com.dicks.redirect.Redirect" method="gotorulelist">
+      <action name="gotorulelist" class="com.dicks.action.Redirect" method="gotorulelist">
           <result name="gotorulelist">/RuleList.jsp</result>
       </action>
    </package>
