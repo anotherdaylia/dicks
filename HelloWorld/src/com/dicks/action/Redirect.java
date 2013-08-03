@@ -10,4 +10,11 @@ public class Redirect {
 	public String gotocategorylist(){
 		return "gotocategorylist";
 	}
+	public String gotonewbizrulelist(){
+		return "gotonewbizrulelist";
+	}
+	public String gototemplate(){
+		return "gototemplate";
+	}
 }
+
