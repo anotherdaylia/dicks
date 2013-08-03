@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.dicks.dao.PersonDAO;
-import com.dicks.model.Person;
+import com.dicks.pojo.Person;
 import com.dicks.util.HibernateUtil;
 
 public class PersonDAOImpl implements PersonDAO {

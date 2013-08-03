@@ -1,4 +1,4 @@
-package com.dicks.redirect;
+package com.dicks.action;
 
 public class Redirect {
 	public String gotorulelist(){

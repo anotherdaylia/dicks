@@ -18,6 +18,7 @@
         <s:form action="login" namespace="/" method="post" id="form">
         <table cellspacing="0" cellpadding="0" class="login_table">
             <tr>
+            	<jsp:include page="errors.jsp" />
                 <td class="text_status">Username:</td>
                 <td><input type="text" name="username"/></td>
                  <td rowspan="2"><input type="submit" value="Login"  style="width:60px"/> </td>
