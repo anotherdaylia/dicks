@@ -6,6 +6,15 @@ public class Rule {
 	private String ruleDRL;
 	private String ruleDescr;
 	private int priority;
+	private char flag; 
+	private char type;
+	
+	
+	
+	
+	
+	
+	
 	public String getRuleName() {
 		return ruleName;
 	}
