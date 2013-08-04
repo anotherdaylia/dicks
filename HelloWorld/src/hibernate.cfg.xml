@@ -24,15 +24,15 @@
           <property name="connection.url">jdbc:mysql://localhost:3306/dicks</property>  
 
   			
-  		<mapping resource="Customer.hbm.xml"></mapping>
-  		<mapping resource="Inventory.hbm.xml"></mapping>
-  		<mapping resource="OrderDetail.hbm.xml"></mapping>
-  		<mapping resource="Order.hbm.xml"></mapping>
-  		<mapping resource="Package.hbm.xml"></mapping>
-  		<mapping resource="Product.hbm.xml"></mapping>
-  		<mapping resource="Rule.hbm.xml"></mapping>
-  		<mapping resource="Store.hbm.xml"></mapping>
-  		<mapping resource="Vendor.hbm.xml"></mapping>
+  		<mapping resource="com/dicks/pojo/Customer.hbm.xml"></mapping>
+  		<mapping resource="com/dicks/pojo/Inventory.hbm.xml"></mapping>
+  		<mapping resource="com/dicks/pojo/OrderDetail.hbm.xml"></mapping>
+  		<mapping resource="com/dicks/pojo/Order.hbm.xml"></mapping>
+  		<mapping resource="com/dicks/pojo/Package.hbm.xml"></mapping>
+  		<mapping resource="com/dicks/pojo/Product.hbm.xml"></mapping>
+  		<mapping resource="com/dicks/pojo/Rule.hbm.xml"></mapping>
+  		<mapping resource="com/dicks/pojo/Store.hbm.xml"></mapping>
+  		<mapping resource="com/dicks/pojo/Vendor.hbm.xml"></mapping>
   		
   </session-factory>   
   

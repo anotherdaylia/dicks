@@ -92,7 +92,7 @@
 
             <br/>
             <div>
-            <form action="gototemplate" method="post">
+            <form action="gototemplate" method="get">
             <table class="text">
                 <tr>
                     <td>Rule Name:</td>

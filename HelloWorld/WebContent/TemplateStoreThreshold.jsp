@@ -191,7 +191,11 @@
                 <tr>
                     <td><input type="submit" value="Create" class="button"></td>  
                     <td><a class="button" href="#">Back</a><a class="button" href="#">Cancel</a></td>
+                    
+                    
                 </tr>
+                
+                <input type="hidden" name="rulename"  value=<%=request.getAttribute("rulename")%> />
             </table>   
             </form>
         </div>
