@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+        
+<hibernate-mapping>
+	
+	<class name="com.dicks.pojo.Fee" table="fee">
+		<id name="costID" column="cost_id" type="int" >
+			<generator class="increment"></generator>
+		</id>
+			
+		<property name="value" column="value" type="int"></property>
+		<property name="attribute" column="attribute" type="string"></property>
+		<property name="percentage" column="percentage" type="int"></property>
+		<property name="flag" column="flag" type="character"></property>
+		<property name="shippingType" column="shipping_type" type="string"></property>
+		<property name="costName" column="cost_name" type="string"></property>
+	</class>
+</hibernate-mapping>
