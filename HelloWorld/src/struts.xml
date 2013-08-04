@@ -31,12 +31,10 @@
           <result name="gotonewbizrulelist">/NewRule.jsp</result>
       </action>
       <action name="gototemplate" class="com.dicks.action.CreateNewBizRule" method="gototemplate">
-           <result name="gototemplate" type="redirect">
-               <param >/TemplateStoreThreshold.jsp
-           </result>
+           <result name="gototemplate">/TemplateStoreThreshold.jsp</result>
       </action>
        <action name="newrule" class="com.dicks.action.CreateNewBizRule" method="newrule">
-          <result name="newrule" type="dispatcher">/TemplateStoreThreshold.jsp</result>
+          <result name="newrule" type="redirect">/TemplateStoreThreshold.jsp</result>
       </action>
    </package>
 </struts>
