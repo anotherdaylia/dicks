@@ -118,8 +118,8 @@
                          <div style="padding-left:100px">
                          <div> If
                             <select style="width:50px;" name="conditions">
-                                <option value="#">All</option> 
-                                <option value="#">Any</option>
+                                <option value="all">All</option> 
+                                <option value="any">Any</option>
                             </select> of the following conditions are met&#58;
                         </div>  
                         <div>
@@ -196,6 +196,7 @@
                 </tr>
                 
                 <input type="hidden" name="rulename"  value=<%=request.getAttribute("rulename")%> />
+                <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
             </table>   
             </form>
         </div>
