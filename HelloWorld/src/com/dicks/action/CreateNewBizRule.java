@@ -156,6 +156,7 @@ public class CreateNewBizRule {
 	public String newrule(){
 		System.out.println(rulename);
 		System.out.println(templatename);
+		System.out.println(operator1);
 		System.out.println(shippackage);
 		return "newrule";
 	}
