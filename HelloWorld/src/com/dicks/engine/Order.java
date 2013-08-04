@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 
+import com.dicks.pojo.Product;
+
 public class Order {
 	private int orderID;
 //	private CustomerInfo cusInfo;

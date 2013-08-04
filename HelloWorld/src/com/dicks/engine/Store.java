@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import com.dicks.pojo.Product;
+
 public class Store {
 	private int storeID;
 	private String location;
 	private HashMap<Product, Inventory> stock;
 	private int zoneID;
 	private int value=0;
+	private String storeType;
 	
 	public Store(int storeID, int zoneID) {
 		this.storeID = storeID;
@@ -225,5 +228,13 @@ public class Store {
 	@Override
 	public String toString() {
 		return "store zoneID: " + this.getZoneID();
+	}
+
+	public String getStoreType() {
+		return storeType;
+	}
+
+	public void setStoreType(String storeType) {
+		this.storeType = storeType;
 	}
 }

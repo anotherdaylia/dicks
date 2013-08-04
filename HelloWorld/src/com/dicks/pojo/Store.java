@@ -5,6 +5,7 @@ public class Store {
 	private String address;
 	private String ruleID;
 	private String storeName;
+	
 	public String getStoreID() {
 		return storeID;
 	}
@@ -29,6 +30,4 @@ public class Store {
 	public void setStoreName(String storeName) {
 		this.storeName = storeName;
 	}
-	
-	
 }

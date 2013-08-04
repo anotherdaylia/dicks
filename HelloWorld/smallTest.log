@@ -92,12 +92,12 @@
   <type>4</type>
   <activationId>generate test results [8, 7, 9]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[store zoneID: 2, store zoneID: 4, store zoneID: 5, store zoneID: 6, store zoneID: 8](9); $test=Package test: [[Parcel: [shirt (1) hat (1) ]]](8); $pack=[hat, shirt](7)</declarations>
+  <declarations>$stores=[store zoneID: 2, store zoneID: 4, store zoneID: 5, store zoneID: 6, store zoneID: 8](9); $test=Package test: [[Parcel: [hat (1) shirt (1) ]]](8); $pack=[hat, shirt](7)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>8</factId>
-  <objectToString>Package test: [[Parcel: [shirt (1) hat (1) ]]]</objectToString>
+  <objectToString>Package test: [[Parcel: [hat (1) shirt (1) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
@@ -189,18 +189,18 @@
   <type>6</type>
   <activationId>generate test results [8, 7, 9]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[store zoneID: 2, store zoneID: 4, store zoneID: 5, store zoneID: 6, store zoneID: 8](9); $test=Package test: [[Parcel: [shirt (1) hat (1) ]]](8); $pack=[hat, shirt](7)</declarations>
+  <declarations>$stores=[store zoneID: 2, store zoneID: 4, store zoneID: 5, store zoneID: 6, store zoneID: 8](9); $test=Package test: [[Parcel: [hat (1) shirt (1) ]]](8); $pack=[hat, shirt](7)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>2</type>
   <factId>8</factId>
-  <objectToString>Package test: [[Parcel: [shirt (1) hat (1) ]]]</objectToString>
+  <objectToString>Package test: [[Parcel: [hat (1) shirt (1) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>generate test results [8, 7, 9]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[store zoneID: 2, store zoneID: 4, store zoneID: 5, store zoneID: 6, store zoneID: 8](9); $test=Package test: [[Parcel: [shirt (1) hat (1) ]]](8); $pack=[hat, shirt](7)</declarations>
+  <declarations>$stores=[store zoneID: 2, store zoneID: 4, store zoneID: 5, store zoneID: 6, store zoneID: 8](9); $test=Package test: [[Parcel: [hat (1) shirt (1) ]]](8); $pack=[hat, shirt](7)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>

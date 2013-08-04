@@ -167,7 +167,6 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 	return r;
 }
 
-
 function ParcelResult getParcelResult(Parcel parcel, Store store) {
 	if (!store.containParcel(parcel)) return null;
 

@@ -3,13 +3,15 @@ package com.dicks.engine;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.dicks.pojo.Product;
+
 public class Parcel {
 //	private int packageTestID;
 	private HashMap<Product, Integer> products = new HashMap<Product, Integer>();
 	private int deliveryDays;
 	private int zoneID;
 //	private String source;
-//	private Package p;
+	private Package pack;
 	
 //	public int getPackageTestID() {
 //		return packageTestID;
@@ -18,8 +20,9 @@ public class Parcel {
 //		this.packageTestID = packageTestID;
 //	}
 	
-	public Parcel(int zoneID) {
+	public Parcel(Package pack, int zoneID) {
 		this.zoneID = zoneID;
+		this.setPack(pack);
 	}
 	
 	public int getZoneID() {
@@ -85,4 +88,12 @@ public class Parcel {
 			
 			return sb.toString();
 		}
+
+	public Package getPack() {
+		return pack;
+	}
+
+	public void setPack(Package pack) {
+		this.pack = pack;
+	}
 }

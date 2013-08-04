@@ -8,6 +8,7 @@ public class Product {
 	private String productDescr;
 	private String ruleID;
 	private long factoryPrice;
+	
 	public String getProductID() {
 		return productID;
 	}
@@ -49,6 +50,18 @@ public class Product {
 	}
 	public void setFactoryPrice(long factoryPrice) {
 		this.factoryPrice = factoryPrice;
+	}
+	
+	@Override
+	public String toString() {
+		return productName;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Product)) return false;
+		Product p = (Product) obj;
+		return p.productID == this.productID;
 	}
 	
 }
