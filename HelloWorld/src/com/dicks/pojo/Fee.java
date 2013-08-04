@@ -1,43 +1,24 @@
 package com.dicks.pojo;
 
 public class Fee {
-	private String storeType;
-	private String name;
-	private long costID;
-	private String flag;
-	private long percentage;
+	private int costID;
+	private int value;
 	private String attribute;
-	private long value;
-	
-	public String getStoreType() {
-		return storeType;
-	}
-	public void setStoreType(String storeType) {
-		this.storeType = storeType;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public long getCostID() {
+	private int percentage;
+	private char flag;
+	private String costName;
+	private String shippingType;
+	public int getCostID() {
 		return costID;
 	}
-	public void setCostID(long costID) {
+	public void setCostID(int costID) {
 		this.costID = costID;
 	}
-	public String getFlag() {
-		return flag;
+	public int getValue() {
+		return value;
 	}
-	public void setFlag(String flag) {
-		this.flag = flag;
-	}
-	public long getPercentage() {
-		return percentage;
-	}
-	public void setPercentage(long percentage) {
-		this.percentage = percentage;
+	public void setValue(int value) {
+		this.value = value;
 	}
 	public String getAttribute() {
 		return attribute;
@@ -45,10 +26,29 @@ public class Fee {
 	public void setAttribute(String attribute) {
 		this.attribute = attribute;
 	}
-	public long getValue() {
-		return value;
+	public int getPercentage() {
+		return percentage;
 	}
-	public void setValue(long value) {
-		this.value = value;
+	public void setPercentage(int percentage) {
+		this.percentage = percentage;
 	}
+	public char getFlag() {
+		return flag;
+	}
+	public void setFlag(char flag) {
+		this.flag = flag;
+	}
+	public String getCostName() {
+		return costName;
+	}
+	public void setCostName(String costName) {
+		this.costName = costName;
+	}
+	public String getShippingType() {
+		return shippingType;
+	}
+	public void setShippingType(String shippingType) {
+		this.shippingType = shippingType;
+	}
+	
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+        
+<hibernate-mapping>
+	
+	<class name="com.dicks.pojo.Rule" table="rule">
+		<id name="ruleID" column="rule_id" type="int">
+			<generator class="increment"></generator>
+		</id>			
+		<property name="ruleName" column="rule_name" type="string"></property>
+		<property name="ruleURL" column="rule_url" type="string"></property>
+		<property name="ruleDescr" column="rule_descr" type="string"></property>
+		<property name="priority" column="priority" type="int"></property>
+		<property name="flag" column="flag" type="character"></property>
+		<property name="type" column="type" type="character"></property>
+		<property name="stage" column="stage" type="character"></property>
+		<property name="object" column="object" type="string"></property>
+		<property name="attribute" column="attribute" type="string"></property>
+		<property name="operator" column="operator" type="string"></property>
+		<property name="value" column="value" type="string"></property>
+		<property name="route" column="route" type="string"></property>
+		<property name="action" column="action" type="string"></property>	
+		
+		<set name="ruleCategorys" cascade="save-update">
+			<key column="rule_id"></key>
+			<one-to-many class="com.dicks.pojo.RuleCategory"/>
+		 </set>					
+	</class>
+</hibernate-mapping>
