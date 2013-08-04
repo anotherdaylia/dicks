@@ -2,9 +2,16 @@ package com.dicks.engine;
 
 import java.util.ArrayList;
 
-import com.dicks.engine.ThresTemplate;
+import javax.servlet.http.HttpServletRequest;
 
-public class CreateRuleWeb {
+import org.apache.struts2.interceptor.ServletRequestAware;
+
+import com.dicks.engine.ThresTemplate;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class CreateRuleWeb extends ActionSupport implements ServletRequestAware {
+	private HttpServletRequest servletRequest;
+	
 	private String type;
 	private String object;
 	private String sku;
@@ -69,6 +76,9 @@ public class CreateRuleWeb {
 	}
 	
 	public String cnr() throws Exception{
+		String filePath = servletRequest.getSession().getServletContext().getRealPath("/");
+		System.out.println("filePath: " + filePath);
+		
 		typeArray=new ArrayList<String>();
 		objectArray=new ArrayList<String>();
 		skuArray=new ArrayList<String>();
@@ -101,7 +111,14 @@ public class CreateRuleWeb {
 		valueStr[0]=valuenumber;
 		ThresTemplate test= new ThresTemplate(type,skuStr,attributeStr,operatorStr,valueStr,action);
 		
+		
+		
 		return "cnr";
+	}
+	@Override
+	public void setServletRequest(HttpServletRequest arg0) {
+		// TODO Auto-generated method stub
+		this.servletRequest = arg0;
 	}
 
 }

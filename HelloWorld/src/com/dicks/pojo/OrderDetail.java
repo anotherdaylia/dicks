@@ -1,4 +1,4 @@
-package com.dicks.model;
+package com.dicks.pojo;
 
 public class OrderDetail {
 	private String orderID;

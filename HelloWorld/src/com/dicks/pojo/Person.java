@@ -1,4 +1,4 @@
-package com.dicks.model;
+package com.dicks.pojo;
 
 import java.sql.Date;
 

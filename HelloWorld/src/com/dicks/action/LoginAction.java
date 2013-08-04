@@ -1,4 +1,4 @@
-package com.dicks.struts2;
+package com.dicks.action;
 
 public class LoginAction {
 	private String username;
@@ -22,6 +22,8 @@ public class LoginAction {
 	}
 	
 	public String execute(){
-		return "sucess";
+		
+		
+		return "success";
 	}
 }

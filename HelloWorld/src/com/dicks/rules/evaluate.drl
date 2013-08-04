@@ -11,6 +11,7 @@ import com.dicks.engine.ParcelResult
 import com.dicks.engine.Parcel
 import com.dicks.engine.Product
 import com.dicks.engine.Split
+import com.dicks.engine.SplitGenerater
 import com.dicks.engine.Util
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,8 +20,6 @@ import java.*;
 import java.util.Collections;
 import java.util.Collection;
 import java.util.Comparator;
-
-
 
 //declare any global variables here
 
@@ -46,7 +45,7 @@ rule "for splitable packages"
 		$p : Package(isSplitable() && !isAllocated())
 	then	
 //		System.out.println($p);
-		ArrayList r = Split.getTests($p);
+		ArrayList r = SplitGenerater.getTests($p);
 //		System.out.println(r.size());
 		for (int i = 0; i < r.size(); i++) {
 			PackageTest t = (PackageTest) r.get(i);
@@ -55,7 +54,6 @@ rule "for splitable packages"
 		}		
 //		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
 end
-
 
 rule "generate test results"
 	salience 4
@@ -75,7 +73,7 @@ rule "generate test results"
 end
 
 rule "add splits"
-	salience 3
+	salience 1
 	agenda-group "split"
 	when
 		$p : Package(isSplitable() && !isAllocated())
@@ -86,7 +84,7 @@ end
 
 
 rule "for not splitable packages"
-	salience 1
+	salience -1
 	agenda-group "split"
 	when
 		$p : Package((!$p.isSplitable()) && !isAllocated())
@@ -95,10 +93,45 @@ rule "for not splitable packages"
 //		System.out.println("product size: " + $p.getProducts().size());
 //		System.out.println("eval: " + (($p.getSplitNum() == $p.getProducts().size()&& !$p.isAllocated())));
 		System.out.println("Unable to handle this package " + $p + ", handed to vendor");
+		modify ($p) {setAllocated(true);}
 //		System.out.println("handle this package " + $p);
 //		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
 end
 
+rule "get to evaluate"
+	salience -1
+	agenda-group "split"
+	when
+		$p : Package(isAllocated())
+	then
+		System.out.println($p + " has been allocated.");
+		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "evaluate" ).setFocus();
+end
+
+rule "evaluate package results"
+	salience -1
+	agenda-group "evaluate"
+	when
+		$p : Package(isAllocated())
+		$results : ArrayList( ) from collect( PackageTestResult(getTest().getPack() == $p) )
+	then
+		PackageTestResult r = getBestResult($results);
+		System.out.println("Evaluate Result: " + r);
+
+end
+
+function PackageTestResult getBestResult(ArrayList results) {
+	if (results == null || results.size() < 1) return null;
+
+	Collections.sort(results, new Comparator<PackageTestResult>() {
+		@Override
+		public int compare(PackageTestResult arg0, PackageTestResult arg1) {
+			return (int) (arg0.getCost() - arg1.getCost()); 
+		}			
+	});
+	
+	return (PackageTestResult) results.get(0);
+}
 
 function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 	PackageTestResult r = new PackageTestResult(test);
@@ -143,7 +176,4 @@ function ParcelResult getParcelResult(Parcel parcel, Store store) {
 	return r;
 }
 
-function boolean compare(Parcel p, Store s1, Store s2) {
-	return true;
-}
 
