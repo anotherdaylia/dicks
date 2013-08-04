@@ -1,5 +1,7 @@
 package com.dicks.action;
 
+import java.util.ArrayList;
+
 public class CreateNewBizRule {
 	private String conditions;
 	private String operator1;
@@ -17,6 +19,9 @@ public class CreateNewBizRule {
 	private String shippackage;
 	private String templatename;
 	private String rulename;
+	public ArrayList<String> operator;
+	public ArrayList<String> size;
+	public ArrayList<String> inches;
 
 	
 	public String getTemplatename() {
@@ -154,9 +159,24 @@ public class CreateNewBizRule {
 	}
 	
 	public String newrule(){
+		operator=new ArrayList<String>();
+		size=new ArrayList<String>();
+		inches=new ArrayList<String>();
+		operator.add(operator1);operator.add(operator2);operator.add(operator3);operator.add(operator4);
+		size.add(size1);size.add(size2);size.add(size3);size.add(size4);
+		inches.add(inches1);inches.add(inches2);inches.add(inches3);inches.add(inches4);
 		System.out.println(rulename);
 		System.out.println(templatename);
+		System.out.println();
+		for(int i=0;i<4;i++){
+			System.out.println(size.get(i));
+			System.out.println(operator.get(i));
+			System.out.println(inches.get(i));
+		}
+		System.out.println();
+		System.out.println(conditions);
 		System.out.println(shippackage);
+		System.out.println();
 		return "newrule";
 	}
 

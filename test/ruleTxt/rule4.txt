@@ -1,0 +1,8 @@
+rule  "Mininum Packagethreshold0"
+    when
+        $o : Order()
+        $i : Product( ((weight > 5))&& (( productID == 1 )|| (productID == 2 ))) from $o.getProducts()
+    then
+        $i.minPackage();
+end
+
