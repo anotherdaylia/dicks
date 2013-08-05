@@ -17,18 +17,17 @@ import com.dicks.dao.impl.RuleDAOImpl;
 import com.dicks.pojo.Customer;
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.Inventory;
-import com.dicks.pojo.Order;
+
 import com.dicks.pojo.OrderDetail;
-import com.dicks.pojo.Package;
+
 import com.dicks.pojo.PackageDetail;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
-import com.dicks.pojo.RuleCategory;
+
 import com.dicks.pojo.Store;
-import com.dicks.pojo.StoreCategory;
 import com.dicks.pojo.User;
 import com.dicks.pojo.Vendor;
-import com.dicks.pojo.ProductCategory;
+
 
 public class HibernateTest
 {
