@@ -2,10 +2,10 @@
 package com.dicks.rules;
 
 //list any import classes here.
-import com.dicks.engine.Orders
-import com.dicks.engine.Store
+import com.dicks.pojo.Orders
+import com.dicks.pojo.Store
 import com.dicks.engine.Package
-import com.dicks.engine.Product
+import com.dicks.pojo.Product
 import com.dicks.engine.PackageTestResult
 import java.util.ArrayList
 import java.*;
@@ -44,32 +44,7 @@ rule "Explode Cart end"
         drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
 end
 */
-rule "test"
-	salience 17
-	//agenda-group "first"
-    when    	
-    	
-    	$store : Store(StoreID !=5) 
-    	
-    	
-    then
-    	$store.change(2);
-    	System.out.println("store "+$store.getStoreID()+"value changed"+$store.getValue());
-        
-end
 
-rule "test2"
-	salience 15
-	//agenda-group "first"
-    when    	
-    	
-    	$store : Store()
-    	
-    then
-    	$store.change(1);
-    	System.out.println("store "+$store.getStoreID()+"value changed"+$store.getValue());
-        
-end
 
 rule "filter stock"
 	salience 13

@@ -23,6 +23,7 @@ import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 import com.dicks.pojo.Product;
 
+
 public class Allocate {
     public String myTab ="    ";
     public String myReturn = "\n";

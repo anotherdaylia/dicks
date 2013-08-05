@@ -99,7 +99,7 @@ public class SmallTest {
 
 		//order.addProducts(shirts,1);
 		
-		/*ksession.insert(s1);
+		ksession.insert(s1);
 		ksession.insert(s2);
 		ksession.insert(s3);
 		ksession.insert(s4);
@@ -109,13 +109,13 @@ public class SmallTest {
 		ksession.fireAllRules();
 		
 		Collection<Package> packages = (Collection<Package>) ksession.getObjects( new ClassObjectFilter(Package.class) );
-		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );*/
+		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 
-		/*System.out.println("---------------------------------");
+		System.out.println("---------------------------------");
 		System.out.println("package size: " + packages.size());
 		System.out.println(Arrays.toString(packages.toArray()));
 		System.out.println("store list: " + stores.size());
-		System.out.println(Arrays.toString(stores.toArray()));*/
+		System.out.println(Arrays.toString(stores.toArray()));
 			
 		System.out.println("end");
 		

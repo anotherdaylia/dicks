@@ -28,9 +28,13 @@ public class Product implements java.io.Serializable {
 
 	// Constructors
 
-	/** default constructor */
-	public Product() {
-	}
+	/** default constructor 
+	 * @param k 
+	 * @param j 
+	 * @param i 
+	 * @param string2 
+	 * @param string */
+	
 
 	/** minimal constructor */
 	public Product(Vendor vendor, String prodName, String sku,

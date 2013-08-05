@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.print.DocFlavor.URL;
 
 import com.dicks.pojo.Product;
+import com.dicks.pojo.Vendor;
 
 public class CreateTemplate {
     public String myTab ="    ";
@@ -52,6 +53,10 @@ public class CreateTemplate {
 		  rules[3] = "./ruleTxt/rule3.txt";
 		  */
 		  System.out.println("--------------Start Adding New Rule--------------------------");
+		  public Product(Vendor vendor, String prodName, String sku,
+					String prodDescr, Integer factoryPrice, Integer weight, String flag) 
+		  
+		  	product[0] = new Product("Nike", "Nike_Shoe","NK-SH-123","nike_sports_shoe",69.99,5.43,)
 		  	product[0] = new Product(1+"", "shoes", 50 ,10, 2);
 		    product[1]= new Product(2+"", "hat", 10 , 4, 2);
 		    product[2] = new Product(3+"", "shirt1", 20 , 8 ,5);
