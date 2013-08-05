@@ -4,14 +4,13 @@
         
 <hibernate-mapping>
 	
-	<class name="com.miqicheng.model.OrderDetail" table="order_detail_table">
+	<class name="com.dicks.pojo.OrderDetail" table="order_detail">
 		<composite-id>
-			<key-property name="productID" column="prod_id" type="string"></key-property>
-			<key-property name="orderID" column="order_id" type="string"></key-property>		
+			<key-property name="productID" column="prod_id" type="int"></key-property>
+			<key-property name="orderID" column="order_id" type="int"></key-property>		
 		</composite-id> 
 			
 		<property name="unitPrice" column="unit_price" type="int"></property>
-		<property name="discountPrice" column="dis_price" type="int"></property>
 		<property name="qty" column="qty" type="int"></property>
 	</class>
 </hibernate-mapping>

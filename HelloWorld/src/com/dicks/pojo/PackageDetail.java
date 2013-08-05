@@ -68,19 +68,9 @@ public class PackageDetail implements Serializable {
 	        if (getClass() != obj.getClass())
 	            return false;
 	        PackageDetail other = (PackageDetail) obj;
-	        if (productID ==0)
-	        {
-	            if (other.productID != 0)
-	                return false;
-	        }
-	        else if (!(productID == other.productID))
+	      if (!(productID == other.productID))
 	            return false;
-	        if (packageID == 0)
-	        {
-	            if (other.packageID != 0)
-	                return false;
-	        }
-	        else if (!(packageID==other.packageID))
+	   if (!(packageID==other.packageID))
 	            return false;
 	        return true;
 	    }

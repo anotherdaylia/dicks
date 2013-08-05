@@ -53,19 +53,9 @@ public class RuleCategory implements Serializable{
 	        if (getClass() != obj.getClass())
 	            return false;
 	        RuleCategory other = (RuleCategory) obj;
-	        if (categoryID == 0)
-	        {
-	            if (other.categoryID != 0)
-	                return false;
-	        }
-	        else if (!(categoryID==other.categoryID))
+	        if (!(categoryID==other.categoryID))
 	            return false;
-	        if (ruleID == 0)
-	        {
-	            if (other.ruleID != 0)
-	                return false;
-	        }
-	        else if (!(ruleID==other.ruleID))
+	        if (!(ruleID==other.ruleID))
 	            return false;
 	        return true;
 	    }

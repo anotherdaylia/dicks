@@ -4,11 +4,12 @@
         
 <hibernate-mapping>
 	
-	<class name="com.dicks.pojo.PackageDetail" table="package">
+	<class name="com.dicks.pojo.PackageDetail" table="package_detail">
 		<composite-id>
 			<key-property name="productID" column="prod_id" type="int"></key-property>
 			<key-property name="packageID" column="package_id" type="int"></key-property>		
 		</composite-id> 
+			
 			
 		<property name="unitPrice" column="unit_price" type="int"></property>
 		<property name="qty" column="qty" type="int"></property>
