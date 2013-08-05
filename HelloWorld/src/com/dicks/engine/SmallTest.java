@@ -16,8 +16,7 @@ import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
 import com.dicks.pojo.Product;
-
-
+import com.dicks.pojo.Orders;
 
 public class SmallTest {
 
@@ -88,7 +87,7 @@ public class SmallTest {
 		Store s4 = new Store(4,6);
 		Store s5 = new Store(5,8);
 	
-		Orders order = new Orders(2);
+		Orders order = new Orders();
 		order.addProducts(shoes, 1);
 		order.addProducts(hat, 1);
 		order.addProducts(shirt, 1);	
@@ -99,7 +98,7 @@ public class SmallTest {
 
 		//order.addProducts(shirts,1);
 		
-		/*ksession.insert(s1);
+		ksession.insert(s1);
 		ksession.insert(s2);
 		ksession.insert(s3);
 		ksession.insert(s4);
@@ -109,13 +108,13 @@ public class SmallTest {
 		ksession.fireAllRules();
 		
 		Collection<Package> packages = (Collection<Package>) ksession.getObjects( new ClassObjectFilter(Package.class) );
-		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );*/
+		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 
-		/*System.out.println("---------------------------------");
+		System.out.println("---------------------------------");
 		System.out.println("package size: " + packages.size());
 		System.out.println(Arrays.toString(packages.toArray()));
 		System.out.println("store list: " + stores.size());
-		System.out.println(Arrays.toString(stores.toArray()));*/
+		System.out.println(Arrays.toString(stores.toArray()));
 			
 		System.out.println("end");
 		

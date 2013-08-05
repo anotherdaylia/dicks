@@ -23,6 +23,7 @@ import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 import com.dicks.pojo.Product;
 
+
 public class Allocate {
     public String myTab ="    ";
     public String myReturn = "\n";
@@ -37,9 +38,12 @@ public class Allocate {
     
     
     
-	public Allocate  (String[] product, String[] quantity){
-		System.out.println("product "+product[0]);
+	public Allocate  (String[] sku, String[] quantity, String shippingType, String shippingAddress, String shippingZipcode){
+		System.out.println("product "+sku[0]);
 		System.out.println("quantity "+quantity[0]);
+		System.out.println("shipping type "+shippingType);
+		System.out.println("shipping address "+shippingAddress);
+		System.out.println("shipping zip "+ shippingZipcode);
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
 		// this will parse and compile in one step
@@ -80,8 +84,22 @@ public class Allocate {
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 		
-		
-		//get all product[] from productlist(String[])
+		Product shoes = new Product();
+		shoes.setProdName("shoes");
+		shoes.setFactoryPrice(50);
+		shoes.setWeight(10);
+		shoes.setWidth(2.0);
+		Product hat = new Product();
+		hat.setProdName("hat");
+		hat.setFactoryPrice(10);
+		hat.setWeight(4);
+		hat.setWidth(2.0);
+		Product shirt = new Product();
+		shirt.setProdName("shirt");
+		shirt.setFactoryPrice(20);
+		shirt.setWeight(8);
+		shirt.setWidth(5.0);
+		//get all product[] from skulist(String[])
 		//get all stores from dao
 		Store s1 = new Store(1,2);
 		Store s2 = new Store(2,4);
@@ -90,14 +108,19 @@ public class Allocate {
 		Store s5 = new Store(5,8);
 	
 		
+		int q1 = Integer.parseInt(quantity[0]);
+		int q2 = Integer.parseInt(quantity[1]);
 		
 		
-		Order order = new Order(2);
+		Orders order = new Orders(2);
+		order.addProducts(shoes, 1);
+		order.addProducts(hat, 2);
+		order.addProducts(shirt, 3);
 		//dao get product with productID
 		//not dao , add product to order
 		//order.addProducts(shirts,1);
 		
-		/*ksession.insert(s1);
+		ksession.insert(s1);
 		ksession.insert(s2);
 		ksession.insert(s3);
 		ksession.insert(s4);
@@ -107,13 +130,13 @@ public class Allocate {
 		ksession.fireAllRules();
 		
 		Collection<Package> packages = (Collection<Package>) ksession.getObjects( new ClassObjectFilter(Package.class) );
-		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );*/
+		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 
-		/*System.out.println("---------------------------------");
+		System.out.println("---------------------------------");
 		System.out.println("package size: " + packages.size());
 		System.out.println(Arrays.toString(packages.toArray()));
 		System.out.println("store list: " + stores.size());
-		System.out.println(Arrays.toString(stores.toArray()));*/
+		System.out.println(Arrays.toString(stores.toArray()));
 			
 		System.out.println("end");
 		

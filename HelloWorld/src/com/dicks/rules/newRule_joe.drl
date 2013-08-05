@@ -3,7 +3,9 @@ package com.dicks.rules;
 
 //list any import classes here.
 import com.dicks.pojo.Orders
-import com.dicks.engine.Store
+
+import com.dicks.pojo.Store
+
 import com.dicks.engine.Package
 import com.dicks.pojo.Product
 import com.dicks.engine.PackageTestResult
@@ -26,10 +28,7 @@ rule "Explode Cart"
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
 //        System.out.println("order quantity: " + $order.getQuantity());
 //        System.out.println("exlored: " + $order.getExploredItem());
-
-
-        
-        
+       
 end
 
 /*
@@ -43,34 +42,9 @@ rule "Explode Cart end"
     then
         drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
 end
-
-rule "test"
-	salience 17
-	//agenda-group "first"
-    when    	
-    	
-    	$store : Store(storeId !=5) 
-    	
-    	
-    then
-    	$store.change(2);
-    	System.out.println("store "+$store.getStoreID()+"value changed"+$store.getValue());
-        
-end
-
-rule "test2"
-	salience 15
-	//agenda-group "first"
-    when    	
-    	
-    	$store : Store()
-    	
-    then
-    	$store.change(1);
-    	System.out.println("store "+$store.getStoreID()+"value changed"+$store.getValue());
-        
-end
+<<<<<<< HEAD
 */
+
 
 rule "filter stock"
 	salience 13
