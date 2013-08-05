@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 import com.dicks.pojo.Product;
 
-public class Order {
+public class Orders {
 	private int orderID;
 //	private CustomerInfo cusInfo;
 	private HashMap<Product, Integer> productList;
@@ -21,7 +21,7 @@ public class Order {
 	private ArrayList<Package> packages = new ArrayList<Package>();
 //	private ArrayList<Store> stores = new ArrayList<Store>();
 	
-	public Order(int zoneID) {
+	public Orders(int zoneID) {
 		this.zoneID = zoneID;
 		productList = new HashMap<Product, Integer>();
 	}

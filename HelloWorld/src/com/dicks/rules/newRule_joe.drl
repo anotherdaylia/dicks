@@ -2,7 +2,7 @@
 package com.dicks.rules;
 
 //list any import classes here.
-import com.dicks.engine.Order
+import com.dicks.engine.Orders
 import com.dicks.engine.Store
 import com.dicks.engine.Package
 import com.dicks.engine.Product
@@ -19,7 +19,7 @@ rule "Explode Cart"
     salience 30
     dialect "java"
     when
-        $order : Order()
+        $order : Orders()
         $item : Product() from $order.getProducts()
     then
         insert( $item );
@@ -87,7 +87,7 @@ rule "filter stock2"
 	salience 10
 	//agenda-group "first2"
     when
-    	//$o : Order()
+    	//$o : Orders()
         $item : Product()
     	$store : Store()
         //eval($store.checkStore($item, $o,"zone","<",2))
@@ -116,7 +116,7 @@ rule  "special 1"
 	salience 9
 	//agenda-group "special"
 	when
-       $o : Order()
+       $o : Orders()
         $i : Product(  ( productID == 3 ))
         $s : Store( storeID == 4 )
         //eval(!$s.checkProduct($i,">",1))
@@ -133,7 +133,7 @@ rule  "Mininum Packagethreshold0"
 	salience 7
 	//agenda-group "first6"
     when
-        $o : Order()
+        $o : Orders()
 //        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
         $i : Product(weight >= 10 && special == null)
         
@@ -150,7 +150,7 @@ rule "insert package for remaining products"
 	//agenda-group "first7"
 	when
 		$i : Product()
-		$o : Order()
+		$o : Orders()
 		not Package(isForRemain())
 	then
 		Package p = new Package($o);

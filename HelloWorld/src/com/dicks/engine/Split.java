@@ -20,7 +20,7 @@ import org.kie.internal.logger.KnowledgeRuntimeLogger;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
-import com.dicks.engine.Order;
+import com.dicks.engine.Orders;
 import com.dicks.engine.PackageTest;
 import com.dicks.engine.PackageTestResult;
 import com.dicks.engine.Parcel;
@@ -45,7 +45,7 @@ public class Split {
 //			printCombinations(a.length, i, a, matrix);
 //		}
 		
-		Order order = new Order(2);
+		Orders order = new Orders(2);
 		order.addProducts(shoes, 1);
 		order.addProducts(hat, 1);
 		order.addProducts(shirt, 1);
@@ -267,7 +267,7 @@ public class Split {
 //		return r;
 //	}
 	
-	public static PackageTestResult getTestResult(final Order order, Parcel test, ArrayList<Store> stores) {
+	public static PackageTestResult getTestResult(final Orders order, Parcel test, ArrayList<Store> stores) {
 		ArrayList<Store> testStores = new ArrayList<Store>();
 		for (int j = 0; j < stores.size(); j++) {
 			Store s = stores.get(j);

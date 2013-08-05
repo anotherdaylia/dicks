@@ -62,21 +62,41 @@ public class SmallTest {
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 		
+		Product shoes = new Product();
+		shoes.setProdName("shoes");
+		shoes.setFactoryPrice(50);
+		shoes.setWeight(10);
+		shoes.setWidth(2.0);
+		Product hat = new Product();
+		hat.setProdName("hat");
+		hat.setFactoryPrice(10);
+		hat.setWeight(4);
+		hat.setWidth(2.0);
+		Product shirt = new Product();
+		shirt.setProdName("shirt");
+		shirt.setFactoryPrice(20);
+		shirt.setWeight(8);
+		shirt.setWidth(5.0);
+		//Product shirts = new Product(5, "hahahah", 20 , 8 ,5);
+
+		shoes.setProdId(1);
+		shoes.setProdName("shoes");
 		
-		//get all product[] from productlist(String[])
-		//get all stores from dao
 		Store s1 = new Store(1,2);
 		Store s2 = new Store(2,4);
 		Store s3 = new Store(3,5);
 		Store s4 = new Store(4,6);
 		Store s5 = new Store(5,8);
 	
+		Orders order = new Orders(2);
+		order.addProducts(shoes, 1);
+		order.addProducts(hat, 1);
+		order.addProducts(shirt, 1);	
 		
-		
-		
-		Order order = new Order(2);
+//		Orders order = new Order(2);
 		//dao get product with productID
 		//not dao , add product to order
+
 		//order.addProducts(shirts,1);
 		
 		/*ksession.insert(s1);
@@ -105,8 +125,4 @@ public class SmallTest {
 		ksession.dispose();
 	}
 	
-	private static void setUpProduct(Product p, String name, double price) {
-		/*p.setPrice(price);
-		p.setProductName(name);*/
-	}
 }
