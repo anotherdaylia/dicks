@@ -15,6 +15,7 @@ public class Rule {
 	private String route;
 	private String action;
 	private String flag;
+	private String condition;
 	
 	public Rule(){
 		
@@ -38,7 +39,7 @@ public class Rule {
 	
 	
 	public Rule(int ruleID, String path, String description, int priority, String type, String[] objects, 
-			String[] attributes, String[] operators, String[] values, String[] routes, String[] actions,String flag){
+			String[] attributes, String[] operators, String[] values, String condition, String[] routes, String[] actions,String flag){
 		StringBuffer objectBuffer = new StringBuffer();
 		StringBuffer attributeBuffer = new StringBuffer();
 		StringBuffer operatorBuffer = new StringBuffer();
@@ -48,7 +49,7 @@ public class Rule {
 		
 		
 		
-		
+		this.condition = condition;
 		this.type = type;
 		this.ruleID = ruleID;
 		this.path = path;
@@ -94,6 +95,13 @@ public class Rule {
 		this.group = "";
 	}
 	
+	public String getCondition(){
+		return condition;
+	}
+	
+	public void setConditon(String condition){
+		this.condition = condition;
+	}
 	public String getFlag(){
 		return flag;
 	}

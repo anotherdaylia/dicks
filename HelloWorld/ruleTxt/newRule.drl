@@ -45,7 +45,7 @@ rule  "Threshold0"
     salience -7
     when
         $o : Order()
-        $i : Product( ((Length < 1)|| ( Width = 2)|| ( Height < 3)|| ( Length < 4))&& (( productID.equals("001"))|| (productID.equals("002"))|| (productID.equals("003")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((Length < 1)||( Length < 2)||( Length < 3)||( Length < 4))&& (( productID.equals("001"))|| (productID.equals("002"))|| (productID.equals("003")))&& (flag.equals("TH-A,ST-A,SP-A")))
     then
         $i.minPackage();
 end

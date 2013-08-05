@@ -128,7 +128,7 @@ public class CreateNewBizRule {
 		
 		String[] action = new String[1];
 		action[0] = shippackage;
-		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,null,action,"TH-A,ST-A,SP-A",5);
+		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,conditions,null,action,"TH-A,ST-A,SP-A",5);
 		
 		return "newrule";
 	}

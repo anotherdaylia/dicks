@@ -23,9 +23,17 @@ public class CreateTemplate {
     
     
 	public CreateTemplate  (String type, String[] objects, String[] attributes, 
-			String[] operators, String[] values, String[] routes, String[] actions, String flag, int ruleInt ){
+			String[] operators, String[] values, String conditions, String[] routes, String[] actions, String flag, int ruleInt ){
 		
-		 String current = null;
+		String condition;
+		if (conditions.equals("all")){
+			condition = "||";
+		}
+		else{
+			condition = "&&";
+		}
+		System.out.println("condition is "+condition);
+		String current = null;
 		try {
 			current = new java.io.File( "." ).getCanonicalPath();
 		} catch (IOException e1) {
@@ -55,6 +63,11 @@ public class CreateTemplate {
 		  ruleFile[1] = new Rule(2,"/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule2.txt","\"filter stock\"",98);}
 		  if (ruleFile[2] == null){
 		  ruleFile[2] = new Rule(3,"/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule3.txt","\"Summarize\"",-5);}
+		  
+		  //////get all rule in database and sorted with priority---->return to ruleFile
+		  /////get all product objects by a array of SKU.
+		  
+		  
 		  
 		  
 		  //get priority, hardcoded for 2 for demo
@@ -88,11 +101,11 @@ public class CreateTemplate {
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
 					 
 					 ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
-							 attributes,operators,values,null,actions,flag);
+							 attributes,operators,values,condition, null,actions,flag);
 				 }
 			  else{
 					 ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
-							 attributes,operators,values,null,actions,flag);
+							 attributes,operators,values,condition, null,actions,flag);
 			  }
 	      }    
 	      else {
@@ -100,13 +113,13 @@ public class CreateTemplate {
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
 		    	  ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
-							 attributes,operators,values,routes,actions,flag);
+							 attributes,operators,values,condition, routes,actions,flag);
 				   
 				 }
 			  else{
 				    
 					 ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
-							 attributes,operators,values,routes,actions,flag);
+							 attributes,operators,values,condition, routes,actions,flag);
 			  }
 	      
 	      
@@ -184,11 +197,12 @@ public class CreateTemplate {
 		                 }
 	            	 }
 		             else{
+		            	 //conditon added
 		            	 if (ruleFile[i].getType().equalsIgnoreCase("Threshold")){
 		            		 System.out.println("This is the new Threshold rule created by the system");
 		            		 byte[] contentInBytes = createThreshold(ruleFile[i].getType(),ruleFile[i].getPriority(),
 		            				 ruleFile[i].getObject(),ruleFile[i].getAttribute(),ruleFile[i].getOperator(),ruleFile[i].getValue(),
-		            				 ruleFile[i].getAction(),ruleFile[i].getFlag()).getBytes();
+		            				 ruleFile[i].getCondition(),ruleFile[i].getAction(),ruleFile[i].getFlag()).getBytes();
 		            		 fos.write(contentInBytes);
 		            	 }
 		            	 else if (ruleFile[i].getType().equalsIgnoreCase("Store Filter")){
@@ -218,6 +232,9 @@ public class CreateTemplate {
 	            fos.flush();
 	            fos.close();
 	            System.out.println("New drl file is created!");
+	        /////insert new rule at the end of the rules in database.
+	  		  /////update all product's flag attribute
+	            
 	       }
 	      catch(Exception e){System.out.println("error: " + e);}
 		     //threshold abc = new threshold("hold");
@@ -235,7 +252,7 @@ public class CreateTemplate {
 	 
 	
 	   public String createThreshold(String type, int priority, String[] object, String[] attribute, 
-			   String[] operator, String[] values,String[] actions,String flag){
+			   String[] operator, String[] values,String condition, String[] actions,String flag){
 		   //System.out.println("type  "+type);
 		   //System.out.println("objects  "+object);
 		   //System.out.println("attribute" +attribute);
@@ -243,7 +260,7 @@ public class CreateTemplate {
 		   //System.out.println("Values "+values);
 		   StringBuffer newRule = new StringBuffer();
 		   newRule.append(writeRuleType(type,priority));
-		   newRule.append(writeWhenThreshold(object,attribute,operator,values,flag));
+		   newRule.append(writeWhenThreshold(object,attribute,operator,values,condition,flag));
 		   newRule.append(writeThenThreshold(actions));
 		   System.out.println(newRule.toString());
 		   return newRule.toString();
@@ -281,7 +298,7 @@ public class CreateTemplate {
 	   }
 	   
 	   public String writeWhenThreshold(String[] splits, String[] splitAttribute, String[] splitOperator, 
-			   String[] splitValue,String flag){
+			   String[] splitValue,String condition,String flag){
 		   
 		   //split the object 
 		   //System.out.println("1"+splits[0]+"1"+splits[1]+"2"+splits[2]);
@@ -322,7 +339,7 @@ public class CreateTemplate {
 			   //System.out.println(splitAttribute[i]);
 			   //System.out.println(splitOperator[i]); 
 			   //System.out.println(splitValue[i]);
-			   multiAttribute.append("|| ( "+ splitAttribute[i]+mySpace+splitOperator[i]+mySpace+splitValue[i] + ")");
+			   multiAttribute.append(condition+"( "+ splitAttribute[i]+mySpace+splitOperator[i]+mySpace+splitValue[i] + ")");
 			   //System.out.println("add second operations!!!"+multiAttribute.toString());
 		   }
 		   
