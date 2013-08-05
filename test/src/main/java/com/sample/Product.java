@@ -9,7 +9,7 @@ public class Product {
 	private String productID;
 	private String special;
 	private String flag = "TH-A,ST-A,SP-A";
-	
+
 	public Product (String productID, String productName, double price, double weight, int size) {
 		this.productID = productID;
 		this.productName = productName;
@@ -20,18 +20,18 @@ public class Product {
 	public String getFlag(){
 		return flag;
 	}
-	
+
 	public void setFlag(String flag){
 		this.flag = flag;
 	}
-	
+
 	public String getSpecial(){
 		return special;
 	}
 	public void setSpecial(String special){
 		this.special = special;
 	}
-	
+
 	public String getProductID() {
 		return productID;
 	}
@@ -39,7 +39,7 @@ public class Product {
 	public void setProductID(String productID) {
 		this.productID = productID;
 	}
-	
+
 	public VendorInfo getVendorInfo() {
 		return vendorInfo;
 	}
@@ -71,10 +71,10 @@ public class Product {
 		this.size = size;
 	}
 	public void minPackage(){
-		
+
 		System.out.println(productName+" has been splited to another package");
 	}
-	
+
 	@Override
 	public String toString() {
 		return productName;

@@ -115,3 +115,4 @@ public class Store implements java.io.Serializable {
 	}
 
 }
+

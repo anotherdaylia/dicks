@@ -15,6 +15,8 @@ import org.kie.internal.logger.KnowledgeRuntimeLogger;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
+import com.dicks.pojo.Product;
+
 
 
 public class SmallTest {
@@ -64,6 +66,10 @@ public class SmallTest {
 		Product hat = new Product(2+"", "hat", 10 , 4, 2);
 		Product shirt = new Product(3+"", "shirt", 20 , 8 ,5);
 		//Product shirts = new Product(5, "hahahah", 20 , 8 ,5);
+		
+		shoes.setProductID(1+"");
+		shoes.setProductName("shoes");
+		
 		
 		Store s1 = new Store(1,2);
 		Store s2 = new Store(2,4);

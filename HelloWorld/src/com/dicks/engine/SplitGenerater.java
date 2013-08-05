@@ -70,7 +70,7 @@ public class SplitGenerater {
 			t.setParcels(parcels);
 			
 			for (int l = 0; l < packageMethod.length; l++) {
-				Parcel parcel = new Parcel(pack.getZoneID());
+				Parcel parcel = new Parcel(pack, pack.getZoneID());
 				String[] itemMethod = packageMethod[l].split(",");
 				
 				for (int m = 0; m < itemMethod.length; m++) {

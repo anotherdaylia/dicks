@@ -43,4 +43,4 @@
   	 	<mapping resource="com/dicks/pojo/StoreCate.hbm.xml"></mapping>
   </session-factory>   
   
-</hibernate-configuration> 
+</hibernate-configuration>

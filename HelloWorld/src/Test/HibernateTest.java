@@ -47,7 +47,37 @@ public class HibernateTest
 	
 	public static void main(String[] args) throws Exception
 	{
+<<<<<<< HEAD
+		Fee fee= new Fee();
+		fee.setAttribute("adf");
+		fee.setCostName("Nike");
+		fee.setFlag('a');;
+		fee.setPercentage(134);
+		fee.setShippingType("store");
+		fee.setValue(345);
+=======
+>>>>>>> branch 'master' of https://github.com/claire921/dicks.git
 		
+<<<<<<< HEAD
+//		User user = new User();
+//		user.setEmail("ssd");
+//		user.setPassword("sgsg");
+//		user.setUserName("aa");
+		
+		Rule rule = new Rule("ad", "dfgadg", "sdgd", 1, 'd', 'd', 'd', "sdgdgfs", "sdfgsdfg", "sfggfd", "sgds", "sgfdg", "sdfggfd");
+	
+//		RuleCategory rc = new RuleCategory();
+//		rc.setRule(rule);
+//		rc.setRuleID(rule.getRuleID());
+//		rc.setCategoryID(2);
+//		rc.setIsProductRelated(false);
+		
+//		Set<RuleCategory> set = new HashSet<RuleCategory>();
+//		set.add(rc);
+//
+//		rule.setRuleCategorys(set);
+
+=======
 //		Rule rule = new Rule("ad", "dfgadg", "sdgd", 1, "d", 'd', 'd', "sdgdgfs", "sdfgsdfg", "sfggfd", "sgds", "sgfdg", "sdfggfd");
 //		
 //		RuleDAO ruleDAOImpl =  RuleDAOImpl.getInstance();
@@ -118,8 +148,12 @@ public class HibernateTest
 		customer.setZip("sfhsdfg");
 		customer.getOrderses().add(order);
 //			
+>>>>>>> branch 'master' of https://github.com/claire921/dicks.git
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
+<<<<<<< HEAD
+	
+=======
 		
 //		Package package1 = new Package();
 //		package1.setCustomerID(2);
@@ -156,10 +190,25 @@ public class HibernateTest
 //		sc.setStoreID(4);
 //		
 //		
+>>>>>>> branch 'master' of https://github.com/claire921/dicks.git
 		try
 		{
 			tx = session.beginTransaction();
 			
+<<<<<<< HEAD
+			session.save(fee);
+//			session.save(user);
+			session.save(rule);
+			
+			RuleCategory rc = new RuleCategory();
+			rc.setRule(rule);
+			rc.setRuleID(rule.getRuleID());
+			rc.setCategoryID(2);
+			rc.setIsProductRelated(false);
+			
+			session.save(rc);
+
+=======
 //			session.save(fee);
 ////			session.save(user);
 ////			session.save(rule);
@@ -172,6 +221,7 @@ public class HibernateTest
 			//session.save(package1);
 //			session.save(pd);
 			session.save(customer);
+>>>>>>> branch 'master' of https://github.com/claire921/dicks.git
 			tx.commit();
 		}
 		catch(Exception ex)
@@ -186,6 +236,10 @@ public class HibernateTest
 		finally
 		{
 			session.close();
+<<<<<<< HEAD
+		}	
+=======
 		}
+>>>>>>> branch 'master' of https://github.com/claire921/dicks.git
 	}
 }
