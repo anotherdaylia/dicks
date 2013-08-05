@@ -1,34 +1,83 @@
 package com.dicks.pojo;
 
-public class Vendor {
-	private int vendorID;
-	private String vendorName;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Vendor entity. @author MyEclipse Persistence Tools
+ */
+
+public class Vendor implements java.io.Serializable {
+
+	// Fields
+
+	private Integer vendId;
+	private String vendName;
 	private String address;
 	private String zip;
-	public int getVendorID() {
-		return vendorID;
+	private Set products = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Vendor() {
 	}
-	public String getZip() {
-		return zip;
-	}
-	public void setZip(String zip) {
+
+	/** minimal constructor */
+	public Vendor(String vendName, String address, String zip) {
+		this.vendName = vendName;
+		this.address = address;
 		this.zip = zip;
 	}
-	public void setVendorID(int vendorID) {
-		this.vendorID = vendorID;
+
+	/** full constructor */
+	public Vendor(String vendName, String address, String zip, Set products) {
+		this.vendName = vendName;
+		this.address = address;
+		this.zip = zip;
+		this.products = products;
 	}
-	public String getVendorName() {
-		return vendorName;
+
+	// Property accessors
+
+	public Integer getVendId() {
+		return this.vendId;
 	}
-	public void setVendorName(String vendorName) {
-		this.vendorName = vendorName;
+
+	public void setVendId(Integer vendId) {
+		this.vendId = vendId;
 	}
+
+	public String getVendName() {
+		return this.vendName;
+	}
+
+	public void setVendName(String vendName) {
+		this.vendName = vendName;
+	}
+
 	public String getAddress() {
-		return address;
+		return this.address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	
+
+	public String getZip() {
+		return this.zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public Set getProducts() {
+		return this.products;
+	}
+
+	public void setProducts(Set products) {
+		this.products = products;
+	}
+
 }

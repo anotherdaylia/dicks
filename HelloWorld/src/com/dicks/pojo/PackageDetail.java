@@ -1,79 +1,84 @@
 package com.dicks.pojo;
 
-import java.io.Serializable;
+/**
+ * PackageDetail entity. @author MyEclipse Persistence Tools
+ */
 
-public class PackageDetail implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private int packageID;
-	private int productID;
-	private int unitPrice;
-	private int qty;
-	
-	public PackageDetail(){};
-	
+public class PackageDetail implements java.io.Serializable {
 
-	public int getPackageID() {
-		return packageID;
+	// Fields
+
+	private PackageDetailId id;
+	private Packages packages;
+	private Product product;
+	private Integer qty;
+	private Integer unitPrice;
+
+	// Constructors
+
+	/** default constructor */
+	public PackageDetail() {
 	}
 
-
-	public void setPackageID(int packageID) {
-		this.packageID = packageID;
+	/** minimal constructor */
+	public PackageDetail(PackageDetailId id, Packages packages,
+			Product product, Integer qty) {
+		this.id = id;
+		this.packages = packages;
+		this.product = product;
+		this.qty = qty;
 	}
 
-	public int getProductID() {
-		return productID;
-	}
-
-	public void setProductID(int productID) {
-		this.productID = productID;
-	}
-
-	public int getUnitPrice() {
-		return unitPrice;
-	}
-
-	public void setUnitPrice(int unitPrice) {
+	/** full constructor */
+	public PackageDetail(PackageDetailId id, Packages packages,
+			Product product, Integer qty, Integer unitPrice) {
+		this.id = id;
+		this.packages = packages;
+		this.product = product;
+		this.qty = qty;
 		this.unitPrice = unitPrice;
 	}
 
-	public int getQty() {
-		return qty;
+	// Property accessors
+
+	public PackageDetailId getId() {
+		return this.id;
 	}
-	public void setQty(int qty) {
+
+	public void setId(PackageDetailId id) {
+		this.id = id;
+	}
+
+	public Packages getPackages() {
+		return this.packages;
+	}
+
+	public void setPackages(Packages packages) {
+		this.packages = packages;
+	}
+
+	public Product getProduct() {
+		return this.product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Integer getQty() {
+		return this.qty;
+	}
+
+	public void setQty(Integer qty) {
 		this.qty = qty;
 	}
-	
-	@Override
-	public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        String str1 = String.valueOf(packageID);
-        String str2 = String.valueOf(productID);
-        result = prime * result + ((str1 == null) ? 0 : str1.hashCode());
-        result = prime * result + ((str2 == null) ? 0 : str2.hashCode());
-        return result;
+
+	public Integer getUnitPrice() {
+		return this.unitPrice;
 	}
-	
-	 @Override
-	    public boolean equals(Object obj)
-	    {
-	        if (this == obj)
-	            return true;
-	        if (obj == null)
-	            return false;
-	        if (getClass() != obj.getClass())
-	            return false;
-	        PackageDetail other = (PackageDetail) obj;
-	      if (!(productID == other.productID))
-	            return false;
-	   if (!(packageID==other.packageID))
-	            return false;
-	        return true;
-	    }
-	
-	
+
+	public void setUnitPrice(Integer unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
 }

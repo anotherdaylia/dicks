@@ -49,10 +49,10 @@ public class HibernateTest
 	public static void main(String[] args) throws Exception
 	{
 		
-		Rule rule = new Rule("ad", "dfgadg", "sdgd", 1, "d", 'd', 'd', "sdgdgfs", "sdfgsdfg", "sfggfd", "sgds", "sgfdg", "sdfggfd");
-		
-		RuleDAO ruleDAOImpl =  RuleDAOImpl.getInstance();
-		ruleDAOImpl.createRule(rule);
+//		Rule rule = new Rule("ad", "dfgadg", "sdgd", 1, "d", 'd', 'd', "sdgdgfs", "sdfgsdfg", "sfggfd", "sgds", "sgfdg", "sdfggfd");
+//		
+//		RuleDAO ruleDAOImpl =  RuleDAOImpl.getInstance();
+//		ruleDAOImpl.createRule(rule);
 
 		
 //		Fee fee= new Fee();
@@ -100,7 +100,7 @@ public class HibernateTest
 //		product.setSku("sfhfhsfhfsh");
 //		product.setVendorID(45);
 //		
-//		Order order = new Order(23,55,'g',new java.sql.Date(2003, 5, 4), "sg","dsggd","sfdg","gddfg");
+		Order order = new Order(55,'g',new java.sql.Date(2003, 5, 4), "sg","dsggd","sfdg","gddfg");
 //		
 //		Inventory inventory = new Inventory();
 //		inventory.setProductID(2);
@@ -110,17 +110,18 @@ public class HibernateTest
 //		inventory.setStoreID(435);
 //		
 //		
-//		Customer customer = new Customer();
-//		customer.setAddress("gsdgdf");
-//		customer.setCustomerName("sfdgsdg");
-//		customer.setPassword("sdgsdfg");
-//		customer.setSex('m');
-//		customer.setTel("gddgd");
-//		customer.setZip("sfhsdfg");
+		Customer customer = new Customer();
+		customer.setAddress("gsdgdf");
+		customer.setCustomerName("sfdgsdg");
+		customer.setPassword("sdgsdfg");
+		customer.setSex('m');
+		customer.setTel("gddgd");
+		customer.setZip("sfhsdfg");
+		customer.getOrderses().add(order);
 //			
-//		Session session = sessionFactory.openSession();
-//		Transaction tx = null;
-//		
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		
 //		Package package1 = new Package();
 //		package1.setCustomerID(2);
 //		package1.setDeliveryDate(new java.sql.Date(20000));
@@ -156,36 +157,36 @@ public class HibernateTest
 //		sc.setStoreID(4);
 //		
 //		
-//		try
-//		{
-//			tx = session.beginTransaction();
-//			
-////			session.save(fee);
-//////			session.save(user);
-//////			session.save(rule);
-////			session.save(vendor);
-////			session.save(store);
-////			session.save(product);
-////			session.save(order);
-////			session.save(inventory);
-////			session.save(customer);
-//			//session.save(package1);
-////			session.save(pd);
-//			session.save(sc);
-//			tx.commit();
-//		}
-//		catch(Exception ex)
-//		{
-//			if(null != tx)
-//			{
-//				tx.rollback();
-//			}
-//			
-//			ex.printStackTrace();
-//		}
-//		finally
-//		{
-//			session.close();
-//		}
+		try
+		{
+			tx = session.beginTransaction();
+			
+//			session.save(fee);
+////			session.save(user);
+////			session.save(rule);
+//			session.save(vendor);
+//			session.save(store);
+//			session.save(product);
+//			session.save(order);
+//			session.save(inventory);
+//			session.save(customer);
+			//session.save(package1);
+//			session.save(pd);
+			session.save(customer);
+			tx.commit();
+		}
+		catch(Exception ex)
+		{
+			if(null != tx)
+			{
+				tx.rollback();
+			}
+			
+			ex.printStackTrace();
+		}
+		finally
+		{
+			session.close();
+		}
 	}
 }

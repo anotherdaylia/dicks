@@ -28,19 +28,19 @@
   		-->
   		<mapping resource="com/dicks/pojo/Inventory.hbm.xml"></mapping>
 		<mapping resource="com/dicks/pojo/Customer.hbm.xml"></mapping>
-    	<mapping resource="com/dicks/pojo/Order.hbm.xml"></mapping>
+    	<mapping resource="com/dicks/pojo/Orders.hbm.xml"></mapping>
   		<mapping resource="com/dicks/pojo/Product.hbm.xml"></mapping>
   		<mapping resource="com/dicks/pojo/Store.hbm.xml"></mapping>
   		<mapping resource="com/dicks/pojo/Vendor.hbm.xml"></mapping> 
   		<mapping resource="com/dicks/pojo/Fee.hbm.xml"></mapping>	
   	 	<mapping resource="com/dicks/pojo/User.hbm.xml"></mapping>	
   	 	<mapping resource="com/dicks/pojo/Rule.hbm.xml"></mapping>	
-  	 	<mapping resource="com/dicks/pojo/RuleCategory.hbm.xml"></mapping>	
-  	 	<mapping resource="com/dicks/pojo/Package.hbm.xml"></mapping>
+  	 	<mapping resource="com/dicks/pojo/RuleCate.hbm.xml"></mapping>	
+  	 	<mapping resource="com/dicks/pojo/Packages.hbm.xml"></mapping>
   	 	<mapping resource="com/dicks/pojo/PackageDetail.hbm.xml"></mapping>
   		<mapping resource="com/dicks/pojo/OrderDetail.hbm.xml"></mapping>
-  		<mapping resource="com/dicks/pojo/ProductCategory.hbm.xml"></mapping>
-  	 	<mapping resource="com/dicks/pojo/StoreCategory.hbm.xml"></mapping>
+  		<mapping resource="com/dicks/pojo/ProdCate.hbm.xml"></mapping>
+  	 	<mapping resource="com/dicks/pojo/StoreCate.hbm.xml"></mapping>
   </session-factory>   
   
 </hibernate-configuration> 

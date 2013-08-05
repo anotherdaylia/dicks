@@ -1,55 +1,101 @@
 package com.dicks.pojo;
 
-public class Fee {
-	private int costID;
-	private int value;
-	private String attribute;
-	private int percentage;
-	private char flag;
-	private String costName;
+/**
+ * Fee entity. @author MyEclipse Persistence Tools
+ */
+
+public class Fee implements java.io.Serializable {
+
+	// Fields
+
+	private Integer costId;
 	private String shippingType;
-	public int getCostID() {
-		return costID;
+	private String costName;
+	private String flag;
+	private Integer percentage;
+	private String attribute;
+	private Integer value;
+
+	// Constructors
+
+	/** default constructor */
+	public Fee() {
 	}
-	public void setCostID(int costID) {
-		this.costID = costID;
-	}
-	public int getValue() {
-		return value;
-	}
-	public void setValue(int value) {
-		this.value = value;
-	}
-	public String getAttribute() {
-		return attribute;
-	}
-	public void setAttribute(String attribute) {
-		this.attribute = attribute;
-	}
-	public int getPercentage() {
-		return percentage;
-	}
-	public void setPercentage(int percentage) {
-		this.percentage = percentage;
-	}
-	public char getFlag() {
-		return flag;
-	}
-	public void setFlag(char flag) {
+
+	/** minimal constructor */
+	public Fee(String shippingType, String costName, String flag) {
+		this.shippingType = shippingType;
+		this.costName = costName;
 		this.flag = flag;
 	}
-	public String getCostName() {
-		return costName;
-	}
-	public void setCostName(String costName) {
+
+	/** full constructor */
+	public Fee(String shippingType, String costName, String flag,
+			Integer percentage, String attribute, Integer value) {
+		this.shippingType = shippingType;
 		this.costName = costName;
+		this.flag = flag;
+		this.percentage = percentage;
+		this.attribute = attribute;
+		this.value = value;
 	}
+
+	// Property accessors
+
+	public Integer getCostId() {
+		return this.costId;
+	}
+
+	public void setCostId(Integer costId) {
+		this.costId = costId;
+	}
+
 	public String getShippingType() {
-		return shippingType;
+		return this.shippingType;
 	}
+
 	public void setShippingType(String shippingType) {
 		this.shippingType = shippingType;
 	}
-	
-	
+
+	public String getCostName() {
+		return this.costName;
+	}
+
+	public void setCostName(String costName) {
+		this.costName = costName;
+	}
+
+	public String getFlag() {
+		return this.flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
+	public Integer getPercentage() {
+		return this.percentage;
+	}
+
+	public void setPercentage(Integer percentage) {
+		this.percentage = percentage;
+	}
+
+	public String getAttribute() {
+		return this.attribute;
+	}
+
+	public void setAttribute(String attribute) {
+		this.attribute = attribute;
+	}
+
+	public Integer getValue() {
+		return this.value;
+	}
+
+	public void setValue(Integer value) {
+		this.value = value;
+	}
+
 }
