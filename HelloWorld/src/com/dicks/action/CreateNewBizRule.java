@@ -6,19 +6,8 @@ import com.dicks.engine.CreateTemplate;
 
 public class CreateNewBizRule {
 	private String conditions;
-	private String operator1;
-	private String attribute1;
-	private String value1;
-	private String operator2;
-	private String attribute2;
-	private String value2;
-	private String operator3;
-	private String attribute3;
-	private String value3;
-	private String operator4;
-	private String attribute4;
-	private String value4;
-	private String shippackage;
+	
+	private String actions;
 	private String templatename;
 	private String rulename;
 	public String[] operator;
@@ -72,12 +61,12 @@ public class CreateNewBizRule {
 		this.rulename = rulename;
 	}
 	
-	public String getShippackage() {
-		return shippackage;
+	public String getActions() {
+		return actions;
 	}
 
-	public void setShippackage(String shippackage) {
-		this.shippackage = shippackage;
+	public void setActions(String actions) {
+		this.actions = actions;
 	}
 
 	public String getConditions() {
@@ -101,6 +90,8 @@ public class CreateNewBizRule {
 		
 		
 		for(int i=0;i<4;i++){
+			attribute[i] = attribute[i].toLowerCase();
+			
 			System.out.println("attribute :"+attribute[i]);
 			System.out.println("operator :"+operator[i]);
 			System.out.println("value :"+value[i]);
@@ -110,7 +101,7 @@ public class CreateNewBizRule {
 		System.out.println("template "+templatename);
 		System.out.println("rule name "+rulename);
 		System.out.println("cagegory name "+categoryname);
-		
+		System.out.println("action111"+actions);
 		String[] categoryList= categoryname.split(",");
 		
 		
@@ -127,7 +118,7 @@ public class CreateNewBizRule {
 		product[2] = "003";
 		
 		String[] action = new String[1];
-		action[0] = shippackage;
+		action[0] = actions;
 		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,conditions,null,action,"TH-A,ST-A,SP-A",5);
 		
 		return "newrule";

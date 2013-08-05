@@ -1,5 +1,12 @@
 package com.dicks.engine;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+
+import javax.print.DocFlavor.URL;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -14,14 +21,25 @@ import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.logger.KnowledgeRuntimeLogger;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
-
 import com.dicks.pojo.Product;
 
-
-
-public class SmallTest {
-
-	public static void main(String[] args) {
+public class Allocate {
+    public String myTab ="    ";
+    public String myReturn = "\n";
+    public String mySpace = " ";
+    public int ruleCount = 0;
+    public static String[] rules = new String[10];
+    public static Rule[] ruleFile = new Rule[100];
+    public static int ruleInt;
+    
+    
+    public static Product[] product = new Product[5];
+    
+    
+    
+	public Allocate  (String[] product, String[] quantity){
+		System.out.println("product "+product[0]);
+		System.out.println("quantity "+quantity[0]);
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
 		// this will parse and compile in one step
@@ -103,6 +121,7 @@ public class SmallTest {
 		logger.close();
 
 		ksession.dispose();
+
 	}
 	
 	private static void setUpProduct(Product p, String name, double price) {

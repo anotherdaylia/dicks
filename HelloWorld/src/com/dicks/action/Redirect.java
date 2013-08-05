@@ -16,5 +16,8 @@ public class Redirect {
 	public String gototemplate(){
 		return "gototemplate";
 	}
+	public String gotoplaceorder(){
+		return "gotoplaceorder";
+	}
 }
 
