@@ -7,13 +7,21 @@ public class Package {
 	private int customerID;
 	private int orderID;
 	private Date shippingDate;
-	private long totalAmount;
+	private int totalAmount;
 	private char shippingStatus;
 	private String shippingCompany;
 	private int shippingDay;
 	private double weight;
 	public Package(){}
 	
+	public Date getShippingDate() {
+		return shippingDate;
+	}
+
+	public void setShippingDate(Date shippingDate) {
+		this.shippingDate = shippingDate;
+	}
+
 	public int getPackageID() {
 		return packageID;
 	}
@@ -38,10 +46,10 @@ public class Package {
 	public void setDeliveryDate(Date deliveryDate) {
 		this.shippingDate = deliveryDate;
 	}
-	public long getTotalAmount() {
+	public int getTotalAmount() {
 		return totalAmount;
 	}
-	public void setTotalAmount(long totalAmount) {
+	public void setTotalAmount(int totalAmount) {
 		this.totalAmount = totalAmount;
 	}
 	public char getShippingStatus() {

@@ -4,10 +4,10 @@
         
 <hibernate-mapping>
 	
-	<class name="com.miqicheng.model.PackageDetail" table="package_detail_table">
+	<class name="com.dicks.pojo.PackageDetail" table="package">
 		<composite-id>
-			<key-property name="productID" column="prod_id" type="string"></key-property>
-			<key-property name="packageID" column="package_id" type="string"></key-property>		
+			<key-property name="productID" column="prod_id" type="int"></key-property>
+			<key-property name="packageID" column="package_id" type="int"></key-property>		
 		</composite-id> 
 			
 		<property name="unitPrice" column="unit_price" type="int"></property>

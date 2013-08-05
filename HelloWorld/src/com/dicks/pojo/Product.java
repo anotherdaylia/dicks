@@ -11,7 +11,7 @@ public class Product {
 	private double width;
 	private double height;
 	private double length;
-	private char flag;
+	private String flag;
 	
 	public Product(){}
 	
@@ -45,10 +45,10 @@ public class Product {
 	public void setLength(double length) {
 		this.length = length;
 	}
-	public char getFlag() {
+	public String getFlag() {
 		return flag;
 	}
-	public void setFlag(char flag) {
+	public void setFlag(String flag) {
 		this.flag = flag;
 	}
 	public void setProductID(int productID) {
@@ -85,5 +85,4 @@ public class Product {
 		return productID;
 	}
 
-	
 }

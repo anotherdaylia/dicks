@@ -8,7 +8,7 @@ public class Rule {
 	private String ruleURL;
 	private String ruleDescr;
 	private int priority;
-	private char flag; 
+	private String flag; 
 	private char type;
 	private char stage;
 	private String object;
@@ -31,7 +31,7 @@ public class Rule {
 	public Rule(){}
 	
 	public Rule(String ruleName,  String ruleURL,
-			String ruleDescr, int priority, char flag, char type, char stage,
+			String ruleDescr, int priority, String flag, char type, char stage,
 			String object, String attribute, String operator, String value,
 			String route, String action) {
 		super();
@@ -55,10 +55,10 @@ public class Rule {
 	public void setRuleURL(String ruleURL) {
 		this.ruleURL = ruleURL;
 	}
-	public char getFlag() {
+	public String getFlag() {
 		return flag;
 	}
-	public void setFlag(char flag) {
+	public void setFlag(String flag) {
 		this.flag = flag;
 	}
 	public char getType() {
