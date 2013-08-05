@@ -123,62 +123,62 @@
                             </select> of the following conditions are met&#58;
                         </div>  
                         <div>
-                            <select style="width:70px;" name="size1">
+                            <select style="width:70px;" name="attribute">
                                 <option value="Length">Length</option> 
                                 <option value="Width">Width</option>
                                 <option value="Height">Height</option>
                                 <option value="Weight">Weight</option>
                             </select>&nbsp;&nbsp;
-                            <select style="width:40px;" name="operator1">
+                            <select style="width:40px;" name="operator">
                                 <option value="&lt;">&lt;</option> 
                                 <option value="=">=</option>
                                 <option value="&gt;">&gt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="inches1">&nbsp;&nbsp;inches
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;inches
                         </div>
                         <div>
-                            <select style="width:70px;" name="size2">
+                            <select style="width:70px;" name="attribute">
                                 <option value="Length">Length</option> 
                                 <option value="Width">Width</option>
                                 <option value="Height">Height</option>
                                 <option value="Weight">Weight</option>
                             </select>&nbsp;&nbsp;
-                            <select style="width:40px;" name="operator2" >
+                            <select style="width:40px;" name="operator" >
                                 <option value="&lt;">&lt;</option> 
                                 <option value="=">=</option>
                                 <option value="&gt;">&gt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="inches2">&nbsp;&nbsp;inches
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;inches
                         </div>
                         <div>
-                            <select style="width:70px;" name="size3">
+                            <select style="width:70px;" name="attribute">
                                 <option value="Length">Length</option> 
                                 <option value="Width">Width</option>
                                 <option value="Height">Height</option>
                                 <option value="Weight">Weight</option>
 
                             </select>&nbsp;&nbsp;
-                             <select style="width:40px;" name="operator3" >
+                             <select style="width:40px;" name="operator" >
                                 <option value="&lt;">&lt;</option> 
                                 <option value="=">=</option>
                                 <option value="&gt;">&gt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="inches3">&nbsp;&nbsp;inches
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;inches
                         </div>
                          <div>
-                            <select style="width:70px;" name="size4">
+                            <select style="width:70px;" name="attribute">
                                 <option value="Length">Length</option> 
                                 <option value="Width">Width</option>
                                 <option value="Height">Height</option>
                                 <option value="Weight">Weight</option>
 
                             </select>&nbsp;&nbsp;
-                            <select style="width:40px;" name="operator4" >
+                            <select style="width:40px;" name="operator" >
                                 <option value="&lt;">&lt;</option> 
                                 <option value="=">=</option>
                                 <option value="&gt;">&gt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="inches4">&nbsp;&nbsp;inches
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;inches
                         </div>
                         <div>Perform the following action&#40;s&#41;&#58;</div>
                         <div><select name="shippackage">
@@ -197,6 +197,7 @@
                 
                 <input type="hidden" name="rulename"  value=<%=request.getAttribute("rulename")%> />
                 <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
+                <input type="hidden" name="categoryname"  value=<%=request.getAttribute("categoryname")%> />
             </table>   
             </form>
         </div>
