@@ -3,38 +3,40 @@ package com.dicks.pojo;
 import java.sql.Date;
 
 public class Package {
-	private String packageID;
-	private String customerID;
-	private String orderID;
-	private Date deliveryDate;
+	private int packageID;
+	private int customerID;
+	private int orderID;
+	private Date shippingDate;
 	private long totalAmount;
-	private String shippingStatus;
+	private char shippingStatus;
 	private String shippingCompany;
 	private int shippingDay;
-	private float weight;
-	public String getPackageID() {
+	private double weight;
+	public Package(){}
+	
+	public int getPackageID() {
 		return packageID;
 	}
-	public void setPackageID(String packageID) {
+	public void setPackageID(int packageID) {
 		this.packageID = packageID;
 	}
-	public String getCustomerID() {
+	public int getCustomerID() {
 		return customerID;
 	}
-	public void setCustomerID(String customerID) {
+	public void setCustomerID(int customerID) {
 		this.customerID = customerID;
 	}
-	public String getOrderID() {
+	public int getOrderID() {
 		return orderID;
 	}
-	public void setOrderID(String orderID) {
+	public void setOrderID(int orderID) {
 		this.orderID = orderID;
 	}
-	public Date getDeliv_date() {
-		return deliveryDate;
+	public Date getDeliveryDate() {
+		return shippingDate;
 	}
-	public void setDeliv_date(Date deliv_date) {
-		this.deliveryDate = deliv_date;
+	public void setDeliveryDate(Date deliveryDate) {
+		this.shippingDate = deliveryDate;
 	}
 	public long getTotalAmount() {
 		return totalAmount;
@@ -42,10 +44,10 @@ public class Package {
 	public void setTotalAmount(long totalAmount) {
 		this.totalAmount = totalAmount;
 	}
-	public String getShippingStatus() {
+	public char getShippingStatus() {
 		return shippingStatus;
 	}
-	public void setShippingStatus(String shippingStatus) {
+	public void setShippingStatus(char shippingStatus) {
 		this.shippingStatus = shippingStatus;
 	}
 	public String getShippingCompany() {
@@ -60,12 +62,14 @@ public class Package {
 	public void setShippingDay(int shippingDay) {
 		this.shippingDay = shippingDay;
 	}
-	public float getWeight() {
+	public double getWeight() {
 		return weight;
 	}
-	public void setWeight(float weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
+	
+	
 	
 	
 	

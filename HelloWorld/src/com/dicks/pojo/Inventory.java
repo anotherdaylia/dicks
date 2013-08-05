@@ -1,55 +1,82 @@
 package com.dicks.pojo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Inventory {
-	private String productID;
-	private String storeID;
-	private long retailPrice;
-	private long storage;
-	private Date saftyStock;
+public class Inventory implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int productID;
+	private int storeID;
+	private int retailPrice;
+	private int storage;
+	private int saftyStock;
 	
 	public Inventory(){
 		
 	}
 	
-	public String getProductID() {
+	public int getProductID() {
 		return productID;
 	}
-	public void setProductID(String productID) {
+
+
+	public void setProductID(int productID) {
 		this.productID = productID;
 	}
-	public String getStoreID() {
+
+
+	public int getStoreID() {
 		return storeID;
 	}
-	public void setStoreID(String storeID) {
+
+
+	public void setStoreID(int storeID) {
 		this.storeID = storeID;
 	}
-	public long getPrice() {
+
+
+	public int getRetailPrice() {
 		return retailPrice;
 	}
-	public void setPrice(long price) {
-		this.retailPrice = price;
+
+
+	public void setRetailPrice(int retailPrice) {
+		this.retailPrice = retailPrice;
 	}
-	public long getStorage() {
+
+
+	public int getStorage() {
 		return storage;
 	}
-	public void setStorage(long storage) {
+
+
+	public void setStorage(int storage) {
 		this.storage = storage;
 	}
-	public Date getSaftyStock() {
+
+
+	public int getSaftyStock() {
 		return saftyStock;
 	}
-	public void setSaftyStock(Date saftyStock) {
-		this.saftyStock = saftyStock;
+
+
+	public void setSaftyStock(int i) {
+		this.saftyStock = i;
 	}
-	
+
+
 	@Override
 	public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((productID == null) ? 0 : productID.hashCode());
-        result = prime * result + ((storeID == null) ? 0 : storeID.hashCode());
+        String str1 = String.valueOf(productID);
+        String str2 = String.valueOf(storeID);
+        
+        result = prime * result + ((str1 == null) ? 0 : str1.hashCode());
+        result = prime * result + ((str2 == null) ? 0 : str2.hashCode());
         return result;
 	}
 	
@@ -63,19 +90,19 @@ public class Inventory {
 	        if (getClass() != obj.getClass())
 	            return false;
 	        Inventory other = (Inventory) obj;
-	        if (productID == null)
+	        if (productID == 0)
 	        {
-	            if (other.productID != null)
+	            if (other.productID != 0)
 	                return false;
 	        }
-	        else if (!productID.equals(other.productID))
+	        else if (!(productID==other.productID))
 	            return false;
-	        if (storeID == null)
+	        if (storeID == 0)
 	        {
-	            if (other.storeID != null)
+	            if (other.storeID != 0)
 	                return false;
 	        }
-	        else if (!storeID.equals(other.storeID))
+	        else if (!(storeID==other.storeID))
 	            return false;
 	        return true;
 	    }

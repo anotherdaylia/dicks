@@ -4,17 +4,23 @@
         
 <hibernate-mapping>
 	
-	<class name="com.miqicheng.model.Person" table="person">
-		<id name="productID" column="prod_id" type="string">
+	<class name="com.dicks.pojo.Product" table="product">
+		<id name="productID" column="prod_id" type="int">
+			<generator class="increment"></generator>
 		</id>
 			
 		<property name="productName" column="prod_name" type="string"></property>
 		<property name="sku" column="sku" type="string"></property>
-		<property name="vendorID" column="vend_id" type="string"></property>
+		<property name="vendorID" column="vend_id" type="int"></property>
 		<property name="productDescr" column="prod_descr" type="string"></property>
-		<property name="productDescr" column="prod_descr" type="string"></property>
-		<property name="ruleID" column="rule_id" type="string"></property>
 		<property name="factoryPrice" column="factory_price" type="int"></property>
+		<property name="weight" column="weight" type="double"></property>
+		<property name="length" column="length" type="double"></property>
+		
+		<property name="height" column="height" type="double"></property>
+		
+		<property name="flag" column="flag" type="character"></property>
+		
 		
 	</class>
 </hibernate-mapping>

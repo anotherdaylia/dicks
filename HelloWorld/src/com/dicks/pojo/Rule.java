@@ -27,6 +27,9 @@ public class Rule {
 	public void setRuleCategorys(Set<RuleCategory> ruleCategorys) {
 		this.ruleCategorys = ruleCategorys;
 	}
+	
+	public Rule(){}
+	
 	public Rule(String ruleName,  String ruleURL,
 			String ruleDescr, int priority, char flag, char type, char stage,
 			String object, String attribute, String operator, String value,

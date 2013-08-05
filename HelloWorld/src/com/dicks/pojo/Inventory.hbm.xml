@@ -4,14 +4,14 @@
         
 <hibernate-mapping>
 	
-	<class name="com.miqicheng.model.Inventory" table="inventory_table">
+	<class name="com.dicks.pojo.Inventory" table="inventory">
 		<composite-id>
-			<key-property name="productID" column="prod_id" type="string"></key-property>
-			<key-property name="storeID" column="store_id" type="string"></key-property>		
+			<key-property name="productID" column="prod_id" type="int"></key-property>
+			<key-property name="storeID" column="store_id" type="int"></key-property>		
 		</composite-id> 
 			
-		<property name="retailPrice" column="price" type="int"></property>
-		<property name="storage" column="storage" type="int"></property>
-		<property name="saftyStock" column="safty_stock" type="int"></property>
+		<property name="retailPrice" column="retail_price" type="int"></property>
+		<property name="storage" column="inventory" type="int"></property>
+		<property name="saftyStock" column="safety_stock" type="int"></property>
 	</class>
 </hibernate-mapping>
