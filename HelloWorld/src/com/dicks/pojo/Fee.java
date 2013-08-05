@@ -8,6 +8,21 @@ public class Fee {
 	private char flag;
 	private String costName;
 	private String shippingType;
+	
+	public Fee(String costName, String shippingType, int percentage, String attribute) {
+		this.costName = costName;
+		this.shippingType = shippingType;
+		this.percentage = percentage;
+		this.attribute = attribute;
+		this.flag = 'p';
+	}
+	
+	public Fee(String costName, String shippingType, int value) {
+		this.costName = costName;
+		this.shippingType = shippingType;
+		this.value = value;
+	}
+	
 	public int getCostID() {
 		return costID;
 	}

@@ -17,16 +17,18 @@ public class Rule {
 	private String value;
 	private String route;
 	private String action;	
-	private Set<RuleCategory> ruleCategorys;
+//	private Set<RuleCategory> ruleCategorys;
 	
-	
-	
-	public Set<RuleCategory> getRuleCategorys() {
-		return ruleCategorys;
+	public Rule() {
+		
 	}
-	public void setRuleCategorys(Set<RuleCategory> ruleCategorys) {
-		this.ruleCategorys = ruleCategorys;
-	}
+	
+//	public Set<RuleCategory> getRuleCategorys() {
+//		return ruleCategorys;
+//	}
+//	public void setRuleCategorys(Set<RuleCategory> ruleCategorys) {
+//		this.ruleCategorys = ruleCategorys;
+//	}
 	public Rule(String ruleName,  String ruleURL,
 			String ruleDescr, int priority, char flag, char type, char stage,
 			String object, String attribute, String operator, String value,

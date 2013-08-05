@@ -23,9 +23,13 @@ public class FeeDao extends BaseDao<Fee> {
 		FeeDao.instance = instance;
 	}
 	
+	public void createFee(Fee fee) throws Exception {
+		super.create(fee);
+	}
+	
 	public ArrayList<Fee> getByType(String type) throws Exception {
 		List<Criterion> criterions = new ArrayList<Criterion>();
-		Criterion criterion = Restrictions.eq("storeType", type);
+		Criterion criterion = Restrictions.eq("shippingType", type);
 		criterions.add(criterion);
 		return (ArrayList<Fee>) super.getList(criterions);
 	}

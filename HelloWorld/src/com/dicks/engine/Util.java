@@ -30,16 +30,16 @@ public class Util {
 			ArrayList<Fee> fees = feeDao.getByType(store.getStoreType());		
 			Long[] costs = new Long[fees.size()];
 			for (Fee fee : fees) {
-				if (fee.getFlag().equals("value")) {
+				if (fee.getFlag() == 'v') {
 					totalCosts += ((double) fee.getValue()) / 100.0;
-				} else if (fee.getFlag().equals("percentage")) {
+				} else if (fee.getFlag() == 'p') {
 					String attributeName = fee.getAttribute();
 					long attributeValue = 0;
 					String[] names = attributeName.split("|");
 					
 					if (names[1].equals("cost")) {
 						for (int i = 0; i < fees.size(); i++) {
-							if (fees.get(i).getName().equals(names[0])) {
+							if (fees.get(i).getCostName().equals(names[0])) {
 								attributeValue = costs[i];
 							}
 						}
@@ -51,7 +51,8 @@ public class Util {
 						attributeValue = getAttribute(store, Store.class, names[0]);
 					} else if (names[1].equals("order")) {
 						attributeValue = getAttribute(parcel.getPack().getOrder(), Order.class, names[0]);
-					}
+					}				
+					totalCosts += attributeValue * fee.getPercentage() / 100;
 				}
 			}
 		

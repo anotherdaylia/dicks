@@ -22,9 +22,9 @@
 		<property name="route" column="route" type="string"></property>
 		<property name="action" column="action" type="string"></property>	
 		
-		<set name="ruleCategorys" cascade="save-update">
+<!-- 		<set name="ruleCategorys" cascade="save-update">
 			<key column="rule_id"></key>
 			<one-to-many class="com.dicks.pojo.RuleCategory"/>
-		 </set>					
+		 </set>		 -->			
 	</class>
 </hibernate-mapping>

@@ -18,21 +18,22 @@
      
           <property name="connection.driver_class">com.mysql.jdbc.Driver</property>   
      
-     	  <property name="connection.password">62811816</property>
+     	  <property name="connection.password"></property>
      	  
-
           <property name="connection.url">jdbc:mysql://localhost:3306/dicks</property>  
 
   			
-  		<mapping resource="com/dicks/pojo/Customer.hbm.xml"></mapping>
-  		<mapping resource="com/dicks/pojo/Inventory.hbm.xml"></mapping>
-  		<mapping resource="com/dicks/pojo/OrderDetail.hbm.xml"></mapping>
-  		<mapping resource="com/dicks/pojo/Order.hbm.xml"></mapping>
-  		<mapping resource="com/dicks/pojo/Package.hbm.xml"></mapping>
-  		<mapping resource="com/dicks/pojo/Product.hbm.xml"></mapping>
+<!--   		<mapping resource="com/dicks/pojo/Customer.hbm.xml"></mapping> -->
+<!--   		<mapping resource="com/dicks/pojo/Inventory.hbm.xml"></mapping> -->
+<!--   		<mapping resource="com/dicks/pojo/OrderDetail.hbm.xml"></mapping> -->
+<!--   		<mapping resource="com/dicks/pojo/Order.hbm.xml"></mapping> -->
+<!--  		<mapping resource="com/dicks/pojo/Package.hbm.xml"></mapping> -->
+<!--   		<mapping resource="com/dicks/pojo/Product.hbm.xml"></mapping> -->
   		<mapping resource="com/dicks/pojo/Rule.hbm.xml"></mapping>
-  		<mapping resource="com/dicks/pojo/Store.hbm.xml"></mapping>
-  		<mapping resource="com/dicks/pojo/Vendor.hbm.xml"></mapping>
+  		<mapping resource="com/dicks/pojo/RuleCategory.hbm.xml"></mapping>
+  		<mapping resource="com/dicks/pojo/Fee.hbm.xml"></mapping>
+<!--   		<mapping resource="com/dicks/pojo/Store.hbm.xml"></mapping> -->
+<!--   		<mapping resource="com/dicks/pojo/Vendor.hbm.xml"></mapping> -->
   		
   </session-factory>   
   

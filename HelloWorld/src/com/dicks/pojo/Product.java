@@ -9,6 +9,10 @@ public class Product {
 	private String ruleID;
 	private long factoryPrice;
 	
+	public Product(String productID, String productName) {
+		
+	}
+	
 	public String getProductID() {
 		return productID;
 	}

@@ -35,12 +35,12 @@ public class HibernateTest
 	public static void main(String[] args) throws Exception
 	{
 		Fee fee= new Fee();
-		fee.setAttribute("afaf");
+		fee.setAttribute("adf");
 		fee.setCostName("Nike");
 		fee.setFlag('a');;
 		fee.setPercentage(134);
-		fee.setShippingType("dfagda");
-		fee.setValue(234);
+		fee.setShippingType("store");
+		fee.setValue(345);
 		
 //		User user = new User();
 //		user.setEmail("ssd");
@@ -49,20 +49,20 @@ public class HibernateTest
 		
 		Rule rule = new Rule("ad", "dfgadg", "sdgd", 1, 'd', 'd', 'd', "sdgdgfs", "sdfgsdfg", "sfggfd", "sgds", "sgfdg", "sdfggfd");
 	
-		RuleCategory rc = new RuleCategory();
-		rc.setCategoryID(2);
-		rc.setIsProductRelated(false);
+//		RuleCategory rc = new RuleCategory();
+//		rc.setRule(rule);
+//		rc.setRuleID(rule.getRuleID());
+//		rc.setCategoryID(2);
+//		rc.setIsProductRelated(false);
 		
-		Set<RuleCategory> set = new HashSet<RuleCategory>();
-		set.add(rc);
-
-		rule.setRuleCategorys(set);
+//		Set<RuleCategory> set = new HashSet<RuleCategory>();
+//		set.add(rc);
+//
+//		rule.setRuleCategorys(set);
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
-		
-		
-		
+	
 		try
 		{
 			tx = session.beginTransaction();
@@ -70,6 +70,14 @@ public class HibernateTest
 			session.save(fee);
 //			session.save(user);
 			session.save(rule);
+			
+			RuleCategory rc = new RuleCategory();
+			rc.setRule(rule);
+			rc.setRuleID(rule.getRuleID());
+			rc.setCategoryID(2);
+			rc.setIsProductRelated(false);
+			
+			session.save(rc);
 
 			tx.commit();
 		}
@@ -85,26 +93,6 @@ public class HibernateTest
 		finally
 		{
 			session.close();
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		}	
 	}
 }
