@@ -9,13 +9,13 @@ import com.dicks.pojo.Order;
 public class Package {
 	private ArrayList<Product> products = new ArrayList<Product>();
 	private int splitNum;
-	private Order order;
+	private Orders order;
 	private boolean forRemain;
 	private boolean allocated;
 	private boolean splitable = true;
 	private int zoneID;
 	
-	public Package(Order order) {
+	public Package(Orders order) {
 		this.order = order;
 	}
 	
@@ -105,10 +105,10 @@ public class Package {
 //		this.packageID = packageID;
 //	}
 
-	public Order getOrder() {
+	public Orders getOrder() {
 		return order;
 	}
-	public void setOrder(Order order) {
+	public void setOrder(Orders order) {
 		this.order = order;
 	}
 	

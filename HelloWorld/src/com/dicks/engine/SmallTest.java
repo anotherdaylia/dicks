@@ -94,7 +94,7 @@ public class SmallTest {
 		s5.addItem(shirt, 7, 4);
 		
 		
-		Order order = new Order(2);
+		Orders order = new Orders(2);
 		order.addProducts(shoes, 1);
 		order.addProducts(hat, 1);
 		order.addProducts(shirt, 1);	

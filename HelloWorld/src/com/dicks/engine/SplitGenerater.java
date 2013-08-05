@@ -34,7 +34,7 @@ public class SplitGenerater {
 		Product hat = new Product(2+"", "hat", 10 , 4, 2);
 		Product shirt = new Product(3+"", "shirt", 20 , 8 ,5);
 		
-		Order order = new Order(2);
+		Orders order = new Orders(2);
 		order.addProducts(shoes, 1);
 		order.addProducts(hat, 1);
 		order.addProducts(shirt, 1);

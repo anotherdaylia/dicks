@@ -13,10 +13,10 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import com.dicks.dao.RuleDAO;
-import com.dicks.dao.impl.RuleDAOImpl;
 import com.dicks.pojo.Customer;
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.Inventory;
+import com.dicks.pojo.Orders;
 
 import com.dicks.pojo.OrderDetail;
 
@@ -47,25 +47,13 @@ public class HibernateTest
 	
 	public static void main(String[] args) throws Exception
 	{
-<<<<<<< HEAD
-		Fee fee= new Fee();
-		fee.setAttribute("adf");
-		fee.setCostName("Nike");
-		fee.setFlag('a');;
-		fee.setPercentage(134);
-		fee.setShippingType("store");
-		fee.setValue(345);
-=======
->>>>>>> branch 'master' of https://github.com/claire921/dicks.git
-		
-<<<<<<< HEAD
+
+
 //		User user = new User();
 //		user.setEmail("ssd");
 //		user.setPassword("sgsg");
 //		user.setUserName("aa");
-		
-		Rule rule = new Rule("ad", "dfgadg", "sdgd", 1, 'd', 'd', 'd', "sdgdgfs", "sdfgsdfg", "sfggfd", "sgds", "sgfdg", "sdfggfd");
-	
+			
 //		RuleCategory rc = new RuleCategory();
 //		rc.setRule(rule);
 //		rc.setRuleID(rule.getRuleID());
@@ -77,7 +65,6 @@ public class HibernateTest
 //
 //		rule.setRuleCategorys(set);
 
-=======
 //		Rule rule = new Rule("ad", "dfgadg", "sdgd", 1, "d", 'd', 'd', "sdgdgfs", "sdfgsdfg", "sfggfd", "sgds", "sgfdg", "sdfggfd");
 //		
 //		RuleDAO ruleDAOImpl =  RuleDAOImpl.getInstance();
@@ -129,8 +116,10 @@ public class HibernateTest
 //		product.setSku("sfhfhsfhfsh");
 //		product.setVendorID(45);
 //		
-		Order order = new Order(55,'g',new java.sql.Date(2003, 5, 4), "sg","dsggd","sfdg","gddfg");
-//		
+	
+		Orders order = new Orders(55,'g',new java.sql.Date(2003, 5, 4), "sg","dsggd","sfdg","gddfg");
+//		Orders order = new Orders(customer, totAmt, orderStatus, orderDate, shippingAddr, shippingZip, telNo, custName, packageses, orderDetails)
+		
 //		Inventory inventory = new Inventory();
 //		inventory.setProductID(2);
 //		inventory.setRetailPrice(234);
@@ -141,19 +130,16 @@ public class HibernateTest
 //		
 		Customer customer = new Customer();
 		customer.setAddress("gsdgdf");
-		customer.setCustomerName("sfdgsdg");
+		customer.setCustName("sfdgsdg");
 		customer.setPassword("sdgsdfg");
-		customer.setSex('m');
+		customer.setSex("m");
 		customer.setTel("gddgd");
 		customer.setZip("sfhsdfg");
 		customer.getOrderses().add(order);
 //			
->>>>>>> branch 'master' of https://github.com/claire921/dicks.git
+
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
-<<<<<<< HEAD
-	
-=======
 		
 //		Package package1 = new Package();
 //		package1.setCustomerID(2);
@@ -190,12 +176,11 @@ public class HibernateTest
 //		sc.setStoreID(4);
 //		
 //		
->>>>>>> branch 'master' of https://github.com/claire921/dicks.git
+
 		try
 		{
 			tx = session.beginTransaction();
 			
-<<<<<<< HEAD
 			session.save(fee);
 //			session.save(user);
 			session.save(rule);
@@ -207,8 +192,7 @@ public class HibernateTest
 			rc.setIsProductRelated(false);
 			
 			session.save(rc);
-
-=======
+			
 //			session.save(fee);
 ////			session.save(user);
 ////			session.save(rule);
@@ -221,7 +205,6 @@ public class HibernateTest
 			//session.save(package1);
 //			session.save(pd);
 			session.save(customer);
->>>>>>> branch 'master' of https://github.com/claire921/dicks.git
 			tx.commit();
 		}
 		catch(Exception ex)
@@ -236,10 +219,6 @@ public class HibernateTest
 		finally
 		{
 			session.close();
-<<<<<<< HEAD
-		}	
-=======
-		}
->>>>>>> branch 'master' of https://github.com/claire921/dicks.git
+
 	}
 }

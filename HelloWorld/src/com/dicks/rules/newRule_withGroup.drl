@@ -2,7 +2,7 @@
 package com.dicks.rules
 
 //list any import classes here.
-import com.dicks.engine.Order
+import com.dicks.engine.Orders
 import com.dicks.engine.Store
 import com.dicks.engine.Package
 import com.dicks.engine.Product
@@ -17,7 +17,7 @@ rule "Explode Cart"
     salience 10
     dialect "java"
     when
-        $order : Order()
+        $order : Orders()
         $item : Product() from $order.getProducts()
     then
         insert( $item );
@@ -122,7 +122,7 @@ rule "for not splitable packages"
 //	agenda-group "split"
 	when
 		$p : Package()
-//		$order : Order()
+//		$order : Orders()
 	then
 		System.out.println("handle this package " + $p);
 //		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();

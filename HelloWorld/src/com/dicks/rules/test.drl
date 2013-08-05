@@ -2,7 +2,7 @@
 package com.dicks.rules
 
 //list any import classes here.
-import com.dicks.engine.Order
+import com.dicks.engine.Orders
 import com.dicks.engine.Store
 import com.dicks.engine.Package
 import com.dicks.engine.Product
@@ -17,7 +17,7 @@ rule "Explode Cart"
     salience 10
     dialect "java"
     when
-        $order : Order()
+        $order : Orders()
         $item : Product() from $order.getProducts()
     then
         insert( $item );
@@ -27,7 +27,7 @@ end
 rule "summarize3" 
 salience 5
     when
-        //$o : Order()
+        //$o : Orders()
         $item : Product() 
     then
         System.out.println("inserted "+$item.getProductName());
@@ -48,7 +48,7 @@ end
 
 rule  "Mininum Packagethreshold0"
     when
-        $o : Order()
+        $o : Orders()
         $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
     then
     	//insertLogical( new Package($i, 1) );
@@ -59,7 +59,7 @@ end
 rule "summarize2" 
 salience -5  
     when
-        //$o : Order()
+        //$o : Orders()
         $item : Product() 
     then
         System.out.println("remaining"+$item.getProductName());

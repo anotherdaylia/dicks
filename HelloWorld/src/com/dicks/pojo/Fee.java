@@ -39,7 +39,24 @@ public class Fee implements java.io.Serializable {
 		this.attribute = attribute;
 		this.value = value;
 	}
+	
+	/** for percentage constructor */
+	public Fee(String costName, String shippingType, int percentage, String attribute) {
+		this.costName = costName;
+		this.shippingType = shippingType;
+		this.percentage = percentage;
+		this.attribute = attribute;
+		this.flag = "percentage";
+	}
 
+
+	public Fee(String costName, String shippingType, int value) {
+		this.costName = costName;
+		this.shippingType = shippingType;
+		this.value = value;
+		this.flag = "value";
+	}
+	
 	// Property accessors
 
 	public Integer getCostId() {

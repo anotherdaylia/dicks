@@ -10,7 +10,6 @@ import java.util.Set;
 public class Product implements java.io.Serializable {
 
 	// Fields
-
 	private Integer prodId;
 	private Vendor vendor;
 	private String prodName;

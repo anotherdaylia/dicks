@@ -28,7 +28,7 @@ public class Store {
 		stock.get(product).instockNum--;
 	}
 	
-	public boolean containProductsInOrder(Order order) {
+	public boolean containProductsInOrder(Orders order) {
 		Set<Product> products = order.getProductList().keySet();
 		int notContainingNum = 0;
 		for (Product p : products) {

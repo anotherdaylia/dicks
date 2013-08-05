@@ -59,7 +59,9 @@ public class TestUtil {
 	
 	@Test
 	public void createProduct() {
-		Product product = new Product("had", 1000);
+		Product product = new Product();
+		product.setFactoryPrice(1000);
+		product.setProdName("shoes");
 		ProductDAO productDao = ProductDAO.getInstance();
 		try {
 			productDao.createProduct(product);
