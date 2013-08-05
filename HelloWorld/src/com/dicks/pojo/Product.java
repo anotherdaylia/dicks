@@ -187,4 +187,8 @@ public class Product implements java.io.Serializable {
 		this.prodCates = prodCates;
 	}
 
+	public void minPackage(){
+
+		System.out.println(productName+" has been splited to another package");
+	}
 }

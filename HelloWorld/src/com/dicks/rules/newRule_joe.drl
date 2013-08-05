@@ -2,10 +2,10 @@
 package com.dicks.rules;
 
 //list any import classes here.
-import com.dicks.engine.Orders
+import com.dicks.pojo.Orders
 import com.dicks.engine.Store
 import com.dicks.engine.Package
-import com.dicks.engine.Product
+import com.dicks.pojo.Product
 import com.dicks.engine.PackageTestResult
 import java.util.ArrayList
 import java.*;
@@ -43,13 +43,13 @@ rule "Explode Cart end"
     then
         drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
 end
-*/
+
 rule "test"
 	salience 17
 	//agenda-group "first"
     when    	
     	
-    	$store : Store(StoreID !=5) 
+    	$store : Store(storeId !=5) 
     	
     	
     then
@@ -70,6 +70,7 @@ rule "test2"
     	System.out.println("store "+$store.getStoreID()+"value changed"+$store.getValue());
         
 end
+*/
 
 rule "filter stock"
 	salience 13
@@ -117,11 +118,11 @@ rule  "special 1"
 	//agenda-group "special"
 	when
        $o : Orders()
-        $i : Product(  ( productID == 3 ))
+        $i : Product(  ( prodId == 3 ))
         $s : Store( storeID == 4 )
         //eval(!$s.checkProduct($i,">",1))
 	then
-		System.out.println("product "+$i.getProductID()+" get inserted into a new package by speical route rule");
+		System.out.println("product "+$i.getProdId()+" get inserted into a new package by speical route rule");
         Package p = new Package($o);
         p.addProduct($i);
         insert (p);
@@ -135,8 +136,8 @@ rule  "Mininum Packagethreshold0"
     when
         $o : Orders()
 //        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
-        $i : Product(weight >= 10 && special == null)
-        
+//        $i : Product(weight >= 10 && special == null)
+        $i : Product(weight >= 10)
     then     
     	Package p = new Package($o);
     	p.addProduct($i);
@@ -263,7 +264,7 @@ rule "summarizeProduct"
     when
         p : Product()
     then
-        System.out.println(p.getProductName());        
+        System.out.println(p.getProdName());        
 end
 
 rule "summarizePackage"
