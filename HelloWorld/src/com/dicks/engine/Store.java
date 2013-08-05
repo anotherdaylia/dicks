@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 import com.dicks.pojo.Product;
+import com.dicks.pojo.Orders;
 
 public class Store {
 	private int storeID;
@@ -90,6 +91,8 @@ public class Store {
 		this.value = value +a;
 		
 	}
+	
+	
 	
 	public int getValue(){
 		return value;

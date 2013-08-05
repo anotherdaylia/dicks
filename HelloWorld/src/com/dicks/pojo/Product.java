@@ -189,6 +189,18 @@ public class Product implements java.io.Serializable {
 
 	public void minPackage(){
 
-		System.out.println(productName+" has been splited to another package");
+		System.out.println(prodName+" has been splited to another package");
+	}
+	
+	@Override
+	public String toString() {
+		return prodName;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Product)) return false;
+		Product p = (Product) obj;
+		return p.prodId == this.prodId;
 	}
 }

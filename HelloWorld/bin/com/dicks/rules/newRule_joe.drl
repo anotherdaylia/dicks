@@ -26,10 +26,7 @@ rule "Explode Cart"
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
 //        System.out.println("order quantity: " + $order.getQuantity());
 //        System.out.println("exlored: " + $order.getExploredItem());
-
-
-        
-        
+       
 end
 
 /*
