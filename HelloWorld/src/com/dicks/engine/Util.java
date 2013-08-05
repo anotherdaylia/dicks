@@ -8,7 +8,7 @@ import java.util.Set;
 import org.apache.commons.lang3.text.WordUtils;
 
 import com.dicks.dao.FeeDAO;
-import com.dicks.dao.FeeDao;
+import com.dicks.dao.FeeDAO;
 import com.dicks.dao.ProductDao;
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.Product;

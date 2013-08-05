@@ -19,7 +19,7 @@ import com.dicks.engine.Util;
 public class TestUtil {	
 //	@Test
 	public void testFee() {
-		FeeDao feeDao = FeeDao.getInstance();
+		FeeDAO feeDao = FeeDAO.getInstance();
 		try {
 			ArrayList<Fee> fees = feeDao.getByType("store");
 			
@@ -34,7 +34,7 @@ public class TestUtil {
 	
 //	@Test
 	public void createCosts() {
-		FeeDao feeDao = FeeDao.getInstance();
+		FeeDAO feeDao = FeeDAO.getInstance();
 		
 		Fee transactionFee = new Fee("Transaction Fee", "store", 939, "factoryPrice|product");
 		Fee freightFee = new Fee("Freight In to Store", "store", 148, "factoryPrice|product");
