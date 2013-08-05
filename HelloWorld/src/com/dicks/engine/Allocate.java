@@ -84,7 +84,21 @@ public class Allocate {
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 		
-		
+		Product shoes = new Product();
+		shoes.setProdName("shoes");
+		shoes.setFactoryPrice(50);
+		shoes.setWeight(10);
+		shoes.setWidth(2.0);
+		Product hat = new Product();
+		hat.setProdName("hat");
+		hat.setFactoryPrice(10);
+		hat.setWeight(4);
+		hat.setWidth(2.0);
+		Product shirt = new Product();
+		shirt.setProdName("shirt");
+		shirt.setFactoryPrice(20);
+		shirt.setWeight(8);
+		shirt.setWidth(5.0);
 		//get all product[] from skulist(String[])
 		//get all stores from dao
 		Store s1 = new Store(1,2);
@@ -96,7 +110,10 @@ public class Allocate {
 		
 		
 		
-		Order order = new Order(2);
+		Orders order = new Orders(2);
+		order.addProducts(shoes, 1);
+		order.addProducts(hat, 1);
+		order.addProducts(shirt, 1);
 		//dao get product with productID
 		//not dao , add product to order
 		//order.addProducts(shirts,1);

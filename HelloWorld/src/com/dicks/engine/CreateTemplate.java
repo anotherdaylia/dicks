@@ -53,15 +53,21 @@ public class CreateTemplate {
 		  rules[3] = "./ruleTxt/rule3.txt";
 		  */
 		  System.out.println("--------------Start Adding New Rule--------------------------");
-		  public Product(Vendor vendor, String prodName, String sku,
-					String prodDescr, Integer factoryPrice, Integer weight, String flag) 
-		  
-		  	product[0] = new Product("Nike", "Nike_Shoe","NK-SH-123","nike_sports_shoe",69.99,5.43,)
-		  	product[0] = new Product(1+"", "shoes", 50 ,10, 2);
-		    product[1]= new Product(2+"", "hat", 10 , 4, 2);
-		    product[2] = new Product(3+"", "shirt1", 20 , 8 ,5);
-		    product[3] = new Product(4+"", "shirt2", 20 , 8 ,5);
-		    product[4] = new Product(5+"", "shirt3", 20 , 8 ,5);
+		  Product shoes = new Product();
+			shoes.setProdName("shoes");
+			shoes.setFactoryPrice(50);
+			shoes.setWeight(10);
+			shoes.setWidth(2.0);
+			Product hat = new Product();
+			hat.setProdName("hat");
+			hat.setFactoryPrice(10);
+			hat.setWeight(4);
+			hat.setWidth(2.0);
+			Product shirt = new Product();
+			shirt.setProdName("shirt");
+			shirt.setFactoryPrice(20);
+			shirt.setWeight(8);
+			shirt.setWidth(5.0);
 		    product[3].setFlag("TH-C,ST-A,SP-A");
 		  if (ruleFile[0] == null){
 			  ruleFile[0] = new Rule(1,"/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule1.txt","\"Explode Cart\"",100);

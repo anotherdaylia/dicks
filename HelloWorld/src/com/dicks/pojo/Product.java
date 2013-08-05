@@ -37,6 +37,11 @@ public class Product implements java.io.Serializable {
 	
 
 	/** minimal constructor */
+	public Product(){
+		
+	}
+	
+	
 	public Product(Vendor vendor, String prodName, String sku,
 			String prodDescr, Integer factoryPrice, Integer weight, String flag) {
 		this.vendor = vendor;
@@ -191,4 +196,8 @@ public class Product implements java.io.Serializable {
 		this.prodCates = prodCates;
 	}
 
+	public void minPackage(){
+
+		System.out.println(prodName+" has been splited to another package");
+	}
 }

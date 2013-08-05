@@ -2,10 +2,10 @@
 package com.dicks.rules
 
 //list any import classes here.
-import com.dicks.engine.Orders
+import com.dicks.pojo.Orders
 import com.dicks.engine.Store
 import com.dicks.engine.Package
-import com.dicks.engine.Product
+import com.dicks.pojo.Product
 import com.dicks.engine.PackageTestResult
 import java.util.ArrayList
 import java.util.Arrays;

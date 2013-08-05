@@ -20,6 +20,7 @@ public class Store implements java.io.Serializable {
 	private Set inventories = new HashSet(0);
 	private Set storeCates = new HashSet(0);
 
+
 	// Constructors
 
 	/** default constructor */

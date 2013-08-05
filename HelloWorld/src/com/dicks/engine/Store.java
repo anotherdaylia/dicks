@@ -12,7 +12,6 @@ public class Store {
 	private HashMap<Product, Inventory> stock;
 	private int zoneID;
 	private int value=0;
-	private String storeType;
 	
 	public Store(int storeID, int zoneID) {
 		this.storeID = storeID;
@@ -174,7 +173,9 @@ public class Store {
 		
 		else{
 			return false;
-		}		
+		}
+		
+		
 	}
 	
 	public int getStoreID() {
@@ -228,13 +229,5 @@ public class Store {
 	@Override
 	public String toString() {
 		return "store zoneID: " + this.getZoneID();
-	}
-
-	public String getStoreType() {
-		return storeType;
-	}
-
-	public void setStoreType(String storeType) {
-		this.storeType = storeType;
 	}
 }
