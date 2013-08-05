@@ -181,8 +181,8 @@
                             <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;inches
                         </div>
                         <div>Perform the following action&#40;s&#41;&#58;</div>
-                        <div><select name="shippackage">
-                                <option value="separately">Ship this product separately</option>
+                        <div><select name="actions">
+                                <option value="miniumPackage">Ship this product separately</option>
                                 <option value="diffpackage">Separate the product into different packages</option>
                         </select></div>
                         </div>

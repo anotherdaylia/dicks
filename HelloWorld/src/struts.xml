@@ -30,11 +30,19 @@
       <action name="gotonewbizrulelist" class="com.dicks.action.Redirect" method="gotonewbizrulelist">
           <result name="gotonewbizrulelist">/NewRule.jsp</result>
       </action>
+      <action name="gotoplaceorder" class="com.dicks.action.Redirect" method="gotoplaceorder">
+          <result name="gotoplaceorder">/placeOrder.jsp</result>
+      </action>
       <action name="gototemplate" class="com.dicks.action.CreateNewBizRule" method="gototemplate">
            <result name="gototemplate" type="dispatcher">/TemplateStoreThreshold.jsp</result>
       </action>
        <action name="newrule" class="com.dicks.action.CreateNewBizRule" method="newrule">
           <result name="newrule" type="dispatcher">/TemplateStoreThreshold.jsp</result>
       </action>
+      <action name="placeorder" class="com.dicks.action.PlaceOrder" method="placeorder">
+          <result name="placeorder" type="dispatcher">/placeOrder.jsp</result>
+      </action>
+       
+      
    </package>
 </struts>

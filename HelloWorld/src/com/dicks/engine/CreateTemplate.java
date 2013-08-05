@@ -234,8 +234,7 @@ public class CreateTemplate {
 	            fos.flush();
 	            fos.close();
 	            System.out.println("New drl file is created!");
-	        /////insert new rule at the end of the rules in database.
-	  		  /////update all product's flag attribute
+
 	            
 	       }
 	      catch(Exception e){System.out.println("error: " + e);}
@@ -359,12 +358,22 @@ public class CreateTemplate {
 	   
 	   
 	   public String writeThenThreshold(String[] action){
-		   StringBuffer tmp = new StringBuffer();
-		   tmp.append(myTab+"then"+myReturn);
-		   tmp.append(myTab+myTab+"$i.minPackage();"+myReturn);
-		   tmp.append("end"+myReturn+myReturn);
-		   return tmp.toString();
-	   }
+			  StringBuffer tmp = new StringBuffer();
+			  System.out.println(action[0]);
+		      for (int i = 0; i < action.length; i++){
+				   if (action[i].equalsIgnoreCase("miniumPackage"))
+				   {
+					   tmp.append(myTab+"then"+myReturn);
+					   tmp.append(myTab+myTab+"Package p = new Package($o);"+myReturn);
+					   tmp.append(myTab+myTab+"p.addProduct($i);"+myReturn);
+					   tmp.append(myTab+myTab+"insert (p);"+myReturn);
+					   tmp.append(myTab+myTab+"$i.minPackage();"+myReturn);
+					   tmp.append(myTab+myTab+"retract($i);"+myReturn);
+				   }
+		      }
+		      tmp.append("end"+myReturn+myReturn);
+			  return tmp.toString();
+		   }
 	   
 	   public String writeWhenStoreRule(String[] splits, String[] splitAttribute, String[] splitOperator, String[] splitValue,String flag){
 		   
