@@ -1,110 +1,85 @@
 package com.dicks.pojo;
 
-import java.io.Serializable;
-import java.sql.Date;
+/**
+ * Inventory entity. @author MyEclipse Persistence Tools
+ */
 
-public class Inventory implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private int productID;
-	private int storeID;
-	private int retailPrice;
-	private int storage;
-	private int saftyStock;
-	
-	public Inventory(){
-		
-	}
-	
-	public int getProductID() {
-		return productID;
-	}
+public class Inventory implements java.io.Serializable {
 
+	// Fields
 
-	public void setProductID(int productID) {
-		this.productID = productID;
+	private InventoryId id;
+	private Product product;
+	private Store store;
+	private Integer retailPrice;
+	private Integer inventory;
+	private Integer safetyStock;
+
+	// Constructors
+
+	/** default constructor */
+	public Inventory() {
 	}
 
-
-	public int getStoreID() {
-		return storeID;
+	/** full constructor */
+	public Inventory(InventoryId id, Product product, Store store,
+			Integer retailPrice, Integer inventory, Integer safetyStock) {
+		this.id = id;
+		this.product = product;
+		this.store = store;
+		this.retailPrice = retailPrice;
+		this.inventory = inventory;
+		this.safetyStock = safetyStock;
 	}
 
+	// Property accessors
 
-	public void setStoreID(int storeID) {
-		this.storeID = storeID;
+	public InventoryId getId() {
+		return this.id;
 	}
 
-
-	public int getRetailPrice() {
-		return retailPrice;
+	public void setId(InventoryId id) {
+		this.id = id;
 	}
 
+	public Product getProduct() {
+		return this.product;
+	}
 
-	public void setRetailPrice(int retailPrice) {
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Store getStore() {
+		return this.store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+
+	public Integer getRetailPrice() {
+		return this.retailPrice;
+	}
+
+	public void setRetailPrice(Integer retailPrice) {
 		this.retailPrice = retailPrice;
 	}
 
-
-	public int getStorage() {
-		return storage;
+	public Integer getInventory() {
+		return this.inventory;
 	}
 
-
-	public void setStorage(int storage) {
-		this.storage = storage;
+	public void setInventory(Integer inventory) {
+		this.inventory = inventory;
 	}
 
-
-	public int getSaftyStock() {
-		return saftyStock;
+	public Integer getSafetyStock() {
+		return this.safetyStock;
 	}
 
-
-	public void setSaftyStock(int i) {
-		this.saftyStock = i;
+	public void setSafetyStock(Integer safetyStock) {
+		this.safetyStock = safetyStock;
 	}
 
-
-	@Override
-	public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        String str1 = String.valueOf(productID);
-        String str2 = String.valueOf(storeID);
-        
-        result = prime * result + ((str1 == null) ? 0 : str1.hashCode());
-        result = prime * result + ((str2 == null) ? 0 : str2.hashCode());
-        return result;
-	}
-	
-	 @Override
-	    public boolean equals(Object obj)
-	    {
-	        if (this == obj)
-	            return true;
-	        if (obj == null)
-	            return false;
-	        if (getClass() != obj.getClass())
-	            return false;
-	        Inventory other = (Inventory) obj;
-	        if (productID == 0)
-	        {
-	            if (other.productID != 0)
-	                return false;
-	        }
-	        else if (!(productID==other.productID))
-	            return false;
-	        if (storeID == 0)
-	        {
-	            if (other.storeID != 0)
-	                return false;
-	        }
-	        else if (!(storeID==other.storeID))
-	            return false;
-	        return true;
-	    }
-	
 }

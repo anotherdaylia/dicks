@@ -2,28 +2,60 @@ package com.dicks.action;
 
 import java.util.ArrayList;
 
+import com.dicks.engine.CreateTemplate;
+
 public class CreateNewBizRule {
 	private String conditions;
 	private String operator1;
-	private String size1;
-	private String inches1;
+	private String attribute1;
+	private String value1;
 	private String operator2;
-	private String size2;
-	private String inches2;
+	private String attribute2;
+	private String value2;
 	private String operator3;
-	private String size3;
-	private String inches3;
+	private String attribute3;
+	private String value3;
 	private String operator4;
-	private String size4;
-	private String inches4;
+	private String attribute4;
+	private String value4;
 	private String shippackage;
 	private String templatename;
 	private String rulename;
-	public ArrayList<String> operator;
-	public ArrayList<String> size;
-	public ArrayList<String> inches;
-
+	public String[] operator;
+	public String[] attribute;
+	public String[] value;
+	public String categoryname;
 	
+	public String getCategory(){
+		System.out.println("mlgb"+categoryname);
+		return categoryname;
+	}
+	
+	public String[] getAttribute(){
+		return attribute;
+	}
+	
+	public String[] getOperator(){
+		return operator;
+	}
+	public String[] value(){
+		return value;
+	}
+	
+	public void setAttribute(String[] a){
+		this.attribute = a;
+		
+	}
+	
+	public void setOperator(String[] a){
+		this.operator = a;
+		
+	}
+	
+	public void setValue(String[] a){
+		this.value = a;
+		
+	}
 	public String getTemplatename() {
 		return templatename;
 	}
@@ -56,127 +88,48 @@ public class CreateNewBizRule {
 		this.conditions = conditions;
 	}
 
-	public String getOperator1() {
-		return operator1;
-	}
 
-	public void setOperator1(String operator1) {
-		this.operator1 = operator1;
-	}
-
-	public String getSize1() {
-		return size1;
-	}
-
-	public void setSize1(String size1) {
-		this.size1 = size1;
-	}
-
-	public String getInches1() {
-		return inches1;
-	}
-
-	public void setInches1(String inches1) {
-		this.inches1 = inches1;
-	}
-
-	public String getOperator2() {
-		return operator2;
-	}
-
-	public void setOperator2(String operator2) {
-		this.operator2 = operator2;
-	}
-
-	public String getSize2() {
-		return size2;
-	}
-
-	public void setSize2(String size2) {
-		this.size2 = size2;
-	}
-
-	public String getInches2() {
-		return inches2;
-	}
-
-	public void setInches2(String inches2) {
-		this.inches2 = inches2;
-	}
-
-	public String getOperator3() {
-		return operator3;
-	}
-
-	public void setOperator3(String operator3) {
-		this.operator3 = operator3;
-	}
-
-	public String getSize3() {
-		return size3;
-	}
-
-	public void setSize3(String size3) {
-		this.size3 = size3;
-	}
-
-	public String getInches3() {
-		return inches3;
-	}
-
-	public void setInches3(String inches3) {
-		this.inches3 = inches3;
-	}
-
-	public String getOperator4() {
-		return operator4;
-	}
-
-	public void setOperator4(String operator4) {
-		this.operator4 = operator4;
-	}
-
-	public String getSize4() {
-		return size4;
-	}
-
-	public void setSize4(String size4) {
-		this.size4 = size4;
-	}
-
-	public String getInches4() {
-		return inches4;
-	}
-
-	public void setInches4(String inches4) {
-		this.inches4 = inches4;
-	}
 	
 	public String gototemplate(){
 		System.out.println(rulename);
 		System.out.println(templatename);
+		System.out.println(categoryname);
 		return "gototemplate";
 	}
 	
 	public String newrule(){
-		operator=new ArrayList<String>();
-		size=new ArrayList<String>();
-		inches=new ArrayList<String>();
-		operator.add(operator1);operator.add(operator2);operator.add(operator3);operator.add(operator4);
-		size.add(size1);size.add(size2);size.add(size3);size.add(size4);
-		inches.add(inches1);inches.add(inches2);inches.add(inches3);inches.add(inches4);
-		System.out.println(rulename);
-		System.out.println(templatename);
-		System.out.println();
+		
+		
 		for(int i=0;i<4;i++){
-			System.out.println(size.get(i));
-			System.out.println(operator.get(i));
-			System.out.println(inches.get(i));
+			System.out.println("attribute :"+attribute[i]);
+			System.out.println("operator :"+operator[i]);
+			System.out.println("value :"+value[i]);
 		}
-		System.out.println();
-		System.out.println(conditions);
-		System.out.println(shippackage);
-		System.out.println();
+		
+		System.out.println("condition "+conditions);
+		System.out.println("template "+templatename);
+		System.out.println("rule name "+rulename);
+		System.out.println("cagegory name "+categoryname);
+		
+		String[] categoryList= categoryname.split(",");
+		
+		
+		/// Micky, given a categoryList, call DAO function to return product[]; 
+		// if there is categoryList[0] and categroyList[1], need to combine product[] together from both of the categoryList
+		
+		String type = null;
+		if (templatename.equalsIgnoreCase("product_threshold")){
+			type = "Threshold";
+		}
+		String[] product = new String[3];
+		product[0] = "001";
+		product[1] = "002";
+		product[2] = "003";
+		
+		String[] action = new String[1];
+		action[0] = shippackage;
+		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,conditions,null,action,"TH-A,ST-A,SP-A",5);
+		
 		return "newrule";
 	}
 

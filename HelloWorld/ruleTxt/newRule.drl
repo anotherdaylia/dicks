@@ -33,19 +33,20 @@ rule "filter stock"
         retract($store);
 end
 
-rule  "Mininum Packagethreshold0"
-    when
-        $o : Order()
-        $i : Product( ((size bigger 4))&& (( productID == 1 ))) from $o.getProducts()
-    then
-        $i.minPackage();
-end
-
 rule "summarize"   
 salience -5
     when
         store : Store()
     then
         System.out.println(store.getZoneID());
+end
+
+rule  "Threshold0"
+    salience -7
+    when
+        $o : Order()
+        $i : Product( ((Length < 1)||( Length < 2)||( Length < 3)||( Length < 4))&& (( productID.equals("001"))|| (productID.equals("002"))|| (productID.equals("003")))&& (flag.equals("TH-A,ST-A,SP-A")))
+    then
+        $i.minPackage();
 end
 
