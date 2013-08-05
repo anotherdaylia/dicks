@@ -9,8 +9,10 @@ public class Product {
 	private String ruleID;
 	private long factoryPrice;
 	
-	public Product(String productID, String productName) {
-		
+	public Product(String productID, String productName, long factoryPrice) {
+		this.productID = productID;
+		this.productName = productName;
+		this.factoryPrice = factoryPrice;
 	}
 	
 	public String getProductID() {

@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import com.dicks.dao.FeeDao;
 import com.dicks.pojo.Fee;
+import com.dicks.pojo.Product;
 
 
 public class TestUtil {	
@@ -45,8 +46,9 @@ public class TestUtil {
 		}		
 	}
 	
-//	@Test
+	@Test
 	public void testCosts() {
+		Product p1 = new Product(1+"", "had", 1000);
 		
 	}
 }
