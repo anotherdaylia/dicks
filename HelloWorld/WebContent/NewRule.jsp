@@ -12,9 +12,70 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
  <title>DSG - New Business Rule</title>
- <link href="css/common.css" rel="stylesheet" type="text/css" /> 
+ <link href="css/common.css" rel="stylesheet" type="text/css" />
  <script src="js/jquery.min.js" type="text/javascript"> </script>
+ <script>
+ 	$(function() {
+	    var availableTags = [
+	      "All",
+	      "Adidas",
+	      "East Coast stores",
+	      "Clothes",
+	      "Shoes",
+	      "Balls",
+	      "West Coast stores",
+	      "Fishing",
+	      "Camping"
+	    ];
+	    function split( val ) {
+	      return val.split( /,\s*/ );
+	    }
+	    function extractLast( term ) {
+	      return split( term ).pop();
+	    }
+	 
+	    $( "#tags" ) 
+	      // don't navigate away from the field on tab when selecting an item
+	      .bind( "keydown", function( event ) {
+	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	            $( this ).data( "ui-autocomplete" ).menu.active ) {
+	          event.preventDefault();
+	        }
+	      })
+	      .autocomplete({
+	        minLength: 0,
+	        source: function( request, response ) {
+	          // delegate back to autocomplete, but extract the last term
+	          response( $.ui.autocomplete.filter(
+	            availableTags, extractLast( request.term ) ) );
+	        },
+	        focus: function() {
+	          // prevent value inserted on focus
+	          return false;
+	        },
+	        select: function( event, ui ) {
+	          var terms = split( this.value );
+	          // remove the current input
+	          terms.pop();
+	          // add the selected item
+	          terms.push( ui.item.value );
+	          // add placeholder to get the comma-and-space at the end
+	          terms.push( "" );
+	          this.value = terms.join( ", " );
+	          return false;
+	        }
+	      });
+	  });
+
+	  function textAreaAdjust(o) {
+	      o.style.height = "1px";
+	      o.style.height = (15+o.scrollHeight)+"px";
+	  }
+
+ </script>
  <script src="js/animation.js" type="text/javascript"></script>
+ 
+ 
 </head>
 
 <body>
@@ -105,6 +166,12 @@
                 <tr>
                     <td ></td>
                 </tr>
+                	<tr>
+				<td>Category&#58;</td>
+				<td><input type="text" style="width:200px;" name="categoryname"></td>
+				</tr>
+                
+                
                 <tr>
                     <td>Stage:</td>
                     <td><select style="width:200px;">

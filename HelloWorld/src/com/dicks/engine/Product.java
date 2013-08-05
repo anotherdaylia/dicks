@@ -1,13 +1,14 @@
 package com.dicks.engine;
 
 public class Product {
-//	private VendorInfo vendorInfo;
+	private VendorInfo vendorInfo;
 	private String productName;
 	private double price;
 	private double weight;
 	private int size;
 	private String productID;
 	private String special;
+	private String flag = "TH-A,ST-A,SP-A";
 	
 	public Product (String productID, String productName, double price, double weight, int size) {
 		this.productID = productID;
@@ -15,6 +16,13 @@ public class Product {
 		this.price = price;
 		this.weight = weight;
 		this.size = size;
+	}
+	public String getFlag(){
+		return flag;
+	}
+	
+	public void setFlag(String flag){
+		this.flag = flag;
 	}
 	
 	public String getSpecial(){
@@ -32,6 +40,12 @@ public class Product {
 		this.productID = productID;
 	}
 	
+	public VendorInfo getVendorInfo() {
+		return vendorInfo;
+	}
+	public void setVendorInfo(VendorInfo vendorInfo) {
+		this.vendorInfo = vendorInfo;
+	}
 	public String getProductName() {
 		return productName;
 	}
