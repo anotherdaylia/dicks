@@ -17,10 +17,10 @@ public class Product implements java.io.Serializable {
 	private String prodDescr;
 	private Integer factoryPrice;
 	private Integer weight;
-	private String flag;
 	private Double length;
 	private Double width;
 	private Double height;
+	private String flag = "TH-A,ST-A,SP-A";
 	private Set orderDetails = new HashSet(0);
 	private Set inventories = new HashSet(0);
 	private Set packageDetails = new HashSet(0);
@@ -39,8 +39,15 @@ public class Product implements java.io.Serializable {
 	/** minimal constructor */
 	public Product(){
 		
+		
 	}
-	
+	public Product (String sku, String productName, double price, Integer weight, int size) {
+		this.sku = sku;
+		this.prodName = prodName;
+		this.factoryPrice = factoryPrice;
+		this.weight = weight;
+		
+	}
 	
 	public Product(Vendor vendor, String prodName, String sku,
 			String prodDescr, Integer factoryPrice, Integer weight, String flag) {
@@ -105,6 +112,7 @@ public class Product implements java.io.Serializable {
 	}
 
 	public void setSku(String sku) {
+		System.out.println("fuck d sku "+sku);
 		this.sku = sku;
 	}
 
@@ -199,5 +207,18 @@ public class Product implements java.io.Serializable {
 	public void minPackage(){
 
 		System.out.println(prodName+" has been splited to another package");
+	}
+	
+	@Override
+	public String toString() {
+		return prodName;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Product)) return false;
+		Product p = (Product) obj;
+		return p.prodId == this.prodId;
+
 	}
 }

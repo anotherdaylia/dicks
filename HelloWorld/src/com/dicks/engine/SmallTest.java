@@ -16,8 +16,7 @@ import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
 import com.dicks.pojo.Product;
-
-
+import com.dicks.pojo.Orders;
 
 public class SmallTest {
 
@@ -88,7 +87,7 @@ public class SmallTest {
 		Store s4 = new Store(4,6);
 		Store s5 = new Store(5,8);
 	
-		Orders order = new Orders(2);
+		Orders order = new Orders();
 		order.addProducts(shoes, 1);
 		order.addProducts(hat, 1);
 		order.addProducts(shirt, 1);	

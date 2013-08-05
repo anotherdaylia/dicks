@@ -108,17 +108,19 @@ public class Allocate {
 		Store s5 = new Store(5,8);
 	
 		
+		int q1 = Integer.parseInt(quantity[0]);
+		int q2 = Integer.parseInt(quantity[1]);
 		
 		
 		Orders order = new Orders(2);
 		order.addProducts(shoes, 1);
-		order.addProducts(hat, 1);
-		order.addProducts(shirt, 1);
+		order.addProducts(hat, 2);
+		order.addProducts(shirt, 3);
 		//dao get product with productID
 		//not dao , add product to order
 		//order.addProducts(shirts,1);
 		
-		/*ksession.insert(s1);
+		ksession.insert(s1);
 		ksession.insert(s2);
 		ksession.insert(s3);
 		ksession.insert(s4);
@@ -128,13 +130,13 @@ public class Allocate {
 		ksession.fireAllRules();
 		
 		Collection<Package> packages = (Collection<Package>) ksession.getObjects( new ClassObjectFilter(Package.class) );
-		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );*/
+		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 
-		/*System.out.println("---------------------------------");
+		System.out.println("---------------------------------");
 		System.out.println("package size: " + packages.size());
 		System.out.println(Arrays.toString(packages.toArray()));
 		System.out.println("store list: " + stores.size());
-		System.out.println(Arrays.toString(stores.toArray()));*/
+		System.out.println(Arrays.toString(stores.toArray()));
 			
 		System.out.println("end");
 		
