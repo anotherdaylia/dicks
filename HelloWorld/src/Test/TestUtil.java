@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import com.dicks.dao.FeeDAO;
+<<<<<<< HEAD
 import com.dicks.dao.ProductDao;
+=======
+import com.dicks.dao.ProductDAO;
+>>>>>>> refs/remotes/origin/master
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Product;
@@ -56,7 +60,7 @@ public class TestUtil {
 	@Test
 	public void createProduct() {
 		Product product = new Product("had", 1000);
-		ProductDao productDao = ProductDao.getInstance();
+		ProductDAO productDao = ProductDAO.getInstance();
 		try {
 			productDao.createProduct(product);
 		} catch (Exception e) {
