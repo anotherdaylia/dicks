@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import com.dicks.dao.FeeDao;
+import com.dicks.dao.FeeDAO;
 import com.dicks.dao.ProductDao;
 import com.dicks.pojo.Fee;
-import com.dicks.pojo.Order;
+import com.dicks.pojo.Orders;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Store;
 
