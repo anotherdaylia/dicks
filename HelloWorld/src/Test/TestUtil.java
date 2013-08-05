@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import com.dicks.dao.FeeDao;
-import com.dicks.dao.ProductDao;
+import com.dicks.dao.FeeDAO;
+import com.dicks.dao.ProductDAO;
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.Order;
 import com.dicks.pojo.Product;
@@ -19,7 +19,7 @@ import com.dicks.engine.Util;
 public class TestUtil {	
 //	@Test
 	public void testFee() {
-		FeeDao feeDao = FeeDao.getInstance();
+		FeeDAO feeDao = FeeDAO.getInstance();
 		try {
 			ArrayList<Fee> fees = feeDao.getByType("store");
 			
@@ -34,7 +34,7 @@ public class TestUtil {
 	
 //	@Test
 	public void createCosts() {
-		FeeDao feeDao = FeeDao.getInstance();
+		FeeDAO feeDao = FeeDAO.getInstance();
 		
 		Fee transactionFee = new Fee("Transaction Fee", "store", 939, "factoryPrice|product");
 		Fee freightFee = new Fee("Freight In to Store", "store", 148, "factoryPrice|product");
@@ -56,7 +56,7 @@ public class TestUtil {
 	@Test
 	public void createProduct() {
 		Product product = new Product("had", 1000);
-		ProductDao productDao = ProductDao.getInstance();
+		ProductDAO productDao = ProductDAO.getInstance();
 		try {
 			productDao.createProduct(product);
 		} catch (Exception e) {

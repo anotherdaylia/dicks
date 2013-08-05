@@ -1,8 +1,8 @@
 package com.dicks.dao;
 
-public class Vendor extends BaseDao<Vendor> 
+public class VendorDAO extends BaseDao<VendorDAO> 
 {
-	public Vendor(Class<Vendor> clazz) {
+	public VendorDAO(Class<VendorDAO> clazz) {
 		super(clazz);
 		// TODO Auto-generated constructor stub
 	}
