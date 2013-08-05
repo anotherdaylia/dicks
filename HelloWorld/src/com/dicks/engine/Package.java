@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.dicks.pojo.Product;
-import com.dicks.pojo.Order;
+import com.dicks.pojo.Orders;
 
 public class Package {
 	private ArrayList<Product> products = new ArrayList<Product>();

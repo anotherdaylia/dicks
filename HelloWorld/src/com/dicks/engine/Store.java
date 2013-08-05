@@ -55,7 +55,7 @@ public class Store {
 	public boolean containProducts(ArrayList<Product> products) {
 		for (Product p : products) {
 			if (!this.containProduct(p)) {
-				System.out.println("rule out product: " + p.getProductName());
+				System.out.println("rule out product: " + p.getProdName());
 				return false;
 			}
 		}		

@@ -79,7 +79,7 @@ public class Parcel {
 			StringBuilder sb = new StringBuilder();
 			sb.append("Parcel: [");
 			for (Product p : this.products.keySet()) {
-				sb.append(p.getProductName());
+				sb.append(p.getProdName());
 				sb.append(" (");
 				sb.append(this.products.get(p));
 				sb.append(") ");

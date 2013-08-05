@@ -10,6 +10,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.dicks.pojo.Product;
+
 public class SplitGenerater {
 	private static HashMap<String,String> combinations;
 	private static ArrayList<Integer[]> arrays; 
@@ -31,6 +33,7 @@ public class SplitGenerater {
 		System.out.println(combinations[0].getPakages()[0].getItems()[3].getIndex());
 		
 		Product shoes = new Product(1+"", "shoes", 50 , 10, 2);
+		
 		Product hat = new Product(2+"", "hat", 10 , 4, 2);
 		Product shirt = new Product(3+"", "shirt", 20 , 8 ,5);
 		

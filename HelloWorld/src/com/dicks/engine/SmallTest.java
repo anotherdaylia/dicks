@@ -62,13 +62,25 @@ public class SmallTest {
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 		
-		Product shoes = new Product(1+"", "shoes", 50 ,10, 2);
-		Product hat = new Product(2+"", "hat", 10 , 4, 2);
-		Product shirt = new Product(3+"", "shirt", 20 , 8 ,5);
+		Product shoes = new Product();
+		shoes.setProdName("shoes");
+		shoes.setFactoryPrice(50);
+		shoes.setWeight(10);
+		shoes.setWidth(2.0);
+		Product hat = new Product();
+		hat.setProdName("hat");
+		hat.setFactoryPrice(10);
+		hat.setWeight(4);
+		hat.setWidth(2.0);
+		Product shirt = new Product();
+		shirt.setProdName("shirt");
+		shirt.setFactoryPrice(20);
+		shirt.setWeight(8);
+		shirt.setWidth(5.0);
 		//Product shirts = new Product(5, "hahahah", 20 , 8 ,5);
 		
-		shoes.setProductID(1+"");
-		shoes.setProductName("shoes");
+		shoes.setProdId(1);
+		shoes.setProdName("shoes");
 		
 		
 		Store s1 = new Store(1,2);
@@ -126,8 +138,5 @@ public class SmallTest {
 		ksession.dispose();
 	}
 	
-	private static void setUpProduct(Product p, String name, double price) {
-		p.setPrice(price);
-		p.setProductName(name);
-	}
+
 }

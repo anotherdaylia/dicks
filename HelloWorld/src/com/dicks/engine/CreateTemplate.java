@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import javax.print.DocFlavor.URL;
 
+import com.dicks.pojo.Product;
+
 public class CreateTemplate {
     public String myTab ="    ";
     public String myReturn = "\n";
@@ -545,9 +547,9 @@ public class CreateTemplate {
 				  for (int i = 0; i < product.length;i++)
 				  {
 					  
-					  if (product[i].getProductID().equalsIgnoreCase(objects[j]))
+					  if (product[i].getSku().equalsIgnoreCase(objects[j]))
 					  {
-						  System.out.println("checking product "+product[i].getProductID());
+						  System.out.println("checking product "+product[i].getProdId());
 						  String[] splitFlag = product[i].getFlag().split(",");
 						  String flagTmp = null;
 						  if (type.equalsIgnoreCase("Threshold")){
@@ -561,7 +563,7 @@ public class CreateTemplate {
 						  }
 						  flagLevel = flagTmp.split("-");
 						  System.out.println("inserting flag is "+flag);
-						  System.out.println("old flag is for product "+product[i].getProductID()+" is "+product[i].getFlag());
+						  System.out.println("old flag is for product "+product[i].getProdId()+" is "+product[i].getFlag());
 						  if ((flagLevel[1].charAt(0) - flagTemp) < 0){
 							  
 							  StringBuffer newFlag = new StringBuffer();

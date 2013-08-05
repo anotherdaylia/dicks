@@ -46,7 +46,7 @@ public class Fee implements java.io.Serializable {
 		this.shippingType = shippingType;
 		this.percentage = percentage;
 		this.attribute = attribute;
-		this.flag = "percentage";
+		this.flag = "p";
 	}
 
 
@@ -54,7 +54,7 @@ public class Fee implements java.io.Serializable {
 		this.costName = costName;
 		this.shippingType = shippingType;
 		this.value = value;
-		this.flag = "value";
+		this.flag = "v";
 	}
 	
 	// Property accessors
