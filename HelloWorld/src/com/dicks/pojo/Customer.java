@@ -1,23 +1,24 @@
 package com.dicks.pojo;
 
 public class Customer {
-	private String customerID;
-	private String customerPassword;
+	private int customerID;
+	private String password;
 	private String address;
 	private String zip;
 	private String tel;
-	private String sex;
-	public String getCustomerID() {
+	private char sex;
+	private String customerName;
+	public int getCustomerID() {
 		return customerID;
 	}
-	public void setCustomerID(String customerID) {
+	public void setCustomerID(int customerID) {
 		this.customerID = customerID;
 	}
-	public String getCustomerPassword() {
-		return customerPassword;
+	public String getPassword() {
+		return password;
 	}
-	public void setCustomerPassword(String customerPassword) {
-		this.customerPassword = customerPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getAddress() {
 		return address;
@@ -37,12 +38,16 @@ public class Customer {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public String getSex() {
+	public char getSex() {
 		return sex;
 	}
-	public void setSex(String sex) {
+	public void setSex(char sex) {
 		this.sex = sex;
 	}
-	
-	
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
 }

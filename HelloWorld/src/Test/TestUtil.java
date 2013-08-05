@@ -48,7 +48,7 @@ public class TestUtil {
 	
 	@Test
 	public void testCosts() {
-		Product p1 = new Product(1+"", "had", 1000);
+		Product p1 = new Product("had", 1000);
 		
 	}
 }

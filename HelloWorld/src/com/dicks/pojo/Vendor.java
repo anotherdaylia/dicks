@@ -1,13 +1,20 @@
 package com.dicks.pojo;
 
 public class Vendor {
-	private String vendorID;
+	private int vendorID;
 	private String vendorName;
 	private String address;
-	public String getVendorID() {
+	private String zip;
+	public int getVendorID() {
 		return vendorID;
 	}
-	public void setVendorID(String vendorID) {
+	public String getZip() {
+		return zip;
+	}
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+	public void setVendorID(int vendorID) {
 		this.vendorID = vendorID;
 	}
 	public String getVendorName() {
