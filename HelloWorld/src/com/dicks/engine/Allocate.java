@@ -1,5 +1,12 @@
 package com.dicks.engine;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+
+import javax.print.DocFlavor.URL;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -14,14 +21,25 @@ import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.logger.KnowledgeRuntimeLogger;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
-
 import com.dicks.pojo.Product;
 
-
-
-public class SmallTest {
-
-	public static void main(String[] args) {
+public class Allocate {
+    public String myTab ="    ";
+    public String myReturn = "\n";
+    public String mySpace = " ";
+    public int ruleCount = 0;
+    public static String[] rules = new String[10];
+    public static Rule[] ruleFile = new Rule[100];
+    public static int ruleInt;
+    
+    
+    public static Product[] product = new Product[5];
+    
+    
+    
+	public Allocate  (String[] product, String[] quantity){
+		System.out.println("product "+product[0]);
+		System.out.println("quantity "+quantity[0]);
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
 		// this will parse and compile in one step
@@ -62,41 +80,21 @@ public class SmallTest {
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 		
-		Product shoes = new Product();
-		shoes.setProdName("shoes");
-		shoes.setFactoryPrice(50);
-		shoes.setWeight(10);
-		shoes.setWidth(2.0);
-		Product hat = new Product();
-		hat.setProdName("hat");
-		hat.setFactoryPrice(10);
-		hat.setWeight(4);
-		hat.setWidth(2.0);
-		Product shirt = new Product();
-		shirt.setProdName("shirt");
-		shirt.setFactoryPrice(20);
-		shirt.setWeight(8);
-		shirt.setWidth(5.0);
-		//Product shirts = new Product(5, "hahahah", 20 , 8 ,5);
-
-		shoes.setProdId(1);
-		shoes.setProdName("shoes");
 		
+		//get all product[] from productlist(String[])
+		//get all stores from dao
 		Store s1 = new Store(1,2);
 		Store s2 = new Store(2,4);
 		Store s3 = new Store(3,5);
 		Store s4 = new Store(4,6);
 		Store s5 = new Store(5,8);
 	
-		Orders order = new Orders(2);
-		order.addProducts(shoes, 1);
-		order.addProducts(hat, 1);
-		order.addProducts(shirt, 1);	
 		
-//		Orders order = new Order(2);
+		
+		
+		Order order = new Order(2);
 		//dao get product with productID
 		//not dao , add product to order
-
 		//order.addProducts(shirts,1);
 		
 		/*ksession.insert(s1);
@@ -123,6 +121,11 @@ public class SmallTest {
 		logger.close();
 
 		ksession.dispose();
+
 	}
 	
+	private static void setUpProduct(Product p, String name, double price) {
+		/*p.setPrice(price);
+		p.setProductName(name);*/
+	}
 }

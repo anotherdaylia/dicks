@@ -4,7 +4,7 @@ import com.dicks.pojo.Inventory;
 
 public class InventoryDao extends BaseDao<Inventory> {
 	private static InventoryDao instance = new InventoryDao();
-	
+
 	public static InventoryDao getInstance() {
 		return instance;
 	}
@@ -16,6 +16,6 @@ public class InventoryDao extends BaseDao<Inventory> {
 	public InventoryDao() {
 		super(Inventory.class);
 	}
-	
-	
+
+
 }

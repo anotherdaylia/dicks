@@ -78,8 +78,7 @@ public class Rule {
 			this.attribute = translate(attributeBuffer, attributes);
 			this.operator = translate(operatorBuffer, operators);
 			this.value = translate(valueBuffer, values);
-			this.action = translate(actionBuffer, actions);translate(objectBuffer, objects);
-
+			this.action = translate(actionBuffer, actions);
 		}
 		else{
 			System.out.println("Error, Invalid Rule Type Added");

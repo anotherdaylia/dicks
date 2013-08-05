@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.dicks.dao.ProdCateDAO;
+import com.dicks.dao.ProductDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
@@ -39,10 +40,11 @@ public class HibernateUtil {
 	public static void main(String[] args) {
 		RuleDAO rdDao = RuleDAO.getInstance();
 		ProdCateDAO pcDao = ProdCateDAO.getInstance();
+		ProductDAO productDao = ProductDAO.getInstance();
 		Rule[] ruleList = null ;
 		Product[] products = null;
 		try {
-			products = pcDao.getProductByCategory(new String[]{"a","b","c"});
+			products = productDao.getProductsBySKUList(new String[]{"aa","bb","cc"});
 			
 			
 		} catch (Exception e) {

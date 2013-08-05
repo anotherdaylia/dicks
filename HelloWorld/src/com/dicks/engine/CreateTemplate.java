@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import javax.print.DocFlavor.URL;
 
+import com.dicks.pojo.Product;
+
 public class CreateTemplate {
     public String myTab ="    ";
     public String myReturn = "\n";
@@ -232,8 +234,7 @@ public class CreateTemplate {
 	            fos.flush();
 	            fos.close();
 	            System.out.println("New drl file is created!");
-	        /////insert new rule at the end of the rules in database.
-	  		  /////update all product's flag attribute
+
 	            
 	       }
 	      catch(Exception e){System.out.println("error: " + e);}
@@ -357,12 +358,22 @@ public class CreateTemplate {
 	   
 	   
 	   public String writeThenThreshold(String[] action){
-		   StringBuffer tmp = new StringBuffer();
-		   tmp.append(myTab+"then"+myReturn);
-		   tmp.append(myTab+myTab+"$i.minPackage();"+myReturn);
-		   tmp.append("end"+myReturn+myReturn);
-		   return tmp.toString();
-	   }
+			  StringBuffer tmp = new StringBuffer();
+			  System.out.println(action[0]);
+		      for (int i = 0; i < action.length; i++){
+				   if (action[i].equalsIgnoreCase("miniumPackage"))
+				   {
+					   tmp.append(myTab+"then"+myReturn);
+					   tmp.append(myTab+myTab+"Package p = new Package($o);"+myReturn);
+					   tmp.append(myTab+myTab+"p.addProduct($i);"+myReturn);
+					   tmp.append(myTab+myTab+"insert (p);"+myReturn);
+					   tmp.append(myTab+myTab+"$i.minPackage();"+myReturn);
+					   tmp.append(myTab+myTab+"retract($i);"+myReturn);
+				   }
+		      }
+		      tmp.append("end"+myReturn+myReturn);
+			  return tmp.toString();
+		   }
 	   
 	   public String writeWhenStoreRule(String[] splits, String[] splitAttribute, String[] splitOperator, String[] splitValue,String flag){
 		   
@@ -545,9 +556,9 @@ public class CreateTemplate {
 				  for (int i = 0; i < product.length;i++)
 				  {
 					  
-					  if (product[i].getProductID().equalsIgnoreCase(objects[j]))
+					  if (product[i].getSku().equalsIgnoreCase(objects[j]))
 					  {
-						  System.out.println("checking product "+product[i].getProductID());
+						  System.out.println("checking product "+product[i].getProdId());
 						  String[] splitFlag = product[i].getFlag().split(",");
 						  String flagTmp = null;
 						  if (type.equalsIgnoreCase("Threshold")){
@@ -561,7 +572,7 @@ public class CreateTemplate {
 						  }
 						  flagLevel = flagTmp.split("-");
 						  System.out.println("inserting flag is "+flag);
-						  System.out.println("old flag is for product "+product[i].getProductID()+" is "+product[i].getFlag());
+						  System.out.println("old flag is for product "+product[i].getProdId()+" is "+product[i].getFlag());
 						  if ((flagLevel[1].charAt(0) - flagTemp) < 0){
 							  
 							  StringBuffer newFlag = new StringBuffer();

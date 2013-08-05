@@ -2,10 +2,10 @@
 package com.dicks.rules;
 
 //list any import classes here.
-import com.dicks.engine.Order
+import com.dicks.pojo.Orders
 import com.dicks.engine.Store
 import com.dicks.engine.Package
-import com.dicks.engine.Product
+import com.dicks.pojo.Product
 import com.dicks.engine.PackageTestResult
 import java.util.ArrayList
 import java.*;
@@ -19,7 +19,7 @@ rule "Explode Cart"
     salience 30
     dialect "java"
     when
-        $order : Order()
+        $order : Orders()
         $item : Product() from $order.getProducts()
     then
         insert( $item );
@@ -43,13 +43,13 @@ rule "Explode Cart end"
     then
         drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
 end
-*/
+
 rule "test"
 	salience 17
 	//agenda-group "first"
     when    	
     	
-    	$store : Store(StoreID !=5) 
+    	$store : Store(storeId !=5) 
     	
     	
     then
@@ -70,6 +70,7 @@ rule "test2"
     	System.out.println("store "+$store.getStoreID()+"value changed"+$store.getValue());
         
 end
+*/
 
 rule "filter stock"
 	salience 13
@@ -87,7 +88,7 @@ rule "filter stock2"
 	salience 10
 	//agenda-group "first2"
     when
-    	//$o : Order()
+    	//$o : Orders()
         $item : Product()
     	$store : Store()
         //eval($store.checkStore($item, $o,"zone","<",2))
@@ -116,12 +117,12 @@ rule  "special 1"
 	salience 9
 	//agenda-group "special"
 	when
-       $o : Order()
-        $i : Product(  ( productID == 3 ))
+       $o : Orders()
+        $i : Product(  ( prodId == 3 ))
         $s : Store( storeID == 4 )
         //eval(!$s.checkProduct($i,">",1))
 	then
-		System.out.println("product "+$i.getProductID()+" get inserted into a new package by speical route rule");
+		System.out.println("product "+$i.getProdId()+" get inserted into a new package by speical route rule");
         Package p = new Package($o);
         p.addProduct($i);
         insert (p);
@@ -133,10 +134,10 @@ rule  "Mininum Packagethreshold0"
 	salience 7
 	//agenda-group "first6"
     when
-        $o : Order()
+        $o : Orders()
 //        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
-        $i : Product(weight >= 10 && special == null)
-        
+//        $i : Product(weight >= 10 && special == null)
+        $i : Product(weight >= 10)
     then     
     	Package p = new Package($o);
     	p.addProduct($i);
@@ -150,7 +151,7 @@ rule "insert package for remaining products"
 	//agenda-group "first7"
 	when
 		$i : Product()
-		$o : Order()
+		$o : Orders()
 		not Package(isForRemain())
 	then
 		Package p = new Package($o);
@@ -263,7 +264,7 @@ rule "summarizeProduct"
     when
         p : Product()
     then
-        System.out.println(p.getProductName());        
+        System.out.println(p.getProdName());        
 end
 
 rule "summarizePackage"

@@ -10,7 +10,7 @@ import com.dicks.pojo.Fee;
 
 public class FeeDAO extends BaseDao<Fee> {
 	private static FeeDAO instance = new FeeDAO();
-	
+
 	public FeeDAO() {
 		super(Fee.class);
 	}
@@ -22,11 +22,11 @@ public class FeeDAO extends BaseDao<Fee> {
 	public static void setInstance(FeeDAO instance) {
 		FeeDAO.instance = instance;
 	}
-	
+
 	public void createFee(Fee fee) throws Exception {
 		super.create(fee);
 	}
-	
+
 	public ArrayList<Fee> getByType(String type) throws Exception {
 		List<Criterion> criterions = new ArrayList<Criterion>();
 		Criterion criterion = Restrictions.eq("shippingType", type);

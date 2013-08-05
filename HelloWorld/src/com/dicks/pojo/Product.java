@@ -10,7 +10,6 @@ import java.util.Set;
 public class Product implements java.io.Serializable {
 
 	// Fields
-
 	private Integer prodId;
 	private Vendor vendor;
 	private String prodName;
@@ -188,4 +187,8 @@ public class Product implements java.io.Serializable {
 		this.prodCates = prodCates;
 	}
 
+	public void minPackage(){
+
+		System.out.println(prodName+" has been splited to another package");
+	}
 }

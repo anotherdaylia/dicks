@@ -227,11 +227,6 @@ public class CreateTemplate {
 	
 	   public String createThreshold(String type, int priority, String[] object, String[] attribute, 
 			   String[] operator, String[] values,String[] actions,String flag){
-		   //System.out.println("type  "+type);
-		   //System.out.println("objects  "+object);
-		   //System.out.println("attribute" +attribute);
-		   //System.out.println("operator "+ operator);
-		   //System.out.println("Values "+values);
 		   StringBuffer newRule = new StringBuffer();
 		   newRule.append(writeRuleType(type,priority));
 		   newRule.append(writeWhenThreshold(object,attribute,operator,values,flag));
@@ -331,11 +326,20 @@ public class CreateTemplate {
 	   
 	   
 	   public String writeThenThreshold(String[] action){
-		   StringBuffer tmp = new StringBuffer();
-		   tmp.append(myTab+"then"+myReturn);
-		   tmp.append(myTab+myTab+"$i.minPackage();"+myReturn);
-		   tmp.append("end"+myReturn+myReturn);
-		   return tmp.toString();
+		  StringBuffer tmp = new StringBuffer();
+	      for (int i = 0; i < action.length; i++){
+			   if (action[i].equalsIgnoreCase("Mininum Package"))
+			   {
+				   tmp.append(myTab+"then"+myReturn);
+				   tmp.append(myTab+myTab+"Package p = new Package($o);"+myReturn);
+				   tmp.append(myTab+myTab+"p.addProduct($i);"+myReturn);
+				   tmp.append(myTab+myTab+"insert (p);"+myReturn);
+				   tmp.append(myTab+myTab+"$i.minPackage();"+myReturn);
+				   tmp.append(myTab+myTab+"retract($i);"+myReturn);
+			   }
+	      }
+	      tmp.append("end"+myReturn+myReturn);
+		  return tmp.toString();
 	   }
 	   
 	   public String writeWhenStoreRule(String[] splits, String[] splitAttribute, String[] splitOperator, String[] splitValue,String flag){

@@ -12,7 +12,7 @@ import com.dicks.pojo.Product;
 
 public class OrderDetailDAO extends BaseDao<OrderDetail> {
 	private static OrderDetailDAO instance = new OrderDetailDAO();
-	
+
 	public OrderDetailDAO() {
 		super(OrderDetail.class);
 	}
@@ -24,7 +24,7 @@ public class OrderDetailDAO extends BaseDao<OrderDetail> {
 	public static void setInstance(OrderDetailDAO instance) {
 		OrderDetailDAO.instance = instance;
 	}
-	
+
 	public ArrayList<OrderDetail> getProductsByOrder(int orderID) throws Exception {
 		List<Criterion> criterions = new ArrayList<Criterion>();
 		Criterion criterion = Restrictions.eq("orderID", orderID);
