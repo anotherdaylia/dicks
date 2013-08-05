@@ -189,4 +189,3 @@ public class Product implements java.io.Serializable {
 	}
 
 }
->>>>>>> branch 'master' of https://github.com/claire921/dicks.git

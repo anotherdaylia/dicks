@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import org.apache.commons.lang3.text.WordUtils;
 
-import com.dicks.dao.FeeDao;
-import com.dicks.dao.ProductDao;
+import com.dicks.dao.FeeDAO;
+import com.dicks.dao.ProductDAO;
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Order;
@@ -27,7 +27,7 @@ public class Util {
 	public static double calculateCosts(Parcel parcel, Store store) {
 		Set<Product> products = parcel.getProducts().keySet();		
 		long totalCosts = 0;
-		FeeDao feeDao = FeeDao.getInstance();
+		FeeDAO feeDao = FeeDAO.getInstance();
 		try {
 			ArrayList<Fee> fees = feeDao.getByType(store.getStoreType());		
 			Long[] costs = new Long[fees.size()];
