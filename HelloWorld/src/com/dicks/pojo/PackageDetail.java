@@ -1,31 +1,45 @@
 package com.dicks.pojo;
 
-public class PackageDetail {
-	private String packageID;
-	private String productID;
-	private long unitPrice;
+import java.io.Serializable;
+
+public class PackageDetail implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int packageID;
+	private int productID;
+	private int unitPrice;
 	private int qty;
 	
 	public PackageDetail(){};
 	
-	public String getPackageID() {
+
+	public int getPackageID() {
 		return packageID;
 	}
-	public void setPackageID(String packageID) {
+
+
+	public void setPackageID(int packageID) {
 		this.packageID = packageID;
 	}
-	public String getProductID() {
+
+	public int getProductID() {
 		return productID;
 	}
-	public void setProductID(String productID) {
+
+	public void setProductID(int productID) {
 		this.productID = productID;
 	}
-	public long getUnitPrice() {
+
+	public int getUnitPrice() {
 		return unitPrice;
 	}
-	public void setUnitPrice(long unitPrice) {
+
+	public void setUnitPrice(int unitPrice) {
 		this.unitPrice = unitPrice;
 	}
+
 	public int getQty() {
 		return qty;
 	}
@@ -37,8 +51,10 @@ public class PackageDetail {
 	public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((productID == null) ? 0 : productID.hashCode());
-        result = prime * result + ((packageID == null) ? 0 : packageID.hashCode());
+        String str1 = String.valueOf(packageID);
+        String str2 = String.valueOf(productID);
+        result = prime * result + ((str1 == null) ? 0 : str1.hashCode());
+        result = prime * result + ((str2 == null) ? 0 : str2.hashCode());
         return result;
 	}
 	
@@ -52,19 +68,19 @@ public class PackageDetail {
 	        if (getClass() != obj.getClass())
 	            return false;
 	        PackageDetail other = (PackageDetail) obj;
-	        if (productID == null)
+	        if (productID ==0)
 	        {
-	            if (other.productID != null)
+	            if (other.productID != 0)
 	                return false;
 	        }
-	        else if (!productID.equals(other.productID))
+	        else if (!(productID == other.productID))
 	            return false;
-	        if (packageID == null)
+	        if (packageID == 0)
 	        {
-	            if (other.packageID != null)
+	            if (other.packageID != 0)
 	                return false;
 	        }
-	        else if (!packageID.equals(other.packageID))
+	        else if (!(packageID==other.packageID))
 	            return false;
 	        return true;
 	    }

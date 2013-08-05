@@ -12,7 +12,7 @@
 		<property name="ruleURL" column="rule_url" type="string"></property>
 		<property name="ruleDescr" column="rule_descr" type="string"></property>
 		<property name="priority" column="priority" type="int"></property>
-		<property name="flag" column="flag" type="character"></property>
+		<property name="flag" column="flag" type="string"></property>
 		<property name="type" column="type" type="character"></property>
 		<property name="stage" column="stage" type="character"></property>
 		<property name="object" column="object" type="string"></property>

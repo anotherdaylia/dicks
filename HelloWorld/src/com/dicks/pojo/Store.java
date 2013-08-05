@@ -5,7 +5,21 @@ public class Store {
 	private String address;
 	private String storeName;
 	private String zip;
+	private String flag;
+	private String store_type;
 	
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+	public String getStore_type() {
+		return store_type;
+	}
+	public void setStore_type(String store_type) {
+		this.store_type = store_type;
+	}
 	public String getZip() {
 		return zip;
 	}

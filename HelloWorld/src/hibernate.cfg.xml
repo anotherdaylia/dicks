@@ -28,11 +28,11 @@
 <!--   		<mapping resource="com/dicks/pojo/OrderDetail.hbm.xml"></mapping> -->
 <!--   		<mapping resource="com/dicks/pojo/Order.hbm.xml"></mapping> -->
 <!--  		<mapping resource="com/dicks/pojo/Package.hbm.xml"></mapping> -->
-<!--   		<mapping resource="com/dicks/pojo/Product.hbm.xml"></mapping> -->
+   		<mapping resource="com/dicks/pojo/Product.hbm.xml"></mapping>
   		<mapping resource="com/dicks/pojo/Rule.hbm.xml"></mapping>
   		<mapping resource="com/dicks/pojo/RuleCategory.hbm.xml"></mapping>
   		<mapping resource="com/dicks/pojo/Fee.hbm.xml"></mapping>
-<!--   		<mapping resource="com/dicks/pojo/Store.hbm.xml"></mapping> -->
+   		<mapping resource="com/dicks/pojo/Store.hbm.xml"></mapping> 
 <!--   		<mapping resource="com/dicks/pojo/Vendor.hbm.xml"></mapping> -->
   		
   </session-factory>   

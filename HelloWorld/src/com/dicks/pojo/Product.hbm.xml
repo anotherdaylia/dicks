@@ -19,7 +19,7 @@
 		
 		<property name="height" column="height" type="double"></property>
 		
-		<property name="flag" column="flag" type="character"></property>
+		<property name="flag" column="flag" type="string"></property>
 		
 		
 	</class>
