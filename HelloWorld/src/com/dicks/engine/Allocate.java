@@ -37,9 +37,12 @@ public class Allocate {
     
     
     
-	public Allocate  (String[] product, String[] quantity){
-		System.out.println("product "+product[0]);
+	public Allocate  (String[] sku, String[] quantity, String shippingType, String shippingAddress, String shippingZipcode){
+		System.out.println("product "+sku[0]);
 		System.out.println("quantity "+quantity[0]);
+		System.out.println("shipping type "+shippingType);
+		System.out.println("shipping address "+shippingAddress);
+		System.out.println("shipping zip "+ shippingZipcode);
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
 		// this will parse and compile in one step
@@ -81,7 +84,7 @@ public class Allocate {
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 		
 		
-		//get all product[] from productlist(String[])
+		//get all product[] from skulist(String[])
 		//get all stores from dao
 		Store s1 = new Store(1,2);
 		Store s2 = new Store(2,4);

@@ -71,7 +71,7 @@ public class PlaceOrder {
 			System.out.println("product :"+product[i]);
 		}
 		
-		Allocate test = new Allocate(product, quantity);
+		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
 		return "placeorder";
 		
 		
