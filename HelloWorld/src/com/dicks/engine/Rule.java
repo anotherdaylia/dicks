@@ -63,10 +63,8 @@ public class Rule {
 		this.ruleID = ruleID;
 	}
 	
-	public void setPiority(int piority){
-		
+	public void setPiority(int piority){	
 			this.piority = piority;
-		
 	}
 	
 	public void setPath(String path){
@@ -79,13 +77,5 @@ public class Rule {
 	public void setGroup(String group){
 		this.group = group;
 	}
-
-
-	
-	
-	
-	
-	
-	
 }
 

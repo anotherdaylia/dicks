@@ -6,6 +6,7 @@ public class OrderDetail {
 	private long unitPrice;
 	private long discountPrice;
 	private int qty;
+	
 	public String getOrderID() {
 		return orderID;
 	}

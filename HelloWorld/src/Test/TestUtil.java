@@ -1,13 +1,20 @@
 package Test;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import org.junit.Test;
 
 import com.dicks.dao.FeeDao;
+import com.dicks.dao.ProductDao;
 import com.dicks.pojo.Fee;
+import com.dicks.pojo.Order;
 import com.dicks.pojo.Product;
+import com.dicks.pojo.Store;
 
+import com.dicks.engine.Package;
+import com.dicks.engine.Parcel;
+import com.dicks.engine.Util;
 
 public class TestUtil {	
 //	@Test
@@ -47,9 +54,37 @@ public class TestUtil {
 	}
 	
 	@Test
+	public void createProduct() {
+		Product product = new Product("had", 1000);
+		ProductDao productDao = ProductDao.getInstance();
+		try {
+			productDao.createProduct(product);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+//	@Test
+	public void createOrder() {
+		
+	}
+	
+//	@Test
 	public void testCosts() {
 		Product p1 = new Product("had", 1000);
+		Order order = new Order(1, 1000, 'g', new Date(new java.util.Date().getTime()), "cmu", "15213", "123", "abc");
 		
+		Package pack = new Package(order);
+		Parcel parcel = new Parcel(pack, 1);
+		parcel.addProduct(p1);
+		
+		Store store = new Store("cmu", "15213", "store");
+		
+		double costs = Util.calculateCosts(parcel, store);
+		
+		System.out.println("total costs: " + costs);
 	}
 }
 

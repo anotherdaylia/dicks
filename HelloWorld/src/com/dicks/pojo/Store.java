@@ -6,7 +6,13 @@ public class Store {
 	private String storeName;
 	private String zip;
 	private String flag;
-	private String store_type;
+	private String storeType;
+	
+	public Store(String storeName, String zip, String storeType) {
+		this.storeName = storeName;
+		this.zip = zip;
+		this.storeType = storeType;
+	}
 	
 	public String getFlag() {
 		return flag;
@@ -14,11 +20,11 @@ public class Store {
 	public void setFlag(String flag) {
 		this.flag = flag;
 	}
-	public String getStore_type() {
-		return store_type;
+	public String getStoreType() {
+		return storeType;
 	}
-	public void setStore_type(String store_type) {
-		this.store_type = store_type;
+	public void setStoreType(String storeType) {
+		this.storeType = storeType;
 	}
 	public String getZip() {
 		return zip;
