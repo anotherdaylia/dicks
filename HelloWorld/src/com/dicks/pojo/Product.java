@@ -207,8 +207,6 @@ public class Product implements java.io.Serializable {
 	public void minPackage(){
 
 		System.out.println(prodName+" has been splited to another package");
-<<<<<<< HEAD
-=======
 	}
 	
 	@Override

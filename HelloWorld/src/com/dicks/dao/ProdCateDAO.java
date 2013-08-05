@@ -38,5 +38,15 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 		return products;	
 	}
 	
+	public String[] getSKUByCategory(String[] categoryNameList) throws Exception{
+		Product[] products = getProductByCategory(categoryNameList);
+		String[] skuArray = new String[products.length];
+		for(int i=0;i<products.length;i++){
+			skuArray[i] = products[i].getSku();
+		}
+		return skuArray;
+	}
+	
+	
 
 }
