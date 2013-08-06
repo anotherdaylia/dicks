@@ -20,6 +20,7 @@ import com.dicks.dao.StoreDAO;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Store;
+import com.dicks.pojo.Rule;
 
 public class SmallTest {
 
