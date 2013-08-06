@@ -87,16 +87,7 @@ public class Store {
 		}
 	}
 	
-	public void change(int a){
-		this.value = value +a;
-		
-	}
 	
-	
-	
-	public int getValue(){
-		return value;
-	}
 	
 	public boolean checkProduct(Product product, String operator , int mar) {
 		//System.out.println("-----------");

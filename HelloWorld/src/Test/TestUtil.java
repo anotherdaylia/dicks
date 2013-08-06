@@ -16,12 +16,20 @@ import com.dicks.pojo.Product;
 import com.dicks.pojo.Store;
 import com.dicks.pojo.Vendor;
 
+import com.dicks.engine.Allocate;
 import com.dicks.engine.Package;
 import com.dicks.engine.Parcel;
 import com.dicks.engine.Util;
 import java.sql.Timestamp;
 
 public class TestUtil {	
+	
+	@Test
+	public void testAllocate() {
+		
+		Allocate allocate = new Allocate(null, null, null, null, null);
+	}
+	
 //	@Test
 	public void testFee() {
 		FeeDAO feeDao = FeeDAO.getInstance();
@@ -70,7 +78,7 @@ public class TestUtil {
 		}
 	}
 	
-	@Test
+//	@Test
 	public void createProduct() {
 		try {
 			Vendor vendor = VendorDAO.getInstance().getById(7);

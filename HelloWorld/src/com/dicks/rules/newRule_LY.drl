@@ -3,7 +3,7 @@ package com.dicks.rules
 
 //list any import classes here.
 import com.dicks.pojo.Orders
-import com.dicks.engine.Store
+import com.dicks.pojo.Store
 import com.dicks.engine.Package
 import com.dicks.pojo.Product
 import com.dicks.engine.PackageTestResult

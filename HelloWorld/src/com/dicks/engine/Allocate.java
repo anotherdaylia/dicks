@@ -22,6 +22,8 @@ import org.kie.internal.logger.KnowledgeRuntimeLogger;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 import com.dicks.pojo.Product;
+import com.dicks.engine.Store;
+import com.dicks.pojo.Orders;
 
 
 public class Allocate {
@@ -38,12 +40,8 @@ public class Allocate {
     
     
     
+    
 	public Allocate  (String[] sku, String[] quantity, String shippingType, String shippingAddress, String shippingZipcode){
-		System.out.println("product "+sku[0]);
-		System.out.println("quantity "+quantity[0]);
-		System.out.println("shipping type "+shippingType);
-		System.out.println("shipping address "+shippingAddress);
-		System.out.println("shipping zip "+ shippingZipcode);
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
 		// this will parse and compile in one step
@@ -99,6 +97,9 @@ public class Allocate {
 		shirt.setFactoryPrice(20);
 		shirt.setWeight(8);
 		shirt.setWidth(5.0);
+		shoes.setProdId(1);
+		shoes.setProdName("shoes");
+		
 		//get all product[] from skulist(String[])
 		//get all stores from dao
 		Store s1 = new Store(1,2);
@@ -108,17 +109,15 @@ public class Allocate {
 		Store s5 = new Store(5,8);
 	
 		
-		int q1 = Integer.parseInt(quantity[0]);
-		int q2 = Integer.parseInt(quantity[1]);
 		
 		
-		Orders order = new Orders(2);
+		Orders order = new Orders();
 		order.addProducts(shoes, 1);
 		order.addProducts(hat, 2);
 		order.addProducts(shirt, 3);
 		//dao get product with productID
 		//not dao , add product to order
-		//order.addProducts(shirts,1);
+		
 		
 		ksession.insert(s1);
 		ksession.insert(s2);
