@@ -16,18 +16,18 @@ import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Product;
 
-public class InventoryDao extends BaseDao<Inventory> {
-	private static InventoryDao instance = new InventoryDao();
+public class InventoryDAO extends BaseDao<Inventory> {
+	private static InventoryDAO instance = new InventoryDAO();
 
-	public static InventoryDao getInstance() {
+	public static InventoryDAO getInstance() {
 		return instance;
 	}
 
-	public static void setInstance(InventoryDao instance) {
-		InventoryDao.instance = instance;
+	public static void setInstance(InventoryDAO instance) {
+		InventoryDAO.instance = instance;
 	}
 
-	public InventoryDao() {
+	public InventoryDAO() {
 		super(Inventory.class);
 	}
 	
@@ -77,7 +77,7 @@ public class InventoryDao extends BaseDao<Inventory> {
 	public boolean containAnyProductOrder(Store store, Orders order) throws Exception {
 		OrderDetailDAO orderDetailDAO = OrderDetailDAO.getInstance();
 		
-		ArrayList<OrderDetail> orderDetails = orderDetailDAO.getOrderDetailssByOrder(order.getOrderId());
+		ArrayList<OrderDetail> orderDetails = orderDetailDAO.getOrderDetailsByOrder(order);
 		
 		List<Criterion> criterion = new ArrayList<Criterion>();
 		Disjunction disjunctions = Restrictions.disjunction();

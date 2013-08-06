@@ -33,13 +33,13 @@ public class Store {
 	}
 	
 	public boolean containProductsInOrder(Orders order) throws Exception {
-		List<OrderDetail> details = OrderDetailDAO.getInstance().getOrderDetailssByOrder(order.getOrderId());
+		List<OrderDetail> details = OrderDetailDAO.getInstance().getOrderDetailsByOrder(order);
 		int notContainingNum = 0;
 		for (OrderDetail d : details) {
 			if (!this.containProduct(d.getProduct())) notContainingNum++;
 		}
 		return notContainingNum < 
-					OrderDetailDAO.getInstance().getOrderDetailssByOrder(order.getOrderId()).size();
+					OrderDetailDAO.getInstance().getOrderDetailsByOrder(order).size();
 	}
 	
 	public boolean containParcel(Parcel parcel) {

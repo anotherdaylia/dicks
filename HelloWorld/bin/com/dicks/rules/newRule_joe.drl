@@ -12,7 +12,8 @@ import com.dicks.engine.PackageTestResult
 import java.util.ArrayList
 import java.*;
 import java.String.*;
-import java.util.HashMap
+import java.util.HashMap;
+import com.dicks.dao.InventoryDAO;
 
 //declare any global variables here
 rule "Explode Cart"
@@ -52,9 +53,9 @@ rule "filter stock"
     when    	
     	$item : Product()
     	$store : Store()
-    	eval(!$store.containProduct($item))
+    	eval(!InventoryDAO.getInstance().containProduct($store, $item))
     then
-    	System.out.println("store "+ $store.getStoreID()+ " retracted by rule filter stock");
+    	System.out.println("store "+ $store.getStoreId()+ " retracted by rule filter stock");
         retract($store);
 end
 
@@ -69,7 +70,7 @@ rule "filter stock2"
         eval(!$store.checkStore($item,"margin",">",2)) 
     then
     	
-    	System.out.println("store "+$store.getStoreID()+ " retracted by rule filter stock2");
+    	System.out.println("store "+$store.getStoreId()+ " retracted by rule filter stock2");
         retract($store);
 end
 
@@ -93,7 +94,7 @@ rule  "special 1"
 	when
        $o : Orders()
         $i : Product(  ( prodId == 3 ))
-        $s : Store( storeID == 4 )
+        $s : Store( storeId == 4 )
         //eval(!$s.checkProduct($i,">",1))
 	then
 		System.out.println("product "+$i.getProdId()+" get inserted into a new package by speical route rule");
@@ -230,7 +231,7 @@ rule "summarize"
     when
         store : Store()
     then
-        System.out.println("Remaining store"+store.getStoreID());        
+        System.out.println("Remaining store"+store.getStoreId());        
 end
 
 rule "summarizeProduct"  

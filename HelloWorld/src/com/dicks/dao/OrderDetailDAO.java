@@ -30,11 +30,19 @@ public class OrderDetailDAO extends BaseDao<OrderDetail> {
 		super.create(orderDetail);
 	}
 
-	public ArrayList<OrderDetail> getOrderDetailssByOrder(int orderID) throws Exception {
+	public ArrayList<OrderDetail> getOrderDetailsByOrder(Orders orders) throws Exception {
 		List<Criterion> criterions = new ArrayList<Criterion>();
-		Criterion criterion = Restrictions.eq("orderID", orderID);
+		Criterion criterion = Restrictions.eq("orders.id", orders.getOrderId());
 		criterions.add(criterion);
 		return (ArrayList<OrderDetail>) super.getList(criterions);
 	}
 	
+	public ArrayList<Product> getProductsByOrder(Orders orders) throws Exception {
+		ArrayList<OrderDetail> details = getOrderDetailsByOrder(orders); 
+		ArrayList<Product> products = new ArrayList<Product>();
+		for (OrderDetail detail : details) {
+			products.add(detail.getProduct());
+		}
+		return products;
+	}
 }

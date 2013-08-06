@@ -3,10 +3,14 @@ package com.dicks.rules
 
 //list any import classes here.
 import com.dicks.pojo.Orders
-import com.dicks.engine.Store
+import com.dicks.pojo.Store
 import com.dicks.engine.Package
 import com.dicks.pojo.Product
 import com.dicks.engine.PackageTestResult
+
+import com.dicks.dao.InventoryDAO;
+import com.dicks.dao.OrderDetailDAO;
+
 import java.util.ArrayList
 import java.util.Arrays;
 import java.*;
@@ -21,7 +25,7 @@ rule "Explode Cart"
     dialect "java"
     when
         $order : Orders()
-        $item : Product() from $order.getProducts()
+        $item : Product() from OrderDetailDAO.getInstance().getProductsByOrder($order)
     then
         insert( $item );
 //        System.out.println();
@@ -51,7 +55,7 @@ rule "filter stock"
     when    	
     	$order : Orders()
     	$store : Store()
-    	eval(!$store.containProductsInOrder($order))
+    	eval(!InventoryDAO.getInstance().containAnyProductOrder($store, $order))
     then
         retract($store);
 end

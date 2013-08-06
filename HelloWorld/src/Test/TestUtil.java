@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import com.dicks.dao.CustomerDAO;
 import com.dicks.dao.FeeDAO;
-import com.dicks.dao.InventoryDao;
+import com.dicks.dao.InventoryDAO;
 import com.dicks.dao.OrdersDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.dao.StoreDAO;
@@ -189,11 +189,11 @@ public class TestUtil {
 			in5.setInventory(7);
 			in5.setSafetyStock(5);	
 			
-			InventoryDao.getInstance().createInventory(in1);
-			InventoryDao.getInstance().createInventory(in2);
-			InventoryDao.getInstance().createInventory(in3);
-			InventoryDao.getInstance().createInventory(in4);
-			InventoryDao.getInstance().createInventory(in5);
+			InventoryDAO.getInstance().createInventory(in1);
+			InventoryDAO.getInstance().createInventory(in2);
+			InventoryDAO.getInstance().createInventory(in3);
+			InventoryDAO.getInstance().createInventory(in4);
+			InventoryDAO.getInstance().createInventory(in5);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -209,7 +209,7 @@ public class TestUtil {
 		try {
 			s1 = StoreDAO.getInstance().getById(2);
 			shoes = ProductDAO.getInstance().getById(5);
-			System.out.println(InventoryDao.getInstance().containProduct(s1, shoes));
+			System.out.println(InventoryDAO.getInstance().containProduct(s1, shoes));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
