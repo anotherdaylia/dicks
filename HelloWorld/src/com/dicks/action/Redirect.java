@@ -19,5 +19,8 @@ public class Redirect {
 	public String gotoplaceorder(){
 		return "gotoplaceorder";
 	}
+	public String gotonewcategory(){
+		return "gotonewcategory";
+	}
 }
 
