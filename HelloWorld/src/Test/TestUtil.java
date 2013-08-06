@@ -43,17 +43,17 @@ public class TestUtil {
 			e.printStackTrace();
 		}
 	}
-	
+
 //	@Test
 	public void createCosts() {
 		FeeDAO feeDao = FeeDAO.getInstance();
-		
+
 		Fee transactionFee = new Fee("Transaction Fee", "store", 939, "factoryPrice|product");
 		Fee freightFee = new Fee("Freight In to Store", "store", 148, "factoryPrice|product");
 		Fee distributionFee = new Fee("Distribution Center Cost Allocation", "store", 148, "factoryPrice|product");
 		Fee packageCost = new Fee("Packaging Cost", "store", 112);
 		Fee laborCost = new Fee("Labor Cost", "store", 117);
-		
+
 		try {
 			feeDao.createFee(transactionFee);
 			feeDao.createFee(freightFee);
@@ -64,7 +64,7 @@ public class TestUtil {
 			e.printStackTrace();
 		}		
 	}
-	
+
 //	@Test
 	public void createStore() {
 		Store store = new Store("abc", "abc", "15213", "", "store");
@@ -75,7 +75,7 @@ public class TestUtil {
 			e.printStackTrace();
 		}
 	}
-	
+
 //	@Test
 	public void createVendor() {
 		Vendor vendor = new Vendor("nike", "abc", "21253");
@@ -87,12 +87,12 @@ public class TestUtil {
 			e.printStackTrace();
 		}
 	}
-	
+
 //	@Test
 	public void createProduct() {
 		try {
 			Vendor vendor = VendorDAO.getInstance().getById(7);
-			
+
 			Product product = new Product(vendor, "shirt", "123-456-789", "nike shoes", 5000, 2000, "TH-A,ST-A,SP-A");
 			ProductDAO productDao = ProductDAO.getInstance();
 			productDao.createProduct(product);
@@ -101,7 +101,7 @@ public class TestUtil {
 			e.printStackTrace();
 		}		
 	}
-	
+
 	@Test
 	public void createOrder() {
 		try {
@@ -110,27 +110,27 @@ public class TestUtil {
 //			Customer customer = CustomerDAO.getInstance().getById(1);
 //			Orders orders = new Orders(customer, 10000, "f", new Timestamp(new Date().getTime()), "cmu", "15213", "412-637-2008", "mike");
 //			OrdersDAO.getInstance().createOrder(orders);
-			
+
 //			OrderDetail detail = new OrderDetail();
 //			detail.setId(new OrderDetailId(orders.getOrderId(), shoes.getProdId()));
 //			detail.setOrders(orders);
 //			detail.setProduct(shoes);
 //			detail.setQty(1);
 //			detail.setUnitPrice(1000);
-			
+
 			Orders orders = OrdersDAO.getInstance().getById(2);
-			
+
 			Set<OrderDetail> details = orders.getOrderDetails();
 			for (OrderDetail d : details) {
 				System.out.println(d.getProduct().getProdName());
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 //	@Test
 	public void createInventory() {
 
@@ -139,16 +139,16 @@ public class TestUtil {
 			Product shoes = productDAO.getById(5);
 			Product shirt = productDAO.getById(7);
 			Product hat = productDAO.getById(6);
-			
+
 			StoreDAO storeDAO = StoreDAO.getInstance();
 			Store s1 = storeDAO.getById(1);
 			Store s2 = storeDAO.getById(2);
 			Store s3 = storeDAO.getById(3);
 			Store s4 = storeDAO.getById(4);
 			Store s6 = storeDAO.getById(6);
-			
+
 			Product p = hat;
-			
+
 			Inventory in1 = new Inventory();
 			in1.setId(new InventoryId(p.getProdId(), s1.getStoreId()));
 			in1.setProduct(p);
@@ -156,7 +156,7 @@ public class TestUtil {
 			in1.setRetailPrice(2000);
 			in1.setInventory(7);
 			in1.setSafetyStock(5);
-			
+
 			Inventory in2 = new Inventory();
 			in2.setId(new InventoryId(p.getProdId(), s2.getStoreId()));
 			in2.setProduct(p);
@@ -164,7 +164,7 @@ public class TestUtil {
 			in2.setRetailPrice(2000);
 			in2.setInventory(7);
 			in2.setSafetyStock(5);	
-			
+
 			Inventory in3 = new Inventory();
 			in3.setId(new InventoryId(p.getProdId(), s3.getStoreId()));
 			in3.setProduct(p);
@@ -172,7 +172,7 @@ public class TestUtil {
 			in3.setRetailPrice(2000);
 			in3.setInventory(7);
 			in3.setSafetyStock(5);	
-			
+
 			Inventory in4 = new Inventory();
 			in4.setId(new InventoryId(p.getProdId(), s4.getStoreId()));
 			in4.setProduct(p);
@@ -180,7 +180,7 @@ public class TestUtil {
 			in4.setRetailPrice(2000);
 			in4.setInventory(7);
 			in4.setSafetyStock(5);	
-			
+
 			Inventory in5 = new Inventory();
 			in5.setId(new InventoryId(p.getProdId(), s6.getStoreId()));
 			in5.setProduct(p);
@@ -188,7 +188,7 @@ public class TestUtil {
 			in5.setRetailPrice(2000);
 			in5.setInventory(7);
 			in5.setSafetyStock(5);	
-			
+
 			InventoryDAO.getInstance().createInventory(in1);
 			InventoryDAO.getInstance().createInventory(in2);
 			InventoryDAO.getInstance().createInventory(in3);
@@ -199,9 +199,9 @@ public class TestUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 //	@Test
 	public void testInventory() {
 		Product shoes;
@@ -215,8 +215,8 @@ public class TestUtil {
 			e.printStackTrace();
 		}		
 	}
-	
-	
+
+
 //	@Test
 	public void testCosts() {
 		try {
@@ -226,16 +226,15 @@ public class TestUtil {
 			e.printStackTrace();
 		}
 		Customer customer = new Customer();
-		
+
 //		Package pack = new Package(order);
 //		Parcel parcel = new Parcel(pack, 1);
 //		parcel.addProduct(p1);
 //		
 //		Store store = new Store("cmu", "15213", "store");
-		
+
 //		double costs = Util.calculateCosts(parcel, store);
 //		
 //		System.out.println("total costs: " + costs);
 	}
 }
-
