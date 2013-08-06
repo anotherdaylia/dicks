@@ -51,6 +51,8 @@
         </property>
         <property name="condition" type="java.lang.String">
             <column name="condition" length="45" />
+        </property>  
+        <property name="isSpecial" column="is_special" type="boolean">
         </property>
         <set name="ruleCates" inverse="true">
             <key>

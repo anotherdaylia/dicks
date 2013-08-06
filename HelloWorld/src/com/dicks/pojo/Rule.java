@@ -26,6 +26,7 @@ public class Rule implements java.io.Serializable {
 	private String route;
 	private String action;
 	private String condition;
+	private boolean isSpecial;
 	private Set ruleCates = new HashSet(0);
 
 	// Constructors
@@ -204,6 +205,14 @@ public class Rule implements java.io.Serializable {
 
 	public void setRuleCates(Set ruleCates) {
 		this.ruleCates = ruleCates;
+	}
+
+	public boolean isSpecial() {
+		return isSpecial;
+	}
+
+	public void setSpecial(boolean isSpecial) {
+		this.isSpecial = isSpecial;
 	}
 
 }
