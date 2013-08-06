@@ -15,8 +15,11 @@ import org.kie.internal.logger.KnowledgeRuntimeLogger;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
+import com.dicks.dao.OrdersDAO;
+import com.dicks.dao.StoreDAO;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
+import com.dicks.pojo.Store;
 
 public class SmallTest {
 
@@ -61,36 +64,32 @@ public class SmallTest {
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 		
-		Product shoes = new Product();
-		shoes.setProdName("shoes");
-		shoes.setFactoryPrice(50);
-		shoes.setWeight(10);
-		shoes.setWidth(2.0);
-		Product hat = new Product();
-		hat.setProdName("hat");
-		hat.setFactoryPrice(10);
-		hat.setWeight(4);
-		hat.setWidth(2.0);
-		Product shirt = new Product();
-		shirt.setProdName("shirt");
-		shirt.setFactoryPrice(20);
-		shirt.setWeight(8);
-		shirt.setWidth(5.0);
 		//Product shirts = new Product(5, "hahahah", 20 , 8 ,5);
-
-		shoes.setProdId(1);
-		shoes.setProdName("shoes");
 		
-		Store s1 = new Store(1,2);
-		Store s2 = new Store(2,4);
-		Store s3 = new Store(3,5);
-		Store s4 = new Store(4,6);
-		Store s5 = new Store(5,8);
+		Store s1 = null;
+		Store s2 = null;
+		Store s3 = null;
+		Store s4 = null;
+		Store s5 = null;
+		try {
+			s1 = StoreDAO.getInstance().getById(1);
+			s2 = StoreDAO.getInstance().getById(2);
+			s3 = StoreDAO.getInstance().getById(3);
+			s4 = StoreDAO.getInstance().getById(4);
+			s5 = StoreDAO.getInstance().getById(6);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 	
-		Orders order = new Orders();
-		order.addProducts(shoes, 1);
-		order.addProducts(hat, 1);
-		order.addProducts(shirt, 1);	
+		Orders order = null;
+		try {
+			order = OrdersDAO.getInstance().getById(3);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		
 //		Orders order = new Order(2);
 		//dao get product with productID
@@ -107,7 +106,7 @@ public class SmallTest {
 
 		ksession.fireAllRules();
 		
-		Collection<Package> packages = (Collection<Package>) ksession.getObjects( new ClassObjectFilter(Package.class) );
+		Collection<PackageE> packages = (Collection<PackageE>) ksession.getObjects( new ClassObjectFilter(PackageE.class) );
 		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 
 		System.out.println("---------------------------------");

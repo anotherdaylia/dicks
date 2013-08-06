@@ -8,10 +8,10 @@ import com.dicks.pojo.Product;
 public class Parcel {
 //	private int packageTestID;
 	private HashMap<Product, Integer> products = new HashMap<Product, Integer>();
-	private int deliveryDays;
-	private int zoneID;
+//	private int deliveryDays;
+//	private int zoneID;
 //	private String source;
-	private Package pack;
+	private PackageE pack;
 	
 //	public int getPackageTestID() {
 //		return packageTestID;
@@ -20,18 +20,17 @@ public class Parcel {
 //		this.packageTestID = packageTestID;
 //	}
 	
-	public Parcel(Package pack, int zoneID) {
-		this.zoneID = zoneID;
+	public Parcel(PackageE pack) {
 		this.setPack(pack);
 	}
 	
-	public int getZoneID() {
-		return zoneID;
-	}
-
-	public void setZoneID(int zoneID) {
-		this.zoneID = zoneID;
-	}
+//	public int getZoneID() {
+//		return zoneID;
+//	}
+//
+//	public void setZoneID(int zoneID) {
+//		this.zoneID = zoneID;
+//	}
 	
 	public void addProduct(Product p) {
 		Integer qty = products.get(p);
@@ -55,12 +54,12 @@ public class Parcel {
 		return list;
 	}
 	
-	public int getDeliveryDays() {
-		return deliveryDays;
-	}
-	public void setDeliveryDays(int deliveryDays) {
-		this.deliveryDays = deliveryDays;
-	}
+//	public int getDeliveryDays() {
+//		return deliveryDays;
+//	}
+//	public void setDeliveryDays(int deliveryDays) {
+//		this.deliveryDays = deliveryDays;
+//	}
 //	public String getSource() {
 //		return source;
 //	}
@@ -89,11 +88,11 @@ public class Parcel {
 			return sb.toString();
 		}
 
-	public Package getPack() {
+	public PackageE getPack() {
 		return pack;
 	}
 
-	public void setPack(Package pack) {
+	public void setPack(PackageE pack) {
 		this.pack = pack;
 	}
 }

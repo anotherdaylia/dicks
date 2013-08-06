@@ -1,4 +1,4 @@
-package com.dicks.engine;
+package com.sample;
 
 import java.util.ArrayList;
 import java.util.Arrays;

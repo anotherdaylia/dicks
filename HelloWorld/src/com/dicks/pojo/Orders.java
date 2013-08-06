@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.dicks.engine.Package;
+import com.dicks.engine.PackageE;
 import com.dicks.pojo.Product;
 
 /**
@@ -30,8 +30,8 @@ public class Orders implements java.io.Serializable {
 	private Set packageses = new HashSet(0);
 	private Set orderDetails = new HashSet(0);
 
-	private HashMap<Product, Integer> productList = new HashMap<Product, Integer>();
-	private ArrayList<Package> packages = new ArrayList<Package>();
+//	private HashMap<Product, Integer> productList = new HashMap<Product, Integer>();
+	private ArrayList<PackageE> packages = new ArrayList<PackageE>();
 	
 	// Constructors
 
@@ -159,22 +159,22 @@ public class Orders implements java.io.Serializable {
 		this.orderDetails = orderDetails;
 	}
 	
-	public HashMap<Product, Integer> getProductList() {
-		System.out.println(productList);
-		return productList;
-	}
-	public void setProductList(HashMap<Product, Integer> productList) {
-		this.productList = productList;
-	}
-	
-	public ArrayList<Product> getProducts () {
-		ArrayList<Product> list =  new ArrayList<Product>();
-		list.addAll(productList.keySet());
-		return list;
-	}
-
-	public void addProducts(Product prod,int number){
-		productList.put(prod, number);
-		this.quantity += number;
-	}
+//	public HashMap<Product, Integer> getProductList() {
+//		System.out.println(productList);
+//		return productList;
+//	}
+//	public void setProductList(HashMap<Product, Integer> productList) {
+//		this.productList = productList;
+//	}
+//	
+//	public ArrayList<Product> getProducts () {
+//		ArrayList<Product> list =  new ArrayList<Product>();
+//		list.addAll(productList.keySet());
+//		return list;
+//	}
+//
+//	public void addProducts(Product prod,int number){
+//		productList.put(prod, number);
+//		this.quantity += number;
+//	}
 }

@@ -1,6 +1,6 @@
 package com.dicks.engine;
 
-import com.dicks.engine.Store;
+import com.dicks.pojo.Store;
 
 public class ParcelResult {
 	private Parcel parcel;

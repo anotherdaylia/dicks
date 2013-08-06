@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Set;
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -16,13 +17,14 @@ import com.dicks.pojo.Orders;
 import com.dicks.pojo.Store;
 
 public class Util {
+	static Random r = new Random();
 	
-	public static double getShippingDays(int from, int to) {
-		return 2.5 * (Math.abs(from - to));
+	public static double getShippingDays() {
+		return r.nextInt(7);
 	}
 	
-	public static double getShippingCosts(int from, int to) {
-		return 2.5 * (Math.abs(from - to));
+	public static double getShippingCosts() {
+		return new Random().nextDouble();
 	}
 	
 	public static double calculateCosts(Parcel parcel, Store store) {
@@ -33,9 +35,9 @@ public class Util {
 			ArrayList<Fee> fees = feeDao.getByType(store.getStoreType());		
 			Long[] costs = new Long[fees.size()];
 			for (Fee fee : fees) {
-				if (fee.getFlag() == 'v') {
+				if (fee.getFlag().equals("v")) {
 					totalCosts += ((double) fee.getValue()) / 100.0;
-				} else if (fee.getFlag() == 'p') {
+				} else if (fee.getFlag().equals("p")) {
 					String attributeName = fee.getAttribute();
 					long attributeValue = 0;
 					String[] names = attributeName.split("|");
@@ -53,7 +55,7 @@ public class Util {
 					} else if (names[1].equals("store")) {
 						attributeValue = getAttribute(store, Store.class, names[0]);
 					} else if (names[1].equals("order")) {
-						attributeValue = getAttribute(parcel.getPack().getOrder(), Order.class, names[0]);
+						attributeValue = getAttribute(parcel.getPack().getOrder(), Orders.class, names[0]);
 					}				
 					totalCosts += attributeValue * fee.getPercentage() / 100;
 				}

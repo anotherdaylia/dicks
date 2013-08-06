@@ -7,7 +7,6 @@ package com.dicks.pojo;
 public class Inventory implements java.io.Serializable {
 
 	// Fields
-
 	private InventoryId id;
 	private Product product;
 	private Store store;

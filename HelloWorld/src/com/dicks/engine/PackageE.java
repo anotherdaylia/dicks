@@ -6,26 +6,26 @@ import java.util.Arrays;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
 
-public class Package {
+public class PackageE {
 	private ArrayList<Product> products = new ArrayList<Product>();
 	private int splitNum;
 	private Orders order;
 	private boolean forRemain;
 	private boolean allocated;
 	private boolean splitable = true;
-	private int zoneID;
+//	private int zoneID;
 	
-	public Package(Orders order) {
+	public PackageE(Orders order) {
 		this.order = order;
 	}
 	
-	public int getZoneID() {
-		return zoneID;
-	}
-
-	public void setZoneID(int zoneID) {
-		this.zoneID = zoneID;
-	}
+//	public int getZoneID() {
+//		return zoneID;
+//	}
+//
+//	public void setZoneID(int zoneID) {
+//		this.zoneID = zoneID;
+//	}
 	
 	// n is index
 	public Product getProduct(int index) {

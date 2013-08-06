@@ -2,17 +2,21 @@
 package com.dicks.rules;
 
 //list any import classes here.
-import com.dicks.engine.Orders
-import com.dicks.engine.Store
-import com.dicks.engine.Package
+import com.dicks.pojo.Orders
+import com.dicks.pojo.Store
+import com.dicks.pojo.Product
+
+import com.dicks.engine.PackageE
 import com.dicks.engine.PackageTest
 import com.dicks.engine.PackageTestResult
 import com.dicks.engine.ParcelResult
 import com.dicks.engine.Parcel
-import com.dicks.engine.Product
 import com.dicks.engine.Split
 import com.dicks.engine.SplitGenerater
 import com.dicks.engine.Util
+
+import com.dicks.dao.InventoryDAO;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Arrays;
@@ -29,7 +33,7 @@ rule "Explode Package"
     salience 100
     dialect "java"
     when
-        $p : Package()
+        $p : PackageE()
     then
         System.out.println($p);
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
@@ -42,7 +46,7 @@ rule "for splitable packages"
 	salience 5
 	agenda-group "split"
 	when
-		$p : Package(isSplitable() && !isAllocated())
+		$p : PackageE(isSplitable() && !isAllocated())
 	then	
 //		System.out.println($p);
 		ArrayList r = SplitGenerater.getTests($p);
@@ -60,7 +64,7 @@ rule "generate test results"
 	agenda-group "split"
 	when
 		$test : PackageTest(!isTested())
-		$pack : Package($test.getPack() == $pack)
+		$pack : PackageE($test.getPack() == $pack)
 		$stores : ArrayList( ) from collect( Store () )
 	then	
 		PackageTestResult testR = getTestResult($test, $stores);
@@ -76,7 +80,7 @@ rule "add splits"
 	salience 1
 	agenda-group "split"
 	when
-		$p : Package(isSplitable() && !isAllocated())
+		$p : PackageE(isSplitable() && !isAllocated())
 	then
 		modify ($p) { setSplitNum($p.getSplitNum() + 1) }
 		System.out.println("package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
@@ -87,7 +91,7 @@ rule "for not splitable packages"
 	salience -1
 	agenda-group "split"
 	when
-		$p : Package((!$p.isSplitable()) && !isAllocated())
+		$p : PackageE((!$p.isSplitable()) && !isAllocated())
 	then
 //		System.out.println("split num: " + $p.getSplitNum());
 //		System.out.println("product size: " + $p.getProducts().size());
@@ -102,7 +106,7 @@ rule "get to evaluate"
 	salience -1
 	agenda-group "split"
 	when
-		$p : Package(isAllocated())
+		$p : PackageE(isAllocated())
 	then
 		System.out.println($p + " has been allocated.");
 		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "evaluate" ).setFocus();
@@ -112,7 +116,7 @@ rule "evaluate package results"
 	salience -1
 	agenda-group "evaluate"
 	when
-		$p : Package(isAllocated())
+		$p : PackageE(isAllocated())
 		$results : ArrayList( ) from collect( PackageTestResult(getTest().getPack() == $p) )
 	then
 		PackageTestResult r = getBestResult($results);
@@ -168,11 +172,11 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 }
 
 function ParcelResult getParcelResult(Parcel parcel, Store store) {
-	if (!store.containParcel(parcel)) return null;
+	if (!InventoryDAO.getInstance().containAllroductsParcel(store, parcel)) return null;
 
 	ParcelResult r = new ParcelResult(parcel);
 	r.setSource(store);
-	r.setCost(Util.getShippingCosts(parcel.getZoneID(), store.getZoneID()));
+	r.setCost(Util.getShippingCosts());
 	return r;
 }
 
