@@ -177,7 +177,7 @@ rule "for splitable packages"
 	when
 		$p : Package()
 	then
-		
+
 		modify ($p) { setSplitNum($p.getSplitNum() + 1) }
 		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
 end
@@ -207,4 +207,3 @@ rule "summarizePackage"
         System.out.println($p);        
 end
 */
-

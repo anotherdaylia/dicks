@@ -45,7 +45,7 @@ rule  "Threshold0"
     salience -7
     when
         $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( productID.equals("001"))|| (productID.equals("002"))|| (productID.equals("003")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((length < 1)||( width < 2)||( height < 3)||( weight < 4))&& (( productID.equals("001"))|| (productID.equals("002"))|| (productID.equals("003")))&& (flag.equals("TH-A,ST-A,SP-A")))
     then
         Package p = new Package($o);
         p.addProduct($i);

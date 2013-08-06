@@ -88,7 +88,7 @@ public class Allocate {
 
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
-		
+
 //		Product shoes = new Product();
 //		shoes.setProdName("shoes");
 //		shoes.setFactoryPrice(50);
@@ -121,7 +121,7 @@ public class Allocate {
 //		order.addProducts(shoes, 1);
 //		order.addProducts(hat, 2);
 //		order.addProducts(shirt, 3);
-	
+
 		Store s1 = null;
 		Store s2 = null;
 		Store s3 = null;
@@ -138,7 +138,7 @@ public class Allocate {
 			e1.printStackTrace();
 		}
 
-	
+
 		Orders order = null;
 		try {
 			order = OrdersDAO.getInstance().getById(3);
@@ -146,7 +146,7 @@ public class Allocate {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		
+
 		ksession.insert(s1);
 		ksession.insert(s2);
 		ksession.insert(s3);
@@ -155,7 +155,7 @@ public class Allocate {
 		ksession.insert(order);
 
 		ksession.fireAllRules();
-		
+
 		Collection<PackageE> packages = (Collection<PackageE>) ksession.getObjects( new ClassObjectFilter(PackageE.class) );
 		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 
@@ -164,16 +164,16 @@ public class Allocate {
 		System.out.println(Arrays.toString(packages.toArray()));
 		System.out.println("store list: " + stores.size());
 		System.out.println(Arrays.toString(stores.toArray()));
-			
+
 		System.out.println("end");
-		
+
 		// Remove comment if using logging
 		logger.close();
 
 		ksession.dispose();
 
 	}
-	
+
 	private static void setUpProduct(Product p, String name, double price) {
 		/*p.setPrice(price);
 		p.setProductName(name);*/

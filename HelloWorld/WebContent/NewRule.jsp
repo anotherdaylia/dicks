@@ -168,7 +168,7 @@
                 </tr>
                 	<tr>
 				<td>Category&#58;</td>
-				<td><input type="text" style="width:200px;" name="categoryname"></td>
+				<td><textarea name="categoryname" id="tags" style="overflow: hidden; max-width: 200px; width: 247px; height: 34px; margin: 0px;" onkeyup="textAreaAdjust(this)" class="ui-autocomplete-input" autocomplete="off"></textarea></td>	
 				</tr>
                 
                 
