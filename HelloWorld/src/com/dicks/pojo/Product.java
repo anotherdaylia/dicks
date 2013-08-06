@@ -21,6 +21,7 @@ public class Product implements java.io.Serializable {
 	private Double width;
 	private Double height;
 	private String flag = "TH-A,ST-A,SP-A";
+	private boolean isSpecial;
 	private Set orderDetails = new HashSet(0);
 	private Set inventories = new HashSet(0);
 	private Set packageDetails = new HashSet(0);
@@ -35,12 +36,18 @@ public class Product implements java.io.Serializable {
 	 * @param string2 
 	 * @param string */
 	
-
 	/** minimal constructor */
 	public Product(){
-		
-		
 	}
+
+	public boolean isSpecial() {
+		return isSpecial;
+	}
+
+	public void setSpecial(boolean isSpecial) {
+		this.isSpecial = isSpecial;
+	}
+
 	public Product (String sku, String productName, double price, Integer weight, int size) {
 		this.sku = sku;
 		this.prodName = prodName;
@@ -205,7 +212,6 @@ public class Product implements java.io.Serializable {
 	}
 
 	public void minPackage(){
-
 		System.out.println(prodName+" has been splited to another package");
 	}
 	

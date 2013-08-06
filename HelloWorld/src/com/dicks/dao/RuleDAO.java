@@ -17,6 +17,7 @@ public class RuleDAO extends BaseDao<Rule>{
 		return instance;
 	}
 
+	
 	public	Rule[] getAllSortedList() throws Exception{
 		ArrayList<Rule> ruleList =  (ArrayList<Rule>) super.getList();
 		
