@@ -51,6 +51,7 @@ $( "#datepickerend" ).datepicker();
     <div class="body clearfix">
     
     <!-- menu bar starts -->
+
     <jsp:include page="NavigationTemplate.jsp" />
     <!-- menu bar ends -->
 

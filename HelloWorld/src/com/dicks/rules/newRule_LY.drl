@@ -3,10 +3,14 @@ package com.dicks.rules
 
 //list any import classes here.
 import com.dicks.pojo.Orders
-import com.dicks.engine.Store
-import com.dicks.engine.Package
+import com.dicks.pojo.Store
+import com.dicks.engine.PackageE
 import com.dicks.pojo.Product
 import com.dicks.engine.PackageTestResult
+
+import com.dicks.dao.InventoryDAO;
+import com.dicks.dao.OrderDetailDAO;
+
 import java.util.ArrayList
 import java.util.Arrays;
 import java.*;
@@ -21,7 +25,7 @@ rule "Explode Cart"
     dialect "java"
     when
         $order : Orders()
-        $item : Product() from $order.getProducts()
+        $item : Product() from OrderDetailDAO.getInstance().getProductsByOrder($order)
     then
         insert( $item );
 //        System.out.println();
@@ -51,7 +55,7 @@ rule "filter stock"
     when    	
     	$order : Orders()
     	$store : Store()
-    	eval(!$store.containProductsInOrder($order))
+    	eval(!InventoryDAO.getInstance().containAnyProductOrder($store, $order))
     then
         retract($store);
 end
@@ -77,7 +81,7 @@ rule  "Mininum Packagethreshold0"
 //        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
         $i : Product(weight >= 10)
     then     
-    	Package p = new Package($o);
+    	PackageE p = new PackageE($o);
     	p.addProduct($i);
     	insert (p);    
         $i.minPackage();
@@ -90,9 +94,9 @@ rule "insert package for remaining products"
 	when
 		$i : Product()
 		$o : Orders()
-		not Package(isForRemain())
+		not PackageE(isForRemain())
 	then
-		Package p = new Package($o);
+		PackageE p = new PackageE($o);
 		p.setForRemain(true);
 		insert (p);
 		System.out.println("insert new package");
@@ -105,7 +109,7 @@ rule "wrap up remaining products"
 	agenda-group "first"
 	when
 		$i : Product()
-		$p : Package(isForRemain())
+		$p : PackageE(isForRemain())
 	then
 		$p.addProduct($i);
 		retract($i);
@@ -173,7 +177,7 @@ rule "for splitable packages"
 	when
 		$p : Package()
 	then
-		
+
 		modify ($p) { setSplitNum($p.getSplitNum() + 1) }
 		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
 end
@@ -203,4 +207,3 @@ rule "summarizePackage"
         System.out.println($p);        
 end
 */
-

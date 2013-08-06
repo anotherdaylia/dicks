@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.dicks.dao.InventoryDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.pojo.Customer;
@@ -37,9 +38,11 @@ public class HibernateTest
 
 		ProductDAO pDAO = ProductDAO.getInstance();
 		Product p = pDAO.getById(1);
-		p.setFlag("f");
-		pDAO.updateProducts(new Product[]{p});
-		
+		InventoryDAO inventoryDAO = new InventoryDAO();
+//		System.out.println(inventoryDAO.g(1, 1));
+//		p.setFlag("f");
+//		pDAO.updateProducts(new Product[]{p});
+//		
 
 ////		User user = new User();
 ////		user.setEmail("ssd");

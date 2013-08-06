@@ -115,5 +115,8 @@ public class Store implements java.io.Serializable {
 		this.storeCates = storeCates;
 	}
 
+	@Override
+	public String toString() {
+		return this.storeType + ": " + this.storeId;
+	}
 }
-

@@ -40,6 +40,8 @@
         <property name="height" type="java.lang.Double">
             <column name="height" precision="22" scale="0" />
         </property>
+        <property name="isSpecial" column="is_special" type="boolean">
+        </property>
         <set name="orderDetails" inverse="true">
             <key>
                 <column name="prod_id" not-null="true" />
