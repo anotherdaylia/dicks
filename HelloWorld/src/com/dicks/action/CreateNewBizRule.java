@@ -2,7 +2,10 @@ package com.dicks.action;
 
 import java.util.ArrayList;
 
+import com.dicks.dao.ProdCateDAO;
+import com.dicks.dao.StoreDAO;
 import com.dicks.engine.CreateTemplate;
+import com.dicks.pojo.Product;
 
 public class CreateNewBizRule {
 	private String conditions;
@@ -97,6 +100,8 @@ public class CreateNewBizRule {
 			System.out.println("value :"+value[i]);
 		}
 		
+		
+		
 		System.out.println("condition "+conditions);
 		System.out.println("template "+templatename);
 		System.out.println("rule name "+rulename);
@@ -112,10 +117,20 @@ public class CreateNewBizRule {
 		if (templatename.equalsIgnoreCase("product_threshold")){
 			type = "Threshold";
 		}
-		String[] product = new String[3];
-		product[0] = "001";
-		product[1] = "002";
-		product[2] = "003";
+		String[] product = null;
+		String[] cateList = new String[1];
+		cateList[0] = "a";
+		System.out.println("first instance of catelist is "+cateList[0]);
+		try {
+			product = ProdCateDAO.getInstance().getSKUByCategory(cateList);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("product length is "+ product.length);
+		System.out.println("hahahah first product in the list is "+product[0]);
+		
+		
 		
 		String[] action = new String[1];
 		action[0] = actions;
