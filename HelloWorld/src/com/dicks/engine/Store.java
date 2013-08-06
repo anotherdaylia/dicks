@@ -2,8 +2,12 @@ package com.dicks.engine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
+import com.dicks.dao.OrderDetailDAO;
+import com.dicks.dao.OrdersDAO;
+import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
 
@@ -28,13 +32,14 @@ public class Store {
 		stock.get(product).instockNum--;
 	}
 	
-	public boolean containProductsInOrder(Orders order) {
-		Set<Product> products = order.getProductList().keySet();
+	public boolean containProductsInOrder(Orders order) throws Exception {
+		List<OrderDetail> details = OrderDetailDAO.getInstance().getOrderDetailsByOrder(order);
 		int notContainingNum = 0;
-		for (Product p : products) {
-			if (!this.containProduct(p)) notContainingNum++;
+		for (OrderDetail d : details) {
+			if (!this.containProduct(d.getProduct())) notContainingNum++;
 		}
-		return notContainingNum < order.getProducts().size();
+		return notContainingNum < 
+					OrderDetailDAO.getInstance().getOrderDetailsByOrder(order).size();
 	}
 	
 	public boolean containParcel(Parcel parcel) {
@@ -162,8 +167,6 @@ public class Store {
 			
 			return this.checkProduct(product, operator, mar);
 		}
-		
-		
 		
 		else{
 			return false;

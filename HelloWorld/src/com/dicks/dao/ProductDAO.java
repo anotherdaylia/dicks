@@ -38,6 +38,29 @@ public class ProductDAO extends BaseDao<Product> {
 			disjunctions.add(Restrictions.eq("prodId", id ));
 		}
 		criterion.add(disjunctions);
-		return super.getList(criterion);
+		return super.getList(criterion);	
 	}
+	
+	public Product[] getProductsBySKUList(String[] skuList) throws Exception{
+		List<Criterion> criterion = new ArrayList<Criterion>();
+
+		Disjunction disjunctions = Restrictions.disjunction();
+		for(String sku:skuList){
+			disjunctions.add(Restrictions.eq("sku", sku));
+		}
+		criterion.add(disjunctions);
+		ArrayList<Product> finalResult = (ArrayList<Product>)super.getList(criterion);
+		Product[] products = (Product[])finalResult.toArray(new Product[finalResult.size()]);
+		
+		return products;		
+	}
+	
+	
+	public void updateProducts(Product[] products) throws Exception{
+		for(Product p: products){
+			super.update(p);
+		}
+	}
+	
+	
 }

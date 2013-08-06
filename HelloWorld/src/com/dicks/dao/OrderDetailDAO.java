@@ -8,6 +8,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.OrderDetail;
+import com.dicks.pojo.Orders;
 import com.dicks.pojo.Product;
 
 public class OrderDetailDAO extends BaseDao<OrderDetail> {
@@ -24,11 +25,24 @@ public class OrderDetailDAO extends BaseDao<OrderDetail> {
 	public static void setInstance(OrderDetailDAO instance) {
 		OrderDetailDAO.instance = instance;
 	}
+	
+	public void createOrderDetail(OrderDetail orderDetail) throws Exception {
+		super.create(orderDetail);
+	}
 
-	public ArrayList<OrderDetail> getProductsByOrder(int orderID) throws Exception {
+	public ArrayList<OrderDetail> getOrderDetailsByOrder(Orders orders) throws Exception {
 		List<Criterion> criterions = new ArrayList<Criterion>();
-		Criterion criterion = Restrictions.eq("orderID", orderID);
+		Criterion criterion = Restrictions.eq("orders.id", orders.getOrderId());
 		criterions.add(criterion);
 		return (ArrayList<OrderDetail>) super.getList(criterions);
+	}
+	
+	public ArrayList<Product> getProductsByOrder(Orders orders) throws Exception {
+		ArrayList<OrderDetail> details = getOrderDetailsByOrder(orders); 
+		ArrayList<Product> products = new ArrayList<Product>();
+		for (OrderDetail detail : details) {
+			products.add(detail.getProduct());
+		}
+		return products;
 	}
 }

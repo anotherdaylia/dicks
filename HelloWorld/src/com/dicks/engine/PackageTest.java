@@ -3,25 +3,25 @@ package com.dicks.engine;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.dicks.engine.Package;
+import com.dicks.engine.PackageE;
 
 public class PackageTest {
 	private boolean tested;
 	private ArrayList<Parcel> parcels = new ArrayList<Parcel>();
-	private Package pack;
-	private int zoneID;
+	private PackageE pack;
+//	private int zoneID;
 	
-	public PackageTest(Package pack, int zoneID) {
+	public PackageTest(PackageE pack) {
 		this.pack = pack;
 	}
 	
-	public int getZoneID() {
-		return zoneID;
-	}
-
-	public void setZoneID(int zoneID) {
-		this.zoneID = zoneID;
-	}
+//	public int getZoneID() {
+//		return zoneID;
+//	}
+//
+//	public void setZoneID(int zoneID) {
+//		this.zoneID = zoneID;
+//	}
 	
 	public boolean isTested() {
 		return tested;
@@ -40,11 +40,11 @@ public class PackageTest {
 		this.parcels = parcels;
 	}
 
-	public Package getPack() {
+	public PackageE getPack() {
 		return pack;
 	}
 
-	public void setPack(Package pack) {
+	public void setPack(PackageE pack) {
 		this.pack = pack;
 	}
 	

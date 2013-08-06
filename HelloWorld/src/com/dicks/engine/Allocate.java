@@ -21,9 +21,12 @@ import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.logger.KnowledgeRuntimeLogger;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
+
+import com.dicks.dao.OrdersDAO;
+import com.dicks.dao.StoreDAO;
 import com.dicks.pojo.Product;
-import com.dicks.engine.Store;
 import com.dicks.pojo.Orders;
+import com.dicks.pojo.Store;
 
 
 public class Allocate {
@@ -40,8 +43,12 @@ public class Allocate {
     
     
     
-    
 	public Allocate  (String[] sku, String[] quantity, String shippingType, String shippingAddress, String shippingZipcode){
+		System.out.println("product "+sku[0]);
+		System.out.println("quantity "+quantity[0]);
+		System.out.println("shipping type "+shippingType);
+		System.out.println("shipping address "+shippingAddress);
+		System.out.println("shipping zip "+ shippingZipcode);
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
 		// this will parse and compile in one step
@@ -81,44 +88,65 @@ public class Allocate {
 
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
-		
-		Product shoes = new Product();
-		shoes.setProdName("shoes");
-		shoes.setFactoryPrice(50);
-		shoes.setWeight(10);
-		shoes.setWidth(2.0);
-		Product hat = new Product();
-		hat.setProdName("hat");
-		hat.setFactoryPrice(10);
-		hat.setWeight(4);
-		hat.setWidth(2.0);
-		Product shirt = new Product();
-		shirt.setProdName("shirt");
-		shirt.setFactoryPrice(20);
-		shirt.setWeight(8);
-		shirt.setWidth(5.0);
-		shoes.setProdId(1);
-		shoes.setProdName("shoes");
-		
+
+//		Product shoes = new Product();
+//		shoes.setProdName("shoes");
+//		shoes.setFactoryPrice(50);
+//		shoes.setWeight(10);
+//		shoes.setWidth(2.0);
+//		Product hat = new Product();
+//		hat.setProdName("hat");
+//		hat.setFactoryPrice(10);
+//		hat.setWeight(4);
+//		hat.setWidth(2.0);
+//		Product shirt = new Product();
+//		shirt.setProdName("shirt");
+//		shirt.setFactoryPrice(20);
+//		shirt.setWeight(8);
+//		shirt.setWidth(5.0);
 		//get all product[] from skulist(String[])
 		//get all stores from dao
-		Store s1 = new Store(1,2);
-		Store s2 = new Store(2,4);
-		Store s3 = new Store(3,5);
-		Store s4 = new Store(4,6);
-		Store s5 = new Store(5,8);
-	
-		
-		
-		
-		Orders order = new Orders();
-		order.addProducts(shoes, 1);
-		order.addProducts(hat, 2);
-		order.addProducts(shirt, 3);
-		//dao get product with productID
-		//not dao , add product to order
-		
-		
+//		Store s1 = new Store(1,2);
+//		Store s2 = new Store(2,4);
+//		Store s3 = new Store(3,5);
+//		Store s4 = new Store(4,6);
+//		Store s5 = new Store(5,8);
+//	
+//		
+//		int q1 = Integer.parseInt(quantity[0]);
+//		int q2 = Integer.parseInt(quantity[1]);
+//		
+//		
+//		Orders order = new Orders(2);
+//		order.addProducts(shoes, 1);
+//		order.addProducts(hat, 2);
+//		order.addProducts(shirt, 3);
+
+		Store s1 = null;
+		Store s2 = null;
+		Store s3 = null;
+		Store s4 = null;
+		Store s5 = null;
+		try {
+			s1 = StoreDAO.getInstance().getById(1);
+			s2 = StoreDAO.getInstance().getById(2);
+			s3 = StoreDAO.getInstance().getById(3);
+			s4 = StoreDAO.getInstance().getById(4);
+			s5 = StoreDAO.getInstance().getById(6);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+
+		Orders order = null;
+		try {
+			order = OrdersDAO.getInstance().getById(3);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+
 		ksession.insert(s1);
 		ksession.insert(s2);
 		ksession.insert(s3);
@@ -127,8 +155,8 @@ public class Allocate {
 		ksession.insert(order);
 
 		ksession.fireAllRules();
-		
-		Collection<Package> packages = (Collection<Package>) ksession.getObjects( new ClassObjectFilter(Package.class) );
+
+		Collection<PackageE> packages = (Collection<PackageE>) ksession.getObjects( new ClassObjectFilter(PackageE.class) );
 		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 
 		System.out.println("---------------------------------");
@@ -136,16 +164,16 @@ public class Allocate {
 		System.out.println(Arrays.toString(packages.toArray()));
 		System.out.println("store list: " + stores.size());
 		System.out.println(Arrays.toString(stores.toArray()));
-			
+
 		System.out.println("end");
-		
+
 		// Remove comment if using logging
 		logger.close();
 
 		ksession.dispose();
 
 	}
-	
+
 	private static void setUpProduct(Product p, String name, double price) {
 		/*p.setPrice(price);
 		p.setProductName(name);*/

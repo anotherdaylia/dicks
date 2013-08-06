@@ -219,6 +219,5 @@ public class Product implements java.io.Serializable {
 		if (!(obj instanceof Product)) return false;
 		Product p = (Product) obj;
 		return p.prodId == this.prodId;
-
 	}
 }

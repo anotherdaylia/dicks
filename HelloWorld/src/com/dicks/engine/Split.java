@@ -20,20 +20,33 @@ import org.kie.internal.logger.KnowledgeRuntimeLogger;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
-import com.dicks.engine.Orders;
+import com.dicks.pojo.Orders;
+import com.dicks.dao.OrdersDAO;
 import com.dicks.engine.PackageTest;
 import com.dicks.engine.PackageTestResult;
 import com.dicks.engine.Parcel;
-import com.dicks.engine.Product;
-import com.dicks.engine.Package;
+import com.dicks.pojo.Product;
+import com.dicks.engine.PackageE;
 import com.dicks.engine.Store;
 import com.dicks.engine.Util;
 
 public class Split {
 	public static void main(String[] args) {	
-		Product shoes = new Product(1+"", "shoes", 50 , 10, 2);
-		Product hat = new Product(2+"", "hat", 10 , 4, 2);
-		Product shirt = new Product(3+"", "shirt", 20 , 8 ,5);
+		Product shoes = new Product();
+		shoes.setProdName("shoes");
+		shoes.setFactoryPrice(50);
+		shoes.setWeight(10);
+		shoes.setWidth(2.0);
+		Product hat = new Product();
+		hat.setProdName("hat");
+		hat.setFactoryPrice(10);
+		hat.setWeight(4);
+		hat.setWidth(2.0);
+		Product shirt = new Product();
+		shirt.setProdName("shirt");
+		shirt.setFactoryPrice(20);
+		shirt.setWeight(8);
+		shirt.setWidth(5.0);
 		Product[] a = {shoes, hat, shirt};
 		Combination[][] matrix = setUpMatrix(a);
 		//printMatrix(matrix);
@@ -45,14 +58,17 @@ public class Split {
 //			printCombinations(a.length, i, a, matrix);
 //		}
 		
-		Orders order = new Orders(2);
-		order.addProducts(shoes, 1);
-		order.addProducts(hat, 1);
-		order.addProducts(shirt, 1);
+		Orders order = null;
+		try {
+			order = OrdersDAO.getInstance().getById(2);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		
-		Package p1 = new Package(order);
+		PackageE p1 = new PackageE(order);
 		p1.addProduct(shoes);
-		Package p2 = new Package(order);
+		PackageE p2 = new PackageE(order);
 		p2.addProduct(hat);
 		p2.addProduct(shirt);
 //		p2.addProduct(shoes);
@@ -163,7 +179,7 @@ public class Split {
 //		}		
 	}
 	
-	public static ArrayList<PackageTest> getTests(Package pack) {
+	public static ArrayList<PackageTest> getTests(PackageE pack) {
 		Product[] products = pack.getProducts().toArray(new Product[pack.getProducts().size()]);
 		Combination[][] matrix = setUpMatrix(products);
 		System.out.println("split num: " + pack.getSplitNum());
@@ -179,12 +195,12 @@ public class Split {
 		ArrayList<PackageTest> packageTests = new ArrayList<PackageTest>();
 		
 		for (int i = 0; i < list.size(); i++) {
-			PackageTest packageTest = new PackageTest(pack, pack.getOrder().getZoneID());
+			PackageTest packageTest = new PackageTest(pack);
 			Bag bag = list.get(i);
 			ArrayList<ArrayList<Product>> allocations = bag.list;
 			
 			for (int j = 0; j < allocations.size(); j++) {
-				Parcel parcel = new Parcel(pack.getZoneID());
+				Parcel parcel = new Parcel(pack);
 				for (Product product : allocations.get(j)) {
 					parcel.addProduct(product);
 				}
@@ -285,8 +301,8 @@ public class Split {
 		Collections.sort(testStores, new Comparator<Store>() {
 			@Override
 			public int compare(Store arg0, Store arg1) {
-				return (int) (Util.getShippingCosts(arg0.getZoneID(), order.getZoneID()) 
-								- Util.getShippingCosts(arg1.getZoneID(), order.getZoneID())); 
+				return (int) (Util.getShippingCosts() 
+								- Util.getShippingCosts()); 
 			}
 			
 		});
@@ -296,7 +312,7 @@ public class Split {
 		Store source = testStores.get(0);
 		//System.out.println("source: " + source.getZoneID());
 		r.setSource(source);
-		r.setCost(Util.getShippingCosts(source.getZoneID(), order.getZoneID()));
+		r.setCost(Util.getShippingCosts());
 		return r;
 	}
 	
