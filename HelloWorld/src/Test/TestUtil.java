@@ -24,7 +24,7 @@ import com.dicks.pojo.Product;
 import com.dicks.pojo.Store;
 import com.dicks.pojo.Vendor;
 
-import com.dicks.engine.Package;
+import com.dicks.engine.PackageE;
 import com.dicks.engine.Parcel;
 import com.dicks.engine.Util;
 import java.sql.Timestamp;

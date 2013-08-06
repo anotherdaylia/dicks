@@ -4,7 +4,7 @@ package com.dicks.rules
 //list any import classes here.
 import com.dicks.pojo.Orders
 import com.dicks.pojo.Store
-import com.dicks.engine.Package
+import com.dicks.engine.PackageE
 import com.dicks.pojo.Product
 import com.dicks.engine.PackageTestResult
 
@@ -81,7 +81,7 @@ rule  "Mininum Packagethreshold0"
 //        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
         $i : Product(weight >= 10)
     then     
-    	Package p = new Package($o);
+    	PackageE p = new PackageE($o);
     	p.addProduct($i);
     	insert (p);    
         $i.minPackage();
@@ -94,9 +94,9 @@ rule "insert package for remaining products"
 	when
 		$i : Product()
 		$o : Orders()
-		not Package(isForRemain())
+		not PackageE(isForRemain())
 	then
-		Package p = new Package($o);
+		PackageE p = new PackageE($o);
 		p.setForRemain(true);
 		insert (p);
 		System.out.println("insert new package");
@@ -109,7 +109,7 @@ rule "wrap up remaining products"
 	agenda-group "first"
 	when
 		$i : Product()
-		$p : Package(isForRemain())
+		$p : PackageE(isForRemain())
 	then
 		$p.addProduct($i);
 		retract($i);

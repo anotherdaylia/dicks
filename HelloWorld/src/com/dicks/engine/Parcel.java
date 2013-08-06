@@ -11,7 +11,7 @@ public class Parcel {
 //	private int deliveryDays;
 //	private int zoneID;
 //	private String source;
-	private Package pack;
+	private PackageE pack;
 	
 //	public int getPackageTestID() {
 //		return packageTestID;
@@ -20,7 +20,7 @@ public class Parcel {
 //		this.packageTestID = packageTestID;
 //	}
 	
-	public Parcel(Package pack) {
+	public Parcel(PackageE pack) {
 		this.setPack(pack);
 	}
 	
@@ -88,11 +88,11 @@ public class Parcel {
 			return sb.toString();
 		}
 
-	public Package getPack() {
+	public PackageE getPack() {
 		return pack;
 	}
 
-	public void setPack(Package pack) {
+	public void setPack(PackageE pack) {
 		this.pack = pack;
 	}
 }

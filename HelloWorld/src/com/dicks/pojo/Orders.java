@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.dicks.engine.Package;
+import com.dicks.engine.PackageE;
 import com.dicks.pojo.Product;
 
 /**
@@ -31,7 +31,7 @@ public class Orders implements java.io.Serializable {
 	private Set orderDetails = new HashSet(0);
 
 //	private HashMap<Product, Integer> productList = new HashMap<Product, Integer>();
-	private ArrayList<Package> packages = new ArrayList<Package>();
+	private ArrayList<PackageE> packages = new ArrayList<PackageE>();
 	
 	// Constructors
 

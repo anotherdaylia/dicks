@@ -3,11 +3,10 @@ package com.dicks.rules;
 
 //list any import classes here.
 import com.dicks.pojo.Orders
-
+import com.dicks.pojo.Product
 import com.dicks.pojo.Store
 
-import com.dicks.engine.Package
-import com.dicks.pojo.Product
+import com.dicks.engine.PackageE
 import com.dicks.engine.PackageTestResult
 import java.util.ArrayList
 import java.*;
@@ -98,7 +97,7 @@ rule  "special 1"
         //eval(!$s.checkProduct($i,">",1))
 	then
 		System.out.println("product "+$i.getProdId()+" get inserted into a new package by speical route rule");
-        Package p = new Package($o);
+        PackageE p = new PackageE($o);
         p.addProduct($i);
         insert (p);
         p.setAllocated(true); 
@@ -114,7 +113,7 @@ rule  "Mininum Packagethreshold0"
 //        $i : Product(weight >= 10 && special == null)
         $i : Product(weight >= 10)
     then     
-    	Package p = new Package($o);
+    	PackageE p = new PackageE($o);
     	p.addProduct($i);
     	insert (p);    
         $i.minPackage();
@@ -127,9 +126,9 @@ rule "insert package for remaining products"
 	when
 		$i : Product()
 		$o : Orders()
-		not Package(isForRemain())
+		not PackageE(isForRemain())
 	then
-		Package p = new Package($o);
+		PackageE p = new PackageE($o);
 		p.setForRemain(true);
 		insert (p);
 		System.out.println("insert new package");
@@ -142,7 +141,7 @@ rule "wrap up remaining products"
 	//agenda-group "first8"
 	when
 		$i : Product()
-		$p : Package(isForRemain())
+		$p : PackageE(isForRemain())
 	then
 		$p.addProduct($i);
 		retract($i);

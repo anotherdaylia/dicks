@@ -6,7 +6,7 @@ import java.util.Arrays;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
 
-public class Package {
+public class PackageE {
 	private ArrayList<Product> products = new ArrayList<Product>();
 	private int splitNum;
 	private Orders order;
@@ -15,7 +15,7 @@ public class Package {
 	private boolean splitable = true;
 //	private int zoneID;
 	
-	public Package(Orders order) {
+	public PackageE(Orders order) {
 		this.order = order;
 	}
 	

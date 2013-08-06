@@ -26,7 +26,7 @@ import com.dicks.engine.PackageTest;
 import com.dicks.engine.PackageTestResult;
 import com.dicks.engine.Parcel;
 import com.dicks.pojo.Product;
-import com.dicks.engine.Package;
+import com.dicks.engine.PackageE;
 import com.dicks.engine.Store;
 import com.dicks.engine.Util;
 
@@ -66,9 +66,9 @@ public class Split {
 			e.printStackTrace();
 		}	
 		
-		Package p1 = new Package(order);
+		PackageE p1 = new PackageE(order);
 		p1.addProduct(shoes);
-		Package p2 = new Package(order);
+		PackageE p2 = new PackageE(order);
 		p2.addProduct(hat);
 		p2.addProduct(shirt);
 //		p2.addProduct(shoes);
@@ -179,7 +179,7 @@ public class Split {
 //		}		
 	}
 	
-	public static ArrayList<PackageTest> getTests(Package pack) {
+	public static ArrayList<PackageTest> getTests(PackageE pack) {
 		Product[] products = pack.getProducts().toArray(new Product[pack.getProducts().size()]);
 		Combination[][] matrix = setUpMatrix(products);
 		System.out.println("split num: " + pack.getSplitNum());

@@ -2,11 +2,15 @@
 package com.dicks.rules
 
 //list any import classes here.
-import com.dicks.engine.Orders
-import com.dicks.engine.Store
-import com.dicks.engine.Package
-import com.dicks.engine.Product
+import com.dicks.pojo.Orders
+import com.dicks.pojo.Store
+import com.dicks.pojo.Product
+
+import com.dicks.engine.PackageE
 import com.dicks.engine.PackageTestResult
+
+import com.dicks.dao.InventoryDAO;
+
 import java.util.ArrayList
 import java.*;
 import java.util.HashMap
@@ -48,7 +52,7 @@ rule "filter stock"
     when    	
     	$item : Product()
     	$store : Store()
-    	eval(!$store.containProduct($item))
+    	eval(!InventoryDAO.getInstance().containProduct($store, $item))
     then
         retract($store);
 end
@@ -74,14 +78,14 @@ rule  "special 1"
        
 //        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
         $o : Orders()
-        $i : Product(productID == 5) 
-        $store : Store(storeID == 5)
-        eval($store.containProduct($i))
+        $i : Product(prodId == 5) 
+        $store : Store(storeId == 5)
+        eval(!InventoryDAO.getInstance().containProduct($store, $i))
         
         
     then     
     	System.out.println("special routes allocated");
-    	Package p = new Package($o);
+    	PackageE p = new PackageE($o);
     	p.addProduct($i);
     	insert (p);  
     	p.setAllocated(true); 
@@ -99,7 +103,7 @@ rule  "Mininum Packagethreshold0"
         $i : Product(weight >= 10 && special == null)
         
     then     
-    	Package p = new Package($o);
+    	PackageE p = new PackageE($o);
     	p.addProduct($i);
     	insert (p);    
         $i.minPackage();
@@ -112,9 +116,9 @@ rule "insert package for remaining products"
 	when
 		$i : Product()
 		$o : Orders()
-		not Package(isForRemain())
+		not PackageE(isForRemain())
 	then
-		Package p = new Package($o);
+		PackageE p = new PackageE($o);
 		p.setForRemain(true);
 		insert (p);
 		System.out.println("insert new package");
@@ -127,7 +131,7 @@ rule "wrap up remaining products"
 	agenda-group "first"
 	when
 		$i : Product()
-		$p : Package(isForRemain())
+		$p : PackageE(isForRemain())
 	then
 		$p.addProduct($i);
 		retract($i);
@@ -214,7 +218,7 @@ rule "summarize"
     when
         store : Store()
     then
-        System.out.println(store.getZoneID());        
+        System.out.println(store.getStoreId());        
 end
 
 rule "summarizeProduct"  
@@ -222,13 +226,13 @@ rule "summarizeProduct"
     when
         p : Product()
     then
-        System.out.println(p.getProductName());        
+        System.out.println(p.getProdName());        
 end
 
 rule "summarizePackage"
 //	agenda-group "report"   
     when
-        $p : Package()
+        $p : PackageE()
     then
         System.out.println($p);        
 end
