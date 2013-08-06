@@ -46,4 +46,6 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 		}
 		return skuArray;
 	}
+	
+	public void getProdCategoryList()
 }
