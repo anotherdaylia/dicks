@@ -21,6 +21,7 @@ import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
 import com.dicks.pojo.Orders;
+import com.dicks.dao.OrdersDAO;
 import com.dicks.engine.PackageTest;
 import com.dicks.engine.PackageTestResult;
 import com.dicks.engine.Parcel;
@@ -57,10 +58,13 @@ public class Split {
 //			printCombinations(a.length, i, a, matrix);
 //		}
 		
-		Orders order = new Orders();
-		order.addProducts(shoes, 1);
-		order.addProducts(hat, 1);
-		order.addProducts(shirt, 1);
+		Orders order = null;
+		try {
+			order = OrdersDAO.getInstance().getById(2);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		
 		Package p1 = new Package(order);
 		p1.addProduct(shoes);

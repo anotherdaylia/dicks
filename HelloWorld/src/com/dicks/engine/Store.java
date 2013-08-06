@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.dicks.dao.OrderDetailDAO;
+import com.dicks.dao.OrdersDAO;
 import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
@@ -37,7 +38,8 @@ public class Store {
 		for (OrderDetail d : details) {
 			if (!this.containProduct(d.getProduct())) notContainingNum++;
 		}
-		return notContainingNum < order.getProducts().size();
+		return notContainingNum < 
+					OrderDetailDAO.getInstance().getOrderDetailssByOrder(order.getOrderId()).size();
 	}
 	
 	public boolean containParcel(Parcel parcel) {

@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.dicks.dao.OrdersDAO;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
 
@@ -38,10 +39,13 @@ public class SplitGenerater {
 		Product hat = new Product(2+"", "hat", 10 , 4, 2);
 		Product shirt = new Product(3+"", "shirt", 20 , 8 ,5);
 		
-		Orders order = new Orders();
-		order.addProducts(shoes, 1);
-		order.addProducts(hat, 1);
-		order.addProducts(shirt, 1);
+		Orders order = null;
+		try {
+			order = OrdersDAO.getInstance().getById(2);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		
 		Package p1 = new Package(order);
 		p1.addProduct(shoes);

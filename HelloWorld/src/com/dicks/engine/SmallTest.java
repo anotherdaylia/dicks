@@ -15,6 +15,7 @@ import org.kie.internal.logger.KnowledgeRuntimeLogger;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
+import com.dicks.dao.OrdersDAO;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
 
@@ -87,10 +88,13 @@ public class SmallTest {
 		Store s4 = new Store(4,6);
 		Store s5 = new Store(5,8);
 	
-		Orders order = new Orders();
-		order.addProducts(shoes, 1);
-		order.addProducts(hat, 1);
-		order.addProducts(shirt, 1);	
+		Orders order = null;
+		try {
+			order = OrdersDAO.getInstance().getById(2);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		
 //		Orders order = new Order(2);
 		//dao get product with productID
@@ -103,7 +107,7 @@ public class SmallTest {
 		ksession.insert(s3);
 		ksession.insert(s4);
 		ksession.insert(s5);
-		ksession.insert(order);
+		if (order != null) ksession.insert(order);
 
 		ksession.fireAllRules();
 		
