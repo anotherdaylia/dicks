@@ -159,10 +159,10 @@ public class Orders implements java.io.Serializable {
 		this.orderDetails = orderDetails;
 	}
 	
-	public HashMap<Product, Integer> getProductList() {
-		System.out.println(productList);
-		return productList;
-	}
+//	public HashMap<Product, Integer> getProductList() {
+//		System.out.println(productList);
+//		return productList;
+//	}
 	public void setProductList(HashMap<Product, Integer> productList) {
 		this.productList = productList;
 	}

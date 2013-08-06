@@ -2,8 +2,11 @@ package com.dicks.engine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
+import com.dicks.dao.OrderDetailDAO;
+import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
 
@@ -28,11 +31,11 @@ public class Store {
 		stock.get(product).instockNum--;
 	}
 	
-	public boolean containProductsInOrder(Orders order) {
-		Set<Product> products = order.getProductList().keySet();
+	public boolean containProductsInOrder(Orders order) throws Exception {
+		List<OrderDetail> details = OrderDetailDAO.getInstance().getOrderDetailssByOrder(order.getOrderId());
 		int notContainingNum = 0;
-		for (Product p : products) {
-			if (!this.containProduct(p)) notContainingNum++;
+		for (OrderDetail d : details) {
+			if (!this.containProduct(d.getProduct())) notContainingNum++;
 		}
 		return notContainingNum < order.getProducts().size();
 	}
@@ -171,8 +174,6 @@ public class Store {
 			
 			return this.checkProduct(product, operator, mar);
 		}
-		
-		
 		
 		else{
 			return false;

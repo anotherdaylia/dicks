@@ -9,19 +9,19 @@ public class PackageTest {
 	private boolean tested;
 	private ArrayList<Parcel> parcels = new ArrayList<Parcel>();
 	private Package pack;
-	private int zoneID;
+//	private int zoneID;
 	
-	public PackageTest(Package pack, int zoneID) {
+	public PackageTest(Package pack) {
 		this.pack = pack;
 	}
 	
-	public int getZoneID() {
-		return zoneID;
-	}
-
-	public void setZoneID(int zoneID) {
-		this.zoneID = zoneID;
-	}
+//	public int getZoneID() {
+//		return zoneID;
+//	}
+//
+//	public void setZoneID(int zoneID) {
+//		this.zoneID = zoneID;
+//	}
 	
 	public boolean isTested() {
 		return tested;

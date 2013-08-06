@@ -25,10 +25,11 @@ public class OrderDetailDAO extends BaseDao<OrderDetail> {
 		OrderDetailDAO.instance = instance;
 	}
 
-	public ArrayList<OrderDetail> getProductsByOrder(int orderID) throws Exception {
+	public ArrayList<OrderDetail> getOrderDetailssByOrder(int orderID) throws Exception {
 		List<Criterion> criterions = new ArrayList<Criterion>();
 		Criterion criterion = Restrictions.eq("orderID", orderID);
 		criterions.add(criterion);
 		return (ArrayList<OrderDetail>) super.getList(criterions);
 	}
+	
 }

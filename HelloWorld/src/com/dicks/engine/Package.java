@@ -13,19 +13,19 @@ public class Package {
 	private boolean forRemain;
 	private boolean allocated;
 	private boolean splitable = true;
-	private int zoneID;
+//	private int zoneID;
 	
 	public Package(Orders order) {
 		this.order = order;
 	}
 	
-	public int getZoneID() {
-		return zoneID;
-	}
-
-	public void setZoneID(int zoneID) {
-		this.zoneID = zoneID;
-	}
+//	public int getZoneID() {
+//		return zoneID;
+//	}
+//
+//	public void setZoneID(int zoneID) {
+//		this.zoneID = zoneID;
+//	}
 	
 	// n is index
 	public Product getProduct(int index) {

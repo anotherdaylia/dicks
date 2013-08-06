@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.dicks.pojo.Product;
+import com.dicks.pojo.Orders;
 
 public class SplitGenerater {
 	private static HashMap<String,String> combinations;
@@ -37,7 +38,7 @@ public class SplitGenerater {
 		Product hat = new Product(2+"", "hat", 10 , 4, 2);
 		Product shirt = new Product(3+"", "shirt", 20 , 8 ,5);
 		
-		Orders order = new Orders(2);
+		Orders order = new Orders();
 		order.addProducts(shoes, 1);
 		order.addProducts(hat, 1);
 		order.addProducts(shirt, 1);
@@ -67,13 +68,13 @@ public class SplitGenerater {
 		ArrayList<PackageTest> results = new ArrayList<PackageTest>(methods.length);
 		
 		for (int k = 0; k < methods.length; k++) {
-			PackageTest t = new PackageTest(pack, pack.getOrder().getZoneID());
+			PackageTest t = new PackageTest(pack);
 			String[] packageMethod = methods[k].split("/");
 			ArrayList<Parcel> parcels = new ArrayList<Parcel>(packageMethod.length);
 			t.setParcels(parcels);
 			
 			for (int l = 0; l < packageMethod.length; l++) {
-				Parcel parcel = new Parcel(pack, pack.getZoneID());
+				Parcel parcel = new Parcel(pack);
 				String[] itemMethod = packageMethod[l].split(",");
 				
 				for (int m = 0; m < itemMethod.length; m++) {
