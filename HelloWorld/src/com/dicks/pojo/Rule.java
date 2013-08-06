@@ -207,11 +207,11 @@ public class Rule implements java.io.Serializable {
 		this.ruleCates = ruleCates;
 	}
 
-	public boolean isSpecial() {
+	public boolean GetIsSpecial() {
 		return isSpecial;
 	}
 
-	public void setSpecial(boolean isSpecial) {
+	public void setIsSpecial(boolean isSpecial) {
 		this.isSpecial = isSpecial;
 	}
 

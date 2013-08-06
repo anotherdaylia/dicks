@@ -60,7 +60,7 @@ $( "#datepickerend" ).datepicker();
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
             <ul class="nav-two" id="navone">
-                <li class=""><a href="<%=basePath%>gotocategorylist.action">Category List</a><span class="normal">&nbsp;</span></li>
+                <li class=""><a href="<%=basePath%>goToCategoryList.action">Category List</a><span class="normal">&nbsp;</span></li>
                 <li class=""><a href="<%=basePath%>gotonewbizrulelist.action">New Category</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
