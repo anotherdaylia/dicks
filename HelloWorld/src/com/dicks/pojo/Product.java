@@ -40,11 +40,11 @@ public class Product implements java.io.Serializable {
 	public Product(){
 	}
 
-	public boolean isSpecial() {
+	public boolean getIsSpecial() {
 		return isSpecial;
 	}
 
-	public void setSpecial(boolean isSpecial) {
+	public void setIsSpecial(boolean isSpecial) {
 		this.isSpecial = isSpecial;
 	}
 

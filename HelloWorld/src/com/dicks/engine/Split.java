@@ -21,85 +21,53 @@ import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
 import com.dicks.pojo.Orders;
+import com.dicks.dao.InventoryDAO;
 import com.dicks.dao.OrdersDAO;
+import com.dicks.dao.ProductDAO;
+import com.dicks.dao.StoreDAO;
 import com.dicks.engine.PackageTest;
 import com.dicks.engine.PackageTestResult;
 import com.dicks.engine.Parcel;
 import com.dicks.pojo.Product;
 import com.dicks.engine.PackageE;
-import com.dicks.engine.Store;
+import com.dicks.pojo.Store;
 import com.dicks.engine.Util;
 
 public class Split {
 	public static void main(String[] args) {	
-		Product shoes = new Product();
-		shoes.setProdName("shoes");
-		shoes.setFactoryPrice(50);
-		shoes.setWeight(10);
-		shoes.setWidth(2.0);
-		Product hat = new Product();
-		hat.setProdName("hat");
-		hat.setFactoryPrice(10);
-		hat.setWeight(4);
-		hat.setWidth(2.0);
-		Product shirt = new Product();
-		shirt.setProdName("shirt");
-		shirt.setFactoryPrice(20);
-		shirt.setWeight(8);
-		shirt.setWidth(5.0);
-		Product[] a = {shoes, hat, shirt};
-		Combination[][] matrix = setUpMatrix(a);
-		//printMatrix(matrix);
-				
-		printMatrix(matrix);
+
+		Store s1 = null;
+		Store s2 = null;
+		Store s3 = null;
+		Store s4 = null;
+		Store s5 = null;
 		
-//		for (int i = 1; i < a.length; i++) {
-//			//System.out.println(i);
-//			printCombinations(a.length, i, a, matrix);
-//		}
-		
+		Product shoes = null;
+		Product shirt = null;
+		Product hat = null;
+		try {
+			s1 = StoreDAO.getInstance().getById(1);
+			s2 = StoreDAO.getInstance().getById(2);
+			s3 = StoreDAO.getInstance().getById(3);
+			s4 = StoreDAO.getInstance().getById(4);
+			s5 = StoreDAO.getInstance().getById(6);
+			
+			ProductDAO productDAO = ProductDAO.getInstance();
+			shoes = productDAO.getById(5);
+			shirt = productDAO.getById(7);
+			hat = productDAO.getById(6);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
 		Orders order = null;
 		try {
-			order = OrdersDAO.getInstance().getById(2);
+			order = OrdersDAO.getInstance().getById(3);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		
-		PackageE p1 = new PackageE(order);
-		p1.addProduct(shoes);
-		PackageE p2 = new PackageE(order);
-		p2.addProduct(hat);
-		p2.addProduct(shirt);
-//		p2.addProduct(shoes);
-		
-		Store s1 = new Store(1, 2);
-		Store s2 = new Store(2, 4);
-		Store s3 = new Store(3, 5);
-		Store s4 = new Store(4, 6);
-		Store s5 = new Store(5, 8);
-	
-		s1.addItem(shoes, 5, 5);
-		s1.addItem(hat, 5, 5);
-		s1.addItem(shirt, 5, 5);
-		s2.addItem(shoes, 7, 5);
-		s2.addItem(hat, 5, 5);
-		s2.addItem(shirt, 6, 5);
-		s3.addItem(shoes, 7, 5);
-		s3.addItem(hat, 6, 5);
-		s3.addItem(shirt, 5, 5);
-		s4.addItem(shoes, 7, 5);
-		s4.addItem(hat, 5, 5);
-		s4.addItem(shirt, 5, 5);
-		s5.addItem(shoes, 7, 5);
-		s5.addItem(hat, 5, 5);
-		s5.addItem(shirt, 7, 5);
-		
-//		order.addStore(s1);
-//		order.addStore(s2);
-//		order.addStore(s3);
-//		order.addStore(s4);
-//		order.addStore(s5);
 		
 		SplitGenerater.cache(10);
 		SplitGenerater.buildIndex(10);
@@ -127,25 +95,17 @@ public class Split {
 		// Check the builder for errors
 
 		if (kbuilder.hasErrors()) {
-
 			System.out.println(kbuilder.getErrors().toString());
-
 			throw new RuntimeException("Unable to compile \"evaluate.drl\".");
-
 		}
 
 
 		// get the compiled packages (which are serializable)
-
 		final Collection<KnowledgePackage> pkgs = kbuilder.getKnowledgePackages();
 
-
 		// add the packages to a KnowledgeBase (deploy the knowledge packages).
-
 		final KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
-
 		kbase.addKnowledgePackages(pkgs);
-
 
 		final StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 		// setup the audit logging
@@ -155,6 +115,12 @@ public class Split {
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 
+		PackageE p1 = new PackageE(order);
+		p1.addProduct(shoes);
+		PackageE p2 = new PackageE(order);
+		p2.addProduct(shirt);
+		p2.addProduct(hat);
+		
 		ksession.insert(s1);
 		ksession.insert(s2);
 		ksession.insert(s3);
@@ -283,14 +249,14 @@ public class Split {
 //		return r;
 //	}
 	
-	public static PackageTestResult getTestResult(final Orders order, Parcel test, ArrayList<Store> stores) {
+	public static PackageTestResult getTestResult(final Orders order, Parcel test, ArrayList<Store> stores) throws Exception {
 		ArrayList<Store> testStores = new ArrayList<Store>();
 		for (int j = 0; j < stores.size(); j++) {
 			Store s = stores.get(j);
-			if (s.containProducts(test.getProductList())) {
+			if (InventoryDAO.getInstance().containAllroductsParcel(s, test)) {
 				testStores.add(s);
 			} else {
-				System.out.println("filter out: " + s.getZoneID());
+				System.out.println("filter out: " + s.getStoreId());
 			}
 		}
 		

@@ -3,7 +3,7 @@ package com.dicks.engine;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.dicks.engine.Store;
+import com.dicks.pojo.Store;
 
 public class PackageTestResult {
 	private PackageTest test;

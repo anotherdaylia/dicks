@@ -17,7 +17,7 @@
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>4</factId>
-  <objectToString>: 4</objectToString>
+  <objectToString>store: 4</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
@@ -26,250 +26,298 @@
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
-  <activationId>Explode Cart [6, 7]</activationId>
-  <rule>Explode Cart</rule>
-  <declarations>$item=shoes(7); $order=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
+  <activationId>Explode Package [6]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
-  <activationId>Explode Cart [6, 8]</activationId>
-  <rule>Explode Cart</rule>
-  <declarations>$item=hat(8); $order=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
+  <activationId>for splitable packages [6]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
-  <activationId>Explode Cart [6, 9]</activationId>
-  <rule>Explode Cart</rule>
-  <declarations>$item=shirt(9); $order=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
+  <activationId>add splits [6]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>6</factId>
-  <objectToString>com.dicks.pojo.Orders@6e2c5444</objectToString>
+  <objectToString>[shoes]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>Explode Package [7]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>for splitable packages [7]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>add splits [7]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>7</factId>
+  <objectToString>[shirt, hat]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
-  <activationId>Explode Cart [6, 9]</activationId>
-  <rule>Explode Cart</rule>
-  <declarations>$item=shirt(9); $order=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
+  <activationId>Explode Package [7]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>Explode Package [7]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>for splitable packages [7]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
-  <activationId>Mininum Packagethreshold0 [6, 10]</activationId>
-  <rule>Mininum Packagethreshold0</rule>
-  <declarations>$i=shirt(10); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
+  <activationId>generate test results [8, 7, 9]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[store: 1, store: 2, store: 3, store: 4, store: 6](9); $test=Package test: [[Parcel: [hat (1) shirt (1) ]]](8); $pack=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>8</factId>
+  <objectToString>Package test: [[Parcel: [hat (1) shirt (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>for splitable packages [7]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>for splitable packages [6]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
-  <activationId>insert package for remaining products [10, 6]</activationId>
-  <rule>insert package for remaining products</rule>
-  <declarations>$i=shirt(10); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
+  <activationId>generate test results [10, 6, 11]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[store: 1, store: 2, store: 3, store: 4, store: 6](11); $test=Package test: [[Parcel: [shoes (1) ]]](10); $pack=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>10</factId>
-  <objectToString>shirt</objectToString>
+  <objectToString>Package test: [[Parcel: [shoes (1) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
-  <activationId>Explode Cart [6, 9]</activationId>
-  <rule>Explode Cart</rule>
-  <declarations>$item=shirt(9); $order=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
+  <activationId>for splitable packages [6]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
-  <activationId>Mininum Packagethreshold0 [6, 10]</activationId>
-  <rule>Mininum Packagethreshold0</rule>
-  <declarations>$i=shirt(10); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>summarizePackage1 [11]</activationId>
-  <rule>summarizePackage1</rule>
-  <declarations>$p=[shirt](11)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>1</type>
-  <factId>11</factId>
-  <objectToString>[shirt]</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>5</type>
-  <activationId>insert package for remaining products [10, 6]</activationId>
-  <rule>insert package for remaining products</rule>
-  <declarations>$i=shirt(10); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>3</type>
-  <factId>10</factId>
-  <objectToString>shirt</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>Mininum Packagethreshold0 [6, 10]</activationId>
-  <rule>Mininum Packagethreshold0</rule>
-  <declarations>$i=shirt(10); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>Explode Cart [6, 8]</activationId>
-  <rule>Explode Cart</rule>
-  <declarations>$item=hat(8); $order=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>Mininum Packagethreshold0 [6, 12]</activationId>
-  <rule>Mininum Packagethreshold0</rule>
-  <declarations>$i=hat(12); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>insert package for remaining products [12, 6]</activationId>
-  <rule>insert package for remaining products</rule>
-  <declarations>$i=hat(12); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
+  <activationId>generate test results [10, 6, 11]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[store: 1, store: 2, store: 3, store: 4, store: 6](11); $test=Package test: [[Parcel: [shoes (1) ]]](10); $pack=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>12</factId>
-  <objectToString>hat</objectToString>
+  <objectToString>Package result:  result: [Parcel: [shoes (1) ], source: store: 1, cost: 0.830473936882584], Total cost: 0.830473936882584</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>Explode Cart [6, 8]</activationId>
-  <rule>Explode Cart</rule>
-  <declarations>$item=hat(8); $order=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>Mininum Packagethreshold0 [6, 12]</activationId>
-  <rule>Mininum Packagethreshold0</rule>
-  <declarations>$i=hat(12); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
-  <activationId>summarizePackage1 [13]</activationId>
-  <rule>summarizePackage1</rule>
-  <declarations>$p=[hat](13)</declarations>
+  <activationId>generate test results [10, 6, 11]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[store: 1, store: 2, store: 3, store: 4, store: 6](11); $test=Package test: [[Parcel: [shoes (1) ]]](10); $pack=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>1</type>
-  <factId>13</factId>
-  <objectToString>[hat]</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>5</type>
-  <activationId>insert package for remaining products [12, 6]</activationId>
-  <rule>insert package for remaining products</rule>
-  <declarations>$i=hat(12); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>3</type>
-  <factId>12</factId>
-  <objectToString>hat</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>Mininum Packagethreshold0 [6, 12]</activationId>
-  <rule>Mininum Packagethreshold0</rule>
-  <declarations>$i=hat(12); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>Explode Cart [6, 7]</activationId>
-  <rule>Explode Cart</rule>
-  <declarations>$item=shoes(7); $order=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
+  <activationId>add splits [6]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
-  <activationId>Mininum Packagethreshold0 [6, 14]</activationId>
-  <rule>Mininum Packagethreshold0</rule>
-  <declarations>$i=shoes(14); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
+  <activationId>get to evaluate [6]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
-  <activationId>insert package for remaining products [14, 6]</activationId>
-  <rule>insert package for remaining products</rule>
-  <declarations>$i=shoes(14); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
+  <activationId>evaluate package results [6, 13]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[Package result:  result: [Parcel: [shoes (1) ], source: store: 1, cost: 0.830473936882584], Total cost: 0.830473936882584](13); $p=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
-  <type>1</type>
-  <factId>14</factId>
-  <objectToString>shoes</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>Explode Cart [6, 7]</activationId>
-  <rule>Explode Cart</rule>
-  <declarations>$item=shoes(7); $order=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>Mininum Packagethreshold0 [6, 14]</activationId>
-  <rule>Mininum Packagethreshold0</rule>
-  <declarations>$i=shoes(14); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>summarizePackage1 [15]</activationId>
-  <rule>summarizePackage1</rule>
-  <declarations>$p=[shoes](15)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>1</type>
-  <factId>15</factId>
+  <type>2</type>
+  <factId>6</factId>
   <objectToString>[shoes]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>5</type>
-  <activationId>insert package for remaining products [14, 6]</activationId>
-  <rule>insert package for remaining products</rule>
-  <declarations>$i=shoes(14); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
+  <activationId>generate test results [10, 6, 11]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[store: 1, store: 2, store: 3, store: 4, store: 6](11); $test=Package test: [[Parcel: [shoes (1) ]]](10); $pack=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
-  <type>3</type>
-  <factId>14</factId>
-  <objectToString>shoes</objectToString>
+  <type>2</type>
+  <factId>10</factId>
+  <objectToString>Package test: [[Parcel: [shoes (1) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
-  <activationId>Mininum Packagethreshold0 [6, 14]</activationId>
-  <rule>Mininum Packagethreshold0</rule>
-  <declarations>$i=shoes(14); $o=com.dicks.pojo.Orders@6e2c5444(6)</declarations>
+  <activationId>generate test results [10, 6, 11]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[store: 1, store: 2, store: 3, store: 4, store: 6](11); $test=Package test: [[Parcel: [shoes (1) ]]](10); $pack=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
-  <activationId>summarizePackage1 [15]</activationId>
-  <rule>summarizePackage1</rule>
-  <declarations>$p=[shoes](15)</declarations>
+  <activationId>generate test results [8, 7, 9]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[store: 1, store: 2, store: 3, store: 4, store: 6](9); $test=Package test: [[Parcel: [hat (1) shirt (1) ]]](8); $pack=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>14</factId>
+  <objectToString>Package result:  result: [Parcel: [hat (1) shirt (1) ], source: store: 1, cost: 0.21905960680486236], Total cost: 0.21905960680486236</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>Explode Package [7]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [8, 7, 9]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[store: 1, store: 2, store: 3, store: 4, store: 6](9); $test=Package test: [[Parcel: [hat (1) shirt (1) ]]](8); $pack=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>5</type>
+  <activationId>add splits [7]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>get to evaluate [7]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>evaluate package results [7, 15]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[Package result:  result: [Parcel: [hat (1) shirt (1) ], source: store: 1, cost: 0.21905960680486236], Total cost: 0.21905960680486236](15); $p=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>7</factId>
+  <objectToString>[shirt, hat]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>5</type>
+  <activationId>generate test results [8, 7, 9]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[store: 1, store: 2, store: 3, store: 4, store: 6](9); $test=Package test: [[Parcel: [hat (1) shirt (1) ]]](8); $pack=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>8</factId>
+  <objectToString>Package test: [[Parcel: [hat (1) shirt (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
-  <activationId>summarizePackage1 [15]</activationId>
-  <rule>summarizePackage1</rule>
-  <declarations>$p=[shoes](15)</declarations>
+  <activationId>generate test results [8, 7, 9]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[store: 1, store: 2, store: 3, store: 4, store: 6](9); $test=Package test: [[Parcel: [hat (1) shirt (1) ]]](8); $pack=[shirt, hat](7)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
-  <activationId>summarizePackage1 [13]</activationId>
-  <rule>summarizePackage1</rule>
-  <declarations>$p=[hat](13)</declarations>
+  <activationId>Explode Package [7]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
-  <activationId>summarizePackage1 [13]</activationId>
-  <rule>summarizePackage1</rule>
-  <declarations>$p=[hat](13)</declarations>
+  <activationId>Explode Package [7]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
-  <activationId>summarizePackage1 [11]</activationId>
-  <rule>summarizePackage1</rule>
-  <declarations>$p=[shirt](11)</declarations>
+  <activationId>get to evaluate [7]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
-  <activationId>summarizePackage1 [11]</activationId>
-  <rule>summarizePackage1</rule>
-  <declarations>$p=[shirt](11)</declarations>
+  <activationId>get to evaluate [7]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>evaluate package results [7, 15]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[Package result:  result: [Parcel: [hat (1) shirt (1) ], source: store: 1, cost: 0.21905960680486236], Total cost: 0.21905960680486236](15); $p=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>evaluate package results [7, 15]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[Package result:  result: [Parcel: [hat (1) shirt (1) ], source: store: 1, cost: 0.21905960680486236], Total cost: 0.21905960680486236](15); $p=[shirt, hat](7)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>evaluate package results [6, 13]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[Package result:  result: [Parcel: [shoes (1) ], source: store: 1, cost: 0.830473936882584], Total cost: 0.830473936882584](13); $p=[shoes](6)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>evaluate package results [6, 13]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[Package result:  result: [Parcel: [shoes (1) ], source: store: 1, cost: 0.830473936882584], Total cost: 0.830473936882584](13); $p=[shoes](6)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>get to evaluate [6]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[shoes](6)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>get to evaluate [6]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[shoes](6)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>Explode Package [6]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[shoes](6)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>Explode Package [6]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[shoes](6)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 </object-stream>
