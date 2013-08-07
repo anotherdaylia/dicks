@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<base href="<%=basePath%>">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -138,15 +148,17 @@
                 
                 <div id="block2" style="float:left;height:465px;width:600px;border:1px solid #ccc;border-radius:5px;overflow-y:scroll;">
                     <form action="#">
+                    <c:forEach var="ruleResult" items="${ruleResults}">
                         <div style="padding-left:30px;padding-top:30px;">
                             <div id="rule1">
                                 <div style="padding-bottom:30px;">
                                     <div style="float:left; width:100px">Rule 1:</div>
-                                    <div id="rule1" style="float:left; width:350px">Product Threshold</div>
+                                    <div id="rule1" style="float:left; width:350px">${ruleResult.getRuleName()}</div>
                                 </div>
-                                <div style="padding-bottom:30px;padding-left:100px;">Minimum package number changed from 1 to 2.</div>
+                                <div style="padding-bottom:30px;padding-left:100px;">${ruleResult.getResult()}</div>
                             </div>
-
+					</c:forEach>
+					<!--  
                             <div id="rule2">
                                 <div style="padding-bottom:30px;">
                                     <div style="float:left; width:100px">Rule 2:</div>
@@ -162,7 +174,7 @@
                                 </div>
                                 <div style="padding-bottom:30px;padding-left:100px;">Candidate fulfillment source count changed from 580 to 300.</div>
                             </div>
-                            
+                      -->      
                             <div style="padding-bottom:30px;">
                                 <div style="float:left; width:100px">Result:</div>
                                 <div id="result" style="float:left; width:350px" class="table-list">
