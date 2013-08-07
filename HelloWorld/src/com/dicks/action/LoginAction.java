@@ -32,7 +32,6 @@ public class LoginAction {
 		
 		ordersList = new ArrayList<Orders>();
 		ordersList = OrdersDAO.getInstance().getAllOrders();
-		System.out.println(ordersList.size());
 		return "success";
 	}
 

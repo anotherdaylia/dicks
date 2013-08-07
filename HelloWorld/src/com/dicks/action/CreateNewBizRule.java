@@ -194,6 +194,7 @@ public class CreateNewBizRule {
 		
 		String[] action = new String[1];
 		action[0] = actions;
+		System.out.println(priority);
 		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,conditions,null,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
 		
 		return "newrule";
