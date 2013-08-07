@@ -50,7 +50,7 @@
        <action name="gotonewcategory" class="com.dicks.action.Redirect" method="gotonewcategory">
           <result name="gotonewcategory">/NewCategory.jsp</result>
       </action>
-      <action name="submitnewcate" class="com.dicks.action.CreateNewCategory" method="submitNewCate">
+      <action name="submitnewcate" class="com.dicks.action.CreateCategoryAction" method="createProductCategory">
           <result name="submitnewcate">/NewCategory.jsp</result>
       </action>
    </package>

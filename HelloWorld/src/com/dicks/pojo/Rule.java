@@ -34,6 +34,32 @@ public class Rule implements java.io.Serializable {
 	/** default constructor */
 	public Rule() {
 	}
+	
+	
+
+	public Rule(String ruleName, String ruleUrl, String ruleDescr,
+			Integer priority, String flag, String type, String stage,
+			String object, String attribute, String operator, String value,
+			String route, String action, String condition, boolean isSpecial) {
+		super();
+		this.ruleName = ruleName;
+		this.ruleUrl = ruleUrl;
+		this.ruleDescr = ruleDescr;
+		this.priority = priority;
+		this.flag = flag;
+		this.type = type;
+		this.stage = stage;
+		this.object = object;
+		this.attribute = attribute;
+		this.operator = operator;
+		this.value = value;
+		this.route = route;
+		this.action = action;
+		this.condition = condition;
+		this.isSpecial = isSpecial;
+	}
+
+
 
 	/** minimal constructor */
 	public Rule(String ruleName, String ruleUrl, String ruleDescr,
@@ -59,7 +85,7 @@ public class Rule implements java.io.Serializable {
 	public Rule(String ruleName, String ruleUrl, String ruleDescr,
 			Integer priority, String flag, String type, String stage,
 			String object, String attribute, String operator, String value,
-			String route, String action, String condition, Set ruleCates) {
+			String route, String action, String condition) {
 		this.ruleName = ruleName;
 		this.ruleUrl = ruleUrl;
 		this.ruleDescr = ruleDescr;
@@ -74,7 +100,6 @@ public class Rule implements java.io.Serializable {
 		this.route = route;
 		this.action = action;
 		this.condition = condition;
-		this.ruleCates = ruleCates;
 	}
 	
 	//Joe Constructor
