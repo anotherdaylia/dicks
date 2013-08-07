@@ -136,14 +136,14 @@ public class Rule implements java.io.Serializable {
 		this.stage = stage;
 		this.condition = condition;
 		this.isSpecial = isSpecial;
-		if (type.equalsIgnoreCase("Threshold")){
+		if (type.equalsIgnoreCase("1")){
 			this.object = translate(objectBuffer, objects);
 			this.attribute = translate(attributeBuffer, attributes);
 			this.operator = translate(operatorBuffer, operators);
 			this.value = translate(valueBuffer, values);
 			this.action = translate(actionBuffer, actions);
 		}
-		else if (type.equalsIgnoreCase("Special Route")){
+		else if (type.equalsIgnoreCase("2")){
 			this.object = translate(objectBuffer, objects);
 			this.attribute = translate(attributeBuffer, attributes);
 			this.operator = translate(operatorBuffer, operators);
