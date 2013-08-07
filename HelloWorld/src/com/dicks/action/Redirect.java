@@ -1,28 +1,31 @@
 package com.dicks.action;
 
 public class Redirect {
-	public String gotorulelist(){
-		
-		
+	public String gotorulelist() {
+
 		return "gotorulelist";
 	}
-	public String gotoorderlist(){
+
+	public String gotoorderlist() {
 		return "gotoorderlist";
 	}
-	public String gotocategorylist(){
+
+	public String gotocategorylist() {
 		return "goToCategoryList";
 	}
-	public String gotonewbizrulelist(){
+
+	public String gotonewbizrulelist() {
 		return "gotonewbizrulelist";
 	}
-	public String gototemplate(){
+
+	public String gototemplate() {
 		return "gototemplate";
 	}
-	public String gotoplaceorder(){
+
+	public String gotoplaceorder() {
 		return "gotoplaceorder";
 	}
 	public String gotonewcategory(){
 		return "gotonewcategory";
 	}
 }
-
