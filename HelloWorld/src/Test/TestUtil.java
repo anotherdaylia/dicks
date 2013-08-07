@@ -107,7 +107,7 @@ public class TestUtil {
 		try {
 			Vendor vendor = VendorDAO.getInstance().getById(7);
 
-			Product product = new Product(vendor, "shirt", "123-456-789", "nike shoes", 5000, 2000, "TH-A,ST-A,SP-A");
+			Product product = new Product(vendor, "hat", "123-456-789", "nike hat", 5000, 2000, "TH-A,ST-A,SP-A");
 			ProductDAO productDao = ProductDAO.getInstance();
 			productDao.createProduct(product);
 		} catch (Exception e) {
@@ -150,7 +150,7 @@ public class TestUtil {
 		}
 	}
 
-//	@Test
+	@Test
 	public void createInventory() {
 
 		try {
@@ -166,7 +166,7 @@ public class TestUtil {
 			Store s4 = storeDAO.getById(4);
 			Store s6 = storeDAO.getById(6);
 
-			Product p = hat;
+			Product p = shirt;
 
 			Inventory in1 = new Inventory();
 			in1.setId(new InventoryId(p.getProdId(), s1.getStoreId()));
