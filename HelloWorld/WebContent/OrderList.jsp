@@ -7,6 +7,8 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
+    <% String detail = basePath + "OrderDetail.action?id=";
+    %>
      <base href="<%=basePath%>">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -37,7 +39,7 @@ $( "#datepickerend" ).datepicker();
     <div class="header">
     <div class="header-content">
         <div class="logo">
-            <a href="orderlist.html"><img src="image/logo.png" /></a></div>
+            <a href="OrderList.jsp"><img src="image/logo.png" /></a></div>
         <div class="top-nav">
             <a href="#" target="_blank" class="trackable">
             <span class="nav-icon help-icon"></span>Help</a>|
@@ -50,9 +52,9 @@ $( "#datepickerend" ).datepicker();
    
     <div class="body clearfix">
     
-    <!-- menu bar starts -->
 
     <jsp:include page="NavigationTemplate.jsp" />
+
     <!-- menu bar ends -->
 
     <!-- content starts -->
@@ -83,9 +85,10 @@ $( "#datepickerend" ).datepicker();
             <span>Start Date: <input type="text" id="datepickerstart" /></span>&nbsp;&nbsp;
             <span>End Date: <input type="text" id="datepickerend" /></span>&nbsp;&nbsp;
             <span>Order Status: <select><option>All</option>
-                                        <option>Completed</option>
-                                        <option>Cancelled</option>
-                                        <option>Pending</option>
+                                        <option>Received</option>
+                                        <option>In Process</option>
+                                        <option>Allocated</option>
+                                        <option>Reallocated</option>
             </select></span>&nbsp;&nbsp;
             <span>Order #: <input type="text" class="text"/></span>
             <span class="r"><a class="button" href="#">Search</a></span>
@@ -95,34 +98,21 @@ $( "#datepickerend" ).datepicker();
         <br>
         <div id="Outline" class="table-list">
         <table cellspacing="0" cellpadding="0" class="list">
-            <tbody><tr class="title">
+            <tr class="title">
                     <th>Order#</th>
                     <th>Order Date</th>
                     <th>Complete Date</th>
                     <th>Status</th>
                     <th>Action</th>
                     </tr>
+                  <c:forEach items="${ordersList}" var="order">
                     <tr>
-                        <td class="">1098737</td>
-                        <td class="">02/10/2013</td>
-                        <td class="">02/13/2013</td>
-                        <td class="">Completed</td>
-                        <td class=""><a class="button" href="#">View</a></td>
+                        <td>${order.orderId}</td>
+                        <td>${order.orderDate}</td>
+                        <td>${order.orderStatus}</td>
+                        <td><a class="button" href="<%=basePath%>orderdetail.action?=id=${order.orderId}">View</a></td>
                     </tr>
-                        <tr>
-                        <td class="">1098735</td>
-                        <td class="">03/10/2013</td>
-                        <td class="">03/12/2013</td>
-                        <td class="">Completed</td>
-                        <td class=""><a class="button" href="#">View</a></td>
-                    </tr>
-                    <tr class="last">
-                        <td class="">1098634</td>
-                        <td class="">07/21/2013</td>
-                        <td class="">-</td>
-                        <td class="">Pending</td>
-                        <td class=""><a class="button" href="#">View</a></td>
-                    </tr>
+                  </c:forEach>
                 </tbody>
             </table>
             <div id="Paging">

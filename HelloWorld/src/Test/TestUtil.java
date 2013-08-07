@@ -12,6 +12,7 @@ import com.dicks.dao.InventoryDAO;
 import com.dicks.dao.OrderDetailDAO;
 import com.dicks.dao.OrdersDAO;
 import com.dicks.dao.ProductDAO;
+import com.dicks.dao.RuleDAO;
 import com.dicks.dao.StoreDAO;
 import com.dicks.dao.VendorDAO;
 import com.dicks.pojo.Customer;
@@ -22,6 +23,7 @@ import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.OrderDetailId;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Product;
+import com.dicks.pojo.Rule;
 import com.dicks.pojo.Store;
 import com.dicks.pojo.Vendor;
 
@@ -39,6 +41,17 @@ public class TestUtil {
 			for (Fee f : fees) {
 				System.out.println("fee: " + f.getCostName() + ", " + f.getValue());
 			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void createRule() {
+		Rule rule = new com.dicks.pojo.Rule("abc", " ", "", 1, "1", "1", "1", "a", "a", "a", "5", "", "");
+		try {
+			RuleDAO.getInstance().createRule(rule);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

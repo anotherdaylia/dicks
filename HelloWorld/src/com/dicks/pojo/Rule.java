@@ -35,6 +35,32 @@ public class Rule implements java.io.Serializable {
 	public Rule() {
 	}
 
+
+
+	public Rule(String ruleName, String ruleUrl, String ruleDescr,
+			Integer priority, String flag, String type, String stage,
+			String object, String attribute, String operator, String value,
+			String route, String action, String condition, boolean isSpecial) {
+		super();
+		this.ruleName = ruleName;
+		this.ruleUrl = ruleUrl;
+		this.ruleDescr = ruleDescr;
+		this.priority = priority;
+		this.flag = flag;
+		this.type = type;
+		this.stage = stage;
+		this.object = object;
+		this.attribute = attribute;
+		this.operator = operator;
+		this.value = value;
+		this.route = route;
+		this.action = action;
+		this.condition = condition;
+		this.isSpecial = isSpecial;
+	}
+
+
+
 	/** minimal constructor */
 	public Rule(String ruleName, String ruleUrl, String ruleDescr,
 			Integer priority, String flag, String type, String stage,
@@ -59,7 +85,7 @@ public class Rule implements java.io.Serializable {
 	public Rule(String ruleName, String ruleUrl, String ruleDescr,
 			Integer priority, String flag, String type, String stage,
 			String object, String attribute, String operator, String value,
-			String route, String action, String condition, Set ruleCates) {
+			String route, String action, String condition) {
 		this.ruleName = ruleName;
 		this.ruleUrl = ruleUrl;
 		this.ruleDescr = ruleDescr;
@@ -74,9 +100,8 @@ public class Rule implements java.io.Serializable {
 		this.route = route;
 		this.action = action;
 		this.condition = condition;
-		this.ruleCates = ruleCates;
 	}
-	
+
 	//Joe Constructor
 	public Rule(String ruleName, String ruleUrl, String ruleDescr, int priority){
 		this.ruleName = ruleName;
@@ -84,7 +109,7 @@ public class Rule implements java.io.Serializable {
 		this.ruleDescr = ruleDescr;
 		this.priority = priority;
 	}
-	
+
 	public Rule(String ruleName, String ruleUrl, String ruleDescr){
 		this.ruleName = ruleName;
 		this.ruleUrl = ruleUrl;
@@ -94,7 +119,7 @@ public class Rule implements java.io.Serializable {
 	public Rule(String ruleName, String ruleUrl, String ruleDescr, int priority, String type, String[] objects, 
 			String[] attributes, String[] operators, String[] values, String condition, String[] routes, 
 			String[] actions,String flag, String stage){
-		
+
 		StringBuffer objectBuffer = new StringBuffer();
 		StringBuffer attributeBuffer = new StringBuffer();
 		StringBuffer operatorBuffer = new StringBuffer();
@@ -110,7 +135,7 @@ public class Rule implements java.io.Serializable {
 		this.type = type;
 		this.stage = stage;
 		this.condition = condition;
-		
+
 		if (type.equalsIgnoreCase("Threshold")){
 			this.object = translate(objectBuffer, objects);
 			this.attribute = translate(attributeBuffer, attributes);

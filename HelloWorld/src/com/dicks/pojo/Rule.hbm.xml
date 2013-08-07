@@ -49,11 +49,13 @@
         <property name="action" type="java.lang.String">
             <column name="action" length="45" not-null="true" />
         </property>
+
         <property name="condition" type="java.lang.String">
-            <column name="condition" length="45" />
+            <column name="conditions" length="45" />
         </property>  
         <property name="isSpecial" column="is_special" type="boolean">
         </property>
+
         <set name="ruleCates" inverse="true">
             <key>
                 <column name="rule_id" not-null="true" />

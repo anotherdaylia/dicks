@@ -41,16 +41,3 @@ salience -5
         System.out.println(store.getZoneID());
 end
 
-rule  "Threshold0"
-    salience -7
-    when
-        $o : Order()
-        $i : Product( ((length < 1)||( width < 2)||( height < 3)||( weight < 4))&& (( productID.equals("001"))|| (productID.equals("002"))|| (productID.equals("003")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
