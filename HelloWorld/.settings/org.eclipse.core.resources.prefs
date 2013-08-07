@@ -6,8 +6,15 @@ encoding//WebContent/CategoryList.jsp=UTF-8
 encoding//WebContent/CreateNewRules.jsp=UTF-8
 encoding//WebContent/CreateNewRulesResulte.jsp=UTF-8
 encoding//WebContent/Login.jsp=UTF-8
+<<<<<<< HEAD
+=======
+encoding//WebContent/NewCategory.jsp=UTF-8
+encoding//WebContent/NewRule.jsp=UTF-8
+encoding//WebContent/OrderDetail.jsp=UTF-8
+>>>>>>> refs/remotes/origin/master
 encoding//WebContent/OrderList.jsp=UTF-8
 encoding//WebContent/RuleList.jsp=UTF-8
 encoding//WebContent/TemplateStoreThreshold.jsp=UTF-8
+encoding//WebContent/VisualizationStage2.jsp=UTF-8
 encoding//WebContent/css/common.css=UTF-8
 encoding//WebContent/rulePriority.jsp=UTF-8

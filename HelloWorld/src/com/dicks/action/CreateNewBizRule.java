@@ -125,25 +125,23 @@ public class CreateNewBizRule {
 			e1.printStackTrace();
 		}
 		setAllRule(allRule);
-		/*for (int i = 0 ;  i < allRule.length; i++){
+		for (int i = 0 ;  i < allRule.length; i++){
 		System.out.println("rule name  11111"+allRule[i].getRuleName());
 		System.out.println("rule desc  1111"+ allRule[i].getRuleDescr());
-		}*/
+		}
 		return "gototemplate";
 	}
 	
 	public String newrule(){
-		
-		
 		System.out.println("prio   "+priority);
 		
-		/*for(int i=0;i<4;i++){
+		for(int i=0;i<4;i++){
 			attribute[i] = attribute[i].toLowerCase();
 			
 			System.out.println("attribute :"+attribute[i]);
 			System.out.println("operator :"+operator[i]);
 			System.out.println("value :"+value[i]);
-		}*/
+		}
 		
 		
 		
@@ -196,8 +194,7 @@ public class CreateNewBizRule {
 		
 		String[] action = new String[1];
 		action[0] = actions;
-		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,conditions,null,action,
-				"TH-A,ST-A,SP-A",(Integer.parseInt(priority))+1);
+		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,conditions,null,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority)+1);
 		
 		return "newrule";
 	}

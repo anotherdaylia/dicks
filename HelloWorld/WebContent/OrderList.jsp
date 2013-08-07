@@ -7,6 +7,8 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
+    <% String detail = basePath + "OrderDetail.action?id=";
+    %>
      <base href="<%=basePath%>">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -50,46 +52,9 @@ $( "#datepickerend" ).datepicker();
    
     <div class="body clearfix">
     
-    <!-- menu bar starts -->
-    <div class="aside" id="aside-menu">
-    <div class="title"><h1>My Tool</h1>
-       <!-- <a href="javascript:void(0)" class="fold recordable" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;0&quot;}" id="menu-toggle"></a>
-        -->
-    </div>
-    <ul class="nav">
-        <li class=""><a class="recordable open" id="toggleone" href="#" 
-            memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
-            <ul class="nav-two" id="navone">
-                <li class=""><a href="<%=basePath%>goToCategoryList.action">Category List</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="<%=basePath%>gotonewbizrulelist.action">New Category</a><span class="normal">&nbsp;</span></li>  
-            </ul>
-        </li>
-        <li class=""><a class="recordable open" href="#" id="toggletwo"
-            memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
-            <ul class="nav-two" id="navtwo">
-                <li class=""><a href="<%=basePath%>gotorulelist.action">Business Rule List</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-        </li>   
-        <li class=""><a class="recordable open" href="#" id="togglethree"
-            memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
-            <ul class="nav-two" id="navthree">
-                <li class="selected"><a href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="statistics.jsp">Statistics</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-        </li>
-        <li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
-            <ul class="nav-two" id="navtwo">
-                <li class=""><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-        </li>    
-    </ul>
-    </div>
+
+    <jsp:include page="NavigationTemplate.jsp" />
+
     <!-- menu bar ends -->
 
     <!-- content starts -->
@@ -120,9 +85,10 @@ $( "#datepickerend" ).datepicker();
             <span>Start Date: <input type="text" id="datepickerstart" /></span>&nbsp;&nbsp;
             <span>End Date: <input type="text" id="datepickerend" /></span>&nbsp;&nbsp;
             <span>Order Status: <select><option>All</option>
-                                        <option>Completed</option>
-                                        <option>Cancelled</option>
-                                        <option>Pending</option>
+                                        <option>Received</option>
+                                        <option>In Process</option>
+                                        <option>Allocated</option>
+                                        <option>Reallocated</option>
             </select></span>&nbsp;&nbsp;
             <span>Order #: <input type="text" class="text"/></span>
             <span class="r"><a class="button" href="#">Search</a></span>
@@ -132,34 +98,21 @@ $( "#datepickerend" ).datepicker();
         <br>
         <div id="Outline" class="table-list">
         <table cellspacing="0" cellpadding="0" class="list">
-            <tbody><tr class="title">
+            <tr class="title">
                     <th>Order#</th>
                     <th>Order Date</th>
                     <th>Complete Date</th>
                     <th>Status</th>
                     <th>Action</th>
                     </tr>
+                  <c:forEach items="${ordersList}" var="order">
                     <tr>
-                        <td class="">1098737</td>
-                        <td class="">02/10/2013</td>
-                        <td class="">02/13/2013</td>
-                        <td class="">Completed</td>
-                        <td class=""><a class="button" href="#">View</a></td>
+                        <td>${ordersList.id}</td>
+                        <td>${ordersList.date}</td>
+                        <td>${ordersList.status}</td>
+                        <td><a class="button" href="<%=basePath%>orderdetail.action?=id=${ordersList.id}">View</a></td>
                     </tr>
-                        <tr>
-                        <td class="">1098735</td>
-                        <td class="">03/10/2013</td>
-                        <td class="">03/12/2013</td>
-                        <td class="">Completed</td>
-                        <td class=""><a class="button" href="#">View</a></td>
-                    </tr>
-                    <tr class="last">
-                        <td class="">1098634</td>
-                        <td class="">07/21/2013</td>
-                        <td class="">-</td>
-                        <td class="">Pending</td>
-                        <td class=""><a class="button" href="#">View</a></td>
-                    </tr>
+                  </c:forEach>
                 </tbody>
             </table>
             <div id="Paging">
