@@ -110,7 +110,7 @@ $( "#datepickerend" ).datepicker();
                         <td>${ordersList.id}</td>
                         <td>${ordersList.date}</td>
                         <td>${ordersList.status}</td>
-                        <td><a class="button" href="<%=basePath%>orderdetail.action?=id=${ordersList.id}">View</a></td>
+                        <td><a class="button" href="<%=basePath%>orderlist.action?=id=${ordersList.id}">View</a></td>
                     </tr>
                   </c:forEach>
                 </tbody>
