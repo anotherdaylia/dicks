@@ -3,6 +3,7 @@ package com.dicks.action;
 import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.dao.StoreCateDAO;
+import com.dicks.pojo.ProdCateId;
 import com.dicks.pojo.StoreCate;
 import com.dicks.pojo.StoreCateId;
 import com.opensymphony.xwork2.ActionSupport;
@@ -33,8 +34,10 @@ public class CreateCategoryAction extends ActionSupport {
 		}else if("product".equals(flag)){
 			String[] skus = productSKU.split(",");
 			int cateId = ProdCateDAO.getInstance().getNewId();
-			for(String sku:skus){
-				int prodId = ProductDAO.getInstance()
+			int[] ids = ProductDAO.getInstance().getProductIdsBySKUList(skus);
+			for(int id:ids){
+				ProdCateId pcId = new ProdCateId(cateId, id);
+				
 			}
 			
 			ProdCateDAO.getInstance().createCategory(prodCate);

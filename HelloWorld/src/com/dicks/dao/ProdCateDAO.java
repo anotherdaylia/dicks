@@ -39,6 +39,8 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 		return products;	
 	}
 	
+	
+	
 	public String[] getSKUByCategory(String[] categoryNameList) throws Exception{
 		System.out.println("passing in "+categoryNameList[0]);
 		Product[] products = getProductByCategory(categoryNameList);
