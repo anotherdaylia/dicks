@@ -1,9 +1,16 @@
 package com.dicks.action;
 
+import java.util.ArrayList;
+
+import com.dicks.dao.OrdersDAO;
+import com.dicks.pojo.Orders;
+
 public class LoginAction {
 	private String username;
 	
 	private String password;
+	private ArrayList<Orders> ordersList;
+
 
 	public String getUsername() {
 		return username;
@@ -21,9 +28,19 @@ public class LoginAction {
 		this.password = password;
 	}
 	
-	public String execute(){
+	public String execute() throws Exception{
 		
-		
+		ordersList = new ArrayList<Orders>();
+		ordersList = OrdersDAO.getInstance().getAllOrders();
+		System.out.println(ordersList.size());
 		return "success";
+	}
+
+	public ArrayList<Orders> getOrdersList() {
+		return ordersList;
+	}
+
+	public void setOrdersList(ArrayList<Orders> ordersList) {
+		this.ordersList = ordersList;
 	}
 }

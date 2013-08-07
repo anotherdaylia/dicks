@@ -28,7 +28,7 @@
           <result name="gotorulelist">/RuleList.jsp</result>
       </action>
       <action name="gotonewbizrulelist" class="com.dicks.action.Redirect" method="gotonewbizrulelist">
-          <result name="gotonewbizrulelist">/NewRule.jsp</result>
+          <result name="gotonewbizrulelist">/newRules.jsp</result>
       </action>
       <action name="gotoplaceorder" class="com.dicks.action.Redirect" method="gotoplaceorder">
           <result name="gotoplaceorder">/placeOrder.jsp</result>
@@ -37,16 +37,19 @@
            <result name="gototemplate" type="dispatcher">/TemplateStoreThreshold.jsp</result>
       </action>
        <action name="newrule" class="com.dicks.action.CreateNewBizRule" method="newrule">
-          <result name="newrule" type="dispatcher">/TemplateStoreThreshold.jsp</result>
+          <result name="newrule" type="dispatcher">/newRules.jsp</result>
       </action>
-      <action name="placeorder" class="com.dicks.action.PlaceOrder" method="placeorder">
+      <action name="newrulePriority" class="com.dicks.action.CreateNewBizRule" method="ranking">
+          <result name="newrulePriority" type="dispatcher">/RuleList.jsp</result>
+      </action>
+      <action name="placeorder" class="com.dicks.action.CreateNewBizRule" method="placeorder">
           <result name="placeorder" type="dispatcher">/placeOrder.jsp</result>
       </action>
 
       <action name="displayCategoryList" class="com.dicks.action.CategoryListAction" method="displayCategory">
           <result name="success" type="dispatcher">/CategoryList.jsp</result>
           
-          </action>
+	</action>
 
        <action name="gotonewcategory" class="com.dicks.action.Redirect" method="gotonewcategory">
           <result name="gotonewcategory">/NewCategory.jsp</result>
