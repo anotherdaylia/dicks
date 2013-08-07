@@ -50,6 +50,7 @@ public class OrderList {
 	public ArrayList<Orders> getOrderList() throws Exception {
 		ordersList = new ArrayList<Orders>();
 		ordersList = ordersDAO.getAllOrders();
+		System.out.println(ordersList.size());
 		return ordersList;
 	}
 }

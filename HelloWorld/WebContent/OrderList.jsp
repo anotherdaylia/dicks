@@ -107,10 +107,10 @@ $( "#datepickerend" ).datepicker();
                     </tr>
                   <c:forEach items="${ordersList}" var="order">
                     <tr>
-                        <td>${ordersList.id}</td>
-                        <td>${ordersList.date}</td>
-                        <td>${ordersList.status}</td>
-                        <td><a class="button" href="<%=basePath%>orderdetail.action?=id=${ordersList.id}">View</a></td>
+                        <td>${order.orderId}</td>
+                        <td>${order.orderDate}</td>
+                        <td>${order.orderStatus}</td>
+                        <td><a class="button" href="<%=basePath%>orderdetail.action?=id=${order.orderId}">View</a></td>
                     </tr>
                   </c:forEach>
                 </tbody>
