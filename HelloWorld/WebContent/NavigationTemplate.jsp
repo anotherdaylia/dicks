@@ -17,7 +17,7 @@
 	}
  </script>
  <div class="aside" id="aside-menu">
-    <div class="title"><h1>My Tool</h1>
+    <div><br/><br/>
        <!-- <a href="javascript:void(0)" class="fold recordable" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;0&quot;}" id="menu-toggle"></a>
         -->
     </div>
