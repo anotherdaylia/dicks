@@ -39,7 +39,7 @@ $( "#datepickerend" ).datepicker();
     <div class="header">
     <div class="header-content">
         <div class="logo">
-            <a href="orderlist.html"><img src="image/logo.png" /></a></div>
+            <a href="OrderList.jsp"><img src="image/logo.png" /></a></div>
         <div class="top-nav">
             <a href="#" target="_blank" class="trackable">
             <span class="nav-icon help-icon"></span>Help</a>|
@@ -52,9 +52,9 @@ $( "#datepickerend" ).datepicker();
    
     <div class="body clearfix">
     
-    <!-- menu bar starts -->
 
     <jsp:include page="NavigationTemplate.jsp" />
+
     <!-- menu bar ends -->
 
     <!-- content starts -->

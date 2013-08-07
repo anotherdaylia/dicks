@@ -17,7 +17,7 @@
     <div class="header">
     <div class="header-content">
         <div class="logo">
-            <a href="orderlist.html"><img src="image/logo.png" /></a></div>
+            <a href="OrderList.jsp"><img src="image/logo.png" /></a></div>
         <div class="top-nav">
             <a href="#" target="_blank" class="trackable">
             <span class="nav-icon help-icon"></span>Help</a>|
@@ -40,24 +40,24 @@
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
             <ul class="nav-two" id="navone">
-                <li class=""><a href="categorylist.html">Category List</a><span class="normal">&nbsp;</span></li>
+                <li class=""><a href="categorylist.jsp">Category List</a><span class="normal">&nbsp;</span></li>
                 <li class=""><a href="#">New Category</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
         <li class=""><a class="recordable open" href="#" id="toggletwo"
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
             <ul class="nav-two" id="navtwo">
-                <li class="selected"><a href="rulelist.html">Business Rule List</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="newrule.html">New Business Rule</a><span class="normal">&nbsp;</span></li>
+                <li class="selected"><a href="rulelist.jsp">Business Rule List</a><span class="normal">&nbsp;</span></li>
+                <li class=""><a href="newrule.jsp">New Business Rule</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
         </li>   
         <li class=""><a class="recordable open" href="#" id="togglethree"
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
-                <li class=""><a href="orderlist.html">Order List</a><span class="normal">&nbsp;</span></li>
+                <li class=""><a href="orderlist.jsp">Order List</a><span class="normal">&nbsp;</span></li>
                 <li class=""><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+                <li class=""><a href="statistics.jsp">Statistics</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
         </li>   
