@@ -9,6 +9,7 @@ import org.junit.Test;
 import com.dicks.dao.CustomerDAO;
 import com.dicks.dao.FeeDAO;
 import com.dicks.dao.InventoryDAO;
+import com.dicks.dao.OrderDetailDAO;
 import com.dicks.dao.OrdersDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.dao.StoreDAO;
@@ -102,7 +103,8 @@ public class TestUtil {
 		}		
 	}
 
-	@Test
+	
+//	@Test
 	public void createOrder() {
 		try {
 //			Product shoes = ProductDAO.getInstance().getById(5);
@@ -110,21 +112,25 @@ public class TestUtil {
 //			Customer customer = CustomerDAO.getInstance().getById(1);
 //			Orders orders = new Orders(customer, 10000, "f", new Timestamp(new Date().getTime()), "cmu", "15213", "412-637-2008", "mike");
 //			OrdersDAO.getInstance().createOrder(orders);
-
-//			OrderDetail detail = new OrderDetail();
-//			detail.setId(new OrderDetailId(orders.getOrderId(), shoes.getProdId()));
-//			detail.setOrders(orders);
-//			detail.setProduct(shoes);
-//			detail.setQty(1);
-//			detail.setUnitPrice(1000);
-
-			Orders orders = OrdersDAO.getInstance().getById(2);
-
-			Set<OrderDetail> details = orders.getOrderDetails();
-			for (OrderDetail d : details) {
-				System.out.println(d.getProduct().getProdName());
-			}
-
+			
+			Orders orders = OrdersDAO.getInstance().getById(3);
+			Product p = ProductDAO.getInstance().getById(7);
+			
+			OrderDetail detail = new OrderDetail();
+			detail.setId(new OrderDetailId(orders.getOrderId(), p.getProdId()));
+			detail.setOrders(orders);
+			detail.setProduct(p);
+			detail.setQty(1);
+			detail.setUnitPrice(1000);
+			OrderDetailDAO.getInstance().createOrderDetail(detail);
+			
+//			Orders orders = OrdersDAO.getInstance().getById(2);
+//			
+//			Set<OrderDetail> details = orders.getOrderDetails();
+//			for (OrderDetail d : details) {
+//				System.out.println(d.getProduct().getProdName());
+//			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -194,13 +200,12 @@ public class TestUtil {
 			InventoryDAO.getInstance().createInventory(in3);
 			InventoryDAO.getInstance().createInventory(in4);
 			InventoryDAO.getInstance().createInventory(in5);
-
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-
+		}	
 	}
+
 
 //	@Test
 	public void testInventory() {
@@ -214,18 +219,30 @@ public class TestUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-	}
-
-
-//	@Test
+	}	
+	
+	@Test
 	public void testCosts() {
 		try {
-			Product p1 = ProductDAO.getInstance().getById(4);
+			Orders orders = OrdersDAO.getInstance().getById(3);
+			
+			PackageE pack = new PackageE(orders);
+			Parcel parcel = new Parcel(pack);
+			Product shoes = ProductDAO.getInstance().getById(5);
+			Product shirt = ProductDAO.getInstance().getById(7);
+			Product hat = ProductDAO.getInstance().getById(6);
+			parcel.addProduct(shoes);
+//			parcel.addProduct(shirt);
+//			parcel.addProduct(hat);
+			
+			Store store = StoreDAO.getInstance().getById(1);
+			
+			System.out.println(Util.calculateCosts(parcel, store));
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Customer customer = new Customer();
 
 //		Package pack = new Package(order);
 //		Parcel parcel = new Parcel(pack, 1);

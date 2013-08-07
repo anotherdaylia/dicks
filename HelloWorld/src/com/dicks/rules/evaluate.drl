@@ -176,7 +176,7 @@ function ParcelResult getParcelResult(Parcel parcel, Store store) {
 
 	ParcelResult r = new ParcelResult(parcel);
 	r.setSource(store);
-	r.setCost(Util.getShippingCosts());
+	r.setCost(Util.calculateCosts(parcel, store));
 	return r;
 }
 

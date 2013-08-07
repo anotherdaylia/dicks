@@ -21,89 +21,57 @@ import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
 import com.dicks.pojo.Orders;
+import com.dicks.dao.InventoryDAO;
 import com.dicks.dao.OrdersDAO;
+import com.dicks.dao.ProductDAO;
+import com.dicks.dao.StoreDAO;
 import com.dicks.engine.PackageTest;
 import com.dicks.engine.PackageTestResult;
 import com.dicks.engine.Parcel;
 import com.dicks.pojo.Product;
 import com.dicks.engine.PackageE;
-import com.dicks.engine.Store;
+import com.dicks.pojo.Store;
 import com.dicks.engine.Util;
 
 public class Split {
 	public static void main(String[] args) {	
-		Product shoes = new Product();
-		shoes.setProdName("shoes");
-		shoes.setFactoryPrice(50);
-		shoes.setWeight(10);
-		shoes.setWidth(2.0);
-		Product hat = new Product();
-		hat.setProdName("hat");
-		hat.setFactoryPrice(10);
-		hat.setWeight(4);
-		hat.setWidth(2.0);
-		Product shirt = new Product();
-		shirt.setProdName("shirt");
-		shirt.setFactoryPrice(20);
-		shirt.setWeight(8);
-		shirt.setWidth(5.0);
-		Product[] a = {shoes, hat, shirt};
-		Combination[][] matrix = setUpMatrix(a);
-		//printMatrix(matrix);
-				
-		printMatrix(matrix);
-		
-//		for (int i = 1; i < a.length; i++) {
-//			//System.out.println(i);
-//			printCombinations(a.length, i, a, matrix);
-//		}
-		
+
+		Store s1 = null;
+		Store s2 = null;
+		Store s3 = null;
+		Store s4 = null;
+		Store s5 = null;
+
+		Product shoes = null;
+		Product shirt = null;
+		Product hat = null;
+		try {
+			s1 = StoreDAO.getInstance().getById(1);
+			s2 = StoreDAO.getInstance().getById(2);
+			s3 = StoreDAO.getInstance().getById(3);
+			s4 = StoreDAO.getInstance().getById(4);
+			s5 = StoreDAO.getInstance().getById(6);
+
+			ProductDAO productDAO = ProductDAO.getInstance();
+			shoes = productDAO.getById(5);
+			shirt = productDAO.getById(7);
+			hat = productDAO.getById(6);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		Orders order = null;
 		try {
-			order = OrdersDAO.getInstance().getById(2);
+			order = OrdersDAO.getInstance().getById(3);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		
-		PackageE p1 = new PackageE(order);
-		p1.addProduct(shoes);
-		PackageE p2 = new PackageE(order);
-		p2.addProduct(hat);
-		p2.addProduct(shirt);
-//		p2.addProduct(shoes);
-		
-		Store s1 = new Store(1, 2);
-		Store s2 = new Store(2, 4);
-		Store s3 = new Store(3, 5);
-		Store s4 = new Store(4, 6);
-		Store s5 = new Store(5, 8);
-	
-		s1.addItem(shoes, 5, 5);
-		s1.addItem(hat, 5, 5);
-		s1.addItem(shirt, 5, 5);
-		s2.addItem(shoes, 7, 5);
-		s2.addItem(hat, 5, 5);
-		s2.addItem(shirt, 6, 5);
-		s3.addItem(shoes, 7, 5);
-		s3.addItem(hat, 6, 5);
-		s3.addItem(shirt, 5, 5);
-		s4.addItem(shoes, 7, 5);
-		s4.addItem(hat, 5, 5);
-		s4.addItem(shirt, 5, 5);
-		s5.addItem(shoes, 7, 5);
-		s5.addItem(hat, 5, 5);
-		s5.addItem(shirt, 7, 5);
-		
-//		order.addStore(s1);
-//		order.addStore(s2);
-//		order.addStore(s3);
-//		order.addStore(s4);
-//		order.addStore(s5);
-		
+
 		SplitGenerater.cache(10);
 		SplitGenerater.buildIndex(10);
-		
+
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
 		// this will parse and compile in one step
@@ -118,7 +86,7 @@ public class Split {
 	        System.out.println("Current dir:"+current);
 	 String currentDir = System.getProperty("user.dir");
 	        System.out.println("Current dir using System:" +currentDir);
-		
+
 		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/evaluate.drl",
 
 				Split.class), ResourceType.DRL);
@@ -127,25 +95,17 @@ public class Split {
 		// Check the builder for errors
 
 		if (kbuilder.hasErrors()) {
-
 			System.out.println(kbuilder.getErrors().toString());
-
 			throw new RuntimeException("Unable to compile \"evaluate.drl\".");
-
 		}
 
 
 		// get the compiled packages (which are serializable)
-
 		final Collection<KnowledgePackage> pkgs = kbuilder.getKnowledgePackages();
 
-
 		// add the packages to a KnowledgeBase (deploy the knowledge packages).
-
 		final KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
-
 		kbase.addKnowledgePackages(pkgs);
-
 
 		final StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 		// setup the audit logging
@@ -155,6 +115,12 @@ public class Split {
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 
+		PackageE p1 = new PackageE(order);
+		p1.addProduct(shoes);
+		PackageE p2 = new PackageE(order);
+		p2.addProduct(shirt);
+		p2.addProduct(hat);
+
 		ksession.insert(s1);
 		ksession.insert(s2);
 		ksession.insert(s3);
@@ -162,23 +128,23 @@ public class Split {
 		ksession.insert(s5);
 		ksession.insert(p1);
 		ksession.insert(p2);
-		
+
 		System.out.println("----------------------");
-		
+
 		ksession.fireAllRules();
-		
+
 		// Remove comment if using logging
 		logger.close();
 
 		ksession.dispose();
-				
+
 //		ArrayList<PackageTestResult> results = getTestResult(p1, order);
 //		
 //		for (PackageTestResult r : results) {
 //			System.out.println(r);
 //		}		
 	}
-	
+
 	public static ArrayList<PackageTest> getTests(PackageE pack) {
 		Product[] products = pack.getProducts().toArray(new Product[pack.getProducts().size()]);
 		Combination[][] matrix = setUpMatrix(products);
@@ -187,18 +153,18 @@ public class Split {
 //			System.out.println("i: " + i);
 			printCombinations(products.length, i + 1, products, matrix);
 		}
-		
+
 		Combination c = matrix[products.length - 1][pack.getSplitNum()];
 //		System.out.println("i: " + (products.length - 1) + ", j: " + pack.getSplitNum());
 		ArrayList<Bag> list = c.list;
-		
+
 		ArrayList<PackageTest> packageTests = new ArrayList<PackageTest>();
-		
+
 		for (int i = 0; i < list.size(); i++) {
 			PackageTest packageTest = new PackageTest(pack);
 			Bag bag = list.get(i);
 			ArrayList<ArrayList<Product>> allocations = bag.list;
-			
+
 			for (int j = 0; j < allocations.size(); j++) {
 				Parcel parcel = new Parcel(pack);
 				for (Product product : allocations.get(j)) {
@@ -211,7 +177,7 @@ public class Split {
 		}		
 		return packageTests;
 	}
-	
+
 //	public static ArrayList<PackageTestResult> getTestResult(Package p, Order order) {
 //		Product[] products = p.getProducts().toArray(new Product[p.getProducts().size()]);
 //		Combination[][] matrix = setUpMatrix(products);
@@ -259,7 +225,7 @@ public class Split {
 //		
 //		return testResults;
 //	}
-	
+
 //	public static ArrayList<ArrayList<Store>> filterStores(ArrayList<ArrayList<Product>> allocations, ArrayList<Store> stores) {
 //		ArrayList<ArrayList<Store>> r = new ArrayList<ArrayList<Store>>();
 //		//System.out.println("possible combination size: " + allocations.size());
@@ -282,20 +248,20 @@ public class Split {
 //		
 //		return r;
 //	}
-	
-	public static PackageTestResult getTestResult(final Orders order, Parcel test, ArrayList<Store> stores) {
+
+	public static PackageTestResult getTestResult(final Orders order, Parcel test, ArrayList<Store> stores) throws Exception {
 		ArrayList<Store> testStores = new ArrayList<Store>();
 		for (int j = 0; j < stores.size(); j++) {
 			Store s = stores.get(j);
-			if (s.containProducts(test.getProductList())) {
+			if (InventoryDAO.getInstance().containAllroductsParcel(s, test)) {
 				testStores.add(s);
 			} else {
-				System.out.println("filter out: " + s.getZoneID());
+				System.out.println("filter out: " + s.getStoreId());
 			}
 		}
-		
+
 		if (testStores.size() == 0) return null;
-				
+
 		// possible problem
 		PackageTestResult r = new PackageTestResult(test);
 		Collections.sort(testStores, new Comparator<Store>() {
@@ -304,18 +270,18 @@ public class Split {
 				return (int) (Util.getShippingCosts() 
 								- Util.getShippingCosts()); 
 			}
-			
+
 		});
-		
+
 		System.out.println("stores: " + Arrays.toString(stores.toArray()));
-		
+
 		Store source = testStores.get(0);
 		//System.out.println("source: " + source.getZoneID());
 		r.setSource(source);
 		r.setCost(Util.getShippingCosts());
 		return r;
 	}
-	
+
 	public static Combination[][] setUpMatrix(Product[] a) {
 		Combination[][] matrix = new Combination[a.length][a.length];
 		matrix[0][0] = new Combination();
@@ -323,7 +289,7 @@ public class Split {
 		origin.addToBag(a[0], 0);
 		matrix[0][0].list.add(origin);
 		//System.out.println(matrix[0][0]);
-		
+
 		for (int i = 1; i < a.length; i++) {
 			//System.out.println(i);
 			Combination c = new Combination();
@@ -333,7 +299,7 @@ public class Split {
 			c.list.add(b);
 			matrix[i][0] = c;
 		}
-		
+
 		for (int i = 1; i < a.length; i++) {
 			Combination c = new Combination();
 			Bag b = new Bag();
@@ -345,7 +311,7 @@ public class Split {
 		}
 		return matrix;
 	}
-	
+
 	public static void printCombinations(int n, int m, Product[] a, Combination[][] matrix) {
 		if (m == 1) {
 			return;
@@ -357,12 +323,12 @@ public class Split {
 			c.addNewItem(a[i], matrix[i-1][m-2], matrix[i-1][m-1]);
 			matrix[i][m-1] = c;
 		}
-	
+
 		System.out.println();
 		printMatrix(matrix);
 	}
-	
-	
+
+
 	public static void printMatrix(Combination[][] matrix) {
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
@@ -371,17 +337,17 @@ public class Split {
 			System.out.println();
 		}
 	}
-	
+
 	public static class Combination {
 		ArrayList<Bag> list = new ArrayList<Bag>();
-	
+
 		public void addNewItem(Product item, Combination c1, Combination c2) {
 			for (int i = 0; i < c1.list.size(); i++) {
 				Bag b = new Bag();
 				b.addNewItemAsPackage(item, c1.list.get(i));
 				list.add(b);
 			}
-			
+
 			for (int i = 0; i < c2.list.size(); i++) {
 				Bag from = c2.list.get(i);
 				for (int j = 0; j < from.list.size(); j++) {
@@ -391,16 +357,16 @@ public class Split {
 				}
 			}
 		}		
-		
+
 		@Override
 		public String toString() {
 			return Arrays.toString(list.toArray());
 		}
 	}
-	
+
 	public static class Bag {
 		ArrayList<ArrayList<Product>> list = new ArrayList<ArrayList<Product>>();
-	
+
 		public void copyBag(Bag bag) {
 			ArrayList<ArrayList<Product>> from = bag.list;
 			for (int i = 0; i < from.size(); i++) {
@@ -409,7 +375,7 @@ public class Split {
 				list.add(sub);
 			}
 		}
-		
+
 		public void addNewItemAsPackage(Product item, Bag bag) {
 			ArrayList<ArrayList<Product>> from = bag.list;
 			list = new ArrayList<ArrayList<Product>>();
@@ -422,7 +388,7 @@ public class Split {
 			newItem.add(item);
 			list.add(newItem);
 		}		
-		
+
 		public void addNewItemTo(Product item, Bag bag, int index) {
 			ArrayList<ArrayList<Product>> from = bag.list;
 			list = new ArrayList<ArrayList<Product>>();
@@ -433,7 +399,7 @@ public class Split {
 			}
 			list.get(index).add(item);
 		}
-		
+
 		public void addToBag(Product item, int bag) {
 			if (list.size() <= bag) {
 				ArrayList<Product> newBag = new ArrayList<Product>();
@@ -444,7 +410,7 @@ public class Split {
 				list.get(bag).add(item);
 			}			
 		}
-		
+
 		@Override
 		public String toString() {
 			StringBuilder sb = new StringBuilder();
@@ -477,7 +443,7 @@ public class Split {
 //  } catch (IOException e) {
 //  	System.out.println(e.getMessage());
 //  }
-	
+
 //	for (int i = 0; i < a.length; i++) {
 //      for (int j = 0; j <= i; j++) {
 //      	ArrayList<Bag> list = matrix[i][j].list;

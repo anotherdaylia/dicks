@@ -1,7 +1,8 @@
-
 package com.dicks.engine;
 
 import java.io.*;
+
+import com.dicks.pojo.Rule;
 
 
 public class createRule {
@@ -24,18 +25,18 @@ public class createRule {
     public static Rule[] ruleFile = new Rule[100];
     public static int ruleInt;
 
-	
+
 	   public static void main (String[] args) throws IOException {
 		  rules[0] = "./ruleTxt/ruleHeader.txt";
 		  rules[1] = "./ruleTxt/rule1.txt";
 		  rules[2] = "./ruleTxt/rule2.txt";
 		  rules[3] = "./ruleTxt/rule3.txt";
-		  
-		  
-		  ruleFile[0] = new Rule(1,"./ruleTxt/rule1.txt","\"Explode Cart\"",100);
-		  ruleFile[1] = new Rule(2,"./ruleTxt/rule2.txt","\"filter stock\"",98);
-		  ruleFile[2] = new Rule(3,"./ruleTxt/rule3.txt","\"Summarize\"",-5);
-		  
+
+
+		  ruleFile[0] = new Rule("1","./ruleTxt/rule1.txt","\"Explode Cart\"",100);
+		  ruleFile[1] = new Rule("2","./ruleTxt/rule2.txt","\"filter stock\"",98);
+		  ruleFile[2] = new Rule("3","./ruleTxt/rule3.txt","\"Summarize\"",-5);
+
 	      //  prompt the user to enter their name
 
 	      //  open up standard input
@@ -43,7 +44,7 @@ public class createRule {
 
 	      String input = null;
 
-	      
+
 	      //read rule type till get the correct one
 	      do{
 	    	  System.out.print("Enter your type of the rule you want to create (threshold, special route): ");
@@ -52,61 +53,61 @@ public class createRule {
 	      while (!input.equalsIgnoreCase("threshold"));
 	      ruleType = input;
 	      System.out.println("Thanks for the type, " + ruleType);
-	      
-	      
+
+
 	      System.out.print("Enter the object you want to put your rules on (store, product) ");
 	      input = br.readLine();
-	      
-	      
+
+
 	      objectTypeBuffer.append("product");
 	      if (input.equalsIgnoreCase("product")){
 	    	  System.out.print("please type SKU to apply the rule ");
 	    	  input = br.readLine();
-	    	  
+
 	    	  if (input.equalsIgnoreCase("all")){
 	    		  objectTypeBuffer.append(",ALL");
 	    	  }
 	    	  else{ 
-	    	  
+
 		    	  do {
 		    		  objectTypeBuffer.append(","+input);
 		    		  System.out.print("type SKU to add more or NEXT to continue");
-		    		  
+
 			    	  input = br.readLine();
-			    	  
+
 		    	  }
 		    	  while (!input.equalsIgnoreCase("next"));
 	    	}
-	    	  
+
 
 	      }
-	      
+
 	      if (input.equalsIgnoreCase("store")){
 	    	  System.out.print("please type storeID to apply the rule ");
 	    	  input = br.readLine();
-	    	  
+
 	    	  if (input.equalsIgnoreCase("all")){
 	    		  objectTypeBuffer.append(",ALL");
 	    	  }
 	    	  else{ 
-	    	  
+
 		    	  do {
 		    		  objectTypeBuffer.append(","+input);
 		    		  System.out.print("type storeID to add more or NEXT to continue");
-		    		  
+
 			    	  input = br.readLine();
-			    	  
+
 		    	  }
 		    	  while (!input.equalsIgnoreCase("next"));
 	    	}
-	    	  
+
 
 	      }
-	      
+
 	      System.out.print("Enter the attribute of the product to apply the rule ");
 	      input = br.readLine();
 	      attributeBuffer.append(input);
-	      
+
 	      do{
 	    	  System.out.print("Enter the operator to set the condition of the rule (>,<,=)");
 	    	  input = br.readLine();
@@ -118,13 +119,13 @@ public class createRule {
 	      System.out.print("Enter the value associate with the operation ");
 	      input = br.readLine();
 	      valueBuffer.append( input) ;
-	      
+
 	      System.out.print("Enter new attribute of the product to apply the rule or next to to set actions");
 	      input = br.readLine();
 	      while (!(input.equals("next"))) {
-	    	  
+
 		      attributeBuffer.append(","+input);
-		      
+
 		      do{
 		    	  System.out.print("Enter the operator to set the condition of the rule (>,<,=)");
 		    	  input = br.readLine();
@@ -132,21 +133,21 @@ public class createRule {
 		      while (!((input.equalsIgnoreCase(">"))||(input.equalsIgnoreCase("<"))||(input.equalsIgnoreCase("="))));
 		      //operator = input;
 		      operatorBuffer.append(","+input);
-		      
+
 		      System.out.print("Enter the value associate with the operation ");
 		      input = br.readLine();
 		      valueBuffer.append(","+input) ;
-		      
-		      
+
+
 		      System.out.print("Enter the attribute of the product to apply the rule ");
 		      input = br.readLine();
-		      
+
     	  }
     	  
-	      
+
 	      int i = 0;
 	      while (ruleFile[i]!= null){
-	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Piority: "+ruleFile[i].getPriority());
+	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getRuleDescr()+" Piority: "+ruleFile[i].getPriority());
 	    	  i++;
 	      }
 	      //ruleFile[i+1] = new Rule();
@@ -155,33 +156,33 @@ public class createRule {
 	      //ruleInt = 1;
 	      int ruleInt = Integer.parseInt(input);
 	      //System.out.println("rule is at  " +ruleInt + "current rule number is "+i);
-	      
+
 	      if (ruleInt < (i)){
-	      
+
 	      reRank(ruleInt);
 	      }
 	      else{
 	    	  ruleFile[i] = new Rule();
 	    	  ruleInt = i;
 	      }
-	      
-	      
+
+
 	      System.out.print("Enter the action you want to do");
 	      input = br.readLine();
 	      actions = input;
-	      
-	      
-	      
+
+
+
 	      System.out.println("thank you for your input, are you trying to make a rule of type of\n "+ ruleType+ "which will do action: "
 	      +actions+" when the value of object "+ objectTypeBuffer.toString() + " is "+ operator + values);
-	      
+
 	     String content = writeDrl(ruleType, objectTypeBuffer.toString(),attributeBuffer.toString(), operatorBuffer.toString()
 	    		 ,valueBuffer.toString(),actions);
-	     
+
 	     //create txt file for the new rule
-	     
-		 
-		 
+
+
+
 	     try {
 	    	 for (i  = 0 ; rules[i] != null; i++){
 	    		 if (rules[i+1] == null){
@@ -190,38 +191,38 @@ public class createRule {
 	    			 File file = new File(newPath);  
 	    			// System.out.println("current rule is "+ruleFile[ruleInt]+ "with piority"+ruleFile[ruleInt].getPiority());
 	    			 if (ruleInt > 0){
-	    				 
-	    				 ruleFile[ruleInt] = new Rule(ruleInt+1, newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2);
+
+	    				 ruleFile[ruleInt] = new Rule("abc", newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2);
 	    			 }
 	    			 else{
-	    				 ruleFile[ruleInt] = new Rule(ruleInt+1, newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt].getPriority()+2);
-	 	    			
+	    				 ruleFile[ruleInt] = new Rule("bcd", newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt].getPriority()+2);
+
 	    			 }
-	    			 
+
 	    			 FileOutputStream fop = new FileOutputStream(file);
-	    	 
+
 	    				// if file doesnt exists, then create it
 	    				if (!file.exists()) {
 	    					file.createNewFile();
 	    				}
-	    	 
+
 	    				// get the content in bytes
 	    				byte[] contentInBytes = content.getBytes();
-	    	 
+
 	    				fop.write(contentInBytes);
 	    				fop.flush();
 	    				fop.close();
-	    	 
+
 	    				System.out.println("Done");
 	    				break;
-	    	 
+
 	    			} 
 	    	 }
 	    }
 	     catch (IOException e) {
 	    	 e.printStackTrace();
 	     }			 
-	    			 
+
 	    //combining all rules
 	     try {
              File file = new File("./ruleTxt/newRule.drl");         
@@ -237,8 +238,8 @@ public class createRule {
         	 
              while (ruleFile[i] != null){
             	 //System.out.println("combing rule "+i);
-            	 fis = new FileInputStream(new File(ruleFile[i].getPath()));
-            	 System.out.println("Gettting new path-----"+ruleFile[i].getPath()+"i is  "+i);
+            	 fis = new FileInputStream(new File(ruleFile[i].getRuleUrl()));
+            	 System.out.println("Gettting new path-----"+ruleFile[i].getRuleUrl()+"i is  "+i);
             	 b = new byte[1];
             	 //System.out.print(b);
             	 while((fis.read(b)) != -1){
@@ -252,17 +253,17 @@ public class createRule {
        }
       catch(Exception e){System.out.println("error: " + e);}
 	     //threshold abc = new threshold("hold");
-	     
+
 	     i = 0;
 	      while (ruleFile[i]!= null){
-	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Piority: "+ruleFile[i].getPriority());
-	    	  
+	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getRuleDescr()+" Piority: "+ruleFile[i].getPriority());
+
 	    	  i++;
 	      }
 	      //System.out.println ("Rule :"+i+"  "+ ruleFile[i+1].getDescription());
-	     
+
 	     //re-ordering rules
-	     
+
 	} 	
 	   public static String writeDrl(String type, String object, String attribute, 
 			   String operator, String values, String actions ){
@@ -272,22 +273,22 @@ public class createRule {
 		   newRule.append(writeThen(actions));
 		   System.out.println(newRule.toString());
 		   return newRule.toString();
-		   
+
 	   }
-	   
+
 	   public static String writeRuleType(String type){
 		   StringBuffer tmp = new StringBuffer();
 		   tmp.append("rule  \"Mininum Package"+type+ruleCount+"\""+myReturn);
-		  
+
 		   //need to add more statement such as no-loop true dialect "java", will decide later
-		   
+
 		   return tmp.toString();
-		   
+
 	   }
-	   
+
 	   public static String writeWhen(String object, String attribute, String operator, String values){
 		   System.out.println("attribute!!!!"+attribute);
-		   
+
 		   //split the object 
 		   System.out.println(object);
 		   String[] splits = object.split(",");
@@ -299,7 +300,7 @@ public class createRule {
 		   }
 		   else{
 		   multiObject.append("&& (( productID == "+splits[1]+" )");
-		   
+
 		   //combing all the other products
 		   System.out.println("splits.size: " + splits.length);
 		   for (int i = 2; i < splits.length; i++){
@@ -308,26 +309,26 @@ public class createRule {
 		   }
 		   multiObject.append(")");
 		   }
-		   
+
 		   //split the attribute
 		   System.out.println(attribute);
 		   String[] splitAttribute= attribute.split(",");
 		  // System.out.println("1"+splitsAttribute[0]+"1"+attribute[1]+"2"+attribute[2]);
 		  System.out.println("attribute legnth"+splitAttribute.length);
-		   
+
 		   //split the operator
 		   System.out.println(operator);
 		   String[] splitOperator = operator.split(",");
-		   
+
 		   //split the value
 		   System.out.println(values);
 		   String[] splitValue = values.split(",");
-		   
+
 		   //first operator (default)
 		   StringBuffer multiAttribute = new StringBuffer();
 		   multiAttribute.append("("+ splitAttribute[0]+mySpace+splitOperator[0]+mySpace+splitValue[0] +")");
 		   System.out.println("first operationmulti "+multiAttribute.toString());
-		   
+
 		   System.out.println("length is!!!"+splitAttribute.length+mySpace+splitOperator.length+mySpace+splitValue.length);
 		   //combining all the other operations
 		   for (int i = 1; i < splitAttribute.length; i++){
@@ -338,7 +339,7 @@ public class createRule {
 			   multiAttribute.append("|| ( "+ splitAttribute[i]+mySpace+splitOperator[i]+mySpace+splitValue[i] + ")");
 			   System.out.println("add second operations!!!"+multiAttribute.toString());
 		   }
-		   
+
 		   //appending the whole "when" part
 
 		   StringBuffer tmp = new StringBuffer();
@@ -347,11 +348,11 @@ public class createRule {
 		   tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+
 		   		") from $o.getProducts()"+myReturn);
 		   //tmp.append(myTab+myTab+"$p : Purchase( customer == $c, $"+attribute.charAt(0)+" : product."+attribute+mySpace+operator+mySpace+values+" )");
-	   
+
 		   return tmp.toString();
 	   }
-	   
-	   
+
+
 	   public static String writeThen(String action){
 		   StringBuffer tmp = new StringBuffer();
 		   tmp.append(myTab+"then"+myReturn);
@@ -359,36 +360,36 @@ public class createRule {
 		   tmp.append("end"+myReturn+myReturn);
 		   return tmp.toString();
 	   }
-	   
+
 	   public static void reRank (int rank){
-		  
+
 		   Rule tmp = ruleFile[rank];
 		   Rule tmp2 = new Rule();
-		   System.out.println("Shifting rule"+ruleFile[rank].getDescription());
-		  
+		   System.out.println("Shifting rule"+ruleFile[rank].getRuleUrl());
+
 		   while (ruleFile[rank+1] != null){
 			  System.out.println("shift rule  "+rank);
-			  
+
 			   tmp2 = ruleFile[rank+1];
 			   ruleFile[rank+1] =tmp;
 			   ruleFile[rank+1].setPriority(ruleFile[rank+1].getPriority()-2);
 			   tmp = tmp2;
-			   
-			   
+
+
 			   //System.out.println("round 1 "+"rank  ="+rank+"tmp = "+ tmp.getDescription()
 					  // +"rule[rank]"+ruleFile[rank].getDescription()+
 					   //"rule[rank+1]  "+ruleFile[rank+1].getDescription());
 			  // ruleFile[rank+1].setPiority(ruleFile[rank+1].getPiority()-2);
-			   
+
 			   rank ++;
 		   }
 		   ruleFile[rank+1]=tmp;
 		   ruleFile[rank+1].setPriority(ruleFile[rank+1].getPriority()-2);
 		   System.out.println("last index is "+(rank+1));
 	   }
-	  
 
-	   
+
+
 	   /*public static void uniteTextFile(String dirPath,String newFilePathAndName,FileOutputStream pFOS)
 	   {
 	      FileInputStream fIS = null;
@@ -465,6 +466,3 @@ public class createRule {
 	      }
 	   }*/
 	   }
-
-
-
