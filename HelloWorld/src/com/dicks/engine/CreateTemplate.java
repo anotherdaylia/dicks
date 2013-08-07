@@ -10,6 +10,7 @@ import javax.print.DocFlavor.URL;
 
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Vendor;
+import com.dicks.pojo.Rule;
 
 public class CreateTemplate {
     public String myTab ="    ";
@@ -80,12 +81,12 @@ public class CreateTemplate {
 			
 			System.out.println("!!!!"+shoes.getSku());
 		  if (ruleFile[0] == null){
-			  ruleFile[0] = new Rule(1,"/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule1.txt","\"Explode Cart\"",100);
+			  ruleFile[0] = new Rule("abc", "/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule1.txt","\"Explode Cart\"",100);
 		  }
 		  if (ruleFile[1] == null){
-		  ruleFile[1] = new Rule(2,"/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule2.txt","\"filter stock\"",98);}
+		  ruleFile[1] = new Rule("bcd", "/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule2.txt","\"filter stock\"",98);}
 		  if (ruleFile[2] == null){
-		  ruleFile[2] = new Rule(3,"/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule3.txt","\"Summarize\"",-5);}
+		  ruleFile[2] = new Rule("def", "/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule3.txt","\"Summarize\"",-5);}
 		  
 		  //////get all rule in database and sorted with priority---->return to ruleFile
 		  /////get all product objects by a array of SKU.
@@ -97,7 +98,7 @@ public class CreateTemplate {
 		  System.out.println("Rules before editing");
 		  int i = 0;
 	      while (ruleFile[i]!= null){
-	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Priority: "+ruleFile[i].getPriority());
+	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getRuleDescr()+" Priority: "+ruleFile[i].getPriority());
 	    	  i++;
 	      }
 	      System.out.println("----------------------------------------------------------");
@@ -123,26 +124,26 @@ public class CreateTemplate {
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
 					 
-					 ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
-							 attributes,operators,values,condition, null,actions,flag);
+					 ruleFile[ruleInt] = new Rule("abc", "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
+							 					attributes,operators,values,condition, null,actions,flag, "stage1");
 				 }
 			  else{
-					 ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
-							 attributes,operators,values,condition, null,actions,flag);
+					 ruleFile[ruleInt] = new Rule("cde", "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
+							 attributes,operators,values,condition, null,actions,flag, "stage1");
 			  }
 	      }    
 	      else {
 		      if (ruleInt > 0){
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
-		    	  ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
-							 attributes,operators,values,condition, routes,actions,flag);
+		    	  ruleFile[ruleInt] = new Rule("edf", "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
+							 attributes,operators,values,condition, routes,actions,flag, "stage1");
 				   
 				 }
 			  else{
 				    
-					 ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
-							 attributes,operators,values,condition, routes,actions,flag);
+					 ruleFile[ruleInt] = new Rule("efg", "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
+							 attributes,operators,values,condition, routes,actions,flag, "stage1");
 			  }
 	      
 	      
@@ -211,7 +212,7 @@ public class CreateTemplate {
 	            	 
 	            	 if (ruleFile[i].getType() == null){
 	            		 
-		            	 fis = new FileInputStream(new File(ruleFile[i].getPath()));
+		            	 fis = new FileInputStream(new File(ruleFile[i].getRuleUrl()));
 		            	 //System.out.println("Gettting new path-----"+ruleFile[i].getPath()+"i is  "+i);
 		            	 b = new byte[1];
 		            	 //System.out.print(b);
@@ -224,22 +225,22 @@ public class CreateTemplate {
 		            	 if (ruleFile[i].getType().equalsIgnoreCase("Threshold")){
 		            		 System.out.println("This is the new Threshold rule created by the system");
 		            		 byte[] contentInBytes = createThreshold(ruleFile[i].getType(),ruleFile[i].getPriority(),
-		            				 ruleFile[i].getObject(),ruleFile[i].getAttribute(),ruleFile[i].getOperator(),ruleFile[i].getValue(),
-		            				 ruleFile[i].getCondition(),ruleFile[i].getAction(),ruleFile[i].getFlag()).getBytes();
+		            				 ruleFile[i].getObjects(),ruleFile[i].getAttributes(),ruleFile[i].getOperators(),ruleFile[i].getValues(),
+		            				 ruleFile[i].getCondition(),ruleFile[i].getActions(),ruleFile[i].getFlag()).getBytes();
 		            		 fos.write(contentInBytes);
 		            	 }
 		            	 else if (ruleFile[i].getType().equalsIgnoreCase("Store Filter")){
 		            		 System.out.println("This is the new Store Filter rule created by the system!!!!");
 		            		 byte[] contentInBytes = createStoreRule(ruleFile[i].getType(),ruleFile[i].getPriority(),
-		            				 ruleFile[i].getObject(),ruleFile[i].getAttribute(),ruleFile[i].getOperator(),ruleFile[i].getValue(),
-		            				 ruleFile[i].getAction(),ruleFile[i].getFlag()).getBytes();
+		            				 ruleFile[i].getObjects(),ruleFile[i].getAttributes(),ruleFile[i].getOperators(),ruleFile[i].getValues(),
+		            				 ruleFile[i].getActions(),ruleFile[i].getFlag()).getBytes();
 		            		 fos.write(contentInBytes);
 		            	 }
 		            	 else if (ruleFile[i].getType().equalsIgnoreCase("Special Route")){
 		            		 System.out.println("This is the new Special route rule created by the system!!!!");
 		            		 byte[] contentInBytes = createSpecialRoute(ruleFile[i].getType(),ruleFile[i].getPriority(),
-		            				 ruleFile[i].getObject(),ruleFile[i].getAttribute(),ruleFile[i].getOperator(),ruleFile[i].getValue(),
-		            				 ruleFile[i].getAction(),ruleFile[i].getRoute(),ruleFile[i].getFlag()).getBytes();
+		            				 ruleFile[i].getObjects(),ruleFile[i].getAttributes(),ruleFile[i].getOperators(),ruleFile[i].getValues(),
+		            				 ruleFile[i].getActions(),ruleFile[i].getRoutes(),ruleFile[i].getFlag()).getBytes();
 		            		 
 		            		 fos.write(contentInBytes);
 		            	 }
@@ -263,7 +264,7 @@ public class CreateTemplate {
 		     System.out.println("Rules after editing");
 		     i = 0;
 		      while (ruleFile[i]!= null){
-		    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Priority: "+ruleFile[i].getPriority());
+		    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getRuleDescr()+" Priority: "+ruleFile[i].getPriority());
 		    	  
 		    	  i++;
 		      }
@@ -545,7 +546,7 @@ public class CreateTemplate {
 		   Rule tmp = ruleFile[rank];
 		   Rule tmp2 = new Rule();
 		   System.out.println("Start insertion at " +rank);
-		   System.out.println("Shifting rule"+ruleFile[rank].getDescription());
+		   System.out.println("Shifting rule"+ruleFile[rank].getRuleDescr());
 		   System.out.println("Re-Ranking ......Done");
 		   System.out.println("----------------------------------------------------------");
 		   while (ruleFile[rank+1] != null){

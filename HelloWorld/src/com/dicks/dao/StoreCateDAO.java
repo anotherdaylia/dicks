@@ -1,10 +1,24 @@
 package com.dicks.dao;
 
-public class StoreCateDAO extends BaseDao<StoreCateDAO> {
+import java.util.ArrayList;
 
-	public StoreCateDAO(Class<StoreCateDAO> clazz) {
-		super(clazz);
-		// TODO Auto-generated constructor stub
+import com.dicks.pojo.StoreCate;
+
+public class StoreCateDAO extends BaseDao<StoreCate> {
+	private static StoreCateDAO instance = new StoreCateDAO();
+	
+	public StoreCateDAO() {
+		super(StoreCate.class);
+	}
+	
+	public static StoreCateDAO getInstance (){
+		return instance;
+	}
+
+	public StoreCate[] getStoreCategoryList() throws Exception{
+		ArrayList<StoreCate> cateList =  (ArrayList<StoreCate>) super.getList();
+		StoreCate[] array = (StoreCate[])cateList.toArray(new StoreCate[cateList.size()]); 
+		return array;
 	}
 
 }

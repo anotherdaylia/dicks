@@ -42,7 +42,7 @@ public class Util {
 				} else if (fee.getFlag().equals("p")) {
 					String attributeName = fee.getAttribute();
 					long attributeValue = 0;
-					String[] names = attributeName.split("|");
+					String[] names = attributeName.split(",");
 					System.out.println("names: " + Arrays.toString(names));
 					if (names[1].equals("cost")) {
 						for (int i = 0; i < fees.size(); i++) {
@@ -53,14 +53,16 @@ public class Util {
 					} else if (names[1].equals("product")) {
 						for (Product p : products) {
 							attributeValue += getAttribute(p, Product.class, names[0]);
+							System.out.println("product: " + p.getProdName());
 						}	
-						System.out.println("product: " + fee.getPercentage()/100 + "% of " + names[0]);
+						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("store")) {
 						attributeValue = getAttribute(store, Store.class, names[0]);
 					} else if (names[1].equals("order")) {
 						attributeValue = getAttribute(parcel.getPack().getOrder(), Orders.class, names[0]);
 					}				
-					totalCosts += attributeValue * fee.getPercentage() / 100;
+					totalCosts += attributeValue * fee.getPercentage() / 10000;
+					System.out.println("total costs: " + totalCosts);
 				}
 			}
 		
@@ -78,7 +80,7 @@ public class Util {
 				try {
 					String methodName = "get" + WordUtils.capitalize(name);
 					Method method = clz.getDeclaredMethod(methodName, new Class[0]);
-					long attribute = (Long) method.invoke(t, new Object[0]);
+					long attribute = (Integer) method.invoke(t, new Object[0]);
 					return attribute;
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
