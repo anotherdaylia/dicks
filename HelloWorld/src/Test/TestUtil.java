@@ -12,6 +12,7 @@ import com.dicks.dao.InventoryDAO;
 import com.dicks.dao.OrderDetailDAO;
 import com.dicks.dao.OrdersDAO;
 import com.dicks.dao.ProductDAO;
+import com.dicks.dao.RuleDAO;
 import com.dicks.dao.StoreDAO;
 import com.dicks.dao.VendorDAO;
 import com.dicks.pojo.Customer;
@@ -22,6 +23,7 @@ import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.OrderDetailId;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Product;
+import com.dicks.pojo.Rule;
 import com.dicks.pojo.Store;
 import com.dicks.pojo.Vendor;
 
@@ -39,6 +41,17 @@ public class TestUtil {
 			for (Fee f : fees) {
 				System.out.println("fee: " + f.getCostName() + ", " + f.getValue());
 			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void createRule() {
+		Rule rule = new com.dicks.pojo.Rule("abc", " ", "", 1, "1", "1", "1", "a", "a", "a", "5", "", "");
+		try {
+			RuleDAO.getInstance().createRule(rule);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,7 +107,7 @@ public class TestUtil {
 		try {
 			Vendor vendor = VendorDAO.getInstance().getById(7);
 
-			Product product = new Product(vendor, "shirt", "123-456-789", "nike shoes", 5000, 2000, "TH-A,ST-A,SP-A");
+			Product product = new Product(vendor, "hat", "123-456-789", "nike hat", 5000, 2000, "TH-A,ST-A,SP-A");
 			ProductDAO productDao = ProductDAO.getInstance();
 			productDao.createProduct(product);
 		} catch (Exception e) {
@@ -137,7 +150,7 @@ public class TestUtil {
 		}
 	}
 
-//	@Test
+	@Test
 	public void createInventory() {
 
 		try {
@@ -153,7 +166,7 @@ public class TestUtil {
 			Store s4 = storeDAO.getById(4);
 			Store s6 = storeDAO.getById(6);
 
-			Product p = hat;
+			Product p = shirt;
 
 			Inventory in1 = new Inventory();
 			in1.setId(new InventoryId(p.getProdId(), s1.getStoreId()));

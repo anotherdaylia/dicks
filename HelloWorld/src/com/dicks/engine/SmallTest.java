@@ -29,7 +29,7 @@ public class SmallTest {
 
 		// this will parse and compile in one step
 
-		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/newRule_LY.drl",
+		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/newRule_joe.drl",
 
 				SmallTest.class), ResourceType.DRL);
 

@@ -11,7 +11,7 @@ import com.dicks.pojo.Rule;
 
 public class CreateNewBizRule {
 	private String conditions;
-	
+
 	private String actions;
 	private String templatename;
 	private String rulename;
@@ -21,9 +21,9 @@ public class CreateNewBizRule {
 	public String categoryname;
 	public Rule[] allRule;
 	public String priority;
-	
+
 	public String[] test;
-	
+
 	public String getPriority(){
 		return priority;
 	}
@@ -33,52 +33,52 @@ public class CreateNewBizRule {
 	public String[] getTest(){
 		return test;
 	}
-	
+
 	public void setTest(String[] a){
 		this.test = a;
 		for (int i = 0; i<test.length; i++){
 			System.out.println("haha"+test[i]);
 		}
 	}
-	
-	
+
+
 	public Rule[] getAllRule(){
 		return allRule;
 	}
-	
+
 	public void setAllRule(Rule[] allRule){
 		this.allRule = allRule;
 	}
-	
+
 	public String getCategory(){
 		System.out.println("mlgb"+categoryname);
 		return categoryname;
 	}
-	
+
 	public String[] getAttribute(){
 		return attribute;
 	}
-	
+
 	public String[] getOperator(){
 		return operator;
 	}
 	public String[] value(){
 		return value;
 	}
-	
+
 	public void setAttribute(String[] a){
 		this.attribute = a;
-		
+
 	}
-	
+
 	public void setOperator(String[] a){
 		this.operator = a;
-		
+
 	}
-	
+
 	public void setValue(String[] a){
 		this.value = a;
-		
+
 	}
 	public String getTemplatename() {
 		return templatename;
@@ -95,7 +95,7 @@ public class CreateNewBizRule {
 	public void setRulename(String rulename) {
 		this.rulename = rulename;
 	}
-	
+
 	public String getActions() {
 		return actions;
 	}
@@ -113,7 +113,7 @@ public class CreateNewBizRule {
 	}
 
 
-	
+
 	public String gototemplate(){
 		System.out.println(rulename);
 		System.out.println(templatename);
@@ -133,21 +133,23 @@ public class CreateNewBizRule {
 		categoryname = categoryname.replace(" ","%20");
 		return "gototemplate";
 	}
-	
+
 	public String newrule(){
 		System.out.println("prio   "+priority);
+
 		categoryname =categoryname.replace("%20", " ");
 		rulename = rulename.replace("%20", " ");
+
 		for(int i=0;i<attribute.length;i++){
 			attribute[i] = attribute[i].toLowerCase();
-			
+
 			System.out.println("attribute :"+attribute[i]);
 			System.out.println("operator :"+operator[i]);
 			System.out.println("value :"+value[i]);
 		}
-		
-		
-		
+
+
+
 		System.out.println("condition "+conditions);
 		System.out.println("template "+templatename);
 		System.out.println("rule name "+rulename);
@@ -156,6 +158,7 @@ public class CreateNewBizRule {
 		
 		System.out.println("Hkfsdhjkf???"+categoryname);
 		String[] categoryList= categoryname.split(",");
+
 		
 		int cateLength = 0;
 		for (int j = 0 ; j<categoryList.length;j++){
@@ -169,10 +172,9 @@ public class CreateNewBizRule {
 		for (int i = 0; i<cateList.length;i++){
 			cateList[i] = categoryList[i];
 		}
-		
 		/// Micky, given a categoryList, call DAO function to return product[]; 
 		// if there is categoryList[0] and categroyList[1], need to combine product[] together from both of the categoryList
-		
+
 		String type = null;
 		if (templatename.equalsIgnoreCase("product_threshold")){
 			type = "Threshold";
@@ -201,22 +203,23 @@ public class CreateNewBizRule {
 		System.out.println("rule name  "+allRule[i].getRuleName());
 		System.out.println("rule desc  "+ allRule[i].getRuleDescr());
 		}*/
-		
+
 		String[] abc = new String[2];
 		abc[0] = "caocao";
 		abc[1] = "caoweihua";
 		setTest(abc);
-		
+
 		String[] action = new String[1];
 		action[0] = actions;
+
 		CreateTemplate test= new CreateTemplate(rulename,type,product,attribute,operator,value,conditions,null,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
 		
 		return "newrule";
 	}
-	
-	
+
+
 	public String placeorder(){
-		
+
 
 		//get specific rule from rulename 
 		/*try {
@@ -230,16 +233,16 @@ public class CreateNewBizRule {
 		System.out.println("rule name  "+allRule[i].getRuleName());
 		System.out.println("rule desc  "+ allRule[i].getRuleDescr());
 		}
-		
-		
-		
+
+
+
 		//get the rule from the inserted position
-		
-		
+
+
 		//compu
-		
+
 		return "placeorder";
 	}
-	
+
 
 }
