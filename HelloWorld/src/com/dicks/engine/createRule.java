@@ -3,6 +3,8 @@ package com.dicks.engine;
 
 import java.io.*;
 
+import com.dicks.pojo.Rule;
+
 
 public class createRule {
 
@@ -32,9 +34,9 @@ public class createRule {
 		  rules[3] = "./ruleTxt/rule3.txt";
 		  
 		  
-		  ruleFile[0] = new Rule(1,"./ruleTxt/rule1.txt","\"Explode Cart\"",100);
-		  ruleFile[1] = new Rule(2,"./ruleTxt/rule2.txt","\"filter stock\"",98);
-		  ruleFile[2] = new Rule(3,"./ruleTxt/rule3.txt","\"Summarize\"",-5);
+		  ruleFile[0] = new Rule("1","./ruleTxt/rule1.txt","\"Explode Cart\"",100);
+		  ruleFile[1] = new Rule("2","./ruleTxt/rule2.txt","\"filter stock\"",98);
+		  ruleFile[2] = new Rule("3","./ruleTxt/rule3.txt","\"Summarize\"",-5);
 		  
 	      //  prompt the user to enter their name
 
@@ -146,7 +148,7 @@ public class createRule {
 	      
 	      int i = 0;
 	      while (ruleFile[i]!= null){
-	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Piority: "+ruleFile[i].getPriority());
+	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getRuleDescr()+" Piority: "+ruleFile[i].getPriority());
 	    	  i++;
 	      }
 	      //ruleFile[i+1] = new Rule();
@@ -191,10 +193,10 @@ public class createRule {
 	    			// System.out.println("current rule is "+ruleFile[ruleInt]+ "with piority"+ruleFile[ruleInt].getPiority());
 	    			 if (ruleInt > 0){
 	    				 
-	    				 ruleFile[ruleInt] = new Rule(ruleInt+1, newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2);
+	    				 ruleFile[ruleInt] = new Rule("abc", newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2);
 	    			 }
 	    			 else{
-	    				 ruleFile[ruleInt] = new Rule(ruleInt+1, newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt].getPriority()+2);
+	    				 ruleFile[ruleInt] = new Rule("bcd", newPath, "\""+ruleType+ruleInt+"\"", ruleFile[ruleInt].getPriority()+2);
 	 	    			
 	    			 }
 	    			 
@@ -237,8 +239,8 @@ public class createRule {
         	 
              while (ruleFile[i] != null){
             	 //System.out.println("combing rule "+i);
-            	 fis = new FileInputStream(new File(ruleFile[i].getPath()));
-            	 System.out.println("Gettting new path-----"+ruleFile[i].getPath()+"i is  "+i);
+            	 fis = new FileInputStream(new File(ruleFile[i].getRuleUrl()));
+            	 System.out.println("Gettting new path-----"+ruleFile[i].getRuleUrl()+"i is  "+i);
             	 b = new byte[1];
             	 //System.out.print(b);
             	 while((fis.read(b)) != -1){
@@ -255,7 +257,7 @@ public class createRule {
 	     
 	     i = 0;
 	      while (ruleFile[i]!= null){
-	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getDescription()+" Piority: "+ruleFile[i].getPriority());
+	    	  System.out.println ("Rule :"+i+"  "+ ruleFile[i].getRuleDescr()+" Piority: "+ruleFile[i].getPriority());
 	    	  
 	    	  i++;
 	      }
@@ -364,7 +366,7 @@ public class createRule {
 		  
 		   Rule tmp = ruleFile[rank];
 		   Rule tmp2 = new Rule();
-		   System.out.println("Shifting rule"+ruleFile[rank].getDescription());
+		   System.out.println("Shifting rule"+ruleFile[rank].getRuleUrl());
 		  
 		   while (ruleFile[rank+1] != null){
 			  System.out.println("shift rule  "+rank);

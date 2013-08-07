@@ -6,6 +6,9 @@ import com.dicks.pojo.Orders
 import com.dicks.pojo.Product
 import com.dicks.pojo.Store
 
+import com.dicks.dao.InventoryDAO
+import com.dicks.dao.OrderDetailDAO
+
 import com.dicks.engine.PackageE
 import com.dicks.engine.PackageTestResult
 import java.util.ArrayList
@@ -22,7 +25,7 @@ rule "Explode Cart"
     dialect "java"
     when
         $order : Orders()
-        $item : Product() from $order.getProducts()
+        $item : Product() from OrderDetailDAO.getInstance().getProductsByOrder($order)
     then
         insert( $item );
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
@@ -66,7 +69,7 @@ rule "filter stock2"
         $item : Product()
     	$store : Store()
         //eval($store.checkStore($item, $o,"zone","<",2))
-        eval(!$store.checkStore($item,"margin",">",2)) 
+        eval(InventoryDAO.getInstance().checkProduct($store, $item,">",2)) 
     then
     	
     	System.out.println("store "+$store.getStoreId()+ " retracted by rule filter stock2");

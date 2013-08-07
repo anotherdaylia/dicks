@@ -83,24 +83,48 @@ public class InventoryDAO extends BaseDao<Inventory> {
 
 		return (int) super.getCount(criterion) == productSet.size();
 	}
-	
 
-  public boolean containAnyProductOrder(Store store, Orders order) throws Exception {
-    OrderDetailDAO orderDetailDAO = OrderDetailDAO.getInstance();
-    
-    ArrayList<OrderDetail> orderDetails = orderDetailDAO.getOrderDetailsByOrder(order);
-    
-    List<Criterion> criterion = new ArrayList<Criterion>();
-    Disjunction disjunctions = Restrictions.disjunction();
-    
-    for (OrderDetail orderDetail : orderDetails) {
-      Product p = orderDetail.getProduct();
-      disjunctions.add(Restrictions.conjunction()
-              .add(Restrictions.eq("store.id", store.getStoreId()))
-              .add(Restrictions.eq("product.id", p.getProdId())));
-    }
-    criterion.add(disjunctions);
-    return (int) super.getCount(criterion) > 0;    
-  }
 
+	public boolean containAnyProductOrder(Store store, Orders order) throws Exception {
+		OrderDetailDAO orderDetailDAO = OrderDetailDAO.getInstance();
+
+		ArrayList<OrderDetail> orderDetails = orderDetailDAO.getOrderDetailsByOrder(order);
+
+		List<Criterion> criterion = new ArrayList<Criterion>();
+		Disjunction disjunctions = Restrictions.disjunction();
+
+		for (OrderDetail orderDetail : orderDetails) {
+			Product p = orderDetail.getProduct();
+			disjunctions.add(Restrictions.conjunction()
+					.add(Restrictions.eq("store.id", store.getStoreId()))
+					.add(Restrictions.eq("product.id", p.getProdId())));
+		}
+		criterion.add(disjunctions);
+		return (int) super.getCount(criterion) > 0;    
+	}
+
+	public boolean checkProduct(Store store, Product product, String operator, int mar) throws Exception {
+		Inventory in = getInventoryByStoreProduct(store.getStoreId(), product.getProdId());
+		if (operator.equals(">")){
+			if (in == null || in.getInventory() - in.getSafetyStock() <= mar) {
+				return false;
+			}				
+			return in.getInventory() - in.getSafetyStock() > mar;
+		} 
+		
+		if (operator.equals("<")){
+			if (in == null || in.getInventory() - in.getSafetyStock() >= mar) return false;
+			int margin = in.getInventory() - in.getSafetyStock();
+			return margin < mar && margin > 0;
+		}
+		
+		if (operator.equals("=")){
+			if (in == null || in.getInventory() - in.getSafetyStock() != mar) return false;
+//			int margin = in.getInventory() - in.getSafetyStock();
+//			System.out.println("store: " + store.getStoreId() + " margin: " + margin);
+			return in.getInventory() - in.getSafetyStock() == mar;			
+		}
+		
+		return false;
+	}
 }
