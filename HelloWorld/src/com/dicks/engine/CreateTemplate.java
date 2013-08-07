@@ -366,12 +366,12 @@ public class CreateTemplate {
 			   multiObject.append("");
 		   }
 		   else{
-		   multiObject.append("&& (( productID.equals(\""+splits[0]+"\"))");
+		   multiObject.append("&& (( sku.equals(\""+splits[0]+"\"))");
 
 		   //combing all the other products
 		  //sS System.out.println("splits.size: " + splits.length);
 		   for (int i = 1; i < splits.length; i++){
-			   multiObject.append("|| (productID.equals(\""+splits[i]+"\"))");
+			   multiObject.append("|| (sku.equals(\""+splits[i]+"\"))");
 			   //System.out.println("add second product");
 		   }
 		   multiObject.append(")");
@@ -440,12 +440,12 @@ public class CreateTemplate {
 			   multiObject.append(")");
 		   }
 		   else{
-		   multiObject.append("(( productID.equals(\""+splits[0]+"\"))");
+		   multiObject.append("(( sku.equals(\""+splits[0]+"\"))");
 
 		   //combing all the other products
 		   //System.out.println("splits.size: " + splits.length);
 		   for (int i = 1; i < splits.length; i++){
-			   multiObject.append("|| (productID.equals(\""+splits[i]+"\"))");
+			   multiObject.append("|| (sku.equals(\""+splits[i]+"\"))");
 
 		   }
 
