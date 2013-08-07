@@ -109,18 +109,6 @@
                     <td style="width:80px;">Quantity&#58;</td>
                     <td><input type="text" name="quantity" style="width:50px;"></td>
                 </tr>  
-                <tr>
-                    <td style="width:150px;">Product Name&#58;</td>
-                    <td><input type="text" name="product" style="width:100px;"></td>
-                    <td style="width:80px;">Quantity&#58;</td>
-                    <td><input type="text" name="quantity" style="width:50px;"></td>
-                </tr>  
-                <tr>
-                    <td style="width:150px;">Product Name&#58;</td>
-                    <td><input type="text" name="product" style="width:100px;"></td>
-                    <td style="width:80px;">Quantity&#58;</td>
-                    <td><input type="text" name="quantity" style="width:50px;"></td>
-                </tr>  
 
                 <tr>
                     <td >Shipping Type&#58;</td>
