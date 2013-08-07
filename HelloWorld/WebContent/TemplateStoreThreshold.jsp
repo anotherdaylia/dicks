@@ -36,15 +36,9 @@
   function close() {
 	  document.getElementById('secondStep').style.display='none';
 	  document.getElementById('firstStep').style.display='block';
-      document.getElementById('buttons').style.display='block';
-      
-      
+      document.getElementById('buttons').style.display='block';    
   } 
-  
-  
-  
-  
-  
+
   function pageOnLoad() {
 	  console.log("logged");
 	  close();
