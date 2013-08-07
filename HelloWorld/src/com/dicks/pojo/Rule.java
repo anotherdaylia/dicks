@@ -118,7 +118,7 @@ public class Rule implements java.io.Serializable {
 
 	public Rule(String ruleName, String ruleUrl, String ruleDescr, int priority, String type, String[] objects, 
 			String[] attributes, String[] operators, String[] values, String condition, String[] routes, 
-			String[] actions,String flag, String stage){
+			String[] actions,String flag, String stage, boolean isSpecial){
 
 		StringBuffer objectBuffer = new StringBuffer();
 		StringBuffer attributeBuffer = new StringBuffer();
@@ -135,7 +135,7 @@ public class Rule implements java.io.Serializable {
 		this.type = type;
 		this.stage = stage;
 		this.condition = condition;
-
+		this.isSpecial = isSpecial;
 		if (type.equalsIgnoreCase("Threshold")){
 			this.object = translate(objectBuffer, objects);
 			this.attribute = translate(attributeBuffer, attributes);
