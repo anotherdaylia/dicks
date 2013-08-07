@@ -148,6 +148,7 @@ public class Rule implements java.io.Serializable {
 			this.operator = translate(operatorBuffer, operators);
 			this.value = translate(valueBuffer, values);
 			this.action = translate(actionBuffer, actions);
+			this.route = translate(routeBuffer, routes);
 		}
 		else if (type.equalsIgnoreCase("2")){
 			this.object = translate(objectBuffer, objects);
