@@ -36,15 +36,9 @@
   function close() {
 	  document.getElementById('secondStep').style.display='none';
 	  document.getElementById('firstStep').style.display='block';
-      document.getElementById('buttons').style.display='block';
-      
-      
+      document.getElementById('buttons').style.display='block';    
   } 
-  
-  
-  
-  
-  
+
   function pageOnLoad() {
 	  console.log("logged");
 	  close();
@@ -95,9 +89,9 @@
 	    for (var j = 0, col; col = row.cells[j]; j++) {
 	    	console.log("caonimabi"+j);
 	      if (col.innerText == rulename){
-	    	  
+
 	    	  document.getElementById('priorityId').value= i;
-	    	  
+
 	      }
 	    	//iterate through columns
 	     //columns would be accessed using the "col" variable assigned in the for loop
@@ -224,11 +218,15 @@
                                 <option value="Weight">Weight</option>
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;" name="operator">
-                                <option value="&lt;">&lt;</option> 
+                                <option value="&lt;">&gt;</option> 
                                 <option value="=">=</option>
-                                <option value="&gt;">&gt;</option>
+                                <option value="&gt;">&lt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;inches
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:70px;">
+                                <option value="#">inches</option> 
+                                <option value="#">feet</option>
+                                <option value="#">lbs</option>
+                            </select>
                         </div>
                         <div>
                             <select style="width:70px;" name="attribute">
@@ -238,11 +236,15 @@
                                 <option value="Weight">Weight</option>
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;" name="operator" >
-                                <option value="&lt;">&lt;</option> 
+                                <option value="&lt;">&gt;</option> 
                                 <option value="=">=</option>
-                                <option value="&gt;">&gt;</option>
+                                <option value="&gt;">&lt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;inches
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:70px;">
+                                <option value="#">inches</option> 
+                                <option value="#">feet</option>
+                                <option value="#">lbs</option>
+                            </select>
                         </div>
                         <div>
                             <select style="width:70px;" name="attribute">
@@ -253,11 +255,15 @@
 
                             </select>&nbsp;&nbsp;
                              <select style="width:40px;" name="operator" >
-                                <option value="&lt;">&lt;</option> 
+                                <option value="&lt;">&gt;</option> 
                                 <option value="=">=</option>
-                                <option value="&gt;">&gt;</option>
+                                <option value="&gt;">&lt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;inches
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:70px;">
+                                <option value="#">inches</option> 
+                                <option value="#">feet</option>
+                                <option value="#">lbs</option>
+                            </select>
                         </div>
                          <div>
                             <select style="width:70px;" name="attribute">
@@ -268,13 +274,17 @@
 
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;" name="operator" >
-                                <option value="&lt;">&lt;</option> 
+                                <option value="&lt;">&gt;</option> 
                                 <option value="=">=</option>
-                                <option value="&gt;">&gt;</option>
+                                <option value="&gt;">&lt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;inches
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:70px;">
+                                <option value="#">inches</option> 
+                                <option value="#">feet</option>
+                                <option value="#">lbs</option>
+                            </select>
                         </div>
-                        <div>Perform the following action&#40;s&#41;&#58;</div>
+                        <div>Perform the following action&#58;</div>
                         <div><select name="actions">
                                 <option value="miniumPackage">Ship this product separately</option>
                                 <option value="diffpackage">Separate the product into different packages</option>

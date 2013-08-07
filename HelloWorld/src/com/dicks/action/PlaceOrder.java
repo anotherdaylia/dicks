@@ -11,10 +11,7 @@ public class PlaceOrder {
 	
 	private String shippingtype;
 	private String shippingaddress;
-	private String shippingzipcode;
-
-	
-	
+	private String shippingzipcode;	
 	
 	public String[] getQuantity(){
 		return quantity;
@@ -58,13 +55,9 @@ public class PlaceOrder {
 	public void setShippingtype(String shippingtype) {
 		this.shippingtype = shippingtype;
 	}
-
 	
-	
-	public String placeorder(){
-		
-		
-		for(int i=0;i<4;i++){
+	public String placeorder() throws Exception{
+		for(int i=0;i<quantity.length;i++){
 			quantity[i] = quantity[i].toLowerCase();
 			
 			System.out.println("quantity :"+quantity[i]);
@@ -72,9 +65,7 @@ public class PlaceOrder {
 		}
 		
 		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
-		return "placeorder";
-		
-		
+		return "placeorder";	
 	}
 
 }

@@ -38,12 +38,12 @@ public class Util {
 			for (Fee fee : fees) {
 				if (fee.getFlag().equals("v")) {
 					totalCosts += fee.getValue();
-					System.out.println(fee.getCostName() + ": " + ((double) fee.getValue()) / 100.0);
+//					System.out.println(fee.getCostName() + ": " + ((double) fee.getValue()) / 100.0);
 				} else if (fee.getFlag().equals("p")) {
 					String attributeName = fee.getAttribute();
 					long attributeValue = 0;
 					String[] names = attributeName.split(",");
-					System.out.println("names: " + Arrays.toString(names));
+//					System.out.println("names: " + Arrays.toString(names));
 					if (names[1].equals("cost")) {
 						for (int i = 0; i < fees.size(); i++) {
 							if (fees.get(i).getCostName().equals(names[0])) {
@@ -53,16 +53,16 @@ public class Util {
 					} else if (names[1].equals("product")) {
 						for (Product p : products) {
 							attributeValue += getAttribute(p, Product.class, names[0]);
-							System.out.println("product: " + p.getProdName());
+//							System.out.println("product: " + p.getProdName());
 						}	
-						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+//						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("store")) {
 						attributeValue = getAttribute(store, Store.class, names[0]);
 					} else if (names[1].equals("order")) {
 						attributeValue = getAttribute(parcel.getPack().getOrder(), Orders.class, names[0]);
 					}				
 					totalCosts += attributeValue * fee.getPercentage() / 10000;
-					System.out.println("total costs: " + totalCosts);
+//					System.out.println("total costs: " + totalCosts);
 				}
 			}
 		
