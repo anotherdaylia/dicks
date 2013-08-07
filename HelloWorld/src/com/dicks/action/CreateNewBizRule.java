@@ -129,12 +129,15 @@ public class CreateNewBizRule {
 		System.out.println("rule name  11111"+allRule[i].getRuleName());
 		System.out.println("rule desc  1111"+ allRule[i].getRuleDescr());
 		}
+		rulename = rulename.replace(" ","%20");
+		categoryname = categoryname.replace(" ","%20");
 		return "gototemplate";
 	}
 	
 	public String newrule(){
 		System.out.println("prio   "+priority);
-		
+		categoryname =categoryname.replace("%20", " ");
+		rulename = rulename.replace("%20", " ");
 		for(int i=0;i<attribute.length;i++){
 			attribute[i] = attribute[i].toLowerCase();
 			
@@ -150,9 +153,22 @@ public class CreateNewBizRule {
 		System.out.println("rule name "+rulename);
 		System.out.println("cagegory name "+categoryname);
 		System.out.println("action111"+actions);
+		
+		System.out.println("Hkfsdhjkf???"+categoryname);
 		String[] categoryList= categoryname.split(",");
 		
-		
+		int cateLength = 0;
+		for (int j = 0 ; j<categoryList.length;j++){
+			if ((categoryList[j] != null) && (!categoryList[j].equals(" "))){
+				cateLength++;
+			}
+		}
+		System.out.println("length!!!!"+categoryList.length);
+		System.out.println("real length!!!"+cateLength);
+		String [] cateList = new String[cateLength];
+		for (int i = 0; i<cateList.length;i++){
+			cateList[i] = categoryList[i];
+		}
 		
 		/// Micky, given a categoryList, call DAO function to return product[]; 
 		// if there is categoryList[0] and categroyList[1], need to combine product[] together from both of the categoryList
@@ -162,8 +178,7 @@ public class CreateNewBizRule {
 			type = "Threshold";
 		}
 		String[] product = null;
-		String[] cateList = new String[1];
-		cateList[0] = "a";
+		
 		System.out.println("first instance of catelist is "+cateList[0]);
 		try {
 			product = ProdCateDAO.getInstance().getSKUByCategory(cateList);
