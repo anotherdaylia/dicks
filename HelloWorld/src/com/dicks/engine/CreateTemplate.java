@@ -28,18 +28,18 @@ public class CreateTemplate {
     
    
     
-	public CreateTemplate  (String type, String[] objects, String[] attributes, 
+	public CreateTemplate  (String ruleName, String type, String[] objects, String[] attributes, 
 			String[] operators, String[] values, String conditions, String[] routes, String[] actions, String flag, int ruleInt ){
 		ruleInt --;
 		System.out.println("Creating object length "+objects.length);
 		System.out.println("Creating object length "+objects[0]);
-		
+
 		String condition;
 		if (conditions.equals("all")){
-			condition = "fsd";
+			condition = "||";
 		}
 		else{
-			condition = "fds";
+			condition = "&&";
 		}
 		System.out.println("condition is "+condition);
 		String current = null;
@@ -85,8 +85,8 @@ public class CreateTemplate {
 			product[2] = shirt;
 
 			System.out.println("!!!!"+shoes.getSku());
-			
-			
+
+
 			try {
 				ruleFile = RuleDAO.getInstance().getAllSortedList() ;
 			} catch (Exception e1) {
@@ -94,14 +94,14 @@ public class CreateTemplate {
 				e1.printStackTrace();
 			}
 			ruleFiles = new Rule[ruleFile.length+1];
-			
+
 			for (int i = 0 ; i < ruleFile.length; i++){
 				ruleFiles[i] = ruleFile[i];
 			}
-			
+
 			for (int i = 0 ; i < ruleFiles.length-1; i++){
 				System.out.println(i+" "+ruleFiles[i].getRuleDescr());
-				
+
 			}
 			System.out.println("!!!!!!!!!!!rule is "+ruleFile.length);
 		  /*if (ruleFile[0] == null){
@@ -121,7 +121,7 @@ public class CreateTemplate {
 		  //get priority, hardcoded for 2 for demo
 		  System.out.println("Rules before editing");
 		  int i = 0;
-	      
+
 	      System.out.println("----------------------------------------------------------");
 	      //ruleFile[i+1] = new Rule();
 
@@ -136,14 +136,14 @@ public class CreateTemplate {
 	      checkFlag(type, objects, flag);
 	      String[] r = new String[1];
 	      r[0] = "haha";
-	      
+
 	      if (type.equalsIgnoreCase("Threshold")){
 	    	  type = "1";
 	      }
 	      if (type.equalsIgnoreCase("Store Filter")){
 	    	  type = "2";
 	      }
-	      
+
 	      if (type.equalsIgnoreCase("1")||type.equalsIgnoreCase("2")){
 	    	  System.out.println("Heresdlfjsdlkfjsdlfjsdl");
 	    	  //System.out.println("object length "+objects.length);
@@ -151,15 +151,14 @@ public class CreateTemplate {
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
 
-	    		  
-	    		 
-	  			
-					 ruleFiles[ruleInt] = new Rule("abc", "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
 
+
+
+					 ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
 							 					attributes,operators,values,condition, r,actions,flag, "1",false);
 				 }
 			  else{
-					 ruleFiles[ruleInt] = new Rule("cde", "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
+					 ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
 							 attributes,operators,values,condition, r,actions,flag, "1",false);
 			  }
 	    	  try {
@@ -173,18 +172,20 @@ public class CreateTemplate {
 		      if (ruleInt > 0){
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
-
-		    	  ruleFiles[ruleInt] = new Rule("edf", "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,attributes,operators,values,condition, r,actions,flag, "stage1",false);
-
+		    	  ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,attributes,operators,values,condition, r,actions,flag, "stage1",false);
 
 				 }
 			  else{
 
-					 ruleFiles[ruleInt] = new Rule("efg", "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
-
+					 ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
 							 attributes,operators,values,condition, r,actions,flag, "stage1",false);
 			  }
+
+
 	      }
+
+
+
 		   /*
 		   try {
 		    	 for (i  = 0 ; rules[i] != null; i++){
@@ -256,21 +257,21 @@ public class CreateTemplate {
 	            	 }
 		             else{
 		            	 //conditon added
-		            	 if (ruleFiles[i].getType().equalsIgnoreCase("Threshold")){
+		            	 if (ruleFiles[i].getType().equalsIgnoreCase("1")){
 		            		 System.out.println("This is the new Threshold rule created by the system");
 		            		 byte[] contentInBytes = createThreshold(ruleFiles[i].getType(),ruleFiles[i].getPriority(),
 		            				 ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues(),
 		            				 ruleFiles[i].getCondition(),ruleFiles[i].getActions(),ruleFiles[i].getFlag()).getBytes();
 		            		 fos.write(contentInBytes);
 		            	 }
-		            	 else if (ruleFile[i].getType().equalsIgnoreCase("Store Filter")){
+		            	 else if (ruleFile[i].getType().equalsIgnoreCase("2")){
 		            		 System.out.println("This is the new Store Filter rule created by the system!!!!");
 		            		 byte[] contentInBytes = createStoreRule(ruleFiles[i].getType(),ruleFiles[i].getPriority(),
 		            				 ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues(),
 		            				 ruleFiles[i].getActions(),ruleFiles[i].getFlag()).getBytes();
 		            		 fos.write(contentInBytes);
 		            	 }
-		            	 else if (ruleFiles[i].getType().equalsIgnoreCase("Special Route")){
+		            	 else if (ruleFiles[i].getType().equalsIgnoreCase("3")){
 		            		 System.out.println("This is the new Special route rule created by the system!!!!");
 		            		 byte[] contentInBytes = createSpecialRoute(ruleFile[i].getType(),ruleFiles[i].getPriority(),
 		            				 ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues(),
@@ -283,7 +284,7 @@ public class CreateTemplate {
 		            	 	System.out.println("----------------------------------------------------------");
 		    				System.out.println("Done");
 		             }
-		            
+
 
 	             }
 
@@ -296,11 +297,11 @@ public class CreateTemplate {
 	      catch(Exception e){System.out.println("error: " + e);}
 		     //threshold abc = new threshold("hold");
 		     System.out.println("Rules after editing");
-		     
-		      for (i = 0; i<ruleFiles.length;i++){
-		    	  System.out.println ("Rule :"+i+"  "+ ruleFiles[i].getRuleDescr()+" Priority: "+ruleFiles[i].getPriority());
 
-		    	  
+		      for (i = 0; i<ruleFiles.length;i++){
+		    	  System.out.println ("Rule :"+i+"  "+ ruleFiles[i].getRuleName()+" Priority: "+ruleFiles[i].getPriority());
+
+
 		      }
 
 	}
@@ -579,12 +580,12 @@ public class CreateTemplate {
 		   if (ruleFiles[3] == null){
 			   System.out.println("cao111");
 		   }
-		   
+
 		   System.out.println("shifting!!!!  "+rank);
 		   Rule tmp = ruleFiles[rank];
 		   Rule tmp2 = new Rule();
 		   System.out.println("Start insertion at " +rank);
-		  // System.out.println("Shifting rule"+ruleFiles[rank].getRuleDescr());
+		   System.out.println("Shifting rule"+ruleFiles[rank].getRuleDescr());
 		   System.out.println("Re-Ranking ......Done");
 		   System.out.println("----------------------------------------------------------");
 		   while (ruleFiles[rank+1] != null){
@@ -597,12 +598,12 @@ public class CreateTemplate {
 					  // +"rule[rank]"+ruleFile[rank].getDescription()+
 					   //"rule[rank+1]  "+ruleFile[rank+1].getDescription());
 			  // ruleFile[rank+1].setPriority(ruleFile[rank+1].getPriority()-2);
-			   
+
 			   rank ++;
 			   if (ruleFiles[rank+1] == null){
 				   System.out.println("fsajfldskafj");
 			   }
-			   
+
 		   }
 		   ruleFiles[rank+1]=tmp;
 		   ruleFiles[rank+1].setPriority(ruleFiles[rank+1].getPriority()-2);
