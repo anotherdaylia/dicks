@@ -95,9 +95,9 @@
 	    for (var j = 0, col; col = row.cells[j]; j++) {
 	    	console.log("caonimabi"+j);
 	      if (col.innerText == rulename){
-	    	  
+
 	    	  document.getElementById('priorityId').value= i;
-	    	  
+
 	      }
 	    	//iterate through columns
 	     //columns would be accessed using the "col" variable assigned in the for loop

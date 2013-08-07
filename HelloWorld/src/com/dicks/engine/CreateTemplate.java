@@ -584,7 +584,7 @@ public class CreateTemplate {
 		   Rule tmp = ruleFiles[rank];
 		   Rule tmp2 = new Rule();
 		   System.out.println("Start insertion at " +rank);
-		   System.out.println("Shifting rule"+ruleFiles[rank].getRuleDescr());
+		  // System.out.println("Shifting rule"+ruleFiles[rank].getRuleDescr());
 		   System.out.println("Re-Ranking ......Done");
 		   System.out.println("----------------------------------------------------------");
 		   while (ruleFiles[rank+1] != null){
