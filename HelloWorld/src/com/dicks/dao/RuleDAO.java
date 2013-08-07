@@ -31,7 +31,6 @@ public class RuleDAO extends BaseDao<Rule> {
 		});
 
 		Rule[] array = (Rule[]) ruleList.toArray(new Rule[ruleList.size()]);
-
 		return array;
 	}
 
@@ -52,4 +51,10 @@ public class RuleDAO extends BaseDao<Rule> {
 		super.create(rule);
 	}
 
+	public void updatePriorities(Rule[] ruleArray) throws Exception{
+		for(Rule rule : ruleArray){
+			super.update(rule);
+		}
+	}
+	
 }
