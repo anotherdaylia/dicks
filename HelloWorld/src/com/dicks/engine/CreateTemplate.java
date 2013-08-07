@@ -173,9 +173,8 @@ public class CreateTemplate {
 		      if (ruleInt > 0){
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
-		    	  ruleFiles[ruleInt] = new Rule("edf", "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
 
-							 attributes,operators,values,condition, r,actions,flag, "stage1",false);
+		    	  ruleFiles[ruleInt] = new Rule("edf", "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,attributes,operators,values,condition, r,actions,flag, "stage1",false);
 
 
 				 }
