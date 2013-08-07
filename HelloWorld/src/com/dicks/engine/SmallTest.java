@@ -20,6 +20,7 @@ import com.dicks.dao.StoreDAO;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Store;
+import com.dicks.pojo.Rule;
 
 public class SmallTest {
 
@@ -36,11 +37,8 @@ public class SmallTest {
 		// Check the builder for errors
 
 		if (kbuilder.hasErrors()) {
-
 			System.out.println(kbuilder.getErrors().toString());
-
 			throw new RuntimeException("Unable to compile \"newRule_joe.drl\".");
-
 		}
 
 
@@ -48,13 +46,11 @@ public class SmallTest {
 
 		final Collection<KnowledgePackage> pkgs = kbuilder.getKnowledgePackages();
 
-
 		// add the packages to a KnowledgeBase (deploy the knowledge packages).
 
 		final KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
 
 		kbase.addKnowledgePackages(pkgs);
-
 
 		final StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 		// setup the audit logging

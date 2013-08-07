@@ -7,7 +7,6 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 import com.dicks.pojo.Orders;
-import com.dicks.pojo.Product;
 
 public class OrdersDAO extends BaseDao<Orders> {
 	private static OrdersDAO instance = new OrdersDAO();
@@ -33,5 +32,9 @@ public class OrdersDAO extends BaseDao<Orders> {
 		Criterion criterion = Restrictions.eq("orderId", id);
 		criterions.add(criterion);
 		return super.get(criterions);
+	}
+	
+	public ArrayList<Orders> getAllOrders() throws Exception{
+		return (ArrayList<Orders>) super.getList();
 	}
 }

@@ -50,9 +50,11 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 		return skuArray;
 	}
 	
+
 	public ProdCate[] getProdCategoryList() throws Exception{
 		ArrayList<ProdCate> cateList =  (ArrayList<ProdCate>) super.getList();
 		ProdCate[] array = (ProdCate[])cateList.toArray(new ProdCate[cateList.size()]); 
 		return array;
 	}
+
 }
