@@ -41,6 +41,16 @@ public class ProductDAO extends BaseDao<Product> {
 		return super.getList(criterion);	
 	}
 	
+	public int[] getProductIdsBySKUList(String[] skuList) throws Exception{
+		Product[] products = getProductsBySKUList(skuList);
+		int[] array = new int[products.length];
+		for(int i = 0 ; i<products.length ; i++){
+			array[i] = products[i].getProdId();
+		}
+		
+		return array;
+	}
+	
 	public Product[] getProductsBySKUList(String[] skuList) throws Exception{
 		List<Criterion> criterion = new ArrayList<Criterion>();
 

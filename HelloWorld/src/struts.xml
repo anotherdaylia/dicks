@@ -47,8 +47,7 @@
       </action>
 
       <action name="displayCategoryList" class="com.dicks.action.CategoryListAction" method="displayCategory">
-          <result name="success" type="dispatcher">/CategoryList.jsp</result>
-          
+          <result name="success" type="dispatcher">/CategoryList.jsp</result>    
 	</action>
 
        <action name="gotonewcategory" class="com.dicks.action.Redirect" method="gotonewcategory">
@@ -62,6 +61,9 @@
           <result name="success">/VisualizationOrderDetail.jsp</result>
 	</action>
       <action name="orderlist" class="com.dicks.action.OrderList" method="getOrderList">
+          <result name="success">/OrderList.jsp</result>
+      </action>
+      <action name="createStoreRule" class="com.dicks.action.CreateCategoryAction" method="createProductCategory">
           <result name="success">/OrderList.jsp</result>
       </action>
    </package>

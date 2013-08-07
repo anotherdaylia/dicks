@@ -10,7 +10,7 @@ public class CategoryListAction extends ActionSupport {
 	private ProdCate[] prodCategoryList;
 	private StoreCate[] storeCategoryList;
 	private String act;
-	private String tag;
+	
 
 	private static final long serialVersionUID = 1L;
 	

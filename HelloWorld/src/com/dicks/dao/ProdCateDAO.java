@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
@@ -39,6 +40,8 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 		return products;	
 	}
 	
+	
+	
 	public String[] getSKUByCategory(String[] categoryNameList) throws Exception{
 		System.out.println("passing in "+categoryNameList[0]);
 		Product[] products = getProductByCategory(categoryNameList);
@@ -59,7 +62,9 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 	}
 
 	public int getMaxId() throws Exception{
-		return super.getMaxId(null);
+		String sql = "select max(cate_prod_id) maxid from prod_cate";
+		return (Integer)HibernateUtil.getSession().createSQLQuery(sql).uniqueResult();
+		
 	}
 	
 	public void createCategory(ProdCate prodCate) throws Exception{	

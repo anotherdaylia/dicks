@@ -267,7 +267,7 @@ public abstract class BaseDao<T> {
 					criteria.add(criterion);
 				}
 			}
-			t = (Integer) criteria.setProjection(Projections.max("id")).uniqueResult();
+			t = (Integer) criteria.setProjection(Projections.max("cateProdId")).uniqueResult();
 			session.flush();
 			session.getTransaction().commit();
 

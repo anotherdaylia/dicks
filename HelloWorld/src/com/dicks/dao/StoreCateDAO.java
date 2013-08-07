@@ -34,6 +34,7 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 	
 	
 	public int getMaxId() throws Exception{
-		return super.getMaxId(null);
+		String sql = "select max(cate_store_id) maxid from store_cate";
+		return (Integer)HibernateUtil.getSession().createSQLQuery(sql).uniqueResult();
 	}
 }
