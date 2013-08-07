@@ -1,5 +1,6 @@
 package com.dicks.dao;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,4 +35,5 @@ public class OrdersDAO extends BaseDao<Orders> {
 		criterions.add(criterion);
 		return super.get(criterions);
 	}
+	
 }

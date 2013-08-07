@@ -96,7 +96,7 @@
     <div class="body clearfix">
     
     <!-- menu bar starts -->
-    <div class="aside" id="aside-menu">
+    <%-- <div class="aside" id="aside-menu">
     <div class="title"><h1>My Tool</h1>
        <!-- <a href="javascript:void(0)" class="fold recordable" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;0&quot;}" id="menu-toggle"></a>
         -->
@@ -127,9 +127,9 @@
             </ul>
         </li>   
     </ul>
-    </div>
+    </div> --%>
     <!-- menu bar ends -->
-
+    <jsp:include page="NavigationTemplate.jsp" />
     <!-- content starts -->
     <div class="minibar recordable" id="minibar" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;1&quot;}" style="display:none;"><a id="menu-untoggle" href="javascript:void(0)" class="unfold" ></a></div> 
     <div class="main"  id="main-body">
