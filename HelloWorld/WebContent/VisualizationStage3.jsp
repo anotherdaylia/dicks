@@ -8,6 +8,7 @@
     %>
      
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -15,19 +16,19 @@
  <title>DSG-Visualization Stage1</title>
  <link href="css/common.css" rel="stylesheet" type="text/css" />
  <link href="css/overview.css" rel="stylesheet" type="text/css" /> 
- <link href="css/pop.css" rel="stylesheet" type="text/css">
+ <link href="css/pop.css" rel="stylesheet" type="text/css" href="">
  <script src="js/jquery.min.js" type="text/javascript"> </script>
  <script src="js/animation.js" type="text/javascript"></script>
  <script src="js/pop.js" type="text/javascript"></script>
  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
- <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
- <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
- <link rel="stylesheet" href="/resources/demos/style.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
  <script>
   $(function() {
-    $("#accordion").accordion({
+    $( "#accordion" ).accordion({
         collapsible: true,
-        active: 1,
+        active: 2,
     });
   });
   </script>
@@ -53,22 +54,27 @@
     <!-- menu bar starts -->
     <div class="aside" id="aside-menu">
     <div class="title"><h1></h1>
+       <!-- <a href="javascript:void(0)" class="fold recordable" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;0&quot;}" id="menu-toggle"></a>
+        -->
     </div>
     <ul class="nav">
-        <li class=""><a class="recordable open" id="toggleone" href="#" memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
+        <li class=""><a class="recordable open" id="toggleone" href="#" 
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
             <ul class="nav-two" id="navone">
                 <li class=""><a href="categorylist.html">Category List</a><span class="normal">&nbsp;</span></li>
                 <li class=""><a href="CreateCategory.html">New Category</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
-        <li class=""><a class="recordable open" href="#" id="toggletwo" memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
+        <li class=""><a class="recordable open" href="#" id="toggletwo"
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
             <ul class="nav-two" id="navtwo">
                 <li class=""><a href="rulelist.html">Business Rule List</a><span class="normal">&nbsp;</span></li>
                 <li class=""><a href="newrule.html">New Business Rule</a><span class="normal">&nbsp;</span></li>
                 <li class=""><a href="RulePriority.html">Business Rule Priority</a><span class="normal">&nbsp;</span></li>
             </ul>
         </li>   
-        <li class=""><a class="recordable open" href="#" id="togglethree" memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
+        <li class=""><a class="recordable open" href="#" id="togglethree"
+            memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="selected"><a href="orderlist.html">Order List</a><span class="normal">&nbsp;</span></li>
                 <li class=""><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
@@ -139,61 +145,95 @@
                 
                 <div id="block2" style="float:left;height:465px;width:600px;border:1px solid #ccc;border-radius:5px;overflow-y:scroll;">
                     <div style="padding-left:20px;">
-                        
-                        <div name="package" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
-                            Package 1
+                        <div id="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
+                            Route 1
                         </div>
                         
-                        <div id="included" style="height:60px;">
-                            <div style="float:left;height:20px;width:110px;font-size:14px;">
-                                Included Items&#58;
+                        <div id="route_detail" style="height:30px;">
+                            <div style="height:20px;">
+                                <div style="float:left;height:10px;width:50px;font-size:12px;">
+                                    From:
+                                </div>
+                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
+                                    Store 010
+                                </div>
                             </div>
-                            
-                            <div style="float:left;">
-                            	<c:forEach items="${items}" var="item">
-                                	<div name="items" style="padding-left:20px;height:20px;font-size:12px;">
-                                    	${item.name}&#58; quantity ${item.quantity}
-                                	</div>
-                                </c:forEach>
+                            <div style="height:20px;">
+                                <div style="float:left;height:10px;width:50px;font-size:12px;">
+                                    To:
+                                </div>
+                                <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
+                                    5000 Forbes Ave, Pitsburgh, PA 15213
+                                </div>
                             </div>
                         </div>
 
-                        <div id="split" style="height:100px;">
-                        	<c:forEach items="${splits}" var="split">
-                            	<div>
-                                	<div name="splitNo" style="float:left;height:20px;font-size:14px;">
-                                    	${split.number}
-                                	</div>
-                                	<div name="failed" style="float:left;padding-left:75px;height:20px;font-size:12px;">
-                                    	Failed: ${split.failed}/580 stores
-                                	</div>
-                            	</div>
-                            </c:forEach>
-                            <div id="success" style="padding-left:130px;height:20px;width:100px;font-size:12px;">
-                                Success:
-                                <div id="products" style="float:left; width:350px" class="table-list">
-                                	<table cellspacing="0" cellpadding="0" class="list">
-                                    	<tr class="title">
-                                        	<th></th>
-                                        	<th>Store ID</th>
-                                        	<th>Total Cost</th>
+                        <div id="included" style="height:60px;margin-top:30px;">
+                            <div style="height:20px;font-size:14px;">
+                                Included Packages:
+                            </div>
+                            
+                            <div>
+                                <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package 1: </div>
+                                <div name="items" style="float:left;">
+                                	<c:forEach items="${items}" var="item">
+                                    	<div name="item" style="padding-left:30px;height:20px;font-size:12px;">${item.name}&#58; quantity ${item.quantity}</div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="cost" style="height:100px;margin-top:20px;">
+                            <div name="splitNo" style="float:left;height:20px;font-size:14px;">
+                                Cost Detail:
+                            </div>
+                            <div id="products" style="float:left; width:350px; padding-left:10px;" class="table-list">
+                                <table cellspacing="0" cellpadding="0" class="list">
+                                    <tr class="title">
+                                        <th>Cost</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                    <c:forEach items="${cost}" var="cost">
+                                    	<tr>
+                                        	<td>Transaction Fees</td>
+                                        	<td>${cost.transaction}</td>
                                     	</tr>
-                                    	<c:forEach items="${table}" var="table" varStatus="status">
-                                    		<tr>
-                                        		<td>${status.count}</td>
-                                        		<td>${table.name}</td>
-                                        		<td>${table.cost}</td>
-                                    		</tr>
-                                    	</c:forEach>
-                                	</table>
-                            	</div>
+                                    	<tr>
+                                        	<td>Freight In to Store Cost</td>
+                                        	<td>${cost.freight}</td>
+                                    	</tr>
+                                    	<tr>
+                                        	<td>Distribution Center Cost</td>
+                                        	<td>${cost.dc}</td>
+                                    	</tr>
+                                    	<tr>
+                                        	<td>Packaging Cost</td>
+                                        	<td>${cost.packaging}</td>
+                                    	</tr>
+                                    	<tr>
+                                    	    <td>Labor Cost</td>
+                                        	<td>${cost.labor}</td>
+                                    	</tr>
+                                    	<tr>
+                                        	<td></td>
+                                        	<td></td>
+                                    	</tr>
+                                    	<tr>
+                                        	<td>Total Cost</td>
+                                        	<td>${cost.total}</td>
+                                    	</tr>
+                                    </c:forEach>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             </form>
-            <!-- form ends -->        
+            <!-- form ends -->
+
+
+           
         </div>
 
         </div>
