@@ -21,4 +21,19 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		return array;
 	}
 
+	public void createCategory(StoreCate storeCate) throws Exception{
+		super.create(storeCate);
+	}
+	
+	public int getNewId() throws Exception{
+		int id1 = getMaxId();
+		int id2 = ProdCateDAO.getInstance().getMaxId();
+		return Math.max(id1, id2)+1;
+	}
+	
+	
+	
+	public int getMaxId() throws Exception{
+		return super.getMaxId(null);
+	}
 }

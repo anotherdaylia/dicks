@@ -48,13 +48,17 @@
 
       <action name="displayCategoryList" class="com.dicks.action.CategoryListAction" method="displayCategory">
           <result name="success" type="dispatcher">/CategoryList.jsp</result>
-          </action>
+          
+	</action>
 
        <action name="gotonewcategory" class="com.dicks.action.Redirect" method="gotonewcategory">
           <result name="gotonewcategory">/NewCategory.jsp</result>
       </action>
-      <action name="submitnewcate" class="com.dicks.action.CreateNewCategory" method="submitNewCate">
+      <action name="submitnewcate" class="com.dicks.action.CreateCategoryAction" method="createProductCategory">
           <result name="submitnewcate">/NewCategory.jsp</result>
+      </action>
+      <action name="orderlist" class="com.dicks.action.OrderList" method="getOrderList">
+          <result name="success">/OrderList.jsp</result>
       </action>
    </package>
 </struts>

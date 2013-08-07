@@ -25,7 +25,7 @@ public class Rule implements java.io.Serializable {
 	private String value;
 	private String route;
 	private String action;
-	//private String condition;
+	private String condition;
 	private boolean isSpecial;
 	private Set ruleCates = new HashSet(0);
 
@@ -34,6 +34,32 @@ public class Rule implements java.io.Serializable {
 	/** default constructor */
 	public Rule() {
 	}
+
+
+
+	public Rule(String ruleName, String ruleUrl, String ruleDescr,
+			Integer priority, String flag, String type, String stage,
+			String object, String attribute, String operator, String value,
+			String route, String action, String condition, boolean isSpecial) {
+		super();
+		this.ruleName = ruleName;
+		this.ruleUrl = ruleUrl;
+		this.ruleDescr = ruleDescr;
+		this.priority = priority;
+		this.flag = flag;
+		this.type = type;
+		this.stage = stage;
+		this.object = object;
+		this.attribute = attribute;
+		this.operator = operator;
+		this.value = value;
+		this.route = route;
+		this.action = action;
+		this.condition = condition;
+		this.isSpecial = isSpecial;
+	}
+
+
 
 	/** minimal constructor */
 	public Rule(String ruleName, String ruleUrl, String ruleDescr,
@@ -59,10 +85,10 @@ public class Rule implements java.io.Serializable {
 	public Rule(String ruleName, String ruleUrl, String ruleDescr,
 			Integer priority, String flag, String type, String stage,
 			String object, String attribute, String operator, String value,
-			String route, String action, Set ruleCates) {
+			String route, String action, String condition) {
 		this.ruleName = ruleName;
 		this.ruleUrl = ruleUrl;
-		this.ruleDescr = "11";
+		this.ruleDescr = ruleDescr;
 		this.priority = priority;
 		this.flag = flag;
 		this.type = type;
@@ -73,10 +99,9 @@ public class Rule implements java.io.Serializable {
 		this.value = value;
 		this.route = route;
 		this.action = action;
-		//this.condition = condition;
-		this.ruleCates = ruleCates;
+		this.condition = condition;
 	}
-	
+
 	//Joe Constructor
 	public Rule(String ruleName, String ruleUrl, String ruleDescr, int priority){
 		this.ruleName = ruleName;
@@ -84,7 +109,7 @@ public class Rule implements java.io.Serializable {
 		this.ruleDescr = ruleDescr;
 		this.priority = priority;
 	}
-	
+
 	public Rule(String ruleName, String ruleUrl, String ruleDescr){
 		this.ruleName = ruleName;
 		this.ruleUrl = ruleUrl;
@@ -92,38 +117,33 @@ public class Rule implements java.io.Serializable {
 	}
 
 	public Rule(String ruleName, String ruleUrl, String ruleDescr, int priority, String type, String[] objects, 
-			String[] attributes, String[] operators, String[] values, String[] routes, 
+			String[] attributes, String[] operators, String[] values, String condition, String[] routes, 
 			String[] actions,String flag, String stage){
-		System.out.println("gdsgdf"+routes[0]);
+
 		StringBuffer objectBuffer = new StringBuffer();
 		StringBuffer attributeBuffer = new StringBuffer();
 		StringBuffer operatorBuffer = new StringBuffer();
 		StringBuffer valueBuffer = new StringBuffer();
 		StringBuffer actionBuffer = new StringBuffer();
 		StringBuffer routeBuffer = new StringBuffer();
-		//this.isSpecial = "0";
+
 		this.ruleName = ruleName;
 		this.ruleUrl = ruleUrl;
 		this.ruleDescr = ruleDescr;
 		this.priority = priority;
-		this.flag = "A";
+		this.flag = flag;
 		this.type = type;
 		this.stage = stage;
-		//this.condition = condition;
-		
-		if (type.equalsIgnoreCase("1")){
+		this.condition = condition;
+
+		if (type.equalsIgnoreCase("Threshold")){
 			this.object = translate(objectBuffer, objects);
-			System.out.println("objectsssss is "+ object);
 			this.attribute = translate(attributeBuffer, attributes);
-			//this.operator = translate(operatorBuffer, operators);
-			this.operator = "a";
+			this.operator = translate(operatorBuffer, operators);
 			this.value = translate(valueBuffer, values);
-			//this.action = translate(actionBuffer, actions);
-			//this.route =translate(routeBuffer, routes);
-			this.route = "b";
-			this.action = "c";
+			this.action = translate(actionBuffer, actions);
 		}
-		else if (type.equalsIgnoreCase("2")){
+		else if (type.equalsIgnoreCase("Special Route")){
 			this.object = translate(objectBuffer, objects);
 			this.attribute = translate(attributeBuffer, attributes);
 			this.operator = translate(operatorBuffer, operators);
@@ -131,7 +151,7 @@ public class Rule implements java.io.Serializable {
 			this.action = translate(actionBuffer, actions);
 			this.route =translate(routeBuffer, routes);
 		}
-		else if (type.equalsIgnoreCase("3")){
+		else if (type.equalsIgnoreCase("Store Filter")){
 			this.object = translate(objectBuffer, objects);
 			this.attribute = translate(attributeBuffer, attributes);
 			this.operator = translate(operatorBuffer, operators);
@@ -142,21 +162,6 @@ public class Rule implements java.io.Serializable {
 			System.out.println("Error, Invalid Rule Type Added");
 			System.exit(0);
 		}		
-		System.out.println("rule name :"+ ruleName);
-		System.out.println("rule url :"+ruleUrl);
-		System.out.println("rule des "+ruleDescr);
-		System.out.println("priority "+priority);
-		System.out.println("flag "+flag);
-		System.out.println("type "+type);
-		System.out.println("stage "+stage);
-		System.out.println("object "+object);
-		System.out.println("attribute "+attribute);
-		System.out.println("operator "+operator);
-		System.out.println("value "+value);
-		System.out.println("route "+ route);
-		System.out.println("action "+ action);
-		//System.out.println("condition "+condition);
-		System.out.println("speicla "+isSpecial);
 	}
 
 	// Property accessors
@@ -273,14 +278,14 @@ public class Rule implements java.io.Serializable {
 		this.action = action;
 	}
 
-	/*public String getCondition() {
+	public String getCondition() {
 		return this.condition;
 	}
 
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
-*/
+
 	public Set getRuleCates() {
 		return this.ruleCates;
 	}
@@ -289,63 +294,28 @@ public class Rule implements java.io.Serializable {
 		this.ruleCates = ruleCates;
 	}
 
-	/*public boolean getIsSpecial() {
+	public boolean getIsSpecial() {
 		return isSpecial;
 	}
 
 	public void setIsSpecial(boolean isSpecial) {
 		this.isSpecial = isSpecial;
-	}*/
+	}
 
 	public String translate (StringBuffer s1, String[] s2){
-		if (s2[0].equals(">")){
-			s1.append("^");
-		}
-		else if (s2[0].equals("<")){
-			s1.append("^^");
-		}
-		else if (s2[0].equals("=")){
-			s1.append("^^^");
-		}
-		else{
-			
-			s1.append(s2[0]);
-		}
-		
+
+		s1.append(s2[0]);
 		for (int i = 1; i < s2.length; i++){
-			s1.append(",");
-			if (s2[i].equals(">")){
-				s1.append("^");
-			}
-			else if (s2[i].equals("<")){
-				s1.append("^^");
-			}
-			else if (s2[i].equals("=")){
-				s1.append("^^^");
-			}
-			else{
-				
+				s1.append(",");
 				s1.append(s2[i]);
-			}
 		}
-		System.out.println("translating!!!"+s1.toString());
 		return s1.toString();
 
 	}
 
 	public String[] translateBack(String s1){
 		String[] s2 = s1.split(",");
-		for (int i =0; i< s2.length; i++){
-			if (s2[i].equals("^")){
-				s2[i] = ">";
-			}
-			else if (s2[i].equals("^^")){
-				s2[i] = "<";
-			}
-			else if (s2[i].equals("^^^")){
-				s2[i] = "=";
-			}
-		}
+
 		return s2;
 	}	
 
