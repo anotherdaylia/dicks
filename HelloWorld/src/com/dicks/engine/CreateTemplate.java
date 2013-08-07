@@ -31,9 +31,6 @@ public class CreateTemplate {
 	public CreateTemplate  (String ruleName, String type, String[] objects, String[] attributes, 
 			String[] operators, String[] values, String conditions, String[] routes, String[] actions, String flag, int ruleInt ){
 		ruleInt --;
-		System.out.println("Creating object length "+objects.length);
-		System.out.println("Creating object length "+objects[0]);
-
 		String condition;
 		if (conditions.equals("all")){
 			condition = "||";
@@ -65,7 +62,7 @@ public class CreateTemplate {
 			shoes.setWeight(10);
 			shoes.setWidth(2.0);
 			shoes.setSku("11");
-			System.out.println("????"+shoes.getSku());
+			//System.out.println("????"+shoes.getSku());
 			Product hat = new Product();
 			hat.setProdName("hat");
 			hat.setFactoryPrice(10);
@@ -84,7 +81,7 @@ public class CreateTemplate {
 			product[1] = hat;
 			product[2] = shirt;
 
-			System.out.println("!!!!"+shoes.getSku());
+			//System.out.println("!!!!"+shoes.getSku());
 
 
 			try {
@@ -100,10 +97,10 @@ public class CreateTemplate {
 			}
 
 			for (int i = 0 ; i < ruleFiles.length-1; i++){
-				System.out.println(i+" "+ruleFiles[i].getRuleDescr());
+				//System.out.println(i+" "+ruleFiles[i].getRuleDescr());
 
 			}
-			System.out.println("!!!!!!!!!!!rule is "+ruleFile.length);
+			//System.out.println("!!!!!!!!!!!rule is "+ruleFile.length);
 		  /*if (ruleFile[0] == null){
 			  ruleFile[0] = new Rule("abc", "/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule1.txt","\"Explode Cart\"",100);
 		  }
@@ -132,7 +129,7 @@ public class CreateTemplate {
 
 	      reRank(ruleInt);
 	      ruleFiles[ruleInt] = new Rule();
-	      System.out.println("nnnnnnnn");
+	      //System.out.println("nnnnnnnn");
 	      checkFlag(type, objects, flag);
 	      String[] r = new String[1];
 	      r[0] = "haha";
@@ -145,7 +142,7 @@ public class CreateTemplate {
 	      }
 
 	      if (type.equalsIgnoreCase("1")||type.equalsIgnoreCase("2")){
-	    	  System.out.println("Heresdlfjsdlkfjsdlfjsdl");
+	    	  //System.out.println("Heresdlfjsdlkfjsdlfjsdl");
 	    	  //System.out.println("object length "+objects.length);
 	    	  if (ruleInt > 0){
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
@@ -246,7 +243,7 @@ public class CreateTemplate {
 	             for (i=0; i < ruleFiles.length; i++){
 	            	 	System.out.println("printing file "+i);
 	            	 if (ruleFiles[i].getType().equals("l")){
-	            		 System.out.println("read file");
+	            		 //System.out.println("read file");
 		            	 fis = new FileInputStream(new File(ruleFiles[i].getRuleUrl()));
 		            	 //System.out.println("Gettting new path-----"+ruleFile[i].getPath()+"i is  "+i);
 		            	 b = new byte[1];

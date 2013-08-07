@@ -28,6 +28,7 @@
 
   //var rule = allRule;
     function show() {
+        
 	    document.getElementById('secondStep').style.display='block';
 	    document.getElementById('firstStep').style.display='none';
 	    document.getElementById('buttons').style.display='none';
@@ -37,6 +38,10 @@
 	  document.getElementById('secondStep').style.display='none';
 	  document.getElementById('firstStep').style.display='block';
       document.getElementById('buttons').style.display='block';    
+      
+
+
+      
   } 
 
   function pageOnLoad() {
@@ -297,7 +302,7 @@
                     <td>
                     <a class="button" href="#">Cancel</a></td>
                     
-                <input type="hidden" name="rulename"  value=<%=request.getAttribute("rulename")%> />
+                <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />
                 <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
                 <input type="hidden" name="categoryname"  value=<%=request.getAttribute("categoryname")%> />
            		<input type="hidden" id="priorityId" name="priority"> 
@@ -328,7 +333,9 @@
 				</c:forEach>
 				<tr style="height:30px;background-color:8CEEF5">
                             <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;background-color:#8CEEF5">Your New Rule</td>
+
                             <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">${rulename.replace("%20"," ")}</td>
+
                             <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">This is your new rule</td>
                 </tr>
                 <tr>
