@@ -42,7 +42,7 @@
       <action name="newrulePriority" class="com.dicks.action.CreateNewBizRule" method="ranking">
           <result name="newrulePriority" type="dispatcher">/RuleList.jsp</result>
       </action>
-      <action name="placeorder" class="com.dicks.action.CreateNewBizRule" method="placeorder">
+      <action name="placeorder" class="com.dicks.action.PlaceOrder" method="placeorder">
           <result name="placeorder" type="dispatcher">/placeOrder.jsp</result>
       </action>
 
