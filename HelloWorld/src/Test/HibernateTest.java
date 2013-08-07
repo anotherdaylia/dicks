@@ -6,10 +6,13 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
+import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.pojo.Customer;
@@ -33,10 +36,8 @@ public class HibernateTest
 	public static void main(String[] args) throws Exception
 	{
 
-		Rule rule = new Rule("abc","dggdfs","dgds",Integer.valueOf(1),"dsg","d","d","fdg","dfg","dg","dgfdg","dsgds","fdg","dfg",false);
-		RuleDAO.getInstance().createRule(rule);
-		String str =  "  dg sdggd";
-		System.out.println(str);
+
+		System.out.println(ProdCateDAO.getInstance().getMaxId());
 //		ProductDAO pDAO = ProductDAO.getInstance();
 //		Product p = pDAO.getById(1);
 //		

@@ -118,13 +118,10 @@ public class Rule implements java.io.Serializable {
 
 	public Rule(String ruleName, String ruleUrl, String ruleDescr, int priority, String type, String[] objects, 
 			String[] attributes, String[] operators, String[] values, String condition, String[] routes, 
-<<<<<<< HEAD
-			String[] actions,String flag, String stage){
-		
-=======
+
 			String[] actions,String flag, String stage, boolean isSpecial){
 
->>>>>>> branch 'master' of https://github.com/claire921/dicks.git
+
 		StringBuffer objectBuffer = new StringBuffer();
 		StringBuffer attributeBuffer = new StringBuffer();
 		StringBuffer operatorBuffer = new StringBuffer();

@@ -3,6 +3,7 @@ package com.dicks.action;
 import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.dao.StoreCateDAO;
+import com.dicks.pojo.ProdCate;
 import com.dicks.pojo.ProdCateId;
 import com.dicks.pojo.StoreCate;
 import com.dicks.pojo.StoreCateId;
@@ -22,11 +23,14 @@ public class CreateCategoryAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 	
-	public String createProductCategory(){
+	public String createProductCategory() throws Exception{
 		if("store".equals(flag)){
 			String[] ids = storeId.split(",");
+//			System.out.println("!!!"+ids);
 			int cateId = StoreCateDAO.getInstance().getNewId();
+			
 			for(String id:ids){
+				
 				StoreCateId storeCateId = new StoreCateId(Integer.valueOf(cateId), Integer.valueOf(id)) ;
 				StoreCate storeCate = new StoreCate(storeCateId, null, categoryName, categoryDes);
 				StoreCateDAO.getInstance().createCategory(storeCate);
@@ -37,10 +41,9 @@ public class CreateCategoryAction extends ActionSupport {
 			int[] ids = ProductDAO.getInstance().getProductIdsBySKUList(skus);
 			for(int id:ids){
 				ProdCateId pcId = new ProdCateId(cateId, id);
-				
-			}
-			
-			ProdCateDAO.getInstance().createCategory(prodCate);
+				ProdCate prodCate = new ProdCate(pcId, null, categoryName, categoryDes);
+				ProdCateDAO.getInstance().createCategory(prodCate);
+			}	
 		}
 		return SUCCESS;
 	}
