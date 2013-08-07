@@ -170,7 +170,7 @@ public class CreateTemplate {
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
 		    	  ruleFiles[ruleInt] = new Rule("edf", "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
-							 attributes,operators,values, r,actions,flag, "1");
+							 attributes,operators,values, r,actions,flag, "1", false);
 
 				 }
 			  else{
