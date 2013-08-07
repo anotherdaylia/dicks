@@ -1,6 +1,7 @@
 package com.dicks.dao;
 
 import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.criterion.Criterion;
@@ -44,5 +45,11 @@ public class OrderDetailDAO extends BaseDao<OrderDetail> {
 			products.add(detail.getProduct());
 		}
 		return products;
+	}
+	
+	public ArrayList<Timestamp> getDatesByOrder(Orders orders) throws Exception {
+		ArrayList<Timestamp> times= new ArrayList<Timestamp>();
+		
+		return times;
 	}
 }

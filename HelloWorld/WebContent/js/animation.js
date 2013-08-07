@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   $(function() {
   $( ".toggle" ).click(function() {
       $( this ).toggleClass( "disabled");
