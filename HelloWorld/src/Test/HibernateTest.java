@@ -33,10 +33,14 @@ public class HibernateTest
 	public static void main(String[] args) throws Exception
 	{
 
-		ProductDAO pDAO = ProductDAO.getInstance();
-		Product p = pDAO.getById(1);
-		
-		System.out.println(RuleDAO.getInstance().getAllRuleList());
+		Rule rule = new Rule("abc","dggdfs","dgds",Integer.valueOf(1),"dsg","d","d","fdg","dfg","dg","dgfdg","dsgds","fdg","dfg",false);
+		RuleDAO.getInstance().createRule(rule);
+		String str =  "  dg sdggd";
+		System.out.println(str);
+//		ProductDAO pDAO = ProductDAO.getInstance();
+//		Product p = pDAO.getById(1);
+//		
+//		System.out.println(RuleDAO.getInstance().getAllRuleList());
 		
 //		System.out.println(inventoryDAO.g(1, 1));
 //		p.setFlag("f");

@@ -112,7 +112,7 @@
                         <div>
                             <ul>
                             	<c:forEach items="${appliedRules}" var="order">
-                                	<li class="" style="height:30px;"><a href="#">${appliedRules}</li>
+                                	<li style="height:30px;"><a href="#">${appliedRules}</li>
                             	</c:forEach>
                             </ul>
                         </div>
@@ -121,7 +121,7 @@
                         <div>
                             <ul>
                                 <c:forEach items="${packages}" var="order">
-                                	<li class="" style="height:30px;"><a href="#">${packages}</li>
+                                	<li style="height:30px;"><a href="#">${packages}</li>
                             	</c:forEach>
                             </ul>
                         </div>
@@ -130,7 +130,7 @@
                         <div>
                             <ul>
                                 <c:forEach items="${routes}" var="order">
-                                	<li class="" style="height:30px;"><a href="#">${routes}</li>
+                                	<li style="height:30px;"><a href="#">${routes}</li>
                             	</c:forEach>
                             </ul>
                         </div>
