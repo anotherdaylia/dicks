@@ -25,16 +25,21 @@
  <script>
  function displayCategoryList(obj) {
     var type = obj.value;
+    
     if(type=="Store") {
-    	  document.getElementById('store_category_list').style.display = 'block';
-        	document.getElementById('product_category_list').style.display = 'none';
-     	  document.getElementById('Paging').style.display = 'block';
-       	 window.location.href="displayCategoryList.action?act=store";    
+    	document.getElementById('store_category_list').style.display = 'block';
+        document.getElementById('product_category_list').style.display = 'none';
+     	document.getElementById('Paging').style.display = 'block';
+     	window.location.href="displayCategoryList.action?act=store";  
+     	this.checked = true;
     } else if(type=="Product") {
         document.getElementById('product_category_list').style.display = 'block';
         document.getElementById('store_category_list').style.display = 'none';
         document.getElementById('Paging').style.display = 'block';
-        window.location.href="displayCategoryList.action?act=product";    
+    	 document.getElementById('category_store').checked = false;
+        window.location.href="displayCategoryList.action?act=product";   
+        this.checked = true;
+
     }
  }
  </script>
@@ -149,9 +154,9 @@
 					<div id="Outline" class="table-list">
 						<form action="">
 							Category Type: <input type="radio" name="category_type"
-								value="Store" onClick="displayCategoryList(this);">Store
+								value="Store" id="category_store" onClick="displayCategoryList(this);">Store
 							<input type="radio" name="category_type" value="Product"
-								onClick="displayCategoryList(this);">Product
+								id="category_product" onClick="displayCategoryList(this);">Product
 
 							<div id="store_category_list">
 								<table cellspacing="0" cellpadding="0" class="list">
