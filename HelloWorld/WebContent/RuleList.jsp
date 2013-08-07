@@ -24,7 +24,7 @@
     <div class="header">
     <div class="header-content">
         <div class="logo">
-            <a href="orderlist.html"><img src="image/logo.png" /></a></div>
+            <a href="orderlist.jsp"><img src="image/logo.png" /></a></div>
         <div class="top-nav">
             <a href="#" target="_blank" class="trackable">
             <span class="nav-icon help-icon"></span>Help</a>|
@@ -55,7 +55,7 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
             <ul class="nav-two" id="navtwo">
                 <li class="selected"><a href="<%=basePath%>gotorulelist.action">Business Rule List</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="newrule.html">New Business Rule</a><span class="normal">&nbsp;</span></li>
+                <li class=""><a href="newrule.jsp">New Business Rule</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
         </li>   
@@ -64,7 +64,7 @@
             <ul class="nav-two" id="navthree">
                 <li class=""><a href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
                 <li class=""><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+                <li class=""><a href="statistics.jsp">Statistics</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
         </li>   
@@ -95,7 +95,7 @@
             <br/>
             <div>
             <a class="button" id="add-to-cart" href="#">Delete Selected </a>&nbsp; |  &nbsp;
-            <a href="CreateCategory.html" class="button"> + New Rule</a>
+            <a href="CreateCategory.jsp" class="button"> + New Rule</a>
             <div class="r"><input type="text" class="searchtext" placeholder="Rule name"/>
                 <a href="#" class="button">Search</a>
             </div>
@@ -117,7 +117,7 @@
                     <td class="">Rule1</td>
                     <td class="">In market store</td>
                     <td><a class="button toggle">Disable</a></td>
-                    <td class=""><a class="button" href="viewrule.html">View</a>  <a class="button" href="editrule.html">Edit</a></td>
+                    <td class=""><a class="button" href="viewrule.jsp">View</a>  <a class="button" href="editrule.jsp">Edit</a></td>
                 </tr>
                     <tr>
                     <td class=""><input type="checkbox" class="case"/></td>
@@ -125,7 +125,7 @@
                     <td class="">Rule2</td>
                     <td class="">Safety stock</td>
                     <td><a class="button toggle">Disable</a></td>
-                    <td class=""><a class="button" href="#">View</a>  <a class="button" href="editrule.html">Edit</a></td>
+                    <td class=""><a class="button" href="#">View</a>  <a class="button" href="editrule.jsp">Edit</a></td>
                 </tr>
                 <tr class="last">
                     <td class=""><input type="checkbox" class="case"/></td>
@@ -133,7 +133,7 @@
                     <td class="">Rule3</td>
                     <td class="">Ship Complete</td>
                     <td><a class="button toggle">Disable</a></td>
-                    <td class=""><a class="button" href="#">View</a>  <a class="button" href="editrule.html">Edit</a></td>
+                    <td class=""><a class="button" href="#">View</a>  <a class="button" href="editrule.jsp">Edit</a></td>
                 </tr>
                 </tbody>
             </table>

@@ -1,4 +1,4 @@
-
+//created on: Jul 4, 2013
 package com.sample;
 
 //list any import classes here.
@@ -63,8 +63,6 @@ rule  "Threshold0"
     when
         $o : Order()
         $i : Product( ((weight > 5)|| ( size < 3))&& (( productID.equals("1"))|| (productID.equals("2"))|| (productID.equals("4"))|| (productID.equals("def234")))&& (flag.equals("TH-B,ST-A,SP-A")))
-    then
-        $i.minPackage();
 end
 
 rule "summarize"   
@@ -74,5 +72,4 @@ salience -5
     then
         System.out.println(store.getZoneID());
 end
-
 

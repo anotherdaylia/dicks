@@ -9,8 +9,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.dicks.pojo.ProdCate;
 import com.dicks.pojo.Product;
-import com.dicks.pojo.Rule;
-import com.dicks.pojo.StoreCate;
+
 
 public class ProdCateDAO extends BaseDao<ProdCate>{
 	private static ProdCateDAO instance = new ProdCateDAO();
@@ -52,6 +51,7 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 	}
 	
 
+
 	public ProdCate[] getProdCategoryList() throws Exception{
 		ArrayList<ProdCate> cateList =  (ArrayList<ProdCate>) super.getList();
 		ProdCate[] array = (ProdCate[])cateList.toArray(new ProdCate[cateList.size()]); 
@@ -71,4 +71,6 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 		int id2 = StoreCateDAO.getInstance().getMaxId();
 		return (Math.max(id1, id2)+1);
 	}
+
+
 }
