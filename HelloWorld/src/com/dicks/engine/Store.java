@@ -103,7 +103,6 @@ public class Store {
 			//System.out.println(">>>>>>>>>>>>"+in.getMargin());
 			if (in == null || in.getMargin() <= mar) 
 			{
-				
 				//System.out.println("filter2 return false");
 				return false;
 			}

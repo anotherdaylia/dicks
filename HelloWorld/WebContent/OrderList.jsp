@@ -37,7 +37,7 @@ $( "#datepickerend" ).datepicker();
     <div class="header">
     <div class="header-content">
         <div class="logo">
-            <a href="orderlist.html"><img src="image/logo.png" /></a></div>
+            <a href="OrderList.jsp"><img src="image/logo.png" /></a></div>
         <div class="top-nav">
             <a href="#" target="_blank" class="trackable">
             <span class="nav-icon help-icon"></span>Help</a>|
@@ -77,7 +77,7 @@ $( "#datepickerend" ).datepicker();
             <ul class="nav-two" id="navthree">
                 <li class="selected"><a href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
                 <li class=""><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+                <li class=""><a href="statistics.jsp">Statistics</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
         </li>
