@@ -132,11 +132,12 @@ public class Rule implements java.io.Serializable {
 		this.ruleDescr = ruleDescr;
 		this.priority = priority;
 		this.flag = flag;
-		this.type = type;
+		
 		this.stage = stage;
 		this.condition = condition;
 		this.isSpecial = isSpecial;
 		if (type.equalsIgnoreCase("Threshold")){
+			this.type = "1";
 			this.object = translate(objectBuffer, objects);
 			this.attribute = translate(attributeBuffer, attributes);
 			this.operator = translate(operatorBuffer, operators);
