@@ -7,8 +7,11 @@ import java.io.IOException;
 
 
 import javax.print.DocFlavor.URL;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.ClassObjectFilter;
@@ -22,12 +25,19 @@ import org.kie.internal.logger.KnowledgeRuntimeLogger;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
+import com.dicks.dao.CustomerDAO;
+import com.dicks.dao.OrderDetailDAO;
 import com.dicks.dao.OrdersDAO;
+import com.dicks.dao.ProductDAO;
 import com.dicks.dao.StoreDAO;
+import com.dicks.pojo.Customer;
+import com.dicks.pojo.OrderDetail;
+import com.dicks.pojo.OrderDetailId;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Store;
 import com.dicks.pojo.Rule;
+import java.sql.Timestamp;
 
 public class Allocate {
     public String myTab ="    ";
@@ -43,43 +53,55 @@ public class Allocate {
     
     
     
-	public Allocate  (String[] sku, String[] quantity, String shippingType, String shippingAddress, String shippingZipcode){
-		System.out.println("product "+sku[0]);
-		System.out.println("quantity "+quantity[0]);
+	public Allocate  (String[] skus, String[] quantities, String shippingType, String shippingAddress, String shippingZipcode) throws Exception{
+		System.out.println("product "+skus[0]);
+		System.out.println("quantity "+quantities[0]);
 		System.out.println("shipping type "+shippingType);
 		System.out.println("shipping address "+shippingAddress);
 		System.out.println("shipping zip "+ shippingZipcode);
+		
+		Customer customer = CustomerDAO.getInstance().getById(1);
+		
+		Orders order = new Orders(customer, 100, "g", new Timestamp(new Date().getTime()), 
+									shippingAddress, shippingZipcode, "412-622-3748", "");
+		
+		OrdersDAO.getInstance().createOrder(order);
+		
+		Product[] products = ProductDAO.getInstance().getProductsBySKUList(skus);
+		System.out.println(products.length);
+		
+		for (int i = 0; i < products.length; i++) {
+			Product product = products[i];
+			Integer qty = Integer.parseInt(quantities[i]);
+			System.out.println("qty: " + qty);
+			OrderDetail detail = new OrderDetail(new OrderDetailId(order.getOrderId(), product.getProdId()), 
+					                               product, order, 10, qty);
+			OrderDetailDAO.getInstance().createOrderDetail(detail);
+		}	
+		
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
 		// this will parse and compile in one step
-
-		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/newRule_LY.drl",
+		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/newRule_joe.drl",
 
 				SmallTest.class), ResourceType.DRL);
-
 
 		// Check the builder for errors
 
 		if (kbuilder.hasErrors()) {
-
 			System.out.println(kbuilder.getErrors().toString());
-
 			throw new RuntimeException("Unable to compile \"newRule_joe.drl\".");
-
 		}
-
 
 		// get the compiled packages (which are serializable)
 
 		final Collection<KnowledgePackage> pkgs = kbuilder.getKnowledgePackages();
-
 
 		// add the packages to a KnowledgeBase (deploy the knowledge packages).
 
 		final KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
 
 		kbase.addKnowledgePackages(pkgs);
-
 
 		final StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 		// setup the audit logging
@@ -89,75 +111,26 @@ public class Allocate {
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 
-//		Product shoes = new Product();
-//		shoes.setProdName("shoes");
-//		shoes.setFactoryPrice(50);
-//		shoes.setWeight(10);
-//		shoes.setWidth(2.0);
-//		Product hat = new Product();
-//		hat.setProdName("hat");
-//		hat.setFactoryPrice(10);
-//		hat.setWeight(4);
-//		hat.setWidth(2.0);
-//		Product shirt = new Product();
-//		shirt.setProdName("shirt");
-//		shirt.setFactoryPrice(20);
-//		shirt.setWeight(8);
-//		shirt.setWidth(5.0);
-		//get all product[] from skulist(String[])
-		//get all stores from dao
-//		Store s1 = new Store(1,2);
-//		Store s2 = new Store(2,4);
-//		Store s3 = new Store(3,5);
-//		Store s4 = new Store(4,6);
-//		Store s5 = new Store(5,8);
-//	
-//		
-//		int q1 = Integer.parseInt(quantity[0]);
-//		int q2 = Integer.parseInt(quantity[1]);
-//		
-//		
-//		Orders order = new Orders(2);
-//		order.addProducts(shoes, 1);
-//		order.addProducts(hat, 2);
-//		order.addProducts(shirt, 3);
-
-		Store s1 = null;
-		Store s2 = null;
-		Store s3 = null;
-		Store s4 = null;
-		Store s5 = null;
+		ArrayList<Store> stores = null;
 		try {
-			s1 = StoreDAO.getInstance().getById(1);
-			s2 = StoreDAO.getInstance().getById(2);
-			s3 = StoreDAO.getInstance().getById(3);
-			s4 = StoreDAO.getInstance().getById(4);
-			s5 = StoreDAO.getInstance().getById(6);
+			stores = StoreDAO.getInstance().getAllStores();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
-
-		Orders order = null;
-		try {
-			order = OrdersDAO.getInstance().getById(3);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-
-		ksession.insert(s1);
-		ksession.insert(s2);
-		ksession.insert(s3);
-		ksession.insert(s4);
-		ksession.insert(s5);
+		if (stores != null) {
+			for (Store store : stores) {
+				ksession.insert(store);
+			}
+		}
+		
 		ksession.insert(order);
 
 		ksession.fireAllRules();
 
 		Collection<PackageE> packages = (Collection<PackageE>) ksession.getObjects( new ClassObjectFilter(PackageE.class) );
-		Collection<Store> stores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
+		Collection<Store> leftStores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 
 		System.out.println("---------------------------------");
 		System.out.println("package size: " + packages.size());
@@ -171,6 +144,8 @@ public class Allocate {
 		logger.close();
 
 		ksession.dispose();
+		
+		Split split = new Split(packages, leftStores);
 
 	}
 

@@ -79,7 +79,7 @@ rule  "Mininum Packagethreshold0"
     when
         $o : Orders()
 //        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
-        $i : Product(weight >= 10)
+        $i : Product(weight > 2000)
     then     
     	PackageE p = new PackageE($o);
     	p.addProduct($i);
