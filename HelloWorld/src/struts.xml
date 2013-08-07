@@ -57,5 +57,8 @@
       <action name="submitnewcate" class="com.dicks.action.CreateNewCategory" method="submitNewCate">
           <result name="submitnewcate">/NewCategory.jsp</result>
       </action>
+       <action name="orderdetail" class="com.dicks.action.OrderDetailAction" method="showDetails">
+          <result name="success">/VisualizationOrderDetail.jsp</result>
+      </action>
    </package>
 </struts>

@@ -6,7 +6,7 @@ import java.util.Date;
 import com.dicks.dao.OrdersDAO;
 import com.dicks.pojo.Orders;
 
-public class OrderList {
+public class OrderListAction {
 	private int id;
 	private Date date;
 	private String status;
@@ -50,7 +50,6 @@ public class OrderList {
 	public ArrayList<Orders> getOrderList() throws Exception {
 		ordersList = new ArrayList<Orders>();
 		ordersList = ordersDAO.getAllOrders();
-		System.out.println(ordersList.size());
 		return ordersList;
 	}
 }
