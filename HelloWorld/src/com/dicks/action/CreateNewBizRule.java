@@ -135,7 +135,7 @@ public class CreateNewBizRule {
 	public String newrule(){
 		System.out.println("prio   "+priority);
 		
-		for(int i=0;i<4;i++){
+		for(int i=0;i<attribute.length;i++){
 			attribute[i] = attribute[i].toLowerCase();
 			
 			System.out.println("attribute :"+attribute[i]);
@@ -194,7 +194,7 @@ public class CreateNewBizRule {
 		
 		String[] action = new String[1];
 		action[0] = actions;
-		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,conditions,null,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority)+1);
+		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,conditions,null,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
 		
 		return "newrule";
 	}
