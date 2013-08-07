@@ -37,7 +37,7 @@ public class CreateNewBizRule {
 	public void setTest(String[] a){
 		this.test = a;
 		for (int i = 0; i<test.length; i++){
-//			//system.out.println("haha"+test[i]);
+			System.out.println("haha"+test[i]);
 		}
 	}
 
@@ -51,7 +51,7 @@ public class CreateNewBizRule {
 	}
 
 	public String getCategory(){
-//		//system.out.println("mlgb"+categoryname);
+		System.out.println("mlgb"+categoryname);
 		return categoryname;
 	}
 
@@ -115,9 +115,9 @@ public class CreateNewBizRule {
 
 
 	public String gototemplate(){
-		//system.out.println(rulename);
-		//system.out.println(templatename);
-		//system.out.println(categoryname);
+		System.out.println(rulename);
+		System.out.println(templatename);
+		System.out.println(categoryname);
 		try {
 			allRule = RuleDAO.getInstance().getAllSortedList() ;
 		} catch (Exception e1) {
@@ -126,8 +126,8 @@ public class CreateNewBizRule {
 		}
 		setAllRule(allRule);
 		for (int i = 0 ;  i < allRule.length; i++){
-		//system.out.println("rule name  11111"+allRule[i].getRuleName());
-		//system.out.println("rule desc  1111"+ allRule[i].getRuleDescr());
+		System.out.println("rule name  11111"+allRule[i].getRuleName());
+		System.out.println("rule desc  1111"+ allRule[i].getRuleDescr());
 		}
 		rulename = rulename.replace(" ","%20");
 		categoryname = categoryname.replace(" ","%20");
@@ -135,7 +135,7 @@ public class CreateNewBizRule {
 	}
 
 	public String newrule(){
-		//system.out.println("prio   "+priority);
+		System.out.println("prio   "+priority);
 
 		categoryname =categoryname.replace("%20", " ");
 		rulename = rulename.replace("%20", " ");
@@ -143,20 +143,20 @@ public class CreateNewBizRule {
 		for(int i=0;i<attribute.length;i++){
 			attribute[i] = attribute[i].toLowerCase();
 
-			//system.out.println("attribute :"+attribute[i]);
-			//system.out.println("operator :"+operator[i]);
-			//system.out.println("value :"+value[i]);
+			System.out.println("attribute :"+attribute[i]);
+			System.out.println("operator :"+operator[i]);
+			System.out.println("value :"+value[i]);
 		}
 
 
 
-		//system.out.println("condition "+conditions);
-		//system.out.println("template "+templatename);
-		//system.out.println("rule name "+rulename);
-		//system.out.println("cagegory name "+categoryname);
-		//system.out.println("action111"+actions);
+		System.out.println("condition "+conditions);
+		System.out.println("template "+templatename);
+		System.out.println("rule name "+rulename);
+		System.out.println("cagegory name "+categoryname);
+		System.out.println("action111"+actions);
 		
-//		//system.out.println("Hkfsdhjkf???"+categoryname);
+		System.out.println("Hkfsdhjkf???"+categoryname);
 		String[] categoryList= categoryname.split(",");
 
 		
@@ -166,8 +166,8 @@ public class CreateNewBizRule {
 				cateLength++;
 			}
 		}
-		//system.out.println("length!!!!"+categoryList.length);
-		//system.out.println("real length!!!"+cateLength);
+		System.out.println("length!!!!"+categoryList.length);
+		System.out.println("real length!!!"+cateLength);
 		String [] cateList = new String[cateLength];
 		for (int i = 0; i<cateList.length;i++){
 			cateList[i] = categoryList[i];
@@ -181,15 +181,15 @@ public class CreateNewBizRule {
 		}
 		String[] product = null;
 		
-		//system.out.println("first instance of catelist is "+cateList[0]);
+		System.out.println("first instance of catelist is "+cateList[0]);
 		try {
 			product = ProdCateDAO.getInstance().getSKUByCategory(cateList);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		//system.out.println("product length is "+ product.length);
-		//system.out.println("hahahah first product in the list is "+product[0]);
+		System.out.println("product length is "+ product.length);
+		System.out.println("hahahah first product in the list is "+product[0]);
 		/*
 		
 		try {
@@ -200,8 +200,8 @@ public class CreateNewBizRule {
 		}
 		setAllRule(allRule);
 		for (int i = 0 ;  i < allRule.length; i++){
-		//system.out.println("rule name  "+allRule[i].getRuleName());
-		//system.out.println("rule desc  "+ allRule[i].getRuleDescr());
+		System.out.println("rule name  "+allRule[i].getRuleName());
+		System.out.println("rule desc  "+ allRule[i].getRuleDescr());
 		}*/
 
 		String[] abc = new String[2];
@@ -230,8 +230,8 @@ public class CreateNewBizRule {
 		}
 		setAllRule(allRule);*/
 		for (int i = 0 ;  i < allRule.length; i++){
-		//system.out.println("rule name  "+allRule[i].getRuleName());
-		//system.out.println("rule desc  "+ allRule[i].getRuleDescr());
+		System.out.println("rule name  "+allRule[i].getRuleName());
+		System.out.println("rule desc  "+ allRule[i].getRuleDescr());
 		}
 
 
