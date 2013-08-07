@@ -14,7 +14,60 @@
  <title>DSG - New Business Rule</title>
  <link href="css/common.css" rel="stylesheet" type="text/css" />
  <script src="js/jquery.min.js" type="text/javascript"> </script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+ <script src="js/tangram.js" type="text/javascript"></script> 
+ <script src="js/animation.js" type="text/javascript"></script>
+ <script src="js/autocomplete.js" type="text/javascript"></script>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
  <script>
+ $(function() {
+	    var availableTags = [
+	      "All",
+	      "GSI Warehouse",
+	      "Vendor",
+	      "Dick's Stores"
+	    ];
+	    function split( val ) {
+	      return val.split( /,\s*/ );
+	    }
+	    function extractLast( term ) {
+	      return split( term ).pop();
+	    }
+	 
+	    $( "#tags" )
+	      // don't navigate away from the field on tab when selecting an item
+	      .bind( "keydown", function( event ) {
+	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	            $( this ).data( "ui-autocomplete" ).menu.active ) {
+	          event.preventDefault();
+	        }
+	      })
+	      .autocomplete({
+	        minLength: 0,
+	        source: function( request, response ) {
+	          // delegate back to autocomplete, but extract the last term
+	          response( $.ui.autocomplete.filter(
+	            availableTags, extractLast( request.term ) ) );
+	        },
+	        focus: function() {
+	          // prevent value inserted on focus
+	          return false;
+	        },
+	        select: function( event, ui ) {
+	          var terms = split( this.value );
+	          // remove the current input
+	          terms.pop();
+	          // add the selected item
+	          terms.push( ui.item.value );
+	          // add placeholder to get the comma-and-space at the end
+	          terms.push( "" );
+	          this.value = terms.join( ", " );
+	          return false;
+	        }
+	      });
+	  });
  	$(function() {
 	    var availableTags = [
 	      "All",
@@ -168,7 +221,7 @@
                 </tr>
                 	<tr>
 				<td>Category&#58;</td>
-				<td><input type="text" style="width:200px;" name="categoryname"></td>
+				<td><textarea name="categoryname" id="tags" placeholder="Type category;" onkeyup="textAreaAdjust(this)" style="overflow: hidden; max-width: 200px; width: 247px; height: 34px; margin: 0px;"></textarea></td>
 				</tr>
                 
                 
@@ -207,7 +260,7 @@
                 
     <!-- footer starts -->
         </div>
-            <div class="footer"><span>©2013 eBusiness Team</span></div>
+            <div class="footer"><span>��2013 eBusiness Team</span></div>
         </div>
     <!-- footer ends -->
 
