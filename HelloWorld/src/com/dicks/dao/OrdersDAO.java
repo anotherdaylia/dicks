@@ -34,4 +34,8 @@ public class OrdersDAO extends BaseDao<Orders> {
 		criterions.add(criterion);
 		return super.get(criterions);
 	}
+	
+	public ArrayList<Orders> getAllOrders() throws Exception{
+		return (ArrayList<Orders>) super.getList();
+	}
 }
