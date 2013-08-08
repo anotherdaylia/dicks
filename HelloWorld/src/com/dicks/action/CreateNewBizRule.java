@@ -188,8 +188,8 @@ public class CreateNewBizRule {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-//		System.out.println("product length is "+ product.length);
-//		System.out.println("hahahah first product in the list is "+product[0]);
+		System.out.println("product length is "+ product.length);
+		System.out.println("hahahah first product in the list is "+product[0]);
 		/*
 		
 		try {
