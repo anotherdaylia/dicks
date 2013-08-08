@@ -119,7 +119,7 @@ public class Product implements java.io.Serializable {
 	}
 
 	public void setSku(String sku) {
-		System.out.println("fuck d sku "+sku);
+//		System.out.println("fuck d sku "+sku);
 		this.sku = sku;
 	}
 

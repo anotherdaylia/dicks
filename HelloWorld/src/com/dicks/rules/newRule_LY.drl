@@ -57,6 +57,7 @@ rule "filter stock"
     	$store : Store()
     	eval(!InventoryDAO.getInstance().containAnyProductOrder($store, $order))
     then
+    	System.out.println("retract " + $store);
         retract($store);
 end
 

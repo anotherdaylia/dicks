@@ -49,9 +49,7 @@ public class Allocate {
     public static int ruleInt;
     
     
-    public static Product[] product = new Product[5];
-    
-    
+    public static Product[] product = new Product[5]; 
     
 	public Allocate  (String[] skus, String[] quantities, String shippingType, String shippingAddress, String shippingZipcode) throws Exception{
 		System.out.println("product "+skus[0]);
@@ -82,7 +80,7 @@ public class Allocate {
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
 		// this will parse and compile in one step
-		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/newRule_joe.drl",
+		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/newRule_LY.drl",
 
 				SmallTest.class), ResourceType.DRL);
 
@@ -135,8 +133,8 @@ public class Allocate {
 		System.out.println("---------------------------------");
 		System.out.println("package size: " + packages.size());
 		System.out.println(Arrays.toString(packages.toArray()));
-		System.out.println("store list: " + stores.size());
-		System.out.println(Arrays.toString(stores.toArray()));
+		System.out.println("store list: " + leftStores.size());
+		System.out.println(Arrays.toString(leftStores.toArray()));
 
 		System.out.println("end");
 

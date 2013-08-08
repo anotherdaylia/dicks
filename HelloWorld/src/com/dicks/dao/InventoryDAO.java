@@ -5,8 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Criteria;
+import org.hibernate.FlushMode;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.dicks.engine.Parcel;
@@ -70,18 +75,35 @@ public class InventoryDAO extends BaseDao<Inventory> {
 	public boolean containAllroductsParcel(Store store, Parcel parcel) throws Exception {
 		HashMap<Product, Integer> products = parcel.getProducts();
 		Set<Product> productSet = products.keySet();
-
-		List<Criterion> criterion = new ArrayList<Criterion>();
-		Disjunction disjunctions = Restrictions.disjunction();
-
-		for (Product p : productSet) {
-			disjunctions.add(Restrictions.conjunction()
-					.add(Restrictions.eq("store.id", store.getStoreId()))
-					.add(Restrictions.eq("product.id", p.getProdId())));
+		
+		Session session = null;
+		try {
+			session = HibernateUtil.getSession();
+			session.setFlushMode(FlushMode.AUTO);
+			session.getTransaction().begin();
+					
+			for (Product p : productSet) {			
+				Criteria criteria = session.createCriteria(Inventory.class)
+						.add(Restrictions.conjunction()
+						.add(Restrictions.eq("store.id", store.getStoreId()))
+						.add(Restrictions.eq("product.id", p.getProdId())));
+				Inventory inventory = (Inventory) criteria.uniqueResult();
+				if (inventory == null) return false;
+				if (inventory.getMargin() < products.get(p)) return false;
+			}
+				
+			session.flush();
+			session.getTransaction().commit();
+			
+			return true;
+		} catch (HibernateException e) {
+			throw e;
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
-		criterion.add(disjunctions);
 
-		return (int) super.getCount(criterion) == productSet.size();
 	}
 
 
@@ -89,18 +111,35 @@ public class InventoryDAO extends BaseDao<Inventory> {
 		OrderDetailDAO orderDetailDAO = OrderDetailDAO.getInstance();
 
 		ArrayList<OrderDetail> orderDetails = orderDetailDAO.getOrderDetailsByOrder(order);
-
-		List<Criterion> criterion = new ArrayList<Criterion>();
-		Disjunction disjunctions = Restrictions.disjunction();
-
-		for (OrderDetail orderDetail : orderDetails) {
-			Product p = orderDetail.getProduct();
-			disjunctions.add(Restrictions.conjunction()
-					.add(Restrictions.eq("store.id", store.getStoreId()))
-					.add(Restrictions.eq("product.id", p.getProdId())));
+		Session session = null;
+		int noProductNum = 0;
+		try {
+			session = HibernateUtil.getSession();
+			session.setFlushMode(FlushMode.AUTO);
+			session.getTransaction().begin();
+					
+			for (OrderDetail detail : orderDetails) {
+				Criteria criteria = session.createCriteria(Inventory.class)
+									.add(Restrictions.conjunction()
+									.add(Restrictions.eq("store.id", store.getStoreId()))
+									.add(Restrictions.eq("product.id", detail.getProduct().getProdId())));
+				Inventory inventory = (Inventory) criteria.uniqueResult();
+				if (inventory == null) noProductNum++;
+				else if (inventory.getInventory() - inventory.getSafetyStock() < detail.getQty()) {
+					noProductNum++;
+				}
+			}		
+			session.flush();
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			throw e;
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
-		criterion.add(disjunctions);
-		return (int) super.getCount(criterion) > 0;    
+		
+		return noProductNum < orderDetails.size();
 	}
 
 	public boolean checkProduct(Store store, Product product, String operator, int mar) throws Exception {
