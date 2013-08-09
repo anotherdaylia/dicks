@@ -23,14 +23,7 @@ public class Store {
 		this.zoneID = zoneID;
 		stock = new HashMap<Product, Inventory>();
 	}
-	
-	public void addItem(Product product, int instockNum, int safetyStock){
-		stock.put(product, new Inventory(instockNum, safetyStock));
-	}
-	
-	public void sellItem(Product product, int quantity) {
-		stock.get(product).instockNum--;
-	}
+
 	
 	public boolean containProductsInOrder(Orders order) throws Exception {
 		List<OrderDetail> details = OrderDetailDAO.getInstance().getOrderDetailsByOrder(order);

@@ -2,10 +2,24 @@ package com.dicks.engine;
 
 import java.util.HashMap;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import com.dicks.dao.OrderDetailDAO;
+import com.dicks.pojo.OrderDetail;
+import com.dicks.pojo.Orders;
+
 public class OrderE {
 	private HashMap<Integer, Integer> products = new HashMap<Integer, Integer>();
 	
-	
+	public OrderE(Orders order) throws Exception {
+		ArrayList<OrderDetail> details = OrderDetailDAO.getInstance().getOrderDetailsByOrder(order);
+		
+		for (OrderDetail detail : details) {
+			products.put(detail.getProduct().getProdId(), detail.getQty());
+		}
+		
+	}
 	
 	public int getProductQty(int productId) {
 		Integer qty = products.get(productId);

@@ -50,9 +50,7 @@ public class Allocate {
     public static int ruleInt;
     
     
-    public static Product[] product = new Product[5];
-    
-    
+    public static Product[] product = new Product[5]; 
     
 	public Allocate  (String[] skus, String[] quantities, String shippingType, String shippingAddress, String shippingZipcode) throws Exception{
 		System.out.println("product "+skus[0]);
@@ -76,14 +74,14 @@ public class Allocate {
 			Integer qty = Integer.parseInt(quantities[i]);
 			System.out.println("qty: " + qty);
 			OrderDetail detail = new OrderDetail(new OrderDetailId(order.getOrderId(), product.getProdId()), 
-					                               product, order, 10, qty);
+					                               product, order, product.getFactoryPrice() + 1000, qty);
 			OrderDetailDAO.getInstance().createOrderDetail(detail);
 		}	
 		
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
 		// this will parse and compile in one step
-		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/newRule_joe.drl",
+		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/newRule_LY.drl",
 
 				SmallTest.class), ResourceType.DRL);
 
@@ -120,6 +118,8 @@ public class Allocate {
 			e1.printStackTrace();
 		}
 
+		OrderE orderE = new OrderE(order);
+		
 		if (stores != null) {
 			for (Store store : stores) {
 				ksession.insert(store);
@@ -127,9 +127,9 @@ public class Allocate {
 		}
 		
 		ksession.insert(order);
-		OrderE oo = new OrderE();
-		oo.addProduct(4, 6);
-		ksession.insert(oo);
+
+		ksession.insert(orderE);
+
 		ksession.fireAllRules();
 
 		Collection<PackageE> packages = (Collection<PackageE>) ksession.getObjects( new ClassObjectFilter(PackageE.class) );
@@ -138,8 +138,8 @@ public class Allocate {
 		System.out.println("---------------------------------");
 		System.out.println("package size: " + packages.size());
 		System.out.println(Arrays.toString(packages.toArray()));
-		System.out.println("store list: " + stores.size());
-		System.out.println(Arrays.toString(stores.toArray()));
+		System.out.println("store list: " + leftStores.size());
+		System.out.println(Arrays.toString(leftStores.toArray()));
 
 		System.out.println("end");
 
