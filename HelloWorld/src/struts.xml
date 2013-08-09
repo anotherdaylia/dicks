@@ -36,6 +36,9 @@
       <action name="gototemplate" class="com.dicks.action.CreateNewBizRule" method="gototemplate">
            <result name="gototemplate" type="dispatcher">/TemplateStoreThreshold.jsp</result>
       </action>
+      <action name="gototemplate" class="com.dicks.action.CreateNewBizRule" method="gototemplate">
+           <result name="gotocost" type="dispatcher">/TemplateCostCalculationjsp.jsp</result>
+      </action>
        <action name="newrule" class="com.dicks.action.CreateNewBizRule" method="newrule">
           <result name="newrule" type="dispatcher">/newRules.jsp</result>
       </action>
