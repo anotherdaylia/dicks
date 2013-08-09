@@ -205,8 +205,8 @@ public class CreateNewBizRule {
 		}*/
 
 		String[] abc = new String[2];
-		abc[0] = "caocao";
-		abc[1] = "caoweihua";
+		abc[0] = "zhouzhoufang";
+		abc[1] = "zhouzhou";
 		setTest(abc);
 
 		String[] action = new String[1];
