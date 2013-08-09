@@ -110,11 +110,12 @@ rule  "Mininum Packagethreshold0"
 	agenda-group "first"
     when
         $o : Orders()
+        $oE : OrderE()
 //        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
         $i : Product(weight > 2000)
     then     
     	PackageE p = new PackageE($o);
-    	p.addProduct($i);
+    	p.addProduct($i, $oE.getProductQty($i.getProdId()));
     	insert (p);    
         $i.minPackage();
         retract($i);
@@ -142,8 +143,9 @@ rule "wrap up remaining products"
 	when
 		$i : Product()
 		$p : PackageE(isForRemain())
+		$oE : OrderE()
 	then
-		$p.addProduct($i);
+		$p.addProduct($i, $oE.getProductQty($i.getProdId()));
 		retract($i);
 		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
 end

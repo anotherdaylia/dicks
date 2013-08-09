@@ -64,13 +64,14 @@ public class Util {
 						
 						ArrayList<OrderDetail> details = OrderDetailDAO.getInstance().getDetailsByParcel(parcel);
 						
-						System.out.println("details size: " + details.size());
+						//System.out.println("details size: " + details.size());
 						
 						for (OrderDetail detail : details) {
 							int attribute = getAttribute(detail, OrderDetail.class, names[0]);
-							System.out.println(names[1] + "-" + names[0] + ": " + attribute);
+							int qty =  parcel.getProductQty(detail.getProduct());
+							System.out.println(names[1] + "-" + names[0] + ": " + attribute + " " + qty);
 
-							attributeValue += attribute * parcel.getProductQty(detail.getProduct());
+							attributeValue += attribute * qty;
 						}
 					} else if (names[1].equals("order")) {
 						attributeValue = getAttribute(parcel.getPack().getOrder(), Orders.class, names[0]);
