@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 
-import com.dicks.pojo.Product;
+import com.sample.Product;
 
 public class Orders {
 	private int orderID;

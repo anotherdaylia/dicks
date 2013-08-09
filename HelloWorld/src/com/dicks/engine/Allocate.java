@@ -37,6 +37,7 @@ import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Store;
 import com.dicks.pojo.Rule;
+import com.dicks.engine.OrderE;
 import java.sql.Timestamp;
 
 public class Allocate {
@@ -126,7 +127,9 @@ public class Allocate {
 		}
 		
 		ksession.insert(order);
-
+		OrderE oo = new OrderE();
+		oo.addProduct(4, 6);
+		ksession.insert(oo);
 		ksession.fireAllRules();
 
 		Collection<PackageE> packages = (Collection<PackageE>) ksession.getObjects( new ClassObjectFilter(PackageE.class) );

@@ -10,6 +10,10 @@ import com.dicks.dao.InventoryDAO
 import com.dicks.dao.OrderDetailDAO
 
 import com.dicks.engine.PackageE
+import com.dicks.engine.OrderE
+import com.dicks.engine.Parcel
+import com.dicks.engine.ParcelResult
+import com.dicks.engine.PackageTest
 import com.dicks.engine.PackageTestResult
 import java.util.ArrayList
 import java.*;
@@ -28,13 +32,89 @@ rule "Explode Cart"
         $item : Product() from OrderDetailDAO.getInstance().getProductsByOrder($order)
     then
         insert( $item );
+        System.out.println("product"+$item.getSku());
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
 //        System.out.println("order quantity: " + $order.getQuantity());
 //        System.out.println("exlored: " + $order.getExploredItem());
        
 end
 
-/*
+/*rule "get products more than"
+	salience 15
+	when 
+		$product : Product($id: prodId, sku.equals("1"))
+		$orderE : OrderE()
+		$order : Orders()
+		eval ($orderE.getProductQty($id) > 2)
+		$s : Store( storeId == 1 )
+		eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+
+
+
+	
+	then
+		System.out.println("yes you can!"+$orderE.getProductQty($id));
+        PackageE p = new PackageE($order);
+        p.addProduct($product);
+        insert (p);
+        p.setAllocated(true); 
+        retract($product);
+end	*/
+
+
+
+rule  "Special Route0"
+    salience 15
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id: prodId, sku.equals("1"))
+        eval ($orderE.getProductQty($id) >2)
+        $s : Store( storeId == 1)
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+    then
+        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        PackageE p = new PackageE($order);
+        p.addProduct($product);
+        insert (p);
+        p.setAllocated(true); 
+        Parcel parcel = new Parcel(p);
+        parcel.addNumProduct($product, $orderE.getProductQty($id));
+        
+        PackageTest test = new PackageTest(p);
+        test.addParcel(parcel);
+        
+        ParcelResult parcelR = new ParcelResult(parcel);
+        parcelR.setSource($s);
+		
+        PackageTestResult packageR = new PackageTestResult(test);
+        packageR.addResult(parcelR);
+        System.out.println(packageR);
+        retract($product);
+end
+
+
+
+
+
+
+
+
+
+/*rule  "Special routespecial route0"
+    when
+        $o : Order()
+        $i : Product(  ( productID == 4 )|| (productID == 1 )|| (productID == 2 ))
+        $s : Store( storeID == a )
+        eval($s.checkProduct($i, ">" ,4)
+    then
+        System.out.println("special routes allocated");
+        Package p = new Package($o);
+        p.addProduct($i);
+        insert (p);
+        p.setAllocated(true); 
+        retract($i);
+end
 rule "Explode Cart end"
     agenda-group "init"
     auto-focus true

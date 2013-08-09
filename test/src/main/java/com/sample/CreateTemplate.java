@@ -23,9 +23,9 @@ public class CreateTemplate {
     
     
 	public CreateTemplate  (String type, String[] objects, String[] attributes, 
-			String[] operators, String[] values, String[] routes, String[] actions, String flag, int ruleInt ){
+			String[] operators, String[] values, String routes, String[] actions, String flag, int ruleInt ){
 		
-		  
+		  System.out.println("route!!"+routes);
 		  /*
 		  rules[0] = "./ruleTxt/ruleHeader.txt";
 		  rules[1] = "./ruleTxt/rule1.txt";
@@ -63,7 +63,7 @@ public class CreateTemplate {
 	      
 	      //System.out.println("rule is at  " +ruleInt + "current rule number is "+i);
 	      
-	      if (ruleInt < (i)){
+	     /* if (ruleInt < (i)){
 	    	  reRank(ruleInt);
 	      }
 	      else{
@@ -71,33 +71,38 @@ public class CreateTemplate {
 	    	  ruleFile[i] = new Rule();
 	    	  ruleInt = i;
 	      }
-	      checkFlag(type, objects, flag);
+	      checkFlag(type, objects, flag);*/
 	      if (type.equalsIgnoreCase("Threshold")||type.equalsIgnoreCase("Store Filter")){
 	    	  //System.out.println("object length "+objects.length);
 	    	  if (ruleInt > 0){
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
 					 
-					 ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
-							 attributes,operators,values,null,actions,flag);
+	    			
+	    		  	System.out.println("!!!!");
+					 ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", 
+							 ruleFile[ruleInt-1].getPriority()-2,type,objects,
+							 attributes,operators,values,null,null,actions,flag);
 				 }
 			  else{
 					 ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
-							 attributes,operators,values,null,actions,flag);
+							 attributes,operators,values,null,null,actions,flag);
 			  }
 	      }    
 	      else {
+	    	  System.out.println("special "+routes);
 		      if (ruleInt > 0){
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
-		    	  ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
-							 attributes,operators,values,routes,actions,flag);
+		    	  		  ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", 
+		    			  ruleFile[ruleInt-1].getPriority()-2,type,objects,attributes,operators,
+		    			  values,null,routes,actions,flag);
 				   
 				 }
 			  else{
 				    
 					 ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
-							 attributes,operators,values,routes,actions,flag);
+							 attributes,operators,values,null,routes,actions,flag);
 			  }
 	      
 	      
@@ -177,6 +182,7 @@ public class CreateTemplate {
 		             else{
 		            	 if (ruleFile[i].getType().equalsIgnoreCase("Threshold")){
 		            		 System.out.println("This is the new Threshold rule created by the system");
+		            		 
 		            		 byte[] contentInBytes = createThreshold(ruleFile[i].getType(),ruleFile[i].getPriority(),
 		            				 ruleFile[i].getObject(),ruleFile[i].getAttribute(),ruleFile[i].getOperator(),ruleFile[i].getValue(),
 		            				 ruleFile[i].getAction(),ruleFile[i].getFlag()).getBytes();
@@ -190,6 +196,14 @@ public class CreateTemplate {
 		            		 fos.write(contentInBytes);
 		            	 }
 		            	 else if (ruleFile[i].getType().equalsIgnoreCase("Special Route")){
+		            		 System.out.println("!!type"+ruleFile[i].getType());
+		            		 System.out.println("!!prio"+ruleFile[i].getPriority());
+		            		 System.out.println("!!prio"+ruleFile[i].getObject()[0]);
+		            		 System.out.println("!!prio"+ruleFile[i].getAttribute()[0]);
+		            		 System.out.println("!!prio"+ruleFile[i].getOperator()[0]);
+		            		 System.out.println("!!prio"+ruleFile[i].getValue()[0]);
+		            		 System.out.println("!!prio"+ruleFile[i].getAction()[0]);
+		            		 System.out.println("!!prio"+ruleFile[i].getRoute());
 		            		 System.out.println("This is the new Special route rule created by the system!!!!");
 		            		 byte[] contentInBytes = createSpecialRoute(ruleFile[i].getType(),ruleFile[i].getPriority(),
 		            				 ruleFile[i].getObject(),ruleFile[i].getAttribute(),ruleFile[i].getOperator(),ruleFile[i].getValue(),
@@ -246,10 +260,11 @@ public class CreateTemplate {
 	   }
 	   
 	   public String createSpecialRoute(String type, int priority, String[] object, String[] attribute, 
-			   String[] operator, String[] values,String[] actions,String[] routes,String flag){
-		   //System.out.println("here");
+			   String[] operator, String[] values,String[] actions,String routes,String flag){
+		   System.out.println("heresdfasdfasfasdfasdfasd");
 		   StringBuffer newRule = new StringBuffer();
 		   newRule.append(writeRuleType(type,priority));
+		   System.out.println("!!!!"+newRule.toString());
 		   newRule.append(writeWhenSpecialRoute(object,attribute,operator,values,routes,flag));
 		   newRule.append(writeThenSpecialRoute(actions,routes));
 		   System.out.println(newRule.toString());
@@ -417,8 +432,8 @@ public class CreateTemplate {
 	   }
 	   
 	   public String writeWhenSpecialRoute(String[] splits, String[] splitAttribute, String[] splitOperator, 
-			   String[] splitValue, String[] route,String flag){
-		   
+			   String[] splitValue, String route,String flag){
+		   System.out.println("haha"+route);
 		   
 		   //split the object 
 		  
@@ -456,31 +471,42 @@ public class CreateTemplate {
 		   
 		   //appending the whole "when" part
 
+
 		   StringBuffer tmp = new StringBuffer();
 		   tmp.append(myTab+"when"+myReturn);
-		   tmp.append(myTab+myTab+"$o : Order()"+myReturn);
-		   tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+"&& (flag.equals(\""+flag+
+		   tmp.append(myTab+myTab+"$order : Orders()"+myReturn);
+		   tmp.append(myTab+myTab+"$orderE : OrderE()"+myReturn);
+		   
+		     /*tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+"&& (flag.equals(\""+flag+
 			   		"\")))"+myReturn);
-			   
+			multiple stores 
+			*/
+		   tmp.append(myTab+myTab+"$product : Product($id: prodId, sku.equals(\""+splits[0]+"\"))"+myReturn);
+		   tmp.append(myTab+myTab+"eval ($orderE.getProductQty($id) >" + splitValue[0]+")"+myReturn);
+		   tmp.append(myTab+myTab+"$s : Store( storeId == "+route+")"+myReturn);
+		   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
+		    
 		   //tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+
 		   		//"from $o.getProducts()"+myReturn);
 		   //tmp.append(myTab+myTab+"$p : Purchase( customer == $c, $"+attribute.charAt(0)+" : product."+attribute+mySpace+operator+mySpace+values+" )");
-	   
+		   System.out.println(tmp.toString());
 		   return tmp.toString();
 	   }
 	   
 	   //add action
-	   public String writeThenSpecialRoute(String[] action, String[] route){
+	   public String writeThenSpecialRoute(String[] action, String route){
 		   StringBuffer tmp = new StringBuffer();
 		   
 		   tmp.append(myTab+"then"+myReturn);
-		   
-		   tmp.append(myTab+myTab+"System.out.println(\"special routes allocated\");"+myReturn);
-		   tmp.append(myTab+myTab+"Package p = new Package($o);"+myReturn);
-		   tmp.append(myTab+myTab+"p.addProduct($i);"+myReturn);
+		   tmp.append(myTab+myTab+"System.out.println(\"special routes for product \"+$product.getProdName()+\" " +
+		   		"with quantity \"+$orderE.getProductQty($id)+\" is successfully allocated\");"+myReturn);
+		   tmp.append(myTab+myTab+"PackageE p = new PackageE($order);"+myReturn);
+		   tmp.append(myTab+myTab+"p.addProduct($product);"+myReturn);
 		   tmp.append(myTab+myTab+"insert (p);"+myReturn);
 		   tmp.append(myTab+myTab+"p.setAllocated(true); "+myReturn);
-		   tmp.append(myTab+myTab+"retract($i);"+myReturn);
+		   tmp.append(myTab+myTab+"retract($product);"+myReturn);
+		   //add this "product/quantity", store into a new parcel result.
+		   //add this parcel result into a new package result
 		   tmp.append("end"+myReturn+myReturn);
 		   return tmp.toString();
 	   }

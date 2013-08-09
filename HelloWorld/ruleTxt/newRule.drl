@@ -195,7 +195,7 @@ rule  "10"
     salience -5
     when
         $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((length < 5)||( width < 4)||( height < 3)||( weight < 2))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
     then
         Package p = new Package($o);
         p.addProduct($i);
@@ -352,6 +352,19 @@ rule  "10"
     when
         $o : Order()
         $i : Product( ((length < 1)||( length < 23)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
+    then
+        Package p = new Package($o);
+        p.addProduct($i);
+        insert (p);
+        $i.minPackage();
+        retract($i);
+end
+
+rule  "10"
+    salience -7
+    when
+        $o : Order()
+        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
     then
         Package p = new Package($o);
         p.addProduct($i);
