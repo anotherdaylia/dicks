@@ -103,7 +103,6 @@ public class InventoryDAO extends BaseDao<Inventory> {
 				session.close();
 			}
 		}
-
 	}
 
 

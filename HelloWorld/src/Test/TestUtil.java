@@ -48,6 +48,11 @@ public class TestUtil {
 	}
 
 	@Test
+	public void testParcel() {
+		
+	}
+	
+//	@Test
 	public void testInventoryEvaluate() {
 		InventoryDAO inventoryDAO = InventoryDAO.getInstance();
 		try {

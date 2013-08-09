@@ -11,8 +11,10 @@ import org.apache.commons.lang3.text.WordUtils;
 
 import com.dicks.dao.FeeDAO;
 import com.dicks.dao.FeeDAO;
+import com.dicks.dao.OrderDetailDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.pojo.Fee;
+import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Store;
@@ -34,14 +36,14 @@ public class Util {
 		FeeDAO feeDao = FeeDAO.getInstance();
 		try {
 			ArrayList<Fee> fees = feeDao.getByType(store.getStoreType());		
-			Long[] costs = new Long[fees.size()];
+			Integer[] costs = new Integer[fees.size()];
 			for (Fee fee : fees) {
 				if (fee.getFlag().equals("v")) {
 					totalCosts += fee.getValue();
 //					System.out.println(fee.getCostName() + ": " + ((double) fee.getValue()) / 100.0);
 				} else if (fee.getFlag().equals("p")) {
 					String attributeName = fee.getAttribute();
-					long attributeValue = 0;
+					int attributeValue = 0;
 					String[] names = attributeName.split(",");
 //					System.out.println("names: " + Arrays.toString(names));
 					if (names[1].equals("cost")) {
@@ -52,15 +54,27 @@ public class Util {
 						}
 					} else if (names[1].equals("product")) {
 						for (Product p : products) {
-							attributeValue += getAttribute(p, Product.class, names[0]);
+							attributeValue += getAttribute(p, Product.class, names[0]) * parcel.getProductQty(p);
 //							System.out.println("product: " + p.getProdName());
 						}	
 //						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("store")) {
 						attributeValue = getAttribute(store, Store.class, names[0]);
+					} else if (names[1].equals("orderDetail")) {	
+						
+						ArrayList<OrderDetail> details = OrderDetailDAO.getInstance().getDetailsByParcel(parcel);
+						
+						System.out.println("details size: " + details.size());
+						
+						for (OrderDetail detail : details) {
+							int attribute = getAttribute(detail, OrderDetail.class, names[0]);
+							System.out.println(names[1] + "-" + names[0] + ": " + attribute);
+
+							attributeValue += attribute * parcel.getProductQty(detail.getProduct());
+						}
 					} else if (names[1].equals("order")) {
 						attributeValue = getAttribute(parcel.getPack().getOrder(), Orders.class, names[0]);
-					}				
+					}
 					totalCosts += attributeValue * fee.getPercentage() / 10000;
 //					System.out.println("total costs: " + totalCosts);
 				}
@@ -73,14 +87,14 @@ public class Util {
 		return ((double) totalCosts) / 100.0;
 	}
 	
-	public static <T> long getAttribute(T t, Class<T> clz, String name) {
+	public static <T> int getAttribute(T t, Class<T> clz, String name) {
 		Field[] fields = clz.getDeclaredFields();
 		for(Field field:fields) {
 			if(field.getName().equals(name)) {				
 				try {
 					String methodName = "get" + WordUtils.capitalize(name);
 					Method method = clz.getDeclaredMethod(methodName, new Class[0]);
-					long attribute = (Integer) method.invoke(t, new Object[0]);
+					int attribute = (Integer) method.invoke(t, new Object[0]);
 					return attribute;
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block

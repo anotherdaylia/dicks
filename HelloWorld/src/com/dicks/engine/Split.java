@@ -89,7 +89,6 @@ public class Split {
 
 		// Remove comment if using logging
 		logger.close();
-
 		ksession.dispose();
 
 	}

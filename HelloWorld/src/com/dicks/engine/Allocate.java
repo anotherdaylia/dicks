@@ -73,7 +73,7 @@ public class Allocate {
 			Integer qty = Integer.parseInt(quantities[i]);
 			System.out.println("qty: " + qty);
 			OrderDetail detail = new OrderDetail(new OrderDetailId(order.getOrderId(), product.getProdId()), 
-					                               product, order, 10, qty);
+					                               product, order, product.getFactoryPrice() + 1000, qty);
 			OrderDetailDAO.getInstance().createOrderDetail(detail);
 		}	
 		
@@ -117,6 +117,8 @@ public class Allocate {
 			e1.printStackTrace();
 		}
 
+		OrderE orderE = new OrderE(order);
+		
 		if (stores != null) {
 			for (Store store : stores) {
 				ksession.insert(store);
@@ -124,7 +126,7 @@ public class Allocate {
 		}
 		
 		ksession.insert(order);
-
+		ksession.insert(orderE);
 		ksession.fireAllRules();
 
 		Collection<PackageE> packages = (Collection<PackageE>) ksession.getObjects( new ClassObjectFilter(PackageE.class) );

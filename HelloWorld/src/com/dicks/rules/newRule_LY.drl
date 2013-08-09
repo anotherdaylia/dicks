@@ -5,6 +5,7 @@ package com.dicks.rules
 import com.dicks.pojo.Orders
 import com.dicks.pojo.Store
 import com.dicks.engine.PackageE
+import com.dicks.engine.OrderE
 import com.dicks.pojo.Product
 import com.dicks.engine.PackageTestResult
 
@@ -50,7 +51,6 @@ end
 
 rule "filter stock"
 	salience 10
-	auto-focus true
 	agenda-group "first"
     when    	
     	$order : Orders()
@@ -60,6 +60,37 @@ rule "filter stock"
     	System.out.println("retract " + $store);
         retract($store);
 end
+
+rule "get products more than 1"
+	salience 10
+	agenda-group "first"
+	when 
+		$product : Product($id: prodId, sku.equals("1"))
+		$orderE : OrderE()
+		eval ($orderE.getProductQty($id) > 3)
+	then
+		System.out.println("product " + $product.getProdName() + " over 3!");
+end	
+
+/*
+rule  "Special Route0"
+    salience 15
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id: prodId, sku.equals("1"))
+        eval ($orderE.getProductQty($id) >2)
+        $s : Store( storeId == 1)
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+    then
+        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        PackageE p = new PackageE($order);
+        p.addProduct($product);
+        insert (p);
+        p.setAllocated(true); 
+        retract($product);
+end
+	
 
 /*
 rule "record stores"
