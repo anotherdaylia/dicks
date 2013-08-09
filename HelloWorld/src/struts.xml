@@ -8,7 +8,7 @@
      <action name="index">
             <result >/index.jsp</result>
       </action>
-      <action name="gotocreatenew" class="com.dicks.engine.CreateRuleWeb" method="gotocreatenew">
+	 <action name="gotocreatenew" class="com.dicks.engine.CreateRuleWeb" method="gotocreatenew">
           <result name="gotocreatenew">/CreateRule.jsp</result>
       </action>
       <action name="cnr" class="com.dicks.engine.CreateRuleWeb" method="cnr">
@@ -35,6 +35,9 @@
       </action>
       <action name="gototemplate" class="com.dicks.action.CreateNewBizRule" method="gototemplate">
            <result name="gototemplate" type="dispatcher">/TemplateStoreThreshold.jsp</result>
+      </action>
+      <action name="gototemplate" class="com.dicks.action.CreateNewBizRule" method="gototemplate">
+           <result name="gotocost" type="dispatcher">/TemplateCostCalculationjsp.jsp</result>
       </action>
        <action name="newrule" class="com.dicks.action.CreateNewBizRule" method="newrule">
           <result name="newrule" type="dispatcher">/newRules.jsp</result>

@@ -115,22 +115,37 @@ public class CreateNewBizRule {
 
 
 	public String gototemplate(){
-		System.out.println(rulename);
-		System.out.println(templatename);
-		System.out.println(categoryname);
-		try {
-			allRule = RuleDAO.getInstance().getAllSortedList() ;
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		if(templatename.equals("product_threshold")){
+			System.out.println(rulename);
+			System.out.println(templatename);
+			System.out.println(categoryname);
+			try {
+				allRule = RuleDAO.getInstance().getAllSortedList() ;
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			setAllRule(allRule);
+			for (int i = 0 ;  i < allRule.length; i++){
+			System.out.println("rule name  11111"+allRule[i].getRuleName());
+			System.out.println("rule desc  1111"+ allRule[i].getRuleDescr());
+			}
+			rulename = rulename.replace(" ","%20");
+			categoryname = categoryname.replace(" ","%20");
+			return "gototemplate";
 		}
-		setAllRule(allRule);
-		for (int i = 0 ;  i < allRule.length; i++){
-		System.out.println("rule name  11111"+allRule[i].getRuleName());
-		System.out.println("rule desc  1111"+ allRule[i].getRuleDescr());
+		else if(templatename.equals("cost_calculate")){
+			try {
+				allRule = RuleDAO.getInstance().getAllSortedList() ;
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			setAllRule(allRule);
+			rulename = rulename.replace(" ","%20");
+			categoryname = categoryname.replace(" ","%20");
+			return "gotocost";
 		}
-		rulename = rulename.replace(" ","%20");
-		categoryname = categoryname.replace(" ","%20");
 		return "gototemplate";
 	}
 
@@ -205,8 +220,8 @@ public class CreateNewBizRule {
 		}*/
 
 		String[] abc = new String[2];
-		abc[0] = "caocao";
-		abc[1] = "caoweihua";
+		abc[0] = "zhouzhoufang";
+		abc[1] = "zhouzhou";
 		setTest(abc);
 
 		String[] action = new String[1];
