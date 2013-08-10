@@ -69,7 +69,7 @@ public class Util {
 						for (OrderDetail detail : details) {
 							int attribute = getAttribute(detail, OrderDetail.class, names[0]);
 							int qty =  parcel.getProductQty(detail.getProduct());
-							System.out.println(names[1] + "-" + names[0] + ": " + attribute + " " + qty);
+//							System.out.println(names[1] + "-" + names[0] + ": " + attribute + " " + qty);
 
 							attributeValue += attribute * qty;
 						}
@@ -79,12 +79,11 @@ public class Util {
 					totalCosts += attributeValue * fee.getPercentage() / 10000;
 //					System.out.println("total costs: " + totalCosts);
 				}
-			}
-		
+			}	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+	
 		return ((double) totalCosts) / 100.0;
 	}
 	
