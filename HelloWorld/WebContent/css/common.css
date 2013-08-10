@@ -2652,6 +2652,18 @@ select.big{
 	background-color: #FFFFFF;
 }
 
+select.search{ 
+	width: 180px; 
+	background-color: transparent; 
+	border: 0; 
+	overflow: hidden;
+	box-shadow: none; 
+	line-height: 1; 
+	border-radius: 0; 
+	height: 25px; 
+	background-color: #FFFFFF;
+}
+
 a.disabled span,a.disabled input {
 	cursor: default;
 }
