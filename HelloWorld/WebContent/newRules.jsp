@@ -173,7 +173,7 @@
             <form action="gototemplate" method="get">
             <table class="text" style="width:600px;">
                 <tr>
-                    <td style="width:200px;"><span class="red">*</span>Rule Name&#58;</td>
+                    <td style="width:200px;">Rule Name<span class="red">*</span>&#58;</td>
                     <td><input type="text"  name="rulename" style="width:200px;"></td>
                 </tr>   
                 <tr>
@@ -181,12 +181,12 @@
                     <td style="width:200px;"><textarea style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" ></textarea></td>
                 </tr>
                 <tr>
-                    <td><span class="red">*</span>Group&#58;</td>
+                    <td>Group<span class="red">*</span>&#58;</td>
                     <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" placeholder="Group name"></textarea></td>
                     <td class="grey">&nbsp;&nbsp;If not found, <a href="createcategory.html">new Group</a>.</td>
                 </tr>
                 <tr>
-                    <td><span class="red">*</span>Rule Template&#58;</td>
+                    <td>Rule Template<span class="red">*</span>&#58;</td>
                     <td><select class="big" name="templatename">
                         <option value="product_threshold">Product Threshold</option> 
                         <option value="store_threshold">Store Threshold</option>

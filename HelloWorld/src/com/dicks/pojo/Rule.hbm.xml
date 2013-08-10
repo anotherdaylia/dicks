@@ -49,18 +49,23 @@
         <property name="action" type="java.lang.String">
             <column name="action" length="45" not-null="true" />
         </property>
-
         <property name="condition" type="java.lang.String">
-            <column name="conditions" length="45" />
-        </property>  
-        <property name="isSpecial" column="is_special" type="boolean">
+            <column name="conditions" length="45" not-null="true" />
         </property>
-
+        <property name="isSpecial" type="java.lang.Boolean">
+            <column name="is_special" not-null="true" />
+        </property>
         <set name="ruleCates" inverse="true">
             <key>
                 <column name="rule_id" not-null="true" />
             </key>
             <one-to-many class="com.dicks.pojo.RuleCate" />
+        </set>
+        <set name="logs" inverse="true">
+            <key>
+                <column name="rule_id" not-null="true" />
+            </key>
+            <one-to-many class="com.dicks.pojo.Log" />
         </set>
     </class>
 </hibernate-mapping>

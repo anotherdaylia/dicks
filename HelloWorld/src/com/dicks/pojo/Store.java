@@ -19,6 +19,7 @@ public class Store implements java.io.Serializable {
 	private String storeType;
 	private Set inventories = new HashSet(0);
 	private Set storeCates = new HashSet(0);
+	private Set packageses = new HashSet(0);
 
 
 	// Constructors
@@ -118,5 +119,13 @@ public class Store implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return this.storeType + ": " + this.storeId;
+	}
+
+	public Set getPackageses() {
+		return packageses;
+	}
+
+	public void setPackageses(Set packageses) {
+		this.packageses = packageses;
 	}
 }
