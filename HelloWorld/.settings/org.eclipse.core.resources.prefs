@@ -3,9 +3,9 @@
 >>>>>>>=refs/remotes/origin/master
 eclipse.preferences.version=1
 encoding//WebContent/CategoryList.jsp=UTF-8
-encoding//WebContent/CategoryList1.jsp=UTF-8
 encoding//WebContent/CreateNewRules.jsp=UTF-8
 encoding//WebContent/CreateNewRulesResulte.jsp=UTF-8
+encoding//WebContent/EditCategory.jsp=UTF-8
 encoding//WebContent/Login.jsp=UTF-8
 encoding//WebContent/NewCategory.jsp=UTF-8
 encoding//WebContent/NewRule.jsp=UTF-8

@@ -80,5 +80,9 @@ public class Inventory implements java.io.Serializable {
 	public void setSafetyStock(Integer safetyStock) {
 		this.safetyStock = safetyStock;
 	}
+	
+	public int getMargin() {
+		return this.getInventory() - this.getSafetyStock();
+	}
 
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
-    <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
@@ -12,7 +12,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
  <title>DSG - Order List</title>
-
+ 
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/overview.css" rel="stylesheet" type="text/css" />
 <link href="css/pop.css" rel="stylesheet" type="text/css" href="">
@@ -48,4 +50,3 @@
        <!-- <a href="javascript:void(0)" class="fold recordable" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;0&quot;}" id="menu-toggle"></a>
         -->
     </div>
-    

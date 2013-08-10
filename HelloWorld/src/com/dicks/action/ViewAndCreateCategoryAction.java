@@ -1,6 +1,6 @@
 package com.dicks.action;
 
-public class ViewAndCreateCategory {
+public class ViewAndCreateCategoryAction {
 	
 	public String goToView(){
 		return "success";

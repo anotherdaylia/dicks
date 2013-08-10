@@ -46,8 +46,36 @@ public class TestUtil {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
+	public void testParcel() {
+		
+	}
+	
+//	@Test
+	public void testInventoryEvaluate() {
+		InventoryDAO inventoryDAO = InventoryDAO.getInstance();
+		try {
+			Orders order = OrdersDAO.getInstance().getById(17);
+			Store store = StoreDAO.getInstance().getById(4);
+			System.out.println(inventoryDAO.containAnyProductOrder(store, order));
+			
+			Product hat = ProductDAO.getInstance().getById(6);
+			Product shirt = ProductDAO.getInstance().getById(7);
+			
+			PackageE pack = new PackageE(order);
+			Parcel parcel = new Parcel(pack);
+			parcel.addProduct(hat);
+			parcel.addProduct(shirt);
+			
+			System.out.println(inventoryDAO.containAllroductsParcel(store, parcel));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+//	@Test
 	public void createRule() {
 		Rule rule = new com.dicks.pojo.Rule("abc", " ", "", 1, "1", "1", "1", "a", "a", "a", "5", "", "");
 		try {
@@ -150,7 +178,7 @@ public class TestUtil {
 		}
 	}
 
-	@Test
+//	@Test
 	public void createInventory() {
 
 		try {

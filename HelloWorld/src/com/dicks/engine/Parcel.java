@@ -6,31 +6,12 @@ import java.util.HashMap;
 import com.dicks.pojo.Product;
 
 public class Parcel {
-//	private int packageTestID;
 	private HashMap<Product, Integer> products = new HashMap<Product, Integer>();
-//	private int deliveryDays;
-//	private int zoneID;
-//	private String source;
-	private PackageE pack;
-	
-//	public int getPackageTestID() {
-//		return packageTestID;
-//	}
-//	public void setPackageTestID(int packageTestID) {
-//		this.packageTestID = packageTestID;
-//	}
+	private PackageE pack;	
 	
 	public Parcel(PackageE pack) {
 		this.setPack(pack);
 	}
-	
-//	public int getZoneID() {
-//		return zoneID;
-//	}
-//
-//	public void setZoneID(int zoneID) {
-//		this.zoneID = zoneID;
-//	}
 	
 	public void addProduct(Product p) {
 		Integer qty = products.get(p);
@@ -39,6 +20,14 @@ public class Parcel {
 		} else {
 			products.put(p, qty + 1);
 		}
+	}
+	
+	public int getProductQty(Product product) {
+		Integer qty = products.get(product);
+		
+		if (qty == null) return 0;
+		
+		return products.get(product);
 	}
 	
 	public HashMap<Product, Integer> getProducts() {
@@ -53,25 +42,6 @@ public class Parcel {
 		list.addAll(products.keySet());
 		return list;
 	}
-	
-//	public int getDeliveryDays() {
-//		return deliveryDays;
-//	}
-//	public void setDeliveryDays(int deliveryDays) {
-//		this.deliveryDays = deliveryDays;
-//	}
-//	public String getSource() {
-//		return source;
-//	}
-//	public void setSource(String source) {
-//		this.source = source;
-//	}
-//	public Package getP() {
-//		return p;
-//	}
-//	public void setP(Package p) {
-//		this.p = p;
-//	}
 	
 	@Override
 		public String toString() {
