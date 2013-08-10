@@ -22,6 +22,7 @@ rule "Explode Cart"
         $item : Product() from $order.getProducts()
     then
         insert( $item );
+        System.out.println($item);
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
 //        System.out.println("order quantity: " + $order.getQuantity());
 //        System.out.println("exlored: " + $order.getExploredItem());
@@ -31,6 +32,17 @@ rule "Explode Cart"
         
 end
 
+
+
+rule "abc"
+    salience 22
+    when
+ 	
+    $o : Order()
+    $p : (Int
+    then
+        System.out.println( "There are "+$count+" instances of processes" );
+end
 /*
 rule "Explode Cart end"
     agenda-group "init"

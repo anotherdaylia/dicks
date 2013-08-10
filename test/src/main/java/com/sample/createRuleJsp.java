@@ -31,10 +31,10 @@ public class createRuleJsp {
 		 value[1] ="3";
 		 String action[] = new String[1];
 		 action[0] = "minPackage";
-		 String route[] = new String[0];
+		 String route = new String();
 		 String flag = "TH-B,ST-A,SP-A";
 		 int position = 2;
-		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,null,action,flag,position);
+		//CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,null,action,flag,position);
 		 
 		 
 		 type ="Store Filter";
@@ -57,32 +57,29 @@ public class createRuleJsp {
 		 //value[1] ="3";
 		 action = new String[1];
 		 action[0] = "retract";
-		 route = new String[0];
+		 route = new String();
 		 flag = "TH-A,ST-C,SP-A";
 		 position = 1;
-		test= new CreateTemplate(type,product,attribute,operator,value,null,action,flag,position);
+		//test= new CreateTemplate(type,product,attribute,operator,value,null,action,flag,position);
 		
 		type ="Special Route";
 		position = 3;
 		 product = new String[1];
-		 product[0] ="005";
+		 product[0] ="1";
 		 //product[1] ="002";
 		 //product[1] = "def234";
 		 //product[2] ="ghi456";
 		 attribute = new String[2];
-		 attribute[0] = "weight";
-		 attribute[1] ="size";
+		 attribute[0] = "number";
 		 operator = new String[2];
 		 operator[0] = ">";
-		 operator[1]= "<";
 		 value = new String[2];
 		 value[0] = "5";
-		 value[1] ="3";
 		 action = new String[1];
 		 action[0] = "special";
-		 route = new String[1];
-		 route[0] = "store002";
+		 route = new String();
+		 route = "1";
 		 flag = "TH-A,ST-A,SP-B";
-		test= new CreateTemplate(type,product,attribute,operator,value,route,action,flag,position);
+		CreateTemplate test= new CreateTemplate(type,product,attribute,operator,value,route,action,flag,position);
 	   }
 }

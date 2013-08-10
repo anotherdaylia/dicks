@@ -1,8 +1,15 @@
-rule  "Mininum Packagethreshold0"
+rule  "Special routespecial route0"
     when
         $o : Order()
-        $i : Product( ((weight > 5))&& (( productID == 1 )|| (productID == 2 ))) from $o.getProducts()
+        $i : Product(  ( productID == 1 ))
+        $s : Store( storeID == a )
+        eval($s.checkProduct($i, ">" ,5)
     then
-        $i.minPackage();
+        System.out.println("special routes allocated");
+        Package p = new Package($o);
+        p.addProduct($i);
+        insert (p);
+        p.setAllocated(true); 
+        retract($i);
 end
 
