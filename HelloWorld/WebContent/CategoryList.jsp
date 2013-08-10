@@ -8,10 +8,10 @@
  <jsp:include page="template_top.jsp" />
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
-            memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class="selected" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Category List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Category</a><span class="normal">&nbsp;</span></li>  
+                <li class="selected" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
         <li class=""><a class="recordable open" href="#" id="toggletwo"
@@ -87,7 +87,7 @@
 		<div class="main" id="main-body">
 			<div class="content clearfix">
 				<div class="title-bar clearfix">
-					<h1 class="l">Manage Category</h1>
+					<h1 class="l">Manage Group</h1>
 					<div id="Date" class="date l"></div>
 					<a id='ReportTipIco' class="report-help open l recordable"
 						memo="{id:'ReportTipIco',type:'page-tip',global:0}"
@@ -98,8 +98,8 @@
 					</div>
 
 					<li style="list-style: none;"><span><a href="#">Home</a><span>
-								&gt; </span></span> <span><a href="">Manage Category</a><span><span>
-									&gt; </span> <span>Category List<span></li>
+								&gt; </span></span> <span><a href="">Manage Group</a><span><span>
+									&gt; </span> <span>Group List<span></li>
 
 					<!-- Success Message and Error Message -->
 					<div class="success_area" style="display: none">successMessage</div>
@@ -111,7 +111,7 @@
 					<div>
 						<a class="button" id="add-to-cart" href="#">Delete Selected </a>&nbsp;
 						| &nbsp; <a href="CreateCategory.html" class="button"> + New
-							Category</a>
+							Group</a>
 						<div class="r">
 							<input type="text" class="searchtext" placeholder="Category name" />
 							<a href="#" class="button">Search</a>
@@ -120,8 +120,8 @@
 					<br />
 					<div id="Outline" class="table-list">
 						<form action="">
-							Category Type: <input type="radio" name="category_type"
-								value="Store" id="category_store" onClick="displayCategoryList(this);">Store
+							Group Type: <input type="radio" name="category_type"
+								value="Store" id="category_store" onClick="displayCategoryList(this);">Fulfillment
 							<input type="radio" name="category_type" value="Product"
 								id="category_product" onClick="displayCategoryList(this);">Product
 
@@ -130,8 +130,8 @@
 									<tbody>
 										<tr class="title">
 											<th><input type="checkbox" id="selectall" /></th>
-											<th>Category ID</th>
-											<th>Category Name</th>
+											<th>Group ID</th>
+											<th>Group Name</th>
 											<th>Description</th>
 											<th>Action</th>
 										</tr>
@@ -154,8 +154,8 @@
 									<tbody>
 										<tr class="title">
 											<th><input type="checkbox" id="selectall" /></th>
-											<th>Category ID</th>
-											<th>Category Name</th>
+											<th>Group ID</th>
+											<th>Group Name</th>
 											<th>Description</th>
 											<th>Action</th>
 										</tr>
@@ -205,11 +205,11 @@
 					<div id="pop-back"></div>
 					<div id="cart1" class="cart">
 						<div class="popheader">
-							<span class="title"><strong>&nbsp;Delete Category</strong></span>
+							<span class="title"><strong>&nbsp;Delete Group</strong></span>
 						</div>
 						<br>
 						<div>&nbsp;&nbsp;Are you sure you want to delete the
-							category?</div>
+							group?</div>
 
 						<div class="r" style="margin-right: 20px;">
 							<a class="button" onclick="closePop()" type="submit">Yes</a> <a

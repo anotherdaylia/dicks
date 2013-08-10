@@ -75,7 +75,7 @@
           <result name="success">/viewCategory.jsp</result>
       </action>
       <action name="gotocreatecategory" class="com.dicks.action.ViewAndCreateCategoryAction" method="goToCreate">
-          <result name="success">/createCategory.jsp</result>
+          <result name="success">/editCategory.jsp</result>
       </action>
 <!--       <action name="viewStoreCategory" class="com.dicks.action.ViewCategoryAction" method="viewStoreCategory">
       		<result name="success">/ViewStoreCategory.jsp</result>

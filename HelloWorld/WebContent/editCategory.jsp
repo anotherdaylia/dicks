@@ -7,10 +7,10 @@
  <jsp:include page="template_top.jsp" />
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
-            memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Category List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Category</a><span class="normal">&nbsp;</span></li>  
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
         <li class=""><a class="recordable open" href="#" id="toggletwo"
@@ -516,15 +516,15 @@
         <div class="content clearfix">
                 
         <div class="title-bar clearfix">
-            <h1 class="l">Edit Category</h1><div id="Date" class="date l"></div>
+            <h1 class="l">Edit Group</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
 
         </div>
         <div ><br/><br/>
             <li style="list-style:none;"><span><a href="#">Home</a><span> &gt; </span></span></span>
-                <span><a href="#">Manage Category</a><span> &gt; </span></span>
-                <span>Edit Category</span>
+                <span><a href="#">Manage Group</a><span> &gt; </span></span>
+                <span>Edit Group</span>
             </li>
             <!-- Success Message and Error Message -->
             <div class="success_area" style="display:none">successMessage</div>
@@ -535,26 +535,26 @@
             <form action="#">
             <div id="tabs">
               <ul>
-                <li><a href="#tabs-1">Category: Stores in Pennsylvania</a></li>
+                <li><a href="#tabs-1">Group: Stores in Pennsylvania</a></li>
               </ul>
               <div id="tabs-1">
               <table id="category" border="0" style="margin-left:50px;width:750px;">
                 <tr style="height:40px;">
-                    <td><div class="form-title" style="width:150px;"><font color="red">*</font>Category Name:</div></td>
+                    <td><div class="form-title" style="width:150px;">Group Name<font color="red">*</font>:</div></td>
                     <td style="width:600px;"><input type="text" style="width:300px;" value="Stores in Pennsylvania"></td>
                     <td></td>
                 </tr>
                     
                 <tr style="height:40px;">
-                    <td><div class="form-title" style="width:150px;">Category Description:</div></td>
+                    <td><div class="form-title" style="width:150px;">Group Description:</div></td>
                     <td style="width:500px;">
-                      <textarea placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">This category is for stores in Pennsylvania.</textarea>
+                      <textarea placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">This group is for stores in Pennsylvania.</textarea>
                     </td>
                     <td></td>
                 </tr>
 
                 <tr style="height:40px%;">
-                    <td><div class="form-title" style="width:150px;"><font color="red">*</font>Store Type:</div></td>
+                    <td><div class="form-title" style="width:150px;">Fulfillment Method<font color="red">*</font>:</div></td>
                     <td style="width:500px;">
                       <textarea id="storeTypeTags" placeholder="Type store type to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">Dick's Stores&#44;&nbsp;</textarea>
                     </td>
@@ -564,17 +564,7 @@
                 </tr>
 
                 <tr style="height:40px%;">
-                    <td><div class="form-title" style="width:150px;">Store Region:</div></td>
-                    <td style="width:500px;">
-                      <textarea id="regionTags" placeholder="Type store region to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">Northeast (New England, Mid-Atlantic)&#44;&nbsp;</textarea>
-                    </td>
-                    <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getRegionCheck()">See All Options</a>
-                    </td>
-                </tr>
-
-                <tr style="height:40px%;">
-                    <td><div class="form-title" style="width:150px;"><font color="red">*</font>Store State:</div></td>
+                    <td><div class="form-title" style="width:150px;">-OR- &nbsp;State<font color="red">*</font>:</div></td>
                     <td style="width:500px;">
                       <textarea id="stateTags" placeholder="Type store state to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">Pennsylvania&#44;&nbsp;</textarea>
                     </td>
@@ -584,9 +574,9 @@
                 </tr>
 
                 <tr style="height:40px;">
-                    <td><div class="form-title" style="width:150px;">Store ID:</div></td>
+                    <td><div class="form-title" style="width:150px;">Fulfillment Location:</div></td>
                     <td style="width:500px;">
-                      <textarea id="storeTags" placeholder="Type store id to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">All&#44;&nbsp;</textarea>
+                      <textarea id="storeTags" placeholder="Type store location to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">All&#44;&nbsp;</textarea>
                     </td>
                     <td style="width:110px;">
                       <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreCheck()">See All Options</a>
