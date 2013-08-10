@@ -44,40 +44,6 @@ public class Split {
 	}
 	
 	public Split(Collection<PackageE> packages, Collection<Store> stores) {
-//		Store s1 = null;
-//		Store s2 = null;
-//		Store s3 = null;
-//		Store s4 = null;
-//		Store s5 = null;
-//		
-//		Product shoes = null;
-//		Product shirt = null;
-//		Product hat = null;
-//		try {
-//			s1 = StoreDAO.getInstance().getById(1);
-//			s2 = StoreDAO.getInstance().getById(2);
-//			s3 = StoreDAO.getInstance().getById(3);
-//			s4 = StoreDAO.getInstance().getById(4);
-//			s5 = StoreDAO.getInstance().getById(6);
-//			
-//			ProductDAO productDAO = ProductDAO.getInstance();
-//			shoes = productDAO.getById(5);
-//			shirt = productDAO.getById(7);
-//			hat = productDAO.getById(6);
-//		} catch (Exception e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//	
-//		Orders order = null;
-//		try {
-//			order = OrdersDAO.getInstance().getById(3);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}	
-//		
-
 		SplitGenerater.cache(10);
 		SplitGenerater.buildIndex(10);
 
@@ -114,6 +80,7 @@ public class Split {
 		
 		for (Store store : stores) {
 			ksession.insert(store);
+			System.out.println(store);
 		}
 
 		System.out.println("----------------------");
@@ -122,7 +89,6 @@ public class Split {
 
 		// Remove comment if using logging
 		logger.close();
-
 		ksession.dispose();
 
 	}

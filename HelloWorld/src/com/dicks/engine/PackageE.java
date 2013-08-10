@@ -51,8 +51,10 @@ public class PackageE {
 		this.forRemain = forRemain;
 	}
 	
-	public void addProduct(Product p) {
-		products.add(p);
+	public void addProduct(Product p, int qty) {
+		for (int i = 0; i < qty; i++) {
+			products.add(p);
+		}	
 	}
 	
 	public boolean isSeparable() {

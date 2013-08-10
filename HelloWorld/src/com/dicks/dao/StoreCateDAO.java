@@ -1,7 +1,12 @@
 package com.dicks.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
+
+import com.dicks.pojo.Product;
 import com.dicks.pojo.StoreCate;
 
 public class StoreCateDAO extends BaseDao<StoreCate> {
@@ -13,6 +18,14 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 	
 	public static StoreCateDAO getInstance (){
 		return instance;
+	}
+	
+	public StoreCate[] getStoreCategoryListById(String id) throws Exception{
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion = Restrictions.eq("id.cateStoreId", Integer.valueOf(id));
+		criterions.add(criterion);
+		ArrayList<StoreCate> finalResult = (ArrayList<StoreCate>)super.getList(criterions);
+		return (StoreCate[])finalResult.toArray(new StoreCate[finalResult.size()]);
 	}
 
 	public StoreCate[] getStoreCategoryList() throws Exception{
@@ -30,8 +43,6 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		int id2 = ProdCateDAO.getInstance().getMaxId();
 		return Math.max(id1, id2)+1;
 	}
-	
-	
 	
 	public int getMaxId() throws Exception{
 		String sql = "select max(cate_store_id) maxid from store_cate";

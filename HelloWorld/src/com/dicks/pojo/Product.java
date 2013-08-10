@@ -119,7 +119,7 @@ public class Product implements java.io.Serializable {
 	}
 
 	public void setSku(String sku) {
-		System.out.println("fuck d sku "+sku);
+//		System.out.println("fuck d sku "+sku);
 		this.sku = sku;
 	}
 
@@ -225,5 +225,20 @@ public class Product implements java.io.Serializable {
 		if (!(obj instanceof Product)) return false;
 		Product p = (Product) obj;
 		return p.prodId == this.prodId;
+	}
+	
+	@Override
+	public int hashCode() {
+		long sum = this.prodId;
+		
+		for (int i = 0; i < this.sku.length(); i++) {
+			sum = sum * 31 + sku.charAt(i);
+		}
+		
+		for (int i = 0; i < this.prodName.length(); i++) {
+			sum = sum * 31 + prodName.charAt(i);
+		}
+		
+		return (int) sum;
 	}
 }

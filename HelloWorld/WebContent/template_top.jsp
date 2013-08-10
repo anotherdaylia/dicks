@@ -12,13 +12,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
  <title>DSG - Order List</title>
-
+ 
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/overview.css" rel="stylesheet" type="text/css" />
 <link href="css/pop.css" rel="stylesheet" type="text/css" href="">
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/animation.js" type="text/javascript"></script>
 <script src="js/pop.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
+<script src="js/tangram.js" type="text/javascript"></script> 
+<script src="js/autocomplete.js" type="text/javascript"></script>
 
 
 <body>

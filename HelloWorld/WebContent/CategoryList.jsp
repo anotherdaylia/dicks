@@ -100,7 +100,7 @@
 												<td class="">${storeCategory.id.cateStoreId}</td>
 												<td class="">${storeCategory.cateName}</td>
 												<td class="">${storeCategory.cateDescr}</td>
-												<td class=""><a class="button" href="ViewCategory.html">View</a>
+												<td class=""><a class="button" href="viewStoreCategory.action?categoryId=${storeCategory.id.cateStoreId}">View</a>
 										<a class="button" href="EditCategory.html">Edit</a></td>
 											</tr>
 										</c:forEach>
