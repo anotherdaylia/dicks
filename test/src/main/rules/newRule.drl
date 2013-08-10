@@ -19,6 +19,7 @@ rule "Explode Cart"
         $item : Product() from $order.getProducts()
     then
         insert( $item );
+        System.out.println($item);
         drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
 end
 

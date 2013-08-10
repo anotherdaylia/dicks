@@ -171,41 +171,28 @@
             <br/>
             <div>
             <form action="gototemplate" method="get">
-            <table class="text">
+            <table class="text" style="width:600px;">
                 <tr>
-                    <td>Rule Name:</td>
-                    <td><input type="text" style="width:200px;" name="rulename"></td>
+                    <td style="width:200px;"><span class="red">*</span>Rule Name&#58;</td>
+                    <td><input type="text"  name="rulename" style="width:200px;"></td>
                 </tr>   
                 <tr>
-                    <td>Rule Description:</td>
-                    <td rowspan="2"><textarea></textarea></td>
+                    <td>Rule Description&#58;</td>
+                    <td style="width:200px;"><textarea style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" ></textarea></td>
                 </tr>
                 <tr>
-                    <td ></td>
+                    <td><span class="red">*</span>Group&#58;</td>
+                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" placeholder="Group name"></textarea></td>
+                    <td class="grey">&nbsp;&nbsp;If not found, <a href="createcategory.html">new Group</a>.</td>
                 </tr>
-                	<tr>
-				<td>Category&#58;</td>
-				<td><textarea name="categoryname" id="tags" placeholder="Type category;" onkeyup="textAreaAdjust(this)" style="overflow: hidden; max-width: 200px; width: 247px; height: 34px; margin: 0px;"></textarea></td>
-				</tr>
-                
-                
                 <tr>
-                    <td>Stage:</td>
-                    <td><select style="width:200px;">
-                        <option value="#">Stage 1</option> 
-                        <option value="#">Stage 2</option>
-                        
-                    </select></td>
-                </tr>
-
-                <tr>
-                    <td>Rule Template:</td>
-                    <td><select style="width:200px;" name="templatename">
+                    <td><span class="red">*</span>Rule Template&#58;</td>
+                    <td><select class="big" name="templatename">
                         <option value="product_threshold">Product Threshold</option> 
                         <option value="store_threshold">Store Threshold</option>
                         <option value="special_route">Special Route</option>
-                        <option value="cost_calculate">Cost Calculate</option>
-                        <option value="candidate_evaluate">Candidate Evaluate</option>
+                        <!--<option value="#">Cost Calculate</option>
+                        <option value="#">Candidate Evaluate</option>-->
                         </select></td>
                 </tr>
                 <tr></tr>
@@ -214,6 +201,7 @@
                     <td><input type="submit" value="Create" class="button"></td>
                 </tr>
             </table>   
+            
 
             </form>
             </div>

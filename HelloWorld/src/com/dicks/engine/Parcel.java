@@ -30,6 +30,15 @@ public class Parcel {
 		return products.get(product);
 	}
 	
+	public void addNumProduct(Product p, int num) {
+		Integer qty = products.get(p);
+		if (qty == null) {
+			products.put(p, num);
+		} else {
+			products.put(p, qty + num);
+		}
+	}
+	
 	public HashMap<Product, Integer> getProducts() {
 		return products;
 	}

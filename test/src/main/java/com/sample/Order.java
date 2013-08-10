@@ -78,8 +78,25 @@ public class Order {
 	
 	public ArrayList<Product> getProducts () {
 		ArrayList<Product> list =  new ArrayList<Product>();
-		list.addAll(productList.keySet());
+		
+		for (Product p : productList.keySet()) {
+			int qty = productList.get(p);
+			for (int i = 0; i < qty; i++) {
+				list.add(p);
+			}
+		}
+			
 		return list;
+	}
+	
+	public int getQuantitys (String productID) {
+		int i = 0;
+		for (Product p : productList.keySet()) {
+			if ((p.productID).equals(produtID))
+				i++;
+		}
+			
+		return i;
 	}
 
 	public void addProducts(Product prod,int number){

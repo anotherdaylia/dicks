@@ -60,7 +60,9 @@ public class SmallTest {
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
 		
-		Product shoes = new Product(1+"", "shoes", 50 ,10, 2);
+		Product shoes = new Product("1", "shoes", 50 ,10, 2);
+		Product shoes2 = new Product("1", "shoes", 50 ,10, 2);
+		Product shoes3 = new Product("1", "shoes", 50 ,10, 2);
 		Product hat = new Product(2+"", "hat", 10 , 4, 2);
 		Product shirt = new Product(3+"", "shirt", 20 , 8 ,6);
 		//Product shirts = new Product(5, "hahahah", 20 , 8 ,5);
@@ -89,11 +91,16 @@ public class SmallTest {
 		
 		
 		Order order = new Order(2);
-		order.addProducts(shoes, 1);
+		order.addProducts(shoes, 5);
+		//order.addProducts(shoes2, 5);
+//		order.addProducts(shoes3, 5);
 		order.addProducts(hat, 1);
 		order.addProducts(shirt, 1);	
 		//order.addProducts(shirts,1);
 		
+		
+		ksession.insert(shoes2);
+		ksession.insert(shoes3);
 		ksession.insert(s1);
 		ksession.insert(s2);
 		ksession.insert(s3);
