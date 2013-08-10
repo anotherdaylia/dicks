@@ -75,7 +75,7 @@ rule  "Special Route0"
     then
         System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
         PackageE p = new PackageE($order);
-        p.addProduct($product);
+        p.addProduct($product, $orderE.getProductQty($id));
         insert (p);
         p.setAllocated(true); 
         Parcel parcel = new Parcel(p);
@@ -90,6 +90,8 @@ rule  "Special Route0"
         PackageTestResult packageR = new PackageTestResult(test);
         packageR.addResult(parcelR);
         System.out.println(packageR);
+        insert(packageR);
+        retract(p);
         retract($product);
 end
 
@@ -172,14 +174,15 @@ rule  "special 1"
 	salience 9
 	//agenda-group "special"
 	when
-       $o : Orders()
+        $o : Orders()
+        $orderE : OrderE()
         $i : Product(  ( prodId == 3 ))
         $s : Store( storeId == 4 )
         //eval(!$s.checkProduct($i,">",1))
 	then
 		System.out.println("product "+$i.getProdId()+" get inserted into a new package by speical route rule");
         PackageE p = new PackageE($o);
-        p.addProduct($i);
+        p.addProduct($i, $orderE.getProductQty($i.getProdId()));
         insert (p);
         p.setAllocated(true); 
         retract($i);
@@ -190,12 +193,13 @@ rule  "Mininum Packagethreshold0"
 	//agenda-group "first6"
     when
         $o : Orders()
+        $orderE : OrderE()
 //        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
 //        $i : Product(weight >= 10 && special == null)
         $i : Product(weight > 2000)
     then     
     	PackageE p = new PackageE($o);
-    	p.addProduct($i);
+    	p.addProduct($i, $orderE.getProductQty($i.getProdId()));
     	insert (p);    
         $i.minPackage();
         retract($i);
@@ -223,8 +227,9 @@ rule "wrap up remaining products"
 	when
 		$i : Product()
 		$p : PackageE(isForRemain())
+		$orderE : OrderE()
 	then
-		$p.addProduct($i);
+		$p.addProduct($i, $orderE.getProductQty($i.getProdId()));
 		retract($i);
 		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
 end

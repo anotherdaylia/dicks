@@ -147,7 +147,8 @@ public class InventoryDAO extends BaseDao<Inventory> {
 		Inventory in = getInventoryByStoreProduct(store.getStoreId(), product.getProdId());
 		
 		if (in != null){
-			System.out.println(in.getInventory() - in.getSafetyStock());
+			
+			System.out.println("margin!"+(in.getInventory() - in.getSafetyStock()));
 		}
 		
 		

@@ -81,7 +81,7 @@ public class Allocate {
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
 		// this will parse and compile in one step
-		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/newRule_LY.drl",
+		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/newRule_joe.drl",
 
 				SmallTest.class), ResourceType.DRL);
 
@@ -134,12 +134,16 @@ public class Allocate {
 
 		Collection<PackageE> packages = (Collection<PackageE>) ksession.getObjects( new ClassObjectFilter(PackageE.class) );
 		Collection<Store> leftStores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
+		Collection<PackageTestResult> allocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
 
+		
 		System.out.println("---------------------------------");
 		System.out.println("package size: " + packages.size());
 		System.out.println(Arrays.toString(packages.toArray()));
 		System.out.println("store list: " + leftStores.size());
 		System.out.println(Arrays.toString(leftStores.toArray()));
+		System.out.println("package result list: " + allocatedResults.size());
+		System.out.println(Arrays.toString(allocatedResults.toArray()));
 
 		System.out.println("end");
 
