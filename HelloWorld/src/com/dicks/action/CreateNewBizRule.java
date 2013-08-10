@@ -132,9 +132,9 @@ public class CreateNewBizRule {
 			}
 			rulename = rulename.replace(" ","%20");
 			categoryname = categoryname.replace(" ","%20");
-			return "gototemplate";
+			return "goToTemplate";
 		}
-		else if(templatename.equals("cost_calculate")){
+		else if(templatename.equals("special_route")){
 			try {
 				allRule = RuleDAO.getInstance().getAllSortedList() ;
 			} catch (Exception e1) {
@@ -144,7 +144,7 @@ public class CreateNewBizRule {
 			setAllRule(allRule);
 			rulename = rulename.replace(" ","%20");
 			categoryname = categoryname.replace(" ","%20");
-			return "gotocost";
+			return "goToSpecial";
 		}
 		else if(templatename.equals("store_threshold")){
 			try {
@@ -156,9 +156,9 @@ public class CreateNewBizRule {
 			setAllRule(allRule);
 			rulename = rulename.replace(" ","%20");
 			categoryname = categoryname.replace(" ","%20");
-			return "gotostore";
+			return "goToStore";
 		}
-		return "gototemplate";
+		return "goToTemplate";
 	}
 
 	public String newrule(){

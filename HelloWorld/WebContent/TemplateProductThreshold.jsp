@@ -126,6 +126,11 @@
  window.onload =pageOnLoad;
  
  </script>
+ <script>
+function goBack(){
+	window.history.go(-1);
+}
+</script>
     <!-- menu bar ends -->
 
     <!-- content starts -->
@@ -306,10 +311,10 @@
                             <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">This is your new rule</td>
                 </tr>
                 <tr>
-                	<td style = "text-align:right">
+                    <td><input type="button" value="Back" onclick="goBack()" class="button">
+                    <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>
+                    <td style = "text-align:right">
                 	<a class="button" onclick='SubmitForm()'>Create</a></td>
-                    <td><a class="button" onclick='close()'>Back</a>
-                    <a class="button" href="newRules.jsp">Cancel</a></td>
                 </tr>
             </table>
             </div>
