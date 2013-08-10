@@ -89,7 +89,7 @@ function removeElement(divNum) {
 </script>
 <script>
 function goBack(){
-	window.history.go(-1)
+	window.history.go(-1);
 }
 </script>
     <!-- menu bar ends -->
@@ -222,7 +222,7 @@ function goBack(){
                 </tr>
                 <tr>
                     <td><input type="submit" value="Create" class="button"></td>  
-                    <td><input type="button" value="Back" onclick="goBack()"><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>
+                    <td><input type="button" value="Back" onclick="goBack()" class="button"><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>
                 </tr>
             </table>   
             </form>
