@@ -6,7 +6,7 @@ public class Product {
 	private double price;
 	private double weight;
 	private int size;
-	private String productID;
+	String productID;
 	private String special;
 	private String flag = "TH-A,ST-A,SP-A";
 
