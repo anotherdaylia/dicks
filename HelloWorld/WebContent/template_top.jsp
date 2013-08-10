@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
-    <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
@@ -54,7 +54,7 @@
 						Category</a>
 					<ul class="nav-two" id="navone">
 						<li class=""><a
-							href="<%=basePath%>gotocategorylist.action">Category List</a><span
+							href="<%=basePath%>displayCategoryList.action?act=store">Category List</a><span
 							class="normal">&nbsp;</span></li>
 						<li class=""><a href="#">New Category</a><span class="normal">&nbsp;</span></li>
 					</ul></li>

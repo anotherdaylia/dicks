@@ -1,30 +1,43 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
- <jsp:include page="template_top.jsp" />
+<jsp:include page="template_top.jsp" />
+
+  <script defer="defer" >
  
-  <script>
+ 	 window.onload=function(){
+
+ 		var act =  document.getElementById('act').value;
+        if(act=="store") {
+            document.getElementById('store_category_list').style.display = 'block';
+            document.getElementById('product_category_list').style.display = 'none';
+            document.getElementById('Paging').style.display = 'block';
+            document.getElementById('category_store').checked = true;            
+        } else if(act=="product") {
+            document.getElementById('product_category_list').style.display = 'block';
+            document.getElementById('store_category_list').style.display = 'none';
+            document.getElementById('Paging').style.display = 'block';
+            
+            document.getElementById('category_product').checked =true;
+        }
+ 	 }   
+ 
  function displayCategoryList(obj) {
     var type = obj.value;
+ 
     
     if(type=="Store") {
-    	document.getElementById('store_category_list').style.display = 'block';
-        document.getElementById('product_category_list').style.display = 'none';
-     	document.getElementById('Paging').style.display = 'block';
      	window.location.href="displayCategoryList.action?act=store";  
-     	this.checked = true;
-    } else if(type=="Product") {
-        document.getElementById('product_category_list').style.display = 'block';
-        document.getElementById('store_category_list').style.display = 'none';
-        document.getElementById('Paging').style.display = 'block';
-    	 document.getElementById('category_store').checked = false;
-        window.location.href="displayCategoryList.action?act=product";   
-        this.checked = true;
 
-    }
+    } else if(type=="Product") {
+        window.location.href="displayCategoryList.action?act=product";   
+    };
  }
 </script>
  
 
 		<!-- content starts -->
+		<input type="hidden" value="${act}" id="act"/>
 		<div class="minibar recordable" id="minibar"
 			memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;1&quot;}"
 			style="display: none;">
@@ -32,7 +45,6 @@
 		</div>
 		<div class="main" id="main-body">
 			<div class="content clearfix">
-
 				<div class="title-bar clearfix">
 					<h1 class="l">Manage Category</h1>
 					<div id="Date" class="date l"></div>
@@ -96,7 +108,7 @@
 								</table>
 							</div>
 
-							<div id="product_category_list"  >
+							<div id="product_category_list">
 								<table cellspacing="0" cellpadding="0" class="list">
 									<tbody>
 										<tr class="title">
@@ -106,9 +118,13 @@
 											<th>Description</th>
 											<th>Action</th>
 										</tr>
-											${prodCategoryList}	
-										<c:forEach var="prodCategory" items="${prodCategoryList}">
-											<tr>
+										<c:choose>
+											<c:when test="${ (empty prodCategoryList) }">
+											
+											</c:when>
+											<c:otherwise>
+												<c:forEach var="prodCategory" items="${prodCategoryList}">
+												<tr>
 												<td class=""><input type="checkbox" class="case" /></td>
 												<td class="">${prodCategory.id.cateProdId}</td>
 												<td class="">${prodCategory.cateName}</td>
@@ -117,14 +133,19 @@
 												<a class="button" href="EditCategory.html">Edit</a></td>
 											</tr>
 										</c:forEach>
+				       							 
+			       							</c:otherwise>
+										
+										</c:choose>
+										
 									</tbody>
 								</table>
 							</div>
 
 						</form>
-						<div id="Paging" style="display: none;">
+						<div id="Paging" >
 							<div class="paging clearfix">
-								<div class="page-size">Items per page：10</div>
+								<div class="page-size">Items per page:10</div>
 								<div class="page-number">
 									<a class="number selected" href="javascript:void(0);" data="1">1</a><a
 										class="number" href="javascript:void(0);" data="2">2</a><a
@@ -147,7 +168,7 @@
 						</div>
 						<br>
 						<div>&nbsp;&nbsp;Are you sure you want to delete the
-							categry?</div>
+							category?</div>
 
 						<div class="r" style="margin-right: 20px;">
 							<a class="button" onclick="closePop()" type="submit">Yes</a> <a
