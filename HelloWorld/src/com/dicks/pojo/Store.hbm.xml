@@ -25,17 +25,23 @@
         <property name="storeType" type="java.lang.String">
             <column name="store_type" length="45" not-null="true" />
         </property>
-        <set name="inventories" inverse="true">
+        <set name="packageses" inverse="true">
             <key>
-                <column name="store_id" not-null="true" />
+                <column name="store_id" />
             </key>
-            <one-to-many class="com.dicks.pojo.Inventory" />
+            <one-to-many class="com.dicks.pojo.Packages" />
         </set>
         <set name="storeCates" inverse="true">
             <key>
                 <column name="store_id" not-null="true" />
             </key>
             <one-to-many class="com.dicks.pojo.StoreCate" />
+        </set>
+        <set name="inventories" inverse="true">
+            <key>
+                <column name="store_id" not-null="true" />
+            </key>
+            <one-to-many class="com.dicks.pojo.Inventory" />
         </set>
     </class>
 </hibernate-mapping>
