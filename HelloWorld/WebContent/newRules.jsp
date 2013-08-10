@@ -196,8 +196,8 @@
                         </select></td>
                 </tr>
                 <tr></tr>
-                <tr>
-                    <td><a class="button" href="#">Cancel</a></td>  
+                <tr>  
+                    <td><a class="button" href="#">Cancel</a></td>
                     <td><input type="submit" value="Create" class="button"></td>
                 </tr>
             </table>   
