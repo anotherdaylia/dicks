@@ -7,10 +7,10 @@
  <jsp:include page="template_top.jsp" />
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
-            memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Category List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Category</a><span class="normal">&nbsp;</span></li>  
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
         <li class=""><a class="recordable open" href="#" id="toggletwo"
@@ -60,44 +60,9 @@
   } 
   
   
-  
-  
   function pageOnLoad() {
 	  console.log("logged");
   }
-  
-  /*function deleteRow(tableID) {
-    try {
-        var table = document.getElementById(tableID);
-        var rowCount = table.rows.length;
- 
-        for(var i=0; i<rowCount; i++) {
-            var row = table.rows[i];
-            var chkbox = row.cells[0].childNodes[0];
-            if(null != chkbox && true == chkbox.checked) {
-                table.deleteRow(i);
-                rowCount--;
-                i--;
-            }
-        }
-    }catch(e) {
-        alert(e);
-    }
-  }*/
-
-//style="margin-left:50px;float:left;width:800px;"
- function deleteRow(row){
-    var i = row.parentNode.parentNode.rowIndex;
-
-    var x;
-    var r = confirm("Do you really want to delete this rule?");
-    if(r == true){
-        document.getElementById('sort').deleteRow(i);
-    }
-    else{
-        ;
-    }
- }
  
  
  function SubmitForm()
@@ -177,10 +142,8 @@
                 </tr>
                 
                 <tr>
-                    <td style = "text-align:right"><a class="button" href="#" onclick='SubmitForm()'>Create</a></td>
                     <td><a class="button" href="#">Back</a><a class="button" href="#">Cancel</a></td>
-                    
-                    
+                    <td style = "text-align:right"><a class="button" href="#" onclick='SubmitForm()'>Create</a></td>         
                 </tr>
             </table>
             
@@ -192,24 +155,6 @@
 			 	<input type="hidden" name="rulename"  value=<%=request.getAttribute("rulename")%> />
                 
             </form>
-
-        <!-- Deletion Pop up -->
-        <div id="pop-back"></div>
-        <div id="cart1" class="cart">
-            <div class="popheader"> 
-              <span class="title"><strong>&nbsp;Delete Rule</strong></span>          
-            </div><br>
-            <div>&nbsp;&nbsp;Are you sure you want to delete the rule?</div>
-            
-            <div class="r" style="margin-right:20px;">
-              <a class="button" onclick="closePop()" type="submit">Yes</a>
-              <a class="button" onclick="closePop()" type="button">No</a>
-            </div>
-        </div>
-        <!-- Deletion pop-up ends -->
-
-
-
         </div>
     
     <!-- content ends -->
