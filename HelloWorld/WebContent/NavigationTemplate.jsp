@@ -32,7 +32,7 @@
         <li class=""><a class="recordable open" href="#" id="toggletwo"
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
             <ul class="nav-two" id="navtwo">
-                <li class="" id="bizrulelist" onclick="f()"><a href="<%=basePath%>gotorulelist.action">Business Rule List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="bizrulelist"><a href="<%=basePath%>gotorulelist.action">Business Rule List</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="newbizrulelist"><a href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span class="normal">&nbsp;</span></li>
                 
             </ul>

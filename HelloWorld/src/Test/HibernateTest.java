@@ -15,6 +15,7 @@ import org.hibernate.cfg.Configuration;
 import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.dao.RuleDAO;
+import com.dicks.dao.StoreCateDAO;
 import com.dicks.pojo.Customer;
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.Inventory;
@@ -37,7 +38,7 @@ public class HibernateTest
 	{
 
 
-		System.out.println(ProdCateDAO.getInstance().getMaxId());
+		System.out.println(StoreCateDAO.getInstance().getStoreCategoryListById("5").length);
 //		ProductDAO pDAO = ProductDAO.getInstance();
 //		Product p = pDAO.getById(1);
 //		

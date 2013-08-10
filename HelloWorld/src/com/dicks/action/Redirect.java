@@ -44,4 +44,8 @@ public class Redirect {
 	public String gotonewcategory(){
 		return "gotonewcategory";
 	}
+	
+	public String gotoruleprioritylist(){
+		return "success";
+	}
 }

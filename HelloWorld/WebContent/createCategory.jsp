@@ -1,19 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=US-ASCII"
-    pageEncoding="US-ASCII"%>
-    <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%
+<%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
-     
  <jsp:include page="template_top.jsp" />
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
             <ul class="nav-two" id="navone">
                 <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Category List</a><span class="normal">&nbsp;</span></li>
-                <li class="selected" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Category</a><span class="normal">&nbsp;</span></li>  
+                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Category</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
         <li class=""><a class="recordable open" href="#" id="toggletwo"
@@ -334,7 +331,7 @@
       "Fit 2 Win", "Flow Society", 
       "Glamorise",
       "Jordan", 
-      "KÃPPEN",
+      "K�PPEN",
       "Marmot", "Mountain Hardwear", "Moving Comfort",
       "NFL Team Apparel", "Nike", 
       "Patagonia", "Patagonia", "Puma",
@@ -519,7 +516,7 @@
         <div class="content clearfix">
                 
         <div class="title-bar clearfix">
-            <h1 class="l">New Category</h1><div id="Date" class="date l"></div>
+            <h1 class="l">Edit Category</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
 
@@ -527,7 +524,7 @@
         <div ><br/><br/>
             <li style="list-style:none;"><span><a href="#">Home</a><span> &gt; </span></span></span>
                 <span><a href="#">Manage Category</a><span> &gt; </span></span>
-                <span>New Category</span>
+                <span>Edit Category</span>
             </li>
             <!-- Success Message and Error Message -->
             <div class="success_area" style="display:none">successMessage</div>
@@ -535,25 +532,23 @@
             <!-- Success Message and Error Message -->
         </div>
         <div><br/><br/>
+            <form action="#">
             <div id="tabs">
               <ul>
-                <li><a href="#tabs-1">New Store Category</a></li>
-                <li><a href="#tabs-2">New Product Category</a></li>
+                <li><a href="#tabs-1">Category: Stores in Pennsylvania</a></li>
               </ul>
               <div id="tabs-1">
-              <form action="createStoreRule.action">
               <table id="category" border="0" style="margin-left:50px;width:750px;">
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;"><font color="red">*</font>Category Name:</div></td>
-                    <td style="width:600px;"><input name="categoryName" type="text" style="width:300px;"></td>
+                    <td style="width:600px;"><input type="text" style="width:300px;" value="Stores in Pennsylvania"></td>
                     <td></td>
                 </tr>
                     
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Category Description:</div></td>
                     <td style="width:500px;">
-                      <textarea name="categoryDes" placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">
-                      </textarea>
+                      <textarea placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">This category is for stores in Pennsylvania.</textarea>
                     </td>
                     <td></td>
                 </tr>
@@ -561,114 +556,55 @@
                 <tr style="height:40px%;">
                     <td><div class="form-title" style="width:150px;"><font color="red">*</font>Store Type:</div></td>
                     <td style="width:500px;">
-                      <textarea name="storeType" id="storeTypeTags" placeholder="Type store type to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
+                      <textarea id="storeTypeTags" placeholder="Type store type to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">Dick's Stores&#44;&nbsp;</textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreTypeCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreTypeCheck()">See All Options</a>
                     </td>
                 </tr>
 
                 <tr style="height:40px%;">
                     <td><div class="form-title" style="width:150px;">Store Region:</div></td>
                     <td style="width:500px;">
-                      <textarea id="regionTag" placeholder="Type store region to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
+                      <textarea id="regionTags" placeholder="Type store region to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">Northeast (New England, Mid-Atlantic)&#44;&nbsp;</textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getRegionCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getRegionCheck()">See All Options</a>
                     </td>
                 </tr>
 
                 <tr style="height:40px%;">
                     <td><div class="form-title" style="width:150px;"><font color="red">*</font>Store State:</div></td>
                     <td style="width:500px;">
-                      <textarea name="storeState" id="stateTags" placeholder="Type store state to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
+                      <textarea id="stateTags" placeholder="Type store state to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">Pennsylvania&#44;&nbsp;</textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStateCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStateCheck()">See All Options</a>
                     </td>
                 </tr>
 
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Store ID:</div></td>
                     <td style="width:500px;">
-                      <textarea name="storeId" id="storeTags" placeholder="Type store id to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
+                      <textarea id="storeTags" placeholder="Type store id to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">All&#44;&nbsp;</textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreCheck()">See All Options</a>
                     </td>
                 </tr>
 
                 <tr style="height:40px;">
                     <td></td>
                     <td>
-                      <span style="margin-left:10px;argin-top:10px;"><a class="button" href="categorylist.html" onclick=""/>Cancel</a></span>
-                      <span style="margin-left:10px;argin-top:10px;"><input type="submit" value="New" class="button"></a></span>
-                      <input type="hidden" name="flag" value="store"/>
-                    </td>  
-                    <td></td>
-                </tr>
-              </table> 
-				</form> 
-              </div>
-
-              <div id="tabs-2">
-              <form action="createProductRule.action">
-              <table id="category2" border="0" style="margin-left:50px;width:760px;">
-                <tr style="height:40px;">
-                    <td><div class="form-title" style="width:150px;"><font color="red">*</font>Category Name:</div></td>
-                    <td style="width:600px;"><input name="categoryName" type="text" style="width:300px;"></td>
-                    <td style="width:30px;"></td>
-                </tr>
-                    
-                <tr style="height:40px;">
-                    <td><div class="form-title" style="width:150px;">Category Description:</div></td>
-                    <td style="width:500px;">
-                      <textarea name="categoryDes" placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
-                    </td>
-                    <td style="width:30px;"></td>
-                </tr>
-
-                <tr style="height:40px%;">
-                    <td><div class="form-title" style="width:150px;"><font color="red">*</font>Product Type:</div></td>
-                    <td style="width:500px;">
-                      <textarea name="productType" id="typeTags" placeholder="Type product type to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
-                    </td>
-                    <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getTypeCheck()"/>See All Options</a>
-                    </td>
-                </tr>
-
-                <tr style="height:40px;">
-                    <td><div class="form-title" style="width:150px;"><font color="red">*</font>Brand:</div></td>
-                    <td style="width:500px;">
-                      <textarea name="brand" id="brandTags" placeholder="Type brand name to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
-                    </td>
-                    <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getBrandCheck()"/>See All Options</a>
-                    </td>
-                </tr>
-
-                <tr style="height:40px;">
-                    <td><div class="form-title" style="width:150px;">Product SKU:</div></td>
-                    <td style="width:500px;">
-                      <textarea name="productSKU"  placeholder="Type product SKU&hellip;" style="width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
-                    </td>
-                    <td style="width:110px;"></td>
-                </tr>
-                <tr style="height:40px;">
-                    <td></td>
-                    <td>
-                      <span style="margin-left:10px;argin-top:10px;"><a class="button" href="categorylist.html" onclick=""/>Cancel</a></span>
-                      <span style="margin-left:10px;argin-top:10px;"><input type="submit" value="New" class="button"></a></span>
-                      <input type="hidden" name="flag" value="product"/>
+                      <span style="margin-left:10px;argin-top:10px;"><a class="button" href="ViewCategory.html" onclick=""/>Back</a></span>
+                      <span style="margin-left:10px;argin-top:10px;"><a class="button" href="categorylist.html" onclick=""/>Update</a></span>
                     </td>  
                     <td></td>
                 </tr>
               </table>   
-              </form>
-              </div>   
+              </div>
             </div>
-         
+            </form>
         </div>
     
     <!-- content ends -->
@@ -676,7 +612,7 @@
                 
     <!-- footer starts -->
         </div>
-            <div class="footer"><span>©2013 eBusiness Team</span></div>
+            <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
         </div>
     <!-- footer ends -->
 
