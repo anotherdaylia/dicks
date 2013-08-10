@@ -41,6 +41,7 @@
     </div>
 <script>
 
+
 function addOtherCost(myDiv) {
 
   var ni = document.getElementById(myDiv.id);
@@ -86,7 +87,11 @@ function removeElement(divNum) {
 
 
 </script>
-
+<script>
+function goBack(){
+	window.history.go(-1)
+}
+</script>
     <!-- menu bar ends -->
 
     <!-- content starts -->
@@ -109,7 +114,7 @@ function removeElement(divNum) {
             <div class="warning" style="display:none">errorMessage</div>
             <!-- Success Message and Error Message -->
 
-            <form action="#">
+            <form action="costcalculation">
             <table class="text" style="width:750px;">
                 <tr>
                     <td style="width:150px;">Rule Name&#58;</td>
@@ -216,8 +221,8 @@ function removeElement(divNum) {
                     </td>
                 </tr>
                 <tr>
-                    <td><a class="button" href="rulelist.html">Create</a></td>  
-                    <td><a class="button" href="newrule.html">Back</a><a class="button" href="rulelist.html">Cancel</a></td>
+                    <td><input type="submit" value="Create" class="button"></td>  
+                    <td><input type="button" value="Back" onclick="goBack()"><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>
                 </tr>
             </table>   
             </form>

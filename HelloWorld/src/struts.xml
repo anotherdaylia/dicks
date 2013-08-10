@@ -80,5 +80,8 @@
 <!--       <action name="viewStoreCategory" class="com.dicks.action.ViewCategoryAction" method="viewStoreCategory">
       		<result name="success">/ViewStoreCategory.jsp</result>
       </action> -->
+       <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
+          <result name="success">/RuleList.jsp</result>
+      </action>
    </package>
 </struts>
