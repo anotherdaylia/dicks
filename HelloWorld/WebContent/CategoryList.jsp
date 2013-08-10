@@ -1,30 +1,84 @@
 
+    <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    %>
  <jsp:include page="template_top.jsp" />
+ <ul class="nav">
+        <li class=""><a class="recordable open" id="toggleone" href="#" 
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
+            <ul class="nav-two" id="navone">
+                <li class="selected" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
+            </ul>
+        </li>
+        <li class=""><a class="recordable open" href="#" id="toggletwo"
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
+            <ul class="nav-two" id="navtwo">
+                <li class="" id="bizrulelist"><a href="<%=basePath%>gotorulelist.action">Business Rule List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="newbizrulelist"><a href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="ruleprioritylist"><a href="<%=basePath%>gotoruleprioritylist.action">Business Rule Priority</a><span class="normal">&nbsp;</span></li> 
+                
+            </ul>
+        </li>   
+        <li class=""><a class="recordable open" href="#" id="togglethree"
+            memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
+            <ul class="nav-two" id="navthree">
+                <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+                
+            </ul>
+        </li>
+        <li class=""><a class="recordable open" href="#" id="togglefour"
+            memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
+            <ul class="nav-two" id="navtwo">
+                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
+                
+            </ul>
+		</li>   
+    </ul>
+    </div>
+
+  <script defer="defer" >
  
-  <script>
+ 	 window.onload=function(){
+
+ 		var act =  document.getElementById('act').value;
+        if(act=="store") {
+            document.getElementById('store_category_list').style.display = 'block';
+            document.getElementById('product_category_list').style.display = 'none';
+            document.getElementById('Paging').style.display = 'block';
+            document.getElementById('category_store').checked = true;            
+        } else if(act=="product") {
+            document.getElementById('product_category_list').style.display = 'block';
+            document.getElementById('store_category_list').style.display = 'none';
+            document.getElementById('Paging').style.display = 'block';
+            
+            document.getElementById('category_product').checked =true;
+        }
+ 	 }   
+ 
+ 	</script>
+<script>
  function displayCategoryList(obj) {
     var type = obj.value;
+ 
     
     if(type=="Store") {
-    	document.getElementById('store_category_list').style.display = 'block';
-        document.getElementById('product_category_list').style.display = 'none';
-     	document.getElementById('Paging').style.display = 'block';
      	window.location.href="displayCategoryList.action?act=store";  
-     	this.checked = true;
-    } else if(type=="Product") {
-        document.getElementById('product_category_list').style.display = 'block';
-        document.getElementById('store_category_list').style.display = 'none';
-        document.getElementById('Paging').style.display = 'block';
-    	 document.getElementById('category_store').checked = false;
-        window.location.href="displayCategoryList.action?act=product";   
-        this.checked = true;
 
-    }
+    } else if(type=="Product") {
+        window.location.href="displayCategoryList.action?act=product";   
+    };
  }
 </script>
  
 
 		<!-- content starts -->
+		<input type="hidden" value="${act}" id="act"/>
 		<div class="minibar recordable" id="minibar"
 			memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;1&quot;}"
 			style="display: none;">
@@ -32,9 +86,8 @@
 		</div>
 		<div class="main" id="main-body">
 			<div class="content clearfix">
-
 				<div class="title-bar clearfix">
-					<h1 class="l">Manage Category</h1>
+					<h1 class="l">Manage Group</h1>
 					<div id="Date" class="date l"></div>
 					<a id='ReportTipIco' class="report-help open l recordable"
 						memo="{id:'ReportTipIco',type:'page-tip',global:0}"
@@ -45,8 +98,8 @@
 					</div>
 
 					<li style="list-style: none;"><span><a href="#">Home</a><span>
-								&gt; </span></span> <span><a href="">Manage Category</a><span><span>
-									&gt; </span> <span>Category List<span></li>
+								&gt; </span></span> <span><a href="">Manage Group</a><span><span>
+									&gt; </span> <span>Group List<span></li>
 
 					<!-- Success Message and Error Message -->
 					<div class="success_area" style="display: none">successMessage</div>
@@ -58,7 +111,7 @@
 					<div>
 						<a class="button" id="add-to-cart" href="#">Delete Selected </a>&nbsp;
 						| &nbsp; <a href="CreateCategory.html" class="button"> + New
-							Category</a>
+							Group</a>
 						<div class="r">
 							<input type="text" class="searchtext" placeholder="Category name" />
 							<a href="#" class="button">Search</a>
@@ -67,8 +120,8 @@
 					<br />
 					<div id="Outline" class="table-list">
 						<form action="">
-							Category Type: <input type="radio" name="category_type"
-								value="Store" id="category_store" onClick="displayCategoryList(this);">Store
+							Group Type: <input type="radio" name="category_type"
+								value="Store" id="category_store" onClick="displayCategoryList(this);">Fulfillment
 							<input type="radio" name="category_type" value="Product"
 								id="category_product" onClick="displayCategoryList(this);">Product
 
@@ -77,8 +130,8 @@
 									<tbody>
 										<tr class="title">
 											<th><input type="checkbox" id="selectall" /></th>
-											<th>Category ID</th>
-											<th>Category Name</th>
+											<th>Group ID</th>
+											<th>Group Name</th>
 											<th>Description</th>
 											<th>Action</th>
 										</tr>
@@ -88,43 +141,52 @@
 												<td class="">${storeCategory.id.cateStoreId}</td>
 												<td class="">${storeCategory.cateName}</td>
 												<td class="">${storeCategory.cateDescr}</td>
-												<td class=""><a class="button" href="ViewCategory.html">View</a>
-										<a class="button" href="EditCategory.html">Edit</a></td>
+												<td class=""><a class="button" href="viewStoreCategory.action?categoryId=${storeCategory.id.cateStoreId}">View</a>
+										<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 							</div>
 
-							<div id="product_category_list"  >
+							<div id="product_category_list">
 								<table cellspacing="0" cellpadding="0" class="list">
 									<tbody>
 										<tr class="title">
 											<th><input type="checkbox" id="selectall" /></th>
-											<th>Category ID</th>
-											<th>Category Name</th>
+											<th>Group ID</th>
+											<th>Group Name</th>
 											<th>Description</th>
 											<th>Action</th>
 										</tr>
-											${prodCategoryList}	
-										<c:forEach var="prodCategory" items="${prodCategoryList}">
-											<tr>
+										<c:choose>
+											<c:when test="${ (empty prodCategoryList) }">
+											
+											</c:when>
+											<c:otherwise>
+												<c:forEach var="prodCategory" items="${prodCategoryList}">
+												<tr>
 												<td class=""><input type="checkbox" class="case" /></td>
 												<td class="">${prodCategory.id.cateProdId}</td>
 												<td class="">${prodCategory.cateName}</td>
 												<td class="">${prodCategory.cateDescr}</td>
-												<td class=""><a class="button" href="ViewCategory.html">View</a>
-												<a class="button" href="EditCategory.html">Edit</a></td>
+												<td class=""><a class="button" href="<%=basePath%>gotoviewcategory.action">View</a>
+												<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a></td>
 											</tr>
 										</c:forEach>
+				       							 
+			       							</c:otherwise>
+										
+										</c:choose>
+										
 									</tbody>
 								</table>
 							</div>
 
 						</form>
-						<div id="Paging" style="display: none;">
+						<div id="Paging" >
 							<div class="paging clearfix">
-								<div class="page-size">Items per page：10</div>
+								<div class="page-size">Items per page:10</div>
 								<div class="page-number">
 									<a class="number selected" href="javascript:void(0);" data="1">1</a><a
 										class="number" href="javascript:void(0);" data="2">2</a><a
@@ -143,11 +205,11 @@
 					<div id="pop-back"></div>
 					<div id="cart1" class="cart">
 						<div class="popheader">
-							<span class="title"><strong>&nbsp;Delete Category</strong></span>
+							<span class="title"><strong>&nbsp;Delete Group</strong></span>
 						</div>
 						<br>
 						<div>&nbsp;&nbsp;Are you sure you want to delete the
-							categry?</div>
+							group?</div>
 
 						<div class="r" style="margin-right: 20px;">
 							<a class="button" onclick="closePop()" type="submit">Yes</a> <a

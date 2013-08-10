@@ -146,6 +146,18 @@ public class CreateNewBizRule {
 			categoryname = categoryname.replace(" ","%20");
 			return "gotocost";
 		}
+		else if(templatename.equals("store_threshold")){
+			try {
+				allRule = RuleDAO.getInstance().getAllSortedList() ;
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			setAllRule(allRule);
+			rulename = rulename.replace(" ","%20");
+			categoryname = categoryname.replace(" ","%20");
+			return "gotostore";
+		}
 		return "gototemplate";
 	}
 
