@@ -14,7 +14,7 @@
             <column name="vend_id" not-null="true" />
         </many-to-one>
         <property name="prodName" type="java.lang.String">
-            <column name="prod_name" length="6" not-null="true" />
+            <column name="prod_name" length="45" not-null="true" />
         </property>
         <property name="sku" type="java.lang.String">
             <column name="sku" length="45" not-null="true" />

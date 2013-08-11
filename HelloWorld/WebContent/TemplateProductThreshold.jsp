@@ -105,7 +105,8 @@
  function SubmitForm()
  {
 	 console.log("start");
-	 var rulename = '${rulename}';
+	 var rulename = '${rulename.replace("%20"," ")}';
+	 console.log("searching"+rulename);
 	 var table = document.getElementById("sort");
 	 for (var i = 0, row; row = table.rows[i]; i++){
 	    //iterate through rows

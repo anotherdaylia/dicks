@@ -28,7 +28,6 @@ public class EditCategoryAction extends ActionSupport{
 	}
 	
 	
-	
 	public String getCategoryId() {
 		return categoryId;
 	}

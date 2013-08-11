@@ -37,6 +37,7 @@
           <result name="gotoplaceorder">/placeOrder.jsp</result>
       </action>
       <action name="gototemplate" class="com.dicks.action.CreateNewBizRule" method="gototemplate">
+
            <result name="goToTemplate" type="dispatcher">/TemplateProductThreshold.jsp</result>
            <result name="goToSpecial" type="dispatcher">/TemplateSpecialRoute.jsp</result>
            <result name="goToStore" type="dispatcher">/TemplateStoreThreshold.jsp</result>
@@ -46,6 +47,9 @@
       </action>
       <action name="newrulePriority" class="com.dicks.action.CreateNewBizRule" method="ranking">
           <result name="newrulePriority" type="dispatcher">/RuleList.jsp</result>
+      </action>
+      <action name="specialroute" class="com.dicks.action.CreateNewBizRule" method="specialRoute">
+          <result name="specialroute" type="dispatcher">/RuleList.jsp</result>
       </action>
       <action name="placeorder" class="com.dicks.action.PlaceOrder" method="placeorder">
           <result name="placeorder" type="dispatcher">/placeOrder.jsp</result>
@@ -77,17 +81,23 @@
       <action name="gotocreatecategory" class="com.dicks.action.ViewAndCreateCategoryAction" method="goToCreate">
           <result name="success">/editCategory.jsp</result>
       </action>
-<!--       <action name="viewStoreCategory" class="com.dicks.action.ViewCategoryAction" method="viewStoreCategory">
+     <action name="viewStoreCategory" class="com.dicks.action.ViewAndEidtCategoryAction" method="viewStoreCategory">
       		<result name="success">/ViewStoreCategory.jsp</result>
-      </action> -->
+      </action> 
+      <action name="editStoreCategory" class="com.dicks.action.ViewAndEidtCategoryAction" method="editStoreCategory">
+      		<result name="success">/EditStoreCategory.jsp</result>
+      </action> 
        <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
+<<<<<<< HEAD
+          <result name="success" type="dispatcher">/RuleList.jsp</result>
+      </action> 
+=======
           <result name="success">/RuleList.jsp</result>
       </action>
-       <action name="specialroute" class="com.dicks.action.SpecialRouteAction" method="specialRoute">
-          <result name="success">/RuleList.jsp</result>
-      </action>
+       
        <action name="storethreshold" class="com.dicks.action.StoreThresholdAction" method="storeThreshold">
           <result name="success">/RuleList.jsp</result>
       </action>
+>>>>>>> refs/remotes/origin/master
    </package>
 </struts>
