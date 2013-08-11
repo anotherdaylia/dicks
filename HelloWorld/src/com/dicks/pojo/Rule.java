@@ -146,7 +146,7 @@ public class Rule implements java.io.Serializable {
 			this.operator = translate(operatorBuffer, operators);
 			this.value = translate(valueBuffer, values);
 			this.action = translate(actionBuffer, actions);
-			this.route = translate(routeBuffer, routes);
+			this.route = translate(routeBuffer,routes);
 		}
 		else if (type.equalsIgnoreCase("2")){
 			this.object = translate(objectBuffer, objects);
@@ -314,13 +314,14 @@ public class Rule implements java.io.Serializable {
 				s1.append(",");
 				s1.append(s2[i]);
 		}
+		System.out.println("translated"+s1.toString());
 		return s1.toString();
 
 	}
 
 	public String[] translateBack(String s1){
 		String[] s2 = s1.split(",");
-
+		System.out.println("translated back"+s2);
 		return s2;
 	}	
 

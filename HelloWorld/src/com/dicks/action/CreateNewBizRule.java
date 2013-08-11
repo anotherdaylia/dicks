@@ -21,9 +21,25 @@ public class CreateNewBizRule {
 	public String categoryname;
 	public Rule[] allRule;
 	public String priority;
-
 	public String[] test;
-
+	public String[] productcount;
+	public String[] sources;
+	
+	public void setProductcount(String[] a){
+		this.productcount = a;
+	}
+	
+	public String[] getProductcount(){
+		return productcount;
+	}
+	
+	public void setSources(String[] a){
+		this.sources = a;
+	}
+	
+	public String[] getSources(){
+		return sources;
+	}
 	public String getPriority(){
 		return priority;
 	}
@@ -126,10 +142,10 @@ public class CreateNewBizRule {
 				e1.printStackTrace();
 			}
 			setAllRule(allRule);
-			for (int i = 0 ;  i < allRule.length; i++){
+			/*for (int i = 0 ;  i < allRule.length; i++){
 			System.out.println("rule name  11111"+allRule[i].getRuleName());
 			System.out.println("rule desc  1111"+ allRule[i].getRuleDescr());
-			}
+			}*/
 			rulename = rulename.replace(" ","%20");
 			categoryname = categoryname.replace(" ","%20");
 			return "goToTemplate";
@@ -166,24 +182,24 @@ public class CreateNewBizRule {
 
 		categoryname =categoryname.replace("%20", " ");
 		rulename = rulename.replace("%20", " ");
-
-		for(int i=0;i<attribute.length;i++){
+		
+		/*for(int i=0;i<attribute.length;i++){
 			attribute[i] = attribute[i].toLowerCase();
 
 			System.out.println("attribute :"+attribute[i]);
 			System.out.println("operator :"+operator[i]);
 			System.out.println("value :"+value[i]);
-		}
+		}*/
 
 
 
-		System.out.println("condition "+conditions);
+		/*System.out.println("condition "+conditions);
 		System.out.println("template "+templatename);
 		System.out.println("rule name "+rulename);
 		System.out.println("cagegory name "+categoryname);
 		System.out.println("action111"+actions);
-		
-		System.out.println("Hkfsdhjkf???"+categoryname);
+		*/
+		System.out.println("input category"+categoryname);
 		String[] categoryList= categoryname.split(",");
 
 		
@@ -193,8 +209,8 @@ public class CreateNewBizRule {
 				cateLength++;
 			}
 		}
-		System.out.println("length!!!!"+categoryList.length);
-		System.out.println("real length!!!"+cateLength);
+		/*System.out.println("length!!!!"+categoryList.length);
+		System.out.println("real length!!!"+cateLength);*/
 		String [] cateList = new String[cateLength];
 		for (int i = 0; i<cateList.length;i++){
 			cateList[i] = categoryList[i];
@@ -208,7 +224,7 @@ public class CreateNewBizRule {
 		}
 		String[] product = null;
 		
-		System.out.println("first instance of catelist is "+cateList[0]);
+		//System.out.println("first instance of catelist is "+cateList[0]);
 		try {
 			product = ProdCateDAO.getInstance().getSKUByCategory(cateList);
 		} catch (Exception e1) {
@@ -231,15 +247,27 @@ public class CreateNewBizRule {
 		System.out.println("rule desc  "+ allRule[i].getRuleDescr());
 		}*/
 
-		String[] abc = new String[2];
-		abc[0] = "zhouzhoufang";
-		abc[1] = "zhouzhou";
-		setTest(abc);
+
 
 		String[] action = new String[1];
 		action[0] = actions;
-
-		CreateTemplate test= new CreateTemplate(rulename,type,product,attribute,operator,value,conditions,null,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
+		System.out.println("actions!!"+actions);
+		/*
+		System.out.println("rulename"+rulename);
+		System.out.println("type"+type);
+		//System.out.println("attribute"+attribute);
+		for (int i = 0;i<product.length;i++){
+			System.out.println(product[i]);
+			System.out.println(attribute[i]);
+			System.out.println(value[i]);
+		}
+		System.out.println("condition"+conditions);
+		System.out.println("action"+action);
+		*/
+		
+		String[] route = new String[1];
+		route[0] = "";
+		CreateTemplate test= new CreateTemplate(rulename,type,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
 		
 		return "newrule";
 	}
@@ -270,6 +298,17 @@ public class CreateNewBizRule {
 
 		return "placeorder";
 	}
+	
+	
+	public String specialRoute(){
+		for (int i = 0; i < productcount.length; i++){
+			System.out.println(productcount[i]);
+			System.out.println(sources[i]);
+		}
+		System.out.println("getting to special route");
+		return "specialroute";
+	}
+	
 
 
 }
