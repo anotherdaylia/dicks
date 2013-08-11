@@ -14,7 +14,7 @@
             <column name="vend_id" not-null="true" />
         </many-to-one>
         <property name="prodName" type="java.lang.String">
-            <column name="prod_name" length="6" not-null="true" />
+            <column name="prod_name" length="45" not-null="true" />
         </property>
         <property name="sku" type="java.lang.String">
             <column name="sku" length="45" not-null="true" />
@@ -40,7 +40,8 @@
         <property name="height" type="java.lang.Double">
             <column name="height" precision="22" scale="0" />
         </property>
-        <property name="isSpecial" column="is_special" type="boolean">
+        <property name="isSpecial" type="java.lang.Boolean">
+            <column name="is_special" not-null="true" />
         </property>
         <set name="orderDetails" inverse="true">
             <key>

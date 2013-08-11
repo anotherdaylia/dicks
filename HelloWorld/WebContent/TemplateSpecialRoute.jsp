@@ -6,17 +6,42 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
- <title>DSG - Special Route Template </title>
- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
- <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
- <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
- <link rel="stylesheet" href="/resources/demos/style.css" />
- <link href="css/common.css" rel="stylesheet" type="text/css" /> 
- <!--script src="js/jquery.min.js" type="text/javascript"> </script-->
- <script src="js/animation.js" type="text/javascript"></script>
+
+<jsp:include page="template_top.jsp" />
+ <ul class="nav">
+        <li class=""><a class="recordable open" id="toggleone" href="#" 
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
+            <ul class="nav-two" id="navone">
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Category List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Category</a><span class="normal">&nbsp;</span></li>  
+            </ul>
+        </li>
+        <li class=""><a class="recordable open" href="#" id="toggletwo"
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
+            <ul class="nav-two" id="navtwo">
+                <li class="" id="bizrulelist"><a href="<%=basePath%>gotorulelist.action">Business Rule List</a><span class="normal">&nbsp;</span></li>
+                <li class="selected" id="newbizrulelist"><a href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="ruleprioritylist"><a href="<%=basePath%>gotoruleprioritylist.action">Business Rule Priority</a><span class="normal">&nbsp;</span></li> 
+            </ul>
+        </li>   
+        <li class=""><a class="recordable open" href="#" id="togglethree"
+            memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
+            <ul class="nav-two" id="navthree">
+                <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+                
+            </ul>
+        </li>
+        <li class=""><a class="recordable open" href="#" id="togglefour"
+            memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
+            <ul class="nav-two" id="navtwo">
+                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
+                
+            </ul>
+		</li>   
+    </ul>
+    </div>
  <script>
     $(function() {
     var availableTags = [
@@ -71,64 +96,51 @@
       });
   });
 
-  function textAreaAdjust(o) {
+function textAreaAdjust(o) {
       o.style.height = "1px";
       o.style.height = (15+o.scrollHeight)+"px";
   }
-</script>
-</head>
 
-<body>
-    <div class="header">
-    <div class="header-content">
-        <div class="logo">
-            <a href="orderlist.html"><img src="image/logo.png" /></a></div>
-        <div class="top-nav">
-            <a href="#" target="_blank" class="trackable">
-            <span class="nav-icon help-icon"></span>Help</a>|
-            <a href="#" target="_blank" class="trackable">Account</a>|
-            <a href="#">Log out</a>
-        </div>
-    </div>
-    </div>
-    
-   
-    <div class="body clearfix">
-    
-    <!-- menu bar starts -->
-    <div class="aside" id="aside-menu">
-    <div class="title"><h1></h1>
-       <!-- <a href="javascript:void(0)" class="fold recordable" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;0&quot;}" id="menu-toggle"></a>
-        -->
-    </div>
-    <ul class="nav">
-        <li class=""><a class="recordable open" id="toggleone" href="#" 
-            memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
-            <ul class="nav-two" id="navone">
-                <li class=""><a href="categorylist.html">Category List</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="CreateCategory.html">New Category</a><span class="normal">&nbsp;</span></li>  
-            </ul>
-        </li>
-        <li class=""><a class="recordable open" href="#" id="toggletwo"
-            memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
-            <ul class="nav-two" id="navtwo">
-                <li class=""><a href="rulelist.html">Business Rule List</a><span class="normal">&nbsp;</span></li>
-                <li class="selected"><a href="newrule.html">New Business Rule</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="RulePriority.html">Business Rule Priority</a><span class="normal">&nbsp;</span></li> 
-            </ul>
-        </li>   
-        <li class=""><a class="recordable open" href="#" id="togglethree"
-            memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
-            <ul class="nav-two" id="navthree">
-                <li class=""><a href="orderlist.html">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-        </li>
-        <li class=""><a href="placeorder.html" id="togglefour" memo="{id:'21',type:'menu',global:1,status:''}">Place Order</a>
-        </li>    
-    </ul>
-    </div>
+function addSpecialRoute(myDiv) {
+
+  var ni = document.getElementById(myDiv.id);
+
+  var numi = document.getElementById('theValue');
+
+  var num = (document.getElementById('theValue').value -1)+2;
+
+  numi.value = num;
+
+  var newdiv = document.createElement('div');
+
+  var divIdName = 'specialroute'+num;
+
+  newdiv.setAttribute('id',divIdName);
+
+  newdiv.innerHTML = '<div style=\'padding-top:10px;padding-bottom:10px;\'>If the product quantity is more than <input type=\'text\' name=\'productcount\' style=\'width:50px;\'> </div><div style=\'padding-bottom:10px;\'><div style=\'padding-bottom:10px;float:left;\'>Ship the product from&#58;&nbsp;&nbsp;</div><div style=\'padding-bottom:10px;float:left;\'class=\'ui-widget\'><textarea id=\'tags\' name = \'sources\' style=\'overflow:hidden;max-width:300px;width:300px;height:15px;\' onkeyup=\'textAreaAdjust(this)\' placeholder=\'Type in fulfillment sources&hellip;\' ></textarea></div> <a href=\'javascript:;\' onclick=\'removeElement('+divIdName+')\'>Remove</a></div><br/>';
+
+                        
+
+  ni.appendChild(newdiv);
+
+}
+
+function removeElement(divNum) {
+  //var d = document.getElementById("myDiv");
+
+  var olddiv = document.getElementById(divNum.id);
+
+  olddiv.parentNode.removeChild(olddiv);
+
+  //d.removeChild(olddiv);
+
+};
+</script>
+<script>
+function goBack(){
+	window.history.go(-1);
+}
+</script>
     <!-- menu bar ends -->
 
     <!-- content starts -->
@@ -140,8 +152,8 @@
             <h1 class="l">New Business Rule</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
-          </div>
-          <div>
+          
+            <div>
             <li style="list-style:none;"><span><a href="#">Home</a><span> > </span></span></span>
                 <span><a href="#">Manage Business Rule</a><span> > </span></span>
                 <span>New Business Rule</span>
@@ -151,10 +163,9 @@
             <div class="success_area" style="display:none">successMessage</div>
             <div class="warning" style="display:none">errorMessage</div>
             <!-- Success Message and Error Message -->
+          </div>
 
-
-            <br/>
-            <form action="#">
+            <form action="specialroute">
             <table id="rule" class="text">
                 <tr>
                     <td>Rule Name&#58;</td>
@@ -162,7 +173,7 @@
                 </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
-                    <td>Set special route for products.</td>
+                    <td>Set special route for products</td>
                 </tr>
                 <tr>
                     <td>Category&#58;</td>
@@ -170,31 +181,36 @@
                 </tr>
                 <tr>
                     <td>Stage:</td>
-                    <td>Stage1 - Input Validation</td>
+                    <td>Stage1 - preprocessing</td>
                 </tr>
                 <tr>
                     <td>Rule Template&#58;</td>
                     <td>Special Route</td>
                 </tr>
                 <tr class="drl-height">
-                    <td colspan="2" >Rule Editor&#58;</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
+                    <td>Rule Editor&#58;</td>
+                    <td style="width:500px;">
                     <div class="drl"> 
-                        <div>The specific product should be shipped from the following fulfillment sources&#58;</div>
-                    </br>
-                        <div class="ui-widget"><textarea id="tags" style="overflow:hidden;max-width:400px;width:400px;height:40px;" onkeyup="textAreaAdjust(this)" placeholder="Type fulfillment source&hellip;" ></textarea></div>
-                        
+                      <div id="specialroute1">
+                        <div style="padding-bottom:10px;">If the product quantity is more than <input type="text" name="productcount" style="width:50px;"> </div>
+                        <div style="padding-bottom:10px;float:left;">Ship the product from&#58;&nbsp;&nbsp;</div>
+                        <div style="padding-bottom:10px;float:left;"class="ui-widget"><textarea id="tags" name = "sources" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in fulfillment sources&hellip;" ></textarea></div>
+                      </div>
+                      
+                      <input type="hidden" value="1" id="theValue"/>
+                        <a class="button" href="javascript:;" onclick="addSpecialRoute(myDiv);">+ Add Special Route</a>
+                        <div id="myDiv"></div>
+   
+                     <input type="hidden" name="rulename"  value=<%=request.getAttribute("rulename")%> />
+                <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
+                <input type="hidden" name="categoryname"  value=<%=request.getAttribute("categoryname")%> />
+           		<input type="hidden" id="priorityId" name="priority">   
                     </div>
                     </td>
                 </tr>
-                <tr></tr>
                 <tr>
-                    <td><a class="button" href="rulelist.html">Create</a></td>  
-                    <td><a class="button" href="newrule.html">Back</a><a class="button" href="rulelist.html">Cancel</a></td>
+                    <td><input type="button" value="Back" onclick="goBack()" class="button"> <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>  
+                    <td><input type="submit" value="Create" class="button"></td>
                 </tr>
             </table>   
             </form>

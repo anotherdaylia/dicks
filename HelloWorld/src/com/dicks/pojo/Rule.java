@@ -28,6 +28,7 @@ public class Rule implements java.io.Serializable {
 	private String condition;
 	private boolean isSpecial;
 	private Set ruleCates = new HashSet(0);
+	private Set logs = new HashSet(0);
 
 	// Constructors
 
@@ -145,7 +146,7 @@ public class Rule implements java.io.Serializable {
 			this.operator = translate(operatorBuffer, operators);
 			this.value = translate(valueBuffer, values);
 			this.action = translate(actionBuffer, actions);
-			this.route = translate(routeBuffer, routes);
+			this.route = translate(routeBuffer,routes);
 		}
 		else if (type.equalsIgnoreCase("2")){
 			this.object = translate(objectBuffer, objects);
@@ -313,13 +314,14 @@ public class Rule implements java.io.Serializable {
 				s1.append(",");
 				s1.append(s2[i]);
 		}
+		System.out.println("translated"+s1.toString());
 		return s1.toString();
 
 	}
 
 	public String[] translateBack(String s1){
 		String[] s2 = s1.split(",");
-
+		System.out.println("translated back"+s2);
 		return s2;
 	}	
 
@@ -345,5 +347,17 @@ public class Rule implements java.io.Serializable {
 
 	public String[] getActions(){
 		return translateBack(action);
+	}
+
+
+
+	public Set getLogs() {
+		return logs;
+	}
+
+
+
+	public void setLogs(Set logs) {
+		this.logs = logs;
 	}
 }

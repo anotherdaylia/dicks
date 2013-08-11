@@ -42,6 +42,7 @@
   		<mapping resource="com/dicks/pojo/OrderDetail.hbm.xml"></mapping>
   		<mapping resource="com/dicks/pojo/ProdCate.hbm.xml"></mapping>
   	 	<mapping resource="com/dicks/pojo/StoreCate.hbm.xml"></mapping>
+  	 	<mapping resource="com/dicks/pojo/Log.hbm.xml"></mapping>
   </session-factory>   
   
 </hibernate-configuration>

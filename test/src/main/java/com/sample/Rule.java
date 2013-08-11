@@ -39,7 +39,7 @@ public class Rule {
 
 
 	public Rule(int ruleID, String path, String description, int priority, String type, String[] objects, 
-			String[] attributes, String[] operators, String[] values, String condition, String[] routes, String[] actions,String flag){
+			String[] attributes, String[] operators, String[] values, String condition, String routes, String[] actions,String flag){
 		StringBuffer objectBuffer = new StringBuffer();
 		StringBuffer attributeBuffer = new StringBuffer();
 		StringBuffer operatorBuffer = new StringBuffer();
@@ -71,7 +71,9 @@ public class Rule {
 			this.operator = translate(operatorBuffer, operators);
 			this.value = translate(valueBuffer, values);
 			this.action = translate(actionBuffer, actions);
-			this.route =translate(routeBuffer, routes);
+			this.route = routes;
+			System.out.println("passed in"+routes);
+			
 		}
 		else if (type.equalsIgnoreCase("Store Filter")){
 			this.object = translate(objectBuffer, objects);
@@ -138,8 +140,8 @@ public class Rule {
 		return translateBack(value);
 	}
 
-	public String[] getRoute(){
-		return translateBack(route);
+	public String getRoute(){
+		return route;
 	}
 
 	public String[] getAction(){

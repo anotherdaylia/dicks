@@ -29,6 +29,7 @@ public class Orders implements java.io.Serializable {
 	private int quantity;
 	private Set packageses = new HashSet(0);
 	private Set orderDetails = new HashSet(0);
+	private Set logs = new HashSet(0);
 
 	// private HashMap<Product, Integer> productList = new HashMap<Product,
 	// Integer>();
@@ -158,6 +159,14 @@ public class Orders implements java.io.Serializable {
 
 	public void setOrderDetails(Set orderDetails) {
 		this.orderDetails = orderDetails;
+	}
+
+	public Set getLogs() {
+		return logs;
+	}
+
+	public void setLogs(Set logs) {
+		this.logs = logs;
 	}
 
 	// public HashMap<Product, Integer> getProductList() {

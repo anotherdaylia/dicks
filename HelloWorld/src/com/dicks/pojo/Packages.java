@@ -15,6 +15,7 @@ public class Packages implements java.io.Serializable {
 	private Integer packageId;
 	private Orders orders;
 	private Integer custId;
+	private Store store;
 	private Timestamp shippingDate;
 	private Integer totAmt;
 	private String shippingStatus;
@@ -137,6 +138,14 @@ public class Packages implements java.io.Serializable {
 
 	public void setPackageDetails(Set packageDetails) {
 		this.packageDetails = packageDetails;
+	}
+
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
 	}
 
 }
