@@ -7,13 +7,13 @@
 <jsp:include page="template_top.jsp" />
 <ul class="nav">
 	<li class=""><a class="recordable open" id="toggleone" href="#"
-		memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
+		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
 		<ul class="nav-two" id="navone">
 			<li class="" id="catelist"><a
-				href="<%=basePath%>gotocategorylist.action">Category List</a><span
+				href="<%=basePath%>gotocategorylist.action">Group List</a><span
 				class="normal">&nbsp;</span></li>
 			<li class="" id="newcatelist"><a
-				href="<%=basePath%>gotonewcategory.action">New Category</a><span
+				href="<%=basePath%>gotonewcategory.action">New Group</a><span
 				class="normal">&nbsp;</span></li>
 		</ul></li>
 	<li class=""><a class="recordable open" href="#" id="toggletwo"
