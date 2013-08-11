@@ -86,7 +86,7 @@
                     <td class="">Rule1</td>
                     <td class="">In market store</td>
                     <td><a class="button toggle">Disable</a></td>
-                    <td class=""><a class="button" href="viewrule.jsp">View</a>  <a class="button" href="editrule.jsp">Edit</a></td>
+                    <td class=""><a class="button" href="viewrule.jsp">View</a>  <a class="button" href="<%=basePath%>editRuleRanking.action">Edit</a></td>
                 </tr>
                     <tr>
                     <td class=""><input type="checkbox" class="case"/></td>
