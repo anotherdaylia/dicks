@@ -101,6 +101,9 @@ public class CreateTemplate {
 				//System.out.println(i+" "+ruleFiles[i].getRuleDescr());
 
 			}
+			
+			System.out.println("rule length"+ruleFile.length);
+			System.out.println("rules length"+ruleFiles.length);
 			//System.out.println("!!!!!!!!!!!rule is "+ruleFile.length);
 		  /*if (ruleFile[0] == null){
 			  ruleFile[0] = new Rule("abc", "/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule1.txt","\"Explode Cart\"",100);
@@ -131,6 +134,9 @@ public class CreateTemplate {
 	      reRank(ruleInt);
 	      ruleFiles[ruleInt] = new Rule();
 	      //System.out.println("nnnnnnnn");
+	      /*for (i = 0 ; i<ruleFiles.length;i++){
+	    	  System.out.println("rule "+i+" "+ruleFiles[i].getRuleName());
+	      }*/
 	      checkFlag(type, objects, flag);
 	      String[] r = new String[1];
 	      r[0] = "haha";
@@ -152,17 +158,17 @@ public class CreateTemplate {
 
 
 
-					 ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
+					 ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFiles[ruleInt-1].getPriority()-2,type,objects,
 							 					attributes,operators,values,condition, routes,actions,flag, "1",false);
 				 }
 			  else{
-					 ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
+					 ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFiles[ruleInt-1].getPriority()+2,type,objects,
 							 attributes,operators,values,condition, routes,actions,flag, "1",false);
 			  }
 	    	  try {
 				RuleDAO.getInstance().createRule(ruleFiles[ruleInt]);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				System.out.println("eeeeeeror"+e);// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	      }    
@@ -170,12 +176,12 @@ public class CreateTemplate {
 		      if (ruleInt > 0){
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
-		    	  ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,attributes,operators,values,condition, r,actions,flag, "stage1",false);
+		    	  	ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFiles[ruleInt-1].getPriority()-2,type,objects,attributes,operators,values,condition, r,actions,flag, "stage1",false);
 
 				 }
 			  else{
 
-					 ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
+					 ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFiles[ruleInt-1].getPriority()+2,type,objects,
 							 attributes,operators,values,condition, r,actions,flag, "stage1",false);
 			  }
 
@@ -242,6 +248,7 @@ public class CreateTemplate {
 	             }
 
 	             for (i=0; i < ruleFiles.length; i++){
+	            	 
 	            	 	System.out.println("printing file "+i);
 	            	 if (ruleFiles[i].getType().equals("l")){
 	            		 //System.out.println("read file");
@@ -262,7 +269,7 @@ public class CreateTemplate {
 		            				 ruleFiles[i].getCondition(),ruleFiles[i].getActions(),ruleFiles[i].getFlag()).getBytes();
 		            		 fos.write(contentInBytes);
 		            	 }
-		            	 else if (ruleFile[i].getType().equalsIgnoreCase("2")){
+		            	 else if (ruleFiles[i].getType().equalsIgnoreCase("2")){
 		            		 System.out.println("This is the new Store Filter rule created by the system!!!!");
 		            		 byte[] contentInBytes = createStoreRule(ruleFiles[i].getType(),ruleFiles[i].getPriority(),
 		            				 ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues(),
@@ -271,7 +278,7 @@ public class CreateTemplate {
 		            	 }
 		            	 else if (ruleFiles[i].getType().equalsIgnoreCase("3")){
 		            		 System.out.println("This is the new Special route rule created by the system!!!!");
-		            		 byte[] contentInBytes = createSpecialRoute(ruleFile[i].getType(),ruleFiles[i].getPriority(),
+		            		 byte[] contentInBytes = createSpecialRoute(ruleFiles[i].getType(),ruleFiles[i].getPriority(),
 		            				 ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues(),
 		            				 ruleFiles[i].getActions(),ruleFiles[i].getRoutes(),ruleFiles[i].getFlag()).getBytes();
 

@@ -47,6 +47,9 @@
       <action name="newrulePriority" class="com.dicks.action.CreateNewBizRule" method="ranking">
           <result name="newrulePriority" type="dispatcher">/RuleList.jsp</result>
       </action>
+      <action name="specialroute" class="com.dicks.action.CreateNewBizRule" method="specialRoute">
+          <result name="specialroute" type="dispatcher">/RuleList.jsp</result>
+      </action>
       <action name="placeorder" class="com.dicks.action.PlaceOrder" method="placeorder">
           <result name="placeorder" type="dispatcher">/placeOrder.jsp</result>
       </action>
@@ -86,9 +89,7 @@
        <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
           <result name="success">/RuleList.jsp</result>
       </action>
-       <action name="specialroute" class="com.dicks.action.SpecialRouteAction" method="specialRoute">
-          <result name="success">/RuleList.jsp</result>
-      </action>
+       
        <action name="storethreshold" class="com.dicks.action.StoreThresholdAction" method="storeThreshold">
           <result name="success">/RuleList.jsp</result>
       </action>

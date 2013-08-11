@@ -10,10 +10,37 @@ import java.*;
 
 //declare any global variables here
 rule  "10"
+    salience 4
+    when
+        $o : Order()
+        $i : Product( ((sdfgsdfg sfggfd sgds))&& (( sku.equals("sdgdgfs")))&& (flag.equals("d")))
+end
+
+rule  "10"
+    salience 2
+    when
+        $o : Order()
+        $i : Product( ((length < asdffds)fsd( length < afds)fsd( length < dsaff)fsd( length < adsf))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
+    then
+        Package p = new Package($o);
+        p.addProduct($i);
+        insert (p);
+        $i.minPackage();
+        retract($i);
+end
+
+rule  "10"
     salience 1
     when
         $o : Order()
-        $i : Product( ((length < 1)fsd( length < 2)fsd( length < 3)fsd( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((sdfgsdfg sfggfd sgds))&& (( sku.equals("sdgdgfs")))&& (flag.equals("d")))
+end
+
+rule  "10"
+    salience 1
+    when
+        $o : Order()
+        $i : Product( ((length < a)||( length < asdffds)||( length < asd)||( length < as))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
     then
         Package p = new Package($o);
         p.addProduct($i);
@@ -26,7 +53,7 @@ rule  "10"
     salience -1
     when
         $o : Order()
-        $i : Product( ((length < 1)fsd( width < 2)fsd( height < 3)fsd( weight < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((Length < 1)||( Length < 1)||( Length < 1)||( Length < 1))&& (( sku.equals("aa"))|| (sku.equals("bb")))&& (flag.equals("TH-A,ST-A,SP-A")))
     then
         Package p = new Package($o);
         p.addProduct($i);
@@ -39,7 +66,7 @@ rule  "10"
     salience -1
     when
         $o : Order()
-        $i : Product( ((weight < 1)fds( width < 2)fds( height < 3)fds( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((Length < 1)||( Length < 1)||( Length < 1)||( Length < 1))&& (( sku.equals("aa"))|| (sku.equals("bb")))&& (flag.equals("TH-A,ST-A,SP-A")))
     then
         Package p = new Package($o);
         p.addProduct($i);
@@ -49,10 +76,10 @@ rule  "10"
 end
 
 rule  "10"
-    salience -1
+    salience -2
     when
         $o : Order()
-        $i : Product( ((length < 1)fsd( length < 2)fsd( length < 3)fsd( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((length < as)||( length < a)||( length < a)||( length < as))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
     then
         Package p = new Package($o);
         p.addProduct($i);
@@ -62,10 +89,10 @@ rule  "10"
 end
 
 rule  "10"
-    salience -1
+    salience -2
     when
         $o : Order()
-        $i : Product( ((length < 1)&&( length < 2)&&( length < 3)&&( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((Length < 1)||( Length < 1)||( Length < 1)||( Length < 1))&& (( sku.equals("aa"))|| (sku.equals("bb")))&& (flag.equals("TH-A,ST-A,SP-A")))
     then
         Package p = new Package($o);
         p.addProduct($i);
@@ -75,88 +102,10 @@ rule  "10"
 end
 
 rule  "10"
-    salience -1
+    salience -2
     when
         $o : Order()
-        $i : Product( ((length < 5)||( length < 5)||( length < 5)||( length < 5))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -1
-    when
-        $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -1
-    when
-        $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -1
-    when
-        $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -1
-    when
-        $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -1
-    when
-        $o : Order()
-        $i : Product( ((length < 1)&&( width < 2)&&( height < 3)&&( weight < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -1
-    when
-        $o : Order()
-        $i : Product( ((length < 3)||( length < 4)||( length < 5)||( length < 6))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((Length < 1)||( Length < 1)||( Length < 1)||( Length < 1))&& (( sku.equals("aa"))|| (sku.equals("bb")))&& (flag.equals("TH-A,ST-A,SP-A")))
     then
         Package p = new Package($o);
         p.addProduct($i);
@@ -169,202 +118,14 @@ rule  "10"
     salience -3
     when
         $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
+        $i : Product( ((sdfgsdfg sfggfd sgds))&& (( sku.equals("sdgdgfs")))&& (flag.equals("d")))
 end
 
 rule  "10"
     salience -3
     when
         $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -5
-    when
-        $o : Order()
-        $i : Product( ((length < 5)||( width < 4)||( height < 3)||( weight < 2))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -5
-    when
-        $o : Order()
-        $i : Product( ((length < 3)||( length < 4)||( length < 56)||( length < 6))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -5
-    when
-        $o : Order()
-        $i : Product( ((length < 3)&&( length < 5)&&( length < 6)&&( length < 7))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -5
-    when
-        $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -5
-    when
-        $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -5
-    when
-        $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -5
-    when
-        $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -5
-    when
-        $o : Order()
-        $i : Product( ((length < 123)||( length < 32)||( length < 32)||( length < 1))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -5
-    when
-        $o : Order()
-        $i : Product( ((length < 2)||( length < 2)||( length < 2)||( length < 2))&& (( sku.equals("bb")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -5
-    when
-        $o : Order()
-        $i : Product( ((length < 4)||( length < 4)||( length < 4)||( length < 4))&& (( sku.equals("bb")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -5
-    when
-        $o : Order()
-        $i : Product( ((length < 676)||( length < 654)||( length < 543)||( length < 1312))&& (( sku.equals("bb")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -7
-    when
-        $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -7
-    when
-        $o : Order()
-        $i : Product( ((length < 1)||( length < 23)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
-end
-
-rule  "10"
-    salience -7
-    when
-        $o : Order()
-        $i : Product( ((length < 1)||( length < 2)||( length < 3)||( length < 4))&& (( sku.equals("aa")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((Length < 1)||( Length < 1)||( Length < 1)||( Length < 1))&& (( sku.equals("aa"))|| (sku.equals("bb")))&& (flag.equals("TH-A,ST-A,SP-A")))
     then
         Package p = new Package($o);
         p.addProduct($i);
