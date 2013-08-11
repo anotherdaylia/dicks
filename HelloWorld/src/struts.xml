@@ -38,7 +38,7 @@
       </action>
       <action name="gototemplate" class="com.dicks.action.CreateNewBizRule" method="gototemplate">
            <result name="gototemplate" type="dispatcher">/TemplateProductThreshold.jsp</result>
-           <result name="gotocost" type="dispatcher">/TemplateCostCalculationjsp.jsp</result>
+           <result name="gotocost" type="dispatcher">/TemplateCostCalculation.jsp</result>
            <result name="gotostore" type="dispatcher">/templatestorethreshold.jsp</result>
       </action>
        <action name="newrule" class="com.dicks.action.CreateNewBizRule" method="newrule">
@@ -81,7 +81,7 @@
       		<result name="success">/ViewStoreCategory.jsp</result>
       </action> -->
        <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
-          <result name="success">/RuleList.jsp</result>
-      </action>
+          <result name="success" type="dispatcher">/RuleList.jsp</result>
+      </action> 
    </package>
 </struts>

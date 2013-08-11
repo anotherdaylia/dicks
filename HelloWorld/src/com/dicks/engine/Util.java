@@ -73,6 +73,8 @@ public class Util {
 
 							attributeValue += attribute * qty;
 						}
+					} else if (names[1].equals("inventory")) {
+						
 					} else if (names[1].equals("order")) {
 						attributeValue = getAttribute(parcel.getPack().getOrder(), Orders.class, names[0]);
 					}

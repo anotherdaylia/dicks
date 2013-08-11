@@ -2,10 +2,12 @@ package com.dicks.action;
 
 import java.util.ArrayList;
 
+import com.dicks.dao.FeeDAO;
 import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.StoreDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.engine.CreateTemplate;
+import com.dicks.pojo.Fee;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
 
@@ -21,8 +23,10 @@ public class CreateNewBizRule {
 	public String categoryname;
 	public Rule[] allRule;
 	public String priority;
-
 	public String[] test;
+	private ArrayList<Fee> storeFeeList;
+	private ArrayList<Fee> gsiFeeList;
+	private ArrayList<Fee> vendorFeeList;
 
 	public String getPriority(){
 		return priority;
@@ -112,9 +116,20 @@ public class CreateNewBizRule {
 		this.conditions = conditions;
 	}
 
+	public ArrayList<Fee> getGsiFeeList() {
+		return gsiFeeList;
+	}
+	public void setGsiFeeList(ArrayList<Fee> gsiFeeList) {
+		this.gsiFeeList = gsiFeeList;
+	}
+	public ArrayList<Fee> getVendorFeeList() {
+		return vendorFeeList;
+	}
+	public void setVendorFeeList(ArrayList<Fee> vendorFeeList) {
+		this.vendorFeeList = vendorFeeList;
+	}
 
-
-	public String gototemplate(){
+	public String gototemplate() throws Exception{
 		if(templatename.equals("product_threshold")){
 			System.out.println(rulename);
 			System.out.println(templatename);
@@ -144,6 +159,13 @@ public class CreateNewBizRule {
 			setAllRule(allRule);
 			rulename = rulename.replace(" ","%20");
 			categoryname = categoryname.replace(" ","%20");
+			
+			this.storeFeeList = FeeDAO.getInstance().getByType("store");
+			this.gsiFeeList = FeeDAO.getInstance().getByType("gsi");
+			this.vendorFeeList = FeeDAO.getInstance().getByType("vendor");
+			System.out.println("store fee list size: " + storeFeeList.size());
+			System.out.println("gsi fee list size: " + gsiFeeList.size());
+			System.out.println("vendor fee list size: " + vendorFeeList.size());
 			return "gotocost";
 		}
 		else if(templatename.equals("store_threshold")){
@@ -269,6 +291,12 @@ public class CreateNewBizRule {
 		//compu
 
 		return "placeorder";
+	}
+	public ArrayList<Fee> getStoreFeeList() {
+		return storeFeeList;
+	}
+	public void setStoreFeeList(ArrayList<Fee> storeFeeList) {
+		this.storeFeeList = storeFeeList;
 	}
 
 
