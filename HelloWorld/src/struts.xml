@@ -18,7 +18,7 @@
           <result name="error">/login.jsp</result>
           <result name="success">/OrderList.jsp</result>
       </action>
-      <action name="gotocategorylist" class="com.dicks.action.Redirect" method="gotocategorylist">
+      <!--  <action name="gotocategorylist" class="com.dicks.action.Redirect" method="gotocategorylist">
           <result name="goToCategoryList">/CategoryList.jsp</result>
       </action>
       <action name="gotoorderlist" class="com.dicks.action.Redirect" method="gotoorderlist">
@@ -32,6 +32,9 @@
       </action>
       <action name="gotoruleprioritylist" class="com.dicks.action.Redirect" method="gotoruleprioritylist">
           <result name="success">/rulePriority.jsp</result>
+      </action>-->
+      <action name="gotonewbizrulelist" class="com.dicks.action.CreateNewBizRule" method="gotonewbizrulelist">
+          <result name="success" type="dispatcher">/newRules.jsp</result>
       </action>
       <action name="gotoplaceorder" class="com.dicks.action.Redirect" method="gotoplaceorder">
           <result name="gotoplaceorder">/placeOrder.jsp</result>

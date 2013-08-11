@@ -24,6 +24,15 @@ public class CreateNewBizRule {
 	public String[] test;
 	public String[] productcount;
 	public String[] sources;
+	public String[] prodCate;
+	
+	public void setProdCate(String[] prodCate){
+		this.prodCate = prodCate;
+	}
+	
+	public String[] getProdCate(){
+		return prodCate;
+	}
 	
 	public void setProductcount(String[] a){
 		this.productcount = a;
@@ -128,9 +137,18 @@ public class CreateNewBizRule {
 		this.conditions = conditions;
 	}
 
-
+	public String gotonewbizrulelist(){
+		String[] tmp = new String[1];
+		tmp[0] = "[\"nimabi\",\"xiaomimi\",\"qigenaizi\",\"bagebi\"]";
+		/*tmp[1] = "xiaomimi";
+		tmp[2] ="qige naizi";
+		tmp[3] ="bagebi";*/
+		prodCate = tmp;
+		return "success";
+	}
 
 	public String gototemplate(){
+		System.out.println("!!!!!!!prodCate"+prodCate);
 		if(templatename.equals("product_threshold")){
 			System.out.println(rulename);
 			System.out.println(templatename);
