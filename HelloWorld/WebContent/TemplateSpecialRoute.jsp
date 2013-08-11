@@ -43,6 +43,9 @@
     </ul>
     </div>
  <script>
+ 
+
+ 
     $(function() {
     var availableTags = [
       "All",
@@ -117,7 +120,7 @@ function addSpecialRoute(myDiv) {
 
   newdiv.setAttribute('id',divIdName);
 
-  newdiv.innerHTML = '<div style=\'padding-top:10px;padding-bottom:10px;\'>If the product quantity is more than <input type=\'text\' name=\'productcount\' style=\'width:50px;\'> </div><div style=\'padding-bottom:10px;\'><div style=\'padding-bottom:10px;float:left;\'>Ship the product from&#58;&nbsp;&nbsp;</div><div style=\'padding-bottom:10px;float:left;\'class=\'ui-widget\'><textarea id=\'tags\' name = \'sources\' style=\'overflow:hidden;max-width:300px;width:300px;height:15px;\' onkeyup=\'textAreaAdjust(this)\' placeholder=\'Type in fulfillment sources&hellip;\' ></textarea></div> <a href=\'javascript:;\' onclick=\'removeElement('+divIdName+')\'>Remove</a></div><br/>';
+  newdiv.innerHTML = '<div style=\'padding-top:10px;padding-bottom:10px;\'>If the product quantity is&nbsp&nbsp&nbsp&nbsp </div><div style=\'padding-bottom:10px;\'><select style=\'width:120px;\' name=\'operator\' ><option value=\'&lt;\'>More Than</option> <option value=\'=\'>Equal</option><option value=\'&gt;\'>Less than</option></select>&nbsp;&nbsp; <input type=\'text\' name=\'productcount\' style=\'width:50px;\'> </div><div style=\'padding-bottom:10px;\'><div style=\'padding-bottom:10px;float:left;\'>Ship the product from&#58;&nbsp;&nbsp;</div><div style=\'padding-bottom:10px;float:left;\'class=\'ui-widget\'><textarea id=\'tags\' name = \'sources\' style=\'overflow:hidden;max-width:300px;width:300px;height:15px;\' onkeyup=\'textAreaAdjust(this)\' placeholder=\'Type in fulfillment sources&hellip;\' ></textarea></div> <a href=\'javascript:;\' onclick=\'removeElement('+divIdName+')\'>Remove</a></div><br/>';
 
                         
 
@@ -192,7 +195,15 @@ function goBack(){
                     <td style="width:500px;">
                     <div class="drl"> 
                       <div id="specialroute1">
-                        <div style="padding-bottom:10px;">If the product quantity is more than <input type="text" name="productcount" style="width:50px;"> </div>
+                        <div style="padding-bottom:10px;">If the product quantity is &nbsp;&nbsp;&nbsp;</div>
+                        <div id ="operatorDiv" style="padding-bottom:10px;">
+                        <select style="width:120px;" name="operator" >
+                                <option value="&lt;">More Than</option> 
+                                <option value="=">Equal</option>
+                                <option value="&gt;">Less than</option>
+                            </select>&nbsp;&nbsp;
+                            <input type="text" name="productcount" style="width:50px;"> 
+                          </div>
                         <div style="padding-bottom:10px;float:left;">Ship the product from&#58;&nbsp;&nbsp;</div>
                         <div style="padding-bottom:10px;float:left;"class="ui-widget"><textarea id="tags" name = "sources" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in fulfillment sources&hellip;" ></textarea></div>
                       </div>
@@ -202,9 +213,9 @@ function goBack(){
                         <div id="myDiv"></div>
    
                      <input type="hidden" name="rulename"  value=<%=request.getAttribute("rulename")%> />
-                <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
-                <input type="hidden" name="categoryname"  value=<%=request.getAttribute("categoryname")%> />
-           		<input type="hidden" id="priorityId" name="priority">   
+	                <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
+	                <input type="hidden" name="categoryname"  value=<%=request.getAttribute("categoryname")%> />
+	           		<input type="hidden" id="priorityId" name="priority">   
                     </div>
                     </td>
                 </tr>

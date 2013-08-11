@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+    pageEncoding="US-ASCII"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -79,7 +81,15 @@
 	      });
 	  });
  	$(function() {
-	    var availableTags = '${prodCate[0]}';;
+ 		
+	    var name = '${prodCate}';
+	    var ch = new Array;
+		 ch = name.split(",");
+		 for(var i=0 ;i<ch.length;i++){
+		  console.log(ch[i]);
+		 }
+	    console.log("a is "+name);
+	    var availableTags = ch;
 	    
 	    function split( val ) {
 	      return val.split( /,\s*/ );
@@ -129,9 +139,9 @@
 	  function pageOnLoad() {
 		  
 		  console.log("logged");
-		  var rulename = '${prodCate[0]}';
-		  console.log(rulename);
-		  close();
+		  
+		 	
+		  
 	  }
 	  
 	  window.onload =pageOnLoad;

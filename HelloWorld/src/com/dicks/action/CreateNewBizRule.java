@@ -25,13 +25,13 @@ public class CreateNewBizRule {
 	public String[] productcount;
 	public String[] sources;
 
-	public String[] prodCate;
+	public String prodCate;
 	
-	public void setProdCate(String[] prodCate){
+	public void setProdCate(String prodCate){
 		this.prodCate = prodCate;
 	}
 	
-	public String[] getProdCate(){
+	public String getProdCate(){
 		return prodCate;
 	}
 
@@ -139,12 +139,22 @@ public class CreateNewBizRule {
 	}
 
 	public String gotonewbizrulelist(){
-		String[] tmp = new String[1];
-		tmp[0] = "[\"nimabi\",\"xiaomimi\",\"qigenaizi\",\"bagebi\"]";
-		/*tmp[1] = "xiaomimi";
-		tmp[2] ="qige naizi";
-		tmp[3] ="bagebi";*/
-		prodCate = tmp;
+		String[] tmp2 = null;
+		try {
+			tmp2 = ProdCateDAO.getInstance().getProdCateNames();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		StringBuffer cate = new StringBuffer();
+		cate.append(tmp2[0]);
+		for (int i = 1;i<tmp2.length;i++){
+			System.out.println(tmp2[i]);
+			cate.append(","+tmp2[i]);
+		}
+		
+		
+		prodCate = cate.toString();
 		return "success";
 	}
 
