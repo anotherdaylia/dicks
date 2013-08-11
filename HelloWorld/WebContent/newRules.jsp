@@ -25,7 +25,6 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
@@ -150,18 +149,18 @@
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
 
-            <li style="list-style:none;"><span><a href="#">Home</a><span> > </span></span></span>
-                <span><a href="#">Manage Business Rule</a><span> > </span></span>
+            <li style="list-style:none;"><span><a href="#">Home</a><span> &gt; </span></span>
+                <span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a><span> &gt; </span></span>
                 <span>New Business Rule</span>
             </li>
             
             <!-- Success Message and Error Message -->
-            <div class="success_area">successMessage</div>
-            
+            <div class="success_area" style="display:none;">successMessage</div>
+            <div class="warning" style="display:none;">errorMessage</div>
             <!-- Success Message and Error Message -->
         </div>
 
-            <br/>
+            
             <div>
             <form action="gototemplate" method="get">
             <table class="text" style="width:600px;">
