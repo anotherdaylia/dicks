@@ -7,10 +7,10 @@
 <jsp:include page="template_top.jsp" />
 
 <ul class="nav">
-        <li class=""><a class="recordable open" href="#" memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
+        <li class=""><a class="recordable open" href="#" memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" >
-                <li class=""><a href="categorylist.html">Category List</a><span class="normal">&nbsp;</span></li>
-                <li class="selected"><a href="CreateCategory.html">New Category</a><span class="normal">&nbsp;</span></li>
+                <li class=""><a href="categorylist.html">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="selected"><a href="CreateCategory.html">New Group</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
         </li>
