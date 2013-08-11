@@ -28,9 +28,7 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
-                
             </ul>
         </li>   
     </ul>
@@ -515,18 +513,18 @@
             <h1 class="l">New Group</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
-
-        </div>
-        <div ><br/><br/>
-            <li style="list-style:none;"><span><a href="#">Home</a><span> &gt; </span></span></span>
+        	
+            <li style="list-style:none;"><span><a href="#">Home</a><span> &gt; </span></span>
                 <span><a href="#">Manage Group</a><span> &gt; </span></span>
                 <span>New Group</span>
             </li>
+            
             <!-- Success Message and Error Message -->
             <div class="success_area" style="display:none">successMessage</div>
             <div class="warning" style="display:none">errorMessage</div>
             <!-- Success Message and Error Message -->
         </div>
+        	
         <div><br/><br/>
             <div id="tabs">
               <ul>
@@ -562,7 +560,7 @@
                 </tr>
 
                 <tr style="height:40px%;">
-                    <td><div class="form-title" style="width:150px;">-OR- &nbsp;State<font color="red">*</font>:</div></td>
+                    <td><div class="form-title" style="width:150px;"><span class="grey">-OR-</span> &nbsp;State<font color="red">*</font>:</div></td>
                     <td style="width:500px;">
                       <textarea name="storeState" id="stateTags" placeholder="Type state to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
@@ -582,11 +580,8 @@
                 </tr>
 
                 <tr style="height:40px;">
-                    <td></td>
-                    <td>
-                      <span style="margin-left:10px;argin-top:10px;"><a class="button" href="categorylist.html" onclick=""/>Cancel</a></span>
-                      <span style="margin-left:10px;argin-top:10px;"><input type="submit" value="New" class="button"></a></span>
-                      <input type="hidden" name="flag" value="store"/>
+                    <td><a class="button" href="<%=basePath%>gotocategorylist.action" onclick=""/>Cancel</a></td>
+                    <td><input type="submit" value="Create" class="button"><input type="hidden" name="flag" value="store"/>
                     </td>  
                     <td></td>
                 </tr>
@@ -622,7 +617,7 @@
                 </tr>
 
                 <tr style="height:40px;">
-                    <td><div class="form-title" style="width:150px;">-OR- &nbsp;Brand<font color="red">*</font>:</div></td>
+                    <td><div class="form-title" style="width:150px;"><span class="grey">-OR-</span> &nbsp;Brand<font color="red">*</font>:</div></td>
                     <td style="width:500px;">
                       <textarea name="brand" id="brandTags" placeholder="Type brand name to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
@@ -639,10 +634,9 @@
                     <td style="width:110px;"></td>
                 </tr>
                 <tr style="height:40px;">
-                    <td></td>
+                    <td><a class="button" href="<%=basePath%>gotocategorylist.action" onclick=""/>Cancel</a></td>
                     <td>
-                      <span style="margin-left:10px;argin-top:10px;"><a class="button" href="categorylist.html" onclick=""/>Cancel</a></span>
-                      <span style="margin-left:10px;argin-top:10px;"><input type="submit" value="New" class="button"></a></span>
+                      <input type="submit" value="Create" class="button"/>
                       <input type="hidden" name="flag" value="product"/>
                     </td>  
                     <td></td>
@@ -659,7 +653,7 @@
                 
     <!-- footer starts -->
         </div>
-            <div class="footer"><span>©2013 eBusiness Team</span></div>
+            <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
         </div>
     <!-- footer ends -->
 

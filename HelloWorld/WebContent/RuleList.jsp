@@ -26,7 +26,6 @@
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
-                
             </ul>
         </li>   
     </ul>
@@ -57,7 +56,7 @@
         
             <div>
             <a class="button" id="add-to-cart" href="#">Delete Selected </a>&nbsp; |  &nbsp;
-            <a href="CreateCategory.jsp" class="button"> + New Rule</a>
+            <a href="<%=basePath%>gotonewbizrulelist.action" class="button"> + New Rule</a>
             <div class="r"><input type="text" class="searchtext" placeholder="Rule name"/>
                 <a href="#" class="button">Search</a>
             </div>
