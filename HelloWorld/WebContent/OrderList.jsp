@@ -56,7 +56,7 @@ $( "#datepickerend" ).datepicker();
     <div class="main"  id="main-body">
         <div class="content clearfix">
                 
-        <div class="title-bar clearfix">
+        <div class="title-bar clearfix" style="height:80px;">
             <h1 class="l">Order List</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
