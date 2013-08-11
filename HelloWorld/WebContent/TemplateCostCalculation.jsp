@@ -287,7 +287,7 @@ function goBack(){
 							<div id="tabs">
 								<ul>
 									<li><a href="#tabs-SFS">Ship from Store</a></li>
-									<li><a href="#tabs-GSI">Fulfilled by GSI</a></li>
+									<li><a href="#tabs-warehouse">Fulfilled by Warehouse</a></li>
 									<li><a href="#tabs-Vendor">Vendor Direct</a></li>
 								</ul>
 								<div id="tabs-SFS" style="min-height: 250px;">
@@ -367,56 +367,56 @@ function goBack(){
 										<div id="SFSDiv"></div>
 									</div>
 								</div>
-								<div id="tabs-GSI" style="min-height: 250px;">
+								<div id="tabs-warehouse" style="min-height: 250px;">
 									<table>
-										<c:forEach var="gsiFee" items="${gsiFeeList}">
-											<tr id="gsiFee${gsiFee.costId}">
+										<c:forEach var="warehouseFee" items="${warehouseFeeList}">
+											<tr id="warehouseFee${warehouseFee.costId}">
 												<td style="width: 200px;"><input type="text"
-													name="gsiFeeName" value="${gsiFee.getCostName()}" /></td>
+													name="warehouseFeeName" value="${warehouseFee.getCostName()}" /></td>
 												<c:choose>
-													<c:when test="${ (gsiFee.flag == 'p') }">
-														<input type="hidden"  name="gsiFeeId" value="${gsiFee.costId}" />
-														<td><select name="gsiFeeFlag"
-															onchange="chooseFormat(this.value, 'gsiFee', '${gsiFee.costId}')">
+													<c:when test="${ (warehouseFee.flag == 'p') }">
+														<input type="hidden"  name="warehouseFeeId" value="${warehouseFee.costId}" />
+														<td><select name="warehouseFeeFlag"
+															onchange="chooseFormat(this.value, 'warehouseFee', '${warehouseFee.costId}')">
 																<option selected="selected" value="p">
 																	Percentage</option>
 																<option value="v">Value</option>
 														</select></td>
-														<td style="width: 600px;" id="gsiFeeP${gsiFee.costId}"><input
-															name="gsiFeePercentage" type="text"
-															value="${gsiFee.percentage/100.0}" style="width: 50px;">
-															% of <select name="gsiFeeAttribute">
+														<td style="width: 600px;" id="warehouseFeeP${warehouseFee.costId}"><input
+															name="warehouseFeePercentage" type="text"
+															value="${warehouseFee.percentage/100.0}" style="width: 50px;">
+															% of <select name="warehouseFeeAttribute">
 																<option value="retailPrice,inventory"
-																	<c:if test="${gsiFee.attribute == 'retailPrice,inventory'}">selected="selected"</c:if>>
+																	<c:if test="${warehouseFee.attribute == 'retailPrice,inventory'}">selected="selected"</c:if>>
 																	Net Merchandise Sales</option>
 																<option value="unitPrice,orderDetail"
-																	<c:if test="${gsiFee.attribute == 'unitPrice,orderDetail'}">selected="selected"</c:if>>
+																	<c:if test="${warehouseFee.attribute == 'unitPrice,orderDetail'}">selected="selected"</c:if>>
 																	Order Unit Price</option>
 																<option value="totAmt,order"
-																	<c:if test="${gsiFee.attribute == 'totAmt,order'}">selected="selected"</c:if>>
+																	<c:if test="${warehouseFee.attribute == 'totAmt,order'}">selected="selected"</c:if>>
 																	Order Total Amount</option>
 																<option value="factoryPrice,product"
-																	<c:if test="${gsiFee.attribute == 'factoryPrice,product'}">selected="selected"</c:if>>
+																	<c:if test="${warehouseFee.attribute == 'factoryPrice,product'}">selected="selected"</c:if>>
 																	Product Factory Price</option>
 														</select></td>
 														<td hidden="true" style="width: 600px;"
-															id="gsiFeeV${gsiFee.costId}"><input
-															name="gsiFeeValue" type="text" value=""
+															id="warehouseFeeV${warehouseFee.costId}"><input
+															name="warehouseFeeValue" type="text" value=""
 															style="width: 50px;"> dollar per unit</td>
 													</c:when>
 													<c:otherwise>
-														<input type="hidden" type="text" name="gsiFeeId"
-															value="${gsiFee.costId}" />
-														<td><select name="gsiFeeFlag"
-															onchange="chooseFormat(this.value, 'gsiFee', '${gsiFee.costId}')">
+														<input type="hidden" type="text" name="warehouseFeeId"
+															value="${warehouseFee.costId}" />
+														<td><select name="warehouseFeeFlag"
+															onchange="chooseFormat(this.value, 'warehouseFee', '${warehouseFee.costId}')">
 																<option value="p">Percentage</option>
 																<option selected="selected" value="v">Value</option>
 														</select></td>
 														<td hidden="true" style="width: 600px;"
-															id="gsiFeeP${gsiFee.costId}"><input
-															name="gsiFeePercentage" type="text" value=""
+															id="warehouseFeeP${warehouseFee.costId}"><input
+															name="warehouseFeePercentage" type="text" value=""
 															style="width: 50px;"> % of <select
-															name="gsiFeeAttribute">
+															name="warehouseFeeAttribute">
 																<option value="retailPrice,inventory">Net
 																	Merchandise Sales</option>
 																<option value="unitPrice,orderDetail">Order
@@ -426,21 +426,21 @@ function goBack(){
 																<option value="factoryPrice,product">Product
 																	Factory Price</option>
 														</select></td>
-														<td style="width: 400px;" id="gsiFeeV${gsiFee.costId}"><input
-															name="gsiFeeValue" type="text"
-															value="${gsiFee.value/100.0}" style="width: 50px;">
+														<td style="width: 400px;" id="warehouseFeeV${warehouseFee.costId}"><input
+															name="warehouseFeeValue" type="text"
+															value="${warehouseFee.value/100.0}" style="width: 50px;">
 															dollar per unit</td>
 													</c:otherwise>
 												</c:choose>
-												<td> <a href='javascript:;' onclick='removeElement("gsiFee${gsiFee.costId}")'>Remove</a></td>
+												<td> <a href='javascript:;' onclick='removeElement("warehouseFee${warehouseFee.costId}")'>Remove</a></td>
 											</tr>
 										</c:forEach>
 									</table>
 									<div>
 										<input type="hidden" value="0" id="theValue" /> <a
 											class="button" href="javascript:;"
-											onclick="addOtherCost(GSIDiv, 'gsiFee');">Add Other Costs</a>
-										<div id="GSIDiv"></div>
+											onclick="addOtherCost(warehouseDiv, 'warehouseFee');">Add Other Costs</a>
+										<div id="warehouseDiv"></div>
 									</div>
 								</div>
 								<div id="tabs-Vendor" style="min-height: 250px;">

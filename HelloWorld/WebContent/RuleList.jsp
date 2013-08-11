@@ -53,8 +53,7 @@
             <div class="warning" style="display:none;">errorMessage</div>
             <!-- Success Message and Error Message -->
 
-        </div>
-        
+        </div>    
             <div>
             <a class="button" id="add-to-cart" href="#">Delete Selected </a>&nbsp; |  &nbsp;
             <a href="CreateCategory.jsp" class="button"> + New Rule</a>
@@ -79,7 +78,7 @@
                     <td class="">Rule1</td>
                     <td class="">In market store</td>
                     <td><a class="button toggle">Disable</a></td>
-                    <td class=""><a class="button" href="viewrule.jsp">View</a>  <a class="button" href="editrule.jsp">Edit</a></td>
+                    <td class=""><a class="button" href="viewrule.jsp">View</a>  <a class="button" href="<%=basePath%>editRuleRanking.action">Edit</a></td>
                 </tr>
                     <tr>
                     <td class=""><input type="checkbox" class="case"/></td>
