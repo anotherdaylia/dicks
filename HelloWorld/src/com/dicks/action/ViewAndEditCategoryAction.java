@@ -2,9 +2,10 @@ package com.dicks.action;
 
 import com.dicks.dao.StoreCateDAO;
 import com.dicks.pojo.StoreCate;
+import com.dicks.pojo.StoreCateId;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ViewCategoryAction extends ActionSupport{
+public class ViewAndEditCategoryAction extends ActionSupport{
 	private String categoryId;
 	private String categoryName;
 	private String categoryDescr;
@@ -31,6 +32,23 @@ public class ViewCategoryAction extends ActionSupport{
 		}
 	
 	}
+	
+	public String editStoreCategory(){
+		String[] ids = storeIdString.split(",");
+		StoreCate[] news = new StoreCate[ids.length];
+		for(int i=0; i<ids.length; i++){
+			StoreCateId storeCateId = new StoreCateId(Integer.valueOf(categoryId), Integer.valueOf(ids[i])) ;
+			StoreCate storeCate = new StoreCate(storeCateId, null, categoryName, categoryDescr);	
+			news[i] = storeCate;
+		}
+		try {
+			StoreCateDAO.getInstance().update(news);
+		} catch (Exception e) {
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+	
 	
 	public String getCategoryId() {
 		return categoryId;

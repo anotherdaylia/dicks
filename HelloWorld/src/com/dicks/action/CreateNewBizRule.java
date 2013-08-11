@@ -24,6 +24,7 @@ public class CreateNewBizRule {
 	public String[] test;
 	public String[] productcount;
 	public String[] sources;
+
 	public String[] prodCate;
 	
 	public void setProdCate(String[] prodCate){
@@ -33,19 +34,19 @@ public class CreateNewBizRule {
 	public String[] getProdCate(){
 		return prodCate;
 	}
-	
+
 	public void setProductcount(String[] a){
 		this.productcount = a;
 	}
-	
+
 	public String[] getProductcount(){
 		return productcount;
 	}
-	
+
 	public void setSources(String[] a){
 		this.sources = a;
 	}
-	
+
 	public String[] getSources(){
 		return sources;
 	}
@@ -200,7 +201,7 @@ public class CreateNewBizRule {
 
 		categoryname =categoryname.replace("%20", " ");
 		rulename = rulename.replace("%20", " ");
-		
+
 		/*for(int i=0;i<attribute.length;i++){
 			attribute[i] = attribute[i].toLowerCase();
 
@@ -220,7 +221,7 @@ public class CreateNewBizRule {
 		System.out.println("input category"+categoryname);
 		String[] categoryList= categoryname.split(",");
 
-		
+
 		int cateLength = 0;
 		for (int j = 0 ; j<categoryList.length;j++){
 			if ((categoryList[j] != null) && (!categoryList[j].equals(" "))){
@@ -241,7 +242,7 @@ public class CreateNewBizRule {
 			type = "Threshold";
 		}
 		String[] product = null;
-		
+
 		//System.out.println("first instance of catelist is "+cateList[0]);
 		try {
 			product = ProdCateDAO.getInstance().getSKUByCategory(cateList);
@@ -282,11 +283,11 @@ public class CreateNewBizRule {
 		System.out.println("condition"+conditions);
 		System.out.println("action"+action);
 		*/
-		
+
 		String[] route = new String[1];
 		route[0] = "";
 		CreateTemplate test= new CreateTemplate(rulename,type,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
-		
+
 		return "newrule";
 	}
 
@@ -316,8 +317,8 @@ public class CreateNewBizRule {
 
 		return "placeorder";
 	}
-	
-	
+
+
 	public String specialRoute(){
 		for (int i = 0; i < productcount.length; i++){
 			System.out.println(productcount[i]);
@@ -326,7 +327,7 @@ public class CreateNewBizRule {
 		System.out.println("getting to special route");
 		return "specialroute";
 	}
-	
+
 
 
 }

@@ -26,6 +26,14 @@ public class FeeDAO extends BaseDao<Fee> {
 	public void createFee(Fee fee) throws Exception {
 		super.create(fee);
 	}
+	
+	public void updateFee(Fee fee) throws Exception {
+		super.update(fee);
+	}
+	
+	public void deleteFee(Fee fee) throws Exception {
+		super.delete(fee);
+	}
 
 	public ArrayList<Fee> getByType(String type) throws Exception {
 		List<Criterion> criterions = new ArrayList<Criterion>();

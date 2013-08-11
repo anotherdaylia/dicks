@@ -25,7 +25,6 @@ public class Packages implements java.io.Serializable {
 	private Set packageDetails = new HashSet(0);
 
 	// Constructors
-
 	/** default constructor */
 	public Packages() {
 	}

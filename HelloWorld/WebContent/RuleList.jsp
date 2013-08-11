@@ -7,10 +7,10 @@
  <jsp:include page="template_top.jsp" />
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
-            memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Category List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Category</a><span class="normal">&nbsp;</span></li>  
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
         <li class=""><a class="recordable open" href="#" id="toggletwo"
@@ -25,18 +25,9 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
-                
             </ul>
-        </li>
-        <li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
-            <ul class="nav-two" id="navtwo">
-                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-		</li>   
+        </li>   
     </ul>
     </div>
     <!-- menu bar ends -->
@@ -46,25 +37,26 @@
     <div class="main"  id="main-body">
         <div class="content clearfix">
                 
-        <div class="title-bar clearfix">
+        <div class="title-bar clearfix" style="height:80px;">
             <h1 class="l">Manage Business Rules</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
 
             <li style="list-style:none;">
                 <span><a href="#">Home</a><span> &gt; </span></span>
-                <span>Manage Business rules<span>   
+                <span>Manage Business rules</span>   
             </li>
 
             <!-- Success Message and Error Message -->
-            <div class="success_area">successMessage</div>
-            <div class="warning">errorMessage</div>
+            <div class="success_area" style="display:none;">successMessage</div>
+            <div class="warning" style="display:none;">errorMessage</div>
             <!-- Success Message and Error Message -->
 
-            <br/>
+        </div>
+        
             <div>
             <a class="button" id="add-to-cart" href="#">Delete Selected </a>&nbsp; |  &nbsp;
-            <a href="CreateCategory.jsp" class="button"> + New Rule</a>
+            <a href="<%=basePath%>gotonewbizrulelist.action" class="button"> + New Rule</a>
             <div class="r"><input type="text" class="searchtext" placeholder="Rule name"/>
                 <a href="#" class="button">Search</a>
             </div>
@@ -86,7 +78,7 @@
                     <td class="">Rule1</td>
                     <td class="">In market store</td>
                     <td><a class="button toggle">Disable</a></td>
-                    <td class=""><a class="button" href="viewrule.jsp">View</a>  <a class="button" href="editrule.jsp">Edit</a></td>
+                    <td class=""><a class="button" href="viewrule.jsp">View</a>  <a class="button" href="<%=basePath%>editRuleRanking.action">Edit</a></td>
                 </tr>
                     <tr>
                     <td class=""><input type="checkbox" class="case"/></td>
@@ -108,7 +100,7 @@
             </table>
             <div id="Paging">
                 <div class="paging clearfix">
-                    <div class="page-size">Items per page：10
+                    <div class="page-size">Items per page: 10
                     </div>
                     <div class="page-number">
                         <a class="number selected" href="javascript:void(0);" data="1">1</a><a class="number" href="javascript:void(0);" data="2">2</a><a class="number" href="javascript:void(0);" data="3">3</a>...<a class="number" href="javascript:void(0);" data="5">5</a><a href="javascript:void(0);" class="next" data="2">Next&gt;</a>Page <input class="text" type="text"> <a href="javascript:void(0)" class="button"><span>Go</span></a>
@@ -137,7 +129,7 @@
     <!-- content ends -->        
     <!-- footer starts -->
         </div>
-            <div class="footer"><span>©2013 eBusiness Team</span></div>
+            <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
         </div>
     <!-- footer ends -->
 
