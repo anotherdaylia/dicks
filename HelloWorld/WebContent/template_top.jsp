@@ -11,21 +11,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
- <title>DSG - Order List</title>
- 
-<link rel="stylesheet" href="/resources/demos/style.css" />
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<title>Real-Time Optimal Fulfillment System</title>
+
+<link rel="shortcut icon" href="image/favicon.ico">
+<link rel="stylesheet" href="css/jquery-ui.css" />
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/overview.css" rel="stylesheet" type="text/css" />
 <link href="css/pop.css" rel="stylesheet" type="text/css" href="">
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/animation.js" type="text/javascript"></script>
 <script src="js/pop.js" type="text/javascript"></script>
- <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
- <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
- <link rel="stylesheet" href="css/jquery-ui.css" />
- <link rel="stylesheet" href="/resources/demos/style.css" /> 
- <script src="js/autocomplete.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
 
 <body>
     <div class="header">
@@ -45,7 +42,7 @@
     <div class="body clearfix">
     
 <div class="aside" id="aside-menu">
-    <div><br/><br/>
+    <div><br/>
        <!-- <a href="javascript:void(0)" class="fold recordable" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;0&quot;}" id="menu-toggle"></a>
         -->
     </div>

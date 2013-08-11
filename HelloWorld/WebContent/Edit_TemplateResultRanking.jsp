@@ -25,7 +25,7 @@
 			<li class="" id="bizrulelist"><a
 				href="<%=basePath%>gotorulelist.action">Business Rule List</a><span
 				class="normal">&nbsp;</span></li>
-			<li class="selected" id="newbizrulelist"><a
+			<li class="" id="newbizrulelist"><a
 				href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span
 				class="normal">&nbsp;</span></li>
 			<li class="" id="ruleprioritylist"><a
