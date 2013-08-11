@@ -25,10 +25,19 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="selected" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
+<<<<<<< HEAD
 				<li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
+=======
+                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
+>>>>>>> branch 'master' of https://github.com/claire921/dicks.git
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>         
+<<<<<<< HEAD
 				<li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
          	</ul>
+=======
+
+            </ul>
+>>>>>>> branch 'master' of https://github.com/claire921/dicks.git
         </li>
         <li class=""><a class="recordable open" href="#" id="togglefour"
             memo="{id:'21',type:'menu',global:1,status:''}">Simulation</a>

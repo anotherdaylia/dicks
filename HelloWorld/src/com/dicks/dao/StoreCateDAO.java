@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
+import com.dicks.pojo.ProdCate;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.StoreCate;
 
@@ -28,10 +29,20 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		return (StoreCate[])finalResult.toArray(new StoreCate[finalResult.size()]);
 	}
 
+	public String[] getStoreCateNames() throws Exception{
+		StoreCate[] storeCates = getStoreCategoryList();
+		String[] names = new String[storeCates.length];
+		
+		for(int i = 0 ; i<names.length ;i++){
+			names[i]=storeCates[i].getCateName();
+		}
+		return names;
+	}
+	
 	public StoreCate[] getStoreCategoryList() throws Exception{
 		ArrayList<StoreCate> cateList =  (ArrayList<StoreCate>) super.getList();
 		StoreCate[] array = (StoreCate[])cateList.toArray(new StoreCate[cateList.size()]); 
-		return array;
+		return filterCate(array);
 	}
 
 	public void createCategory(StoreCate storeCate) throws Exception{
@@ -55,9 +66,30 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		for(StoreCate sc: preview){
 			super.delete(sc);
 		}
-		
+		System.out.println("!!!"+preview.length);
 		for(StoreCate sc: storeCates){
 			createCategory(sc);
 		}
+		
+		System.out.println("!!!"+storeCates.length);
 	}
+	
+	private StoreCate[] filterCate(StoreCate[] storeCates){
+		
+		if(storeCates==null) return null;
+		List<StoreCate> storeCates1 = new ArrayList<StoreCate>();
+		int id = 0;
+		for(int i=0; i<storeCates.length ; i++){
+			if(i==0){
+				id=	storeCates[i].getId().getCateStoreId();
+				storeCates1.add(storeCates[i]);
+			}
+			if(storeCates[i].getId().getCateStoreId()!=id){
+				storeCates1.add(storeCates[i]);
+				id =storeCates[i].getId().getCateStoreId();
+			}
+		}
+		 StoreCate[] result = (StoreCate[])storeCates1.toArray(new StoreCate[storeCates1.size()]); 
+		 return result;
+	} 
 }

@@ -203,7 +203,7 @@ function goBack(){
                                 <option value="&gt;">Less than</option>
                             </select>&nbsp;&nbsp;
                             <input type="text" name="productcount" style="width:50px;"> 
-                          </div>
+                           </div>
                         <div style="padding-bottom:10px;float:left;">Ship the product from&#58;&nbsp;&nbsp;</div>
                         <div style="padding-bottom:10px;float:left;"class="ui-widget"><textarea id="tags" name = "sources" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in fulfillment sources&hellip;" ></textarea></div>
                       </div>

@@ -38,7 +38,7 @@ public class HibernateTest
 	{
 
 
-		System.out.println(ProdCateDAO.getInstance().getProdCateNames().length);
+		System.out.println(StoreCateDAO.getInstance().getStoreCateNames().length);
 //		ProductDAO pDAO = ProductDAO.getInstance();
 //		Product p = pDAO.getById(1);
 //		
