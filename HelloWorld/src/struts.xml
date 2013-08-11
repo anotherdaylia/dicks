@@ -59,8 +59,8 @@
           <result name="success" type="dispatcher">/CategoryList.jsp</result>    
 	</action>
 
-       <action name="gotonewcategory" class="com.dicks.action.Redirect" method="gotonewcategory">
-          <result name="gotonewcategory">/NewCategory.jsp</result>
+       <action name="gotonewcategory" class="com.dicks.action.CreateCategoryAction" method="goToNewCategory">
+          <result name="success">/NewCategory.jsp</result>
       </action>
       <action name="submitnewcate" class="com.dicks.action.CreateCategoryAction" method="createProductCategory">
           <result name="submitnewcate">/NewCategory.jsp</result>
@@ -88,10 +88,10 @@
       		<result name="success">/ViewStoreCategory.jsp</result>
       </action> 
       <action name="editStoreCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="editStoreCategory">
-      		<result name="success">/EditStoreCategory.jsp</result>
+      		<result name="success">/ViewStoreCategory.jsp</result>
       </action> 
 
-       <action name="editStoreCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="editStoreCategory">
+       <action name="viewStoreCate2EditStoreCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewStoreCate2EditStoreCate">
       		<result name="success">/EditStoreCategory.jsp</result>
       </action> 
 

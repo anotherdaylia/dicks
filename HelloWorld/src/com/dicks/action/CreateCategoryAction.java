@@ -23,6 +23,10 @@ public class CreateCategoryAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 	
+	public String goToNewCategory(){
+		return SUCCESS;
+	}
+	
 	public String createProductCategory() throws Exception{
 		if("store".equals(flag)){
 			String[] ids = storeId.split(",");

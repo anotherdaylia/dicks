@@ -49,6 +49,9 @@ public class ViewAndEditCategoryAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	public String viewStoreCate2EditStoreCate(){
+		return SUCCESS;
+	}
 	
 	public String getCategoryId() {
 		return categoryId;
