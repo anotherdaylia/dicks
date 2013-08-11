@@ -77,9 +77,12 @@
       <action name="gotocreatecategory" class="com.dicks.action.ViewAndCreateCategoryAction" method="goToCreate">
           <result name="success">/editCategory.jsp</result>
       </action>
-<!--       <action name="viewStoreCategory" class="com.dicks.action.ViewCategoryAction" method="viewStoreCategory">
+     <action name="viewStoreCategory" class="com.dicks.action.ViewAndEidtCategoryAction" method="viewStoreCategory">
       		<result name="success">/ViewStoreCategory.jsp</result>
-      </action> -->
+      </action> 
+      <action name="editStoreCategory" class="com.dicks.action.ViewAndEidtCategoryAction" method="editStoreCategory">
+      		<result name="success">/EditStoreCategory.jsp</result>
+      </action> 
        <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
           <result name="success">/RuleList.jsp</result>
       </action>
