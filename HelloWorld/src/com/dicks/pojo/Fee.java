@@ -7,7 +7,6 @@ package com.dicks.pojo;
 public class Fee implements java.io.Serializable {
 
 	// Fields
-
 	private Integer costId;
 	private String shippingType;
 	private String costName;

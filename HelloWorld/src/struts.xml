@@ -37,6 +37,7 @@
           <result name="gotoplaceorder">/placeOrder.jsp</result>
       </action>
       <action name="gototemplate" class="com.dicks.action.CreateNewBizRule" method="gototemplate">
+
            <result name="goToTemplate" type="dispatcher">/TemplateProductThreshold.jsp</result>
            <result name="goToSpecial" type="dispatcher">/TemplateSpecialRoute.jsp</result>
            <result name="goToStore" type="dispatcher">/TemplateStoreThreshold.jsp</result>
@@ -87,11 +88,16 @@
       		<result name="success">/EditStoreCategory.jsp</result>
       </action> 
        <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
+<<<<<<< HEAD
+          <result name="success" type="dispatcher">/RuleList.jsp</result>
+      </action> 
+=======
           <result name="success">/RuleList.jsp</result>
       </action>
        
        <action name="storethreshold" class="com.dicks.action.StoreThresholdAction" method="storeThreshold">
           <result name="success">/RuleList.jsp</result>
       </action>
+>>>>>>> refs/remotes/origin/master
    </package>
 </struts>

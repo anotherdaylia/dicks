@@ -49,8 +49,7 @@ public class CreateCategoryAction extends ActionSupport {
 	}
 	
 	public String createStoreCategory(){
-		
-		
+	
 		return SUCCESS;
 	}
 
