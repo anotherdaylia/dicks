@@ -75,12 +75,12 @@
       <action name="createStoreRule" class="com.dicks.action.CreateCategoryAction" method="createProductCategory">
           <result name="success">/OrderList.jsp</result>
       </action>
-      <action name="gotoviewcategory" class="com.dicks.action.ViewAndCreateCategoryAction" method="goToView">
+<!--       <action name="gotoviewcategory" class="com.dicks.action.ViewAndCreateCategoryAction" method="goToView">
           <result name="success">/viewCategory.jsp</result>
       </action>
       <action name="gotocreatecategory" class="com.dicks.action.ViewAndCreateCategoryAction" method="goToCreate">
           <result name="success">/editCategory.jsp</result>
-      </action>
+      </action> -->
      <action name="viewStoreCategory" class="com.dicks.action.ViewAndEidtCategoryAction" method="viewStoreCategory">
       		<result name="success">/ViewStoreCategory.jsp</result>
       </action> 
@@ -88,16 +88,12 @@
       		<result name="success">/EditStoreCategory.jsp</result>
       </action> 
        <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
-<<<<<<< HEAD
-          <result name="success" type="dispatcher">/RuleList.jsp</result>
-      </action> 
-=======
           <result name="success">/RuleList.jsp</result>
       </action>
        
        <action name="storethreshold" class="com.dicks.action.StoreThresholdAction" method="storeThreshold">
           <result name="success">/RuleList.jsp</result>
       </action>
->>>>>>> refs/remotes/origin/master
+
    </package>
 </struts>
