@@ -79,17 +79,8 @@
 	      });
 	  });
  	$(function() {
-	    var availableTags = [
-	      "All",
-	      "Adidas",
-	      "East Coast stores",
-	      "Clothes",
-	      "Shoes",
-	      "Balls",
-	      "West Coast stores",
-	      "Fishing",
-	      "Camping"
-	    ];
+	    var availableTags = '${prodCate[0]}';;
+	    
 	    function split( val ) {
 	      return val.split( /,\s*/ );
 	    }
@@ -134,6 +125,16 @@
 	      o.style.height = "1px";
 	      o.style.height = (15+o.scrollHeight)+"px";
 	  }
+	  
+	  function pageOnLoad() {
+		  
+		  console.log("logged");
+		  var rulename = '${prodCate[0]}';
+		  console.log(rulename);
+		  close();
+	  }
+	  
+	  window.onload =pageOnLoad;
 
  </script>
  <script src="js/animation.js" type="text/javascript"></script>
@@ -191,6 +192,8 @@
                 <tr>  
                     <td><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>
                     <td><input type="submit" value="Create" class="button"></td>
+                    <input type="hidden" id="prodCate" name="prodCate"> 
+           
                 </tr>
             </table>   
             
