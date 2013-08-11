@@ -142,8 +142,6 @@ public class InventoryDAO extends BaseDao<Inventory> {
 	}
 
 	public boolean checkProduct(Store store, Product product, String operator, int mar) throws Exception {
-		
-		
 		Inventory in = getInventoryByStoreProduct(store.getStoreId(), product.getProdId());
 		
 		if (in != null){
@@ -173,5 +171,37 @@ public class InventoryDAO extends BaseDao<Inventory> {
 		}
 		
 		return false;
+	}
+	
+	public ArrayList<Inventory> getInventoryByParcelStore(Parcel parcel, Store store) {
+		Session session = null;
+		ArrayList<Inventory> inventories = null;
+		try {
+			session = HibernateUtil.getSession();
+			session.setFlushMode(FlushMode.AUTO);
+			session.getTransaction().begin();
+			
+			Disjunction disjunctions = Restrictions.disjunction();
+			for (Product p : parcel.getProducts().keySet()) {								
+					disjunctions.add(Restrictions.eq("product.id", p.getProdId()));						
+			}
+			
+			Criteria criteria = session.createCriteria(Inventory.class)
+					.add(Restrictions.eq("store.id", store.getStoreId()))
+					.add(disjunctions);
+			
+			inventories = (ArrayList<Inventory>) criteria.list();
+				
+			session.flush();
+			session.getTransaction().commit();
+			
+			return inventories;
+		} catch (HibernateException e) {
+			throw e;
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 	}
 }
