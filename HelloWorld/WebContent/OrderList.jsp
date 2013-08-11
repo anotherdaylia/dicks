@@ -9,7 +9,7 @@
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
             <ul class="nav-two" id="navone">
-                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Category List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action?act=store">Category List</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Category</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
@@ -26,8 +26,7 @@
             <ul class="nav-two" id="navthree">
                 <li class="selected" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
-                
+                <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>         
             </ul>
         </li>
         <li class=""><a class="recordable open" href="#" id="togglefour"

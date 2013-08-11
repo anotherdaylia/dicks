@@ -525,20 +525,20 @@
             <form action="#">
             <div id="tabs">
               <ul>
-                <li><a href="#tabs-1">Group: Stores in Pennsylvania</a></li>
+                <li><a href="#tabs-1">Group: ${categoryName}</a></li>
               </ul>
               <div id="tabs-1">
               <table id="category" border="0" style="margin-left:50px;width:750px;">
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Group Name<font color="red">*</font>:</div></td>
-                    <td style="width:600px;"><input type="text" style="width:300px;" value="Stores in Pennsylvania"></td>
+                    <td style="width:600px;"><input type="text" style="width:300px;" value="${categoryName}"></td>
                     <td></td>
                 </tr>
                     
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Group Description:</div></td>
                     <td style="width:500px;">
-                      <textarea placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">This group is for stores in Pennsylvania.</textarea>
+                      <textarea placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">${categoryDescr}</textarea>
                     </td>
                     <td></td>
                 </tr>
@@ -566,7 +566,7 @@
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Fulfillment Location:</div></td>
                     <td style="width:500px;">
-                      <textarea id="storeTags" placeholder="Type store id to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">All&#44;&nbsp;</textarea>
+                      <textarea id="storeTags" placeholder="Type store id to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">${StoreIdString}</textarea>
                     </td>
                     <td style="width:110px;">
                       <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreCheck()">See All Options</a>
@@ -577,7 +577,7 @@
                     <td></td>
                     <td>
                       <span style="margin-left:10px;argin-top:10px;"><a class="button" href="ViewCategory.html" onclick=""/>Back</a></span>
-                      <span style="margin-left:10px;argin-top:10px;"><a class="button" href="categorylist.html" onclick=""/>Update</a></span>
+                      <span style="margin-left:10px;argin-top:10px;"><a class="button" href="editStoreCategory.action?categoryId=${categoryId}&categoryName=${categoryId}&categoryDescr=${categoryDescr}&StoreIdString=${StoreIdString}" onclick=""/>Update</a></span>
                     </td>  
                     <td></td>
                 </tr>

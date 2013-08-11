@@ -143,7 +143,7 @@
 
                 <tr style="height:40px;">
                     <td><a class="button" href="categorylist.html" onclick="">Cancel</a></td>
-                    <td><a class="button" href="EditCategory.html" onclick="editStoreCategory.action?categoryId=${categoryId}&categoryName=${categoryId}&categoryDescr=${categoryDescr}&StoreIdString=${StoreIdString}"/>Update</a></td>
+                    <td><a class="button" href="viewStoreCate2EditStoreCate.action?categoryId=${categoryId}&categoryName=${categoryId}&categoryDescr=${categoryDescr}&StoreIdString=${StoreIdString}" onclick="">Update</a></td>
         
                     <td></td>
                 </tr>
