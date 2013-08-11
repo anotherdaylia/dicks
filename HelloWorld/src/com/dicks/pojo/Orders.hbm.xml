@@ -34,17 +34,23 @@
         <property name="custName" type="java.lang.String">
             <column name="cust_name" length="45" not-null="true" />
         </property>
-        <set name="packageses" inverse="true">
+        <set name="logs" inverse="true">
             <key>
                 <column name="order_id" not-null="true" />
             </key>
-            <one-to-many class="com.dicks.pojo.Packages" />
+            <one-to-many class="com.dicks.pojo.Log" />
         </set>
         <set name="orderDetails" inverse="true">
             <key>
                 <column name="order_id" not-null="true" />
             </key>
             <one-to-many class="com.dicks.pojo.OrderDetail" />
+        </set>
+        <set name="packageses" inverse="true">
+            <key>
+                <column name="order_id" not-null="true" />
+            </key>
+            <one-to-many class="com.dicks.pojo.Packages" />
         </set>
     </class>
 </hibernate-mapping>

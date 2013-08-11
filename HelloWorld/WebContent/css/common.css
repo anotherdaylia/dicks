@@ -146,6 +146,11 @@ a:hover {
 	color: grey;
 }
 
+.title{
+	line-height: 20px;
+	margin-bottom: 10px;
+}
+
 input.text {
 	padding: 2px;
 }
@@ -1425,7 +1430,7 @@ div.paging select,div.paging .number,div.paging .text,div.paging .button
 }
 
 div.title-bar {
-	height: 32px;
+	height: 50px;
 	line-height: 20px;
 	margin-bottom: 18px;
 	position: relative;
@@ -1434,6 +1439,8 @@ div.title-bar {
 div.title-bar strong {
 	font-weight: bolder;
 }
+
+
 
 div.title-bar a.report-help {
 	background-repeat: no-repeat;
@@ -2006,6 +2013,21 @@ table.text tr{
 
 .drl{
 	width: 100%;
+	padding: 20px;
+	border-style:solid;
+	border-width:1px;
+	border-color: #aaaaaa;
+	border-radius: 4px;
+	height: 200px;
+	overflow: scroll;
+}
+
+.grey{
+	color:#aaaaaa;
+}
+
+.red{
+	color:red;
 }
 
 table.text .drl-height{
@@ -2314,7 +2336,7 @@ table.text .drl-height{
 }
 
 .aside .title {
-	padding: 20px 0 20px 15px;
+	padding: 0 0 10px 15px;
 }
 
 .aside h1 {
@@ -2573,6 +2595,73 @@ a.button.disabled {
 
 a.button.disabled:hover {
 	border-color: #ccc;
+}
+
+input.button {
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-bottom-width: 2px;
+	color: #666;
+	text-decoration: none;
+	background-color: #fff;
+	padding: 4px 10px;
+}
+
+input.button span,a.button input {
+	background: none;
+	border: none;
+	display: block;
+	line-height: normal;
+	cursor: pointer;
+}
+
+input.button:hover {
+	border-color: #999;
+	text-decoration: none;
+}
+
+input.button.disabled {
+	color: #ccc;
+	cursor: default;
+}
+input.button.disabled:hover {
+	border-color: #ccc;
+}
+
+select { 
+	width: 100%; 
+	background-color: transparent; 
+	border: 0; 
+	overflow: hidden;
+	box-shadow: none; 
+	line-height: 1; 
+	border-radius: 0; 
+	height: 20px; 
+	background-color: #FFFFFF;
+}
+
+select.big{ 
+	width: 100%; 
+	background-color: transparent; 
+	border: 0; 
+	overflow: hidden;
+	box-shadow: none; 
+	line-height: 1; 
+	border-radius: 0; 
+	height: 25px; 
+	background-color: #FFFFFF;
+}
+
+select.search{ 
+	width: 180px; 
+	background-color: transparent; 
+	border: 0; 
+	overflow: hidden;
+	box-shadow: none; 
+	line-height: 1; 
+	border-radius: 0; 
+	height: 25px; 
+	background-color: #FFFFFF;
 }
 
 a.disabled span,a.disabled input {

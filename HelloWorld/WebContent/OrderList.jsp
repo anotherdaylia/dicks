@@ -57,7 +57,7 @@ $( "#datepickerend" ).datepicker();
         <div class="content clearfix">
                 
         <div class="title-bar clearfix">
-            <h1 class="l">Existing Order List</h1><div id="Date" class="date l"></div>
+            <h1 class="l">Order List</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
 
@@ -68,17 +68,43 @@ $( "#datepickerend" ).datepicker();
             </li>
 
             <!-- Success Message and Error Message -->
-            <div class="success_area">successMessage</div>
-            <div class="warning">errorMessage</div>
+            <div class="success_area" style="display:none;">successMessage</div>
+            <div class="warning" style="display:none;">errorMessage</div>
             <!-- Success Message and Error Message -->
-
             <br/>
+        </div>
         
         <div>
+            <p class="title">&nbsp;Today's Summary</p>
+            
+            <div id="Outline" class="table-list">
+            <table cellspacing="0" cellpadding="0" class="list">
+                <tbody>
+                    <tr class="title">
+                        <th>Order Status</th>
+                        <th>Received</th>
+                        <th>Processed</th>
+                        <th>Allocated</th>
+                        <th>Reallocated</th> 
+                    </tr>
+                    <tr>
+                        <td>Numbers</td>
+                        <td>10000</td>
+                        <td>10000</td>
+                        <td>9000</td>
+                        <td>1000</td> 
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <br/>
+            <hr/>
+            <br/>
+            
             <div>
             <span>Start Date: <input type="text" id="datepickerstart" /></span>&nbsp;&nbsp;
             <span>End Date: <input type="text" id="datepickerend" /></span>&nbsp;&nbsp;
-            <span>Order Status: <select><option>All</option>
+            <span>Order Status: <select class="search"><option>All</option>
                                         <option>Received</option>
                                         <option>In Process</option>
                                         <option>Allocated</option>
@@ -87,7 +113,7 @@ $( "#datepickerend" ).datepicker();
             <span>Order #: <input type="text" class="text"/></span>
             <span class="r"><a class="button" href="#">Search</a></span>
             </div>
-            <p class="note">*Maximun 3-month length between start date and end date</p>
+            <p class="note">*Maximum 3-month length between start date and end date</p>
         </div>
         <br>
         <div id="Outline" class="table-list">
@@ -111,7 +137,7 @@ $( "#datepickerend" ).datepicker();
             </table>
             <div id="Paging">
                 <div class="paging clearfix">
-                    <div class="page-size">Items per page：10
+                    <div class="page-size">Items per page:10
                     </div>
                     <div class="page-number">
                         <a class="number selected" href="javascript:void(0);" data="1">1</a><a class="number" href="javascript:void(0);" data="2">2</a><a class="number" href="javascript:void(0);" data="3">3</a>...<a class="number" href="javascript:void(0);" data="5">5</a><a href="javascript:void(0);" class="next" data="2">Next&gt;</a>Page <input class="text" type="text"> <a href="javascript:void(0)" class="button"><span>Go</span></a>
@@ -128,7 +154,7 @@ $( "#datepickerend" ).datepicker();
                 
     <!-- footer starts -->
         </div>
-            <div class="footer"><span>©2013 eBusiness Team</span></div>
+            <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
         </div>
     <!-- footer ends -->
 

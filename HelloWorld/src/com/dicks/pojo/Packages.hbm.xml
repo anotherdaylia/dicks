@@ -13,6 +13,9 @@
         <many-to-one name="orders" class="com.dicks.pojo.Orders" fetch="select">
             <column name="order_id" not-null="true" />
         </many-to-one>
+        <many-to-one name="store" class="com.dicks.pojo.Store" fetch="select">
+            <column name="store_id" />
+        </many-to-one>
         <property name="custId" type="java.lang.Integer">
             <column name="cust_id" not-null="true" />
         </property>
