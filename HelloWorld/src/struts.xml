@@ -75,7 +75,7 @@
       <action name="createStoreRule" class="com.dicks.action.CreateCategoryAction" method="createProductCategory">
           <result name="success">/OrderList.jsp</result>
       </action>
-<<<<<<< HEAD
+
     <action name="gotoviewcategory" class="com.dicks.action.CategoryListAction" method="displayCategory">
           <result name="success">
           /viewCategory.jsp?act=store</result>
@@ -83,8 +83,7 @@
    <!--    <action name="gotocreatecategory" class="com.dicks.action.ViewAndCreateCategoryAction" method="goToCreate">
           <result name="success">/editCategory.jsp</result>
       </action>-->
-=======
->>>>>>> branch 'master' of https://github.com/claire921/dicks.git
+
      <action name="viewStoreCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="viewStoreCategory">
       		<result name="success">/ViewStoreCategory.jsp</result>
       </action> 
