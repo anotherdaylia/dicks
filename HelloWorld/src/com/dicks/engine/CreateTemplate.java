@@ -267,7 +267,7 @@ public class CreateTemplate {
 	             for (i=0; i < ruleFiles.length; i++){
 	            	 
 	            	 	System.out.println("printing file "+i);
-	            	 if (ruleFiles[i].getType().equals("n")){
+	            	 if (ruleFiles[i].getType().equals("9")){
 	            		 //System.out.println("read file");
 		            	 fis = new FileInputStream(new File(ruleFiles[i].getRuleUrl()));
 		            	 //System.out.println("Gettting new path-----"+ruleFile[i].getPath()+"i is  "+i);

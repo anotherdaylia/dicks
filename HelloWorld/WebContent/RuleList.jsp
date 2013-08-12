@@ -94,7 +94,7 @@
             		<tr style="height:30px;">
             				<td class=""><input type="checkbox" class="case"/></td>
 		                    <td class="">${allRule.ruleId}</td>
-		                    <td class="">${allRule.ruleName}</td>
+		                    <td class="">${allRule.ruleName.replace("%20"," ")}</td>
 		                    <td class="">${allRule.type}</td>
 		                    <td><a class="button toggle">Disable</a></td>
 		                    <td class=""><a class="button" href="#">View</a>  
