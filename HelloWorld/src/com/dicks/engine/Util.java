@@ -14,11 +14,13 @@ import com.dicks.dao.FeeDAO;
 import com.dicks.dao.InventoryDAO;
 import com.dicks.dao.OrderDetailDAO;
 import com.dicks.dao.ProductDAO;
+import com.dicks.dao.ShipmentDAO;
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.Inventory;
 import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
+import com.dicks.pojo.Shipment;
 import com.dicks.pojo.Store;
 
 public class Util {
@@ -30,8 +32,12 @@ public class Util {
 		return r.nextInt(7);
 	}
 	
-	public static double getShippingCosts() {
-		return new Random().nextDouble();
+	public static double getShippingCosts(Parcel parcel, Store store) throws Exception {
+		int supplyZip = Integer.parseInt(parcel.getPack().getOrder().getShippingZip());
+		int destinationZip = Integer.parseInt(store.getZip());
+		Shipment shipment = ShipmentDAO.getInstance().getShipmentByOriginSupply(supplyZip, destinationZip);
+		
+		return shipment.getNormalRate();
 	}
 	
 	public static void calculateAttribute(ParcelResult parcelR) {
@@ -125,7 +131,7 @@ public class Util {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
+		
 		return ((double) totalCosts) / 100.0;
 	}
 	

@@ -140,38 +140,38 @@ public class Split {
 		return packageTests;
 	}
 
-	public static PackageTestResult getTestResult(final Orders order, Parcel test, ArrayList<Store> stores) throws Exception {
-		ArrayList<Store> testStores = new ArrayList<Store>();
-		for (int j = 0; j < stores.size(); j++) {
-			Store s = stores.get(j);
-			if (InventoryDAO.getInstance().containAllroductsParcel(s, test)) {
-				testStores.add(s);
-			} else {
-				System.out.println("filter out: " + s.getStoreId());
-			}
-		}
-
-		if (testStores.size() == 0) return null;
-
-		// possible problem
-		PackageTestResult r = new PackageTestResult(test);
-		Collections.sort(testStores, new Comparator<Store>() {
-			@Override
-			public int compare(Store arg0, Store arg1) {
-				return (int) (Util.getShippingCosts() 
-								- Util.getShippingCosts()); 
-			}
-
-		});
-
-		System.out.println("stores: " + Arrays.toString(stores.toArray()));
-
-		Store source = testStores.get(0);
-		//System.out.println("source: " + source.getZoneID());
-		r.setSource(source);
-		r.setCost(Util.getShippingCosts());
-		return r;
-	}
+//	public static PackageTestResult getTestResult(final Orders order, Parcel test, ArrayList<Store> stores) throws Exception {
+//		ArrayList<Store> testStores = new ArrayList<Store>();
+//		for (int j = 0; j < stores.size(); j++) {
+//			Store s = stores.get(j);
+//			if (InventoryDAO.getInstance().containAllProductsParcel(s, test)) {
+//				testStores.add(s);
+//			} else {
+//				System.out.println("filter out: " + s.getStoreId());
+//			}
+//		}
+//
+//		if (testStores.size() == 0) return null;
+//
+//		// possible problem
+//		PackageTestResult r = new PackageTestResult(test);
+//		Collections.sort(testStores, new Comparator<Store>() {
+//			@Override
+//			public int compare(Store arg0, Store arg1) {
+//				return (int) (Util.getShippingCosts() 
+//								- Util.getShippingCosts()); 
+//			}
+//
+//		});
+//
+//		System.out.println("stores: " + Arrays.toString(stores.toArray()));
+//
+//		Store source = testStores.get(0);
+//		//System.out.println("source: " + source.getZoneID());
+//		r.setSource(source);
+//		r.setCost(Util.getShippingCosts());
+//		return r;
+//	}
 
 	public static Combination[][] setUpMatrix(Product[] a) {
 		Combination[][] matrix = new Combination[a.length][a.length];

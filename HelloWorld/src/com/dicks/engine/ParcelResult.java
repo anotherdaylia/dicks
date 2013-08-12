@@ -7,6 +7,7 @@ public class ParcelResult {
 	private Store source;
 	private double cost;
 	private double attribute;
+	private double shippingCost;
 	
 	public ParcelResult(Parcel parcel) {
 		this.parcel = parcel;
@@ -42,6 +43,14 @@ public class ParcelResult {
 
 	public void setAttribute(double attribute) {
 		this.attribute = attribute;
+	}
+
+	public double getShippingCost() {
+		return shippingCost;
+	}
+
+	public void setShippingCost(double shippingCost) {
+		this.shippingCost = shippingCost;
 	}
 	
 }

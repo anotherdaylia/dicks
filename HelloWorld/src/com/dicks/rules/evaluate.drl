@@ -183,22 +183,26 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 	
 	double cost = 0;
 	double attribute = 0;
+	double shippingCost = 0;
 	ArrayList parcelResults = r.getResults();
 	for (int i = 0; i < parcelResults.size(); i++) {
 		cost += ((ParcelResult) parcelResults.get(i)).getCost();
 		attribute += ((ParcelResult) parcelResults.get(i)).getAttribute();
+		shippingCost += ((ParcelResult) parcelResults.get(i)).getShippingCost();
 	}
 	r.setCost(cost);
 	r.setAttribute(attribute);
+	r.setShippingCost(shippingCost);
 	return r;
 }
 
 function ParcelResult getParcelResult(Parcel parcel, Store store) {
-	if (!InventoryDAO.getInstance().containAllroductsParcel(store, parcel)) return null;
+	if (!InventoryDAO.getInstance().containAllProductsParcel(store, parcel)) return null;
 
 	ParcelResult r = new ParcelResult(parcel);
 	r.setSource(store);
 	r.setCost(Util.calculateCosts(parcel, store));
+	r.setShippingCost(Util.getShippingCosts(parcel, store));
 	return r;
 }
 

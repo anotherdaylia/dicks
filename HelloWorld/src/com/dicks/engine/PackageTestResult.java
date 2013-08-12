@@ -11,6 +11,7 @@ public class PackageTestResult {
 	private double cost;
 	private double attribute;
 	private ArrayList<ParcelResult> results = new ArrayList<ParcelResult>();
+	private double shippingCost;
 	
 	public PackageTestResult(PackageTest test) {
 		this.test = test;
@@ -67,5 +68,13 @@ public class PackageTestResult {
 
 	public void setAttribute(double attribute) {
 		this.attribute = attribute;
+	}
+
+	public double getShippingCost() {
+		return shippingCost;
+	}
+
+	public void setShippingCost(double shippingCost) {
+		this.shippingCost = shippingCost;
 	}
 }
