@@ -8,8 +8,7 @@ import com.dicks.pojo.Fee;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CostCalculationAction extends ActionSupport {
-	FeeDAO feeDAO = FeeDAO.getInstance();
-	
+	FeeDAO feeDAO = FeeDAO.getInstance();	
 	private String[] storeFeeName;
 	private String[] storeFeeId;
 	private String[] storeFeeFlag;
@@ -17,12 +16,12 @@ public class CostCalculationAction extends ActionSupport {
 	private String[] storeFeeAttribute;
 	private String[] storeFeeValue;
 
-	private String[] gsiFeeName;
-	private String[] gsiFeeId;
-	private String[] gsiFeeFlag;
-	private String[] gsiFeePercentage;
-	private String[] gsiFeeAttribute;
-	private String[] gsiFeeValue;	
+	private String[] warehouseFeeName;
+	private String[] warehouseFeeId;
+	private String[] warehouseFeeFlag;
+	private String[] warehouseFeePercentage;
+	private String[] warehouseFeeAttribute;
+	private String[] warehouseFeeValue;	
 	
 	private String[] vendorFeeName;
 	private String[] vendorFeeId;
@@ -34,7 +33,7 @@ public class CostCalculationAction extends ActionSupport {
 	
 	public String costCalculation() throws Exception{
 		updateStoreFees();
-		updateGsiFees();
+		updateWarehouseFees();
 		updateVendorFees();
 		return SUCCESS;
 	}
@@ -86,38 +85,38 @@ public class CostCalculationAction extends ActionSupport {
 		}
 	}
 	
-	public void updateGsiFees() throws Exception {
-		if (gsiFeeId == null || gsiFeeId.length == 0) {
-			deleteAll("gsi");
+	public void updateWarehouseFees() throws Exception {
+		if (warehouseFeeId == null || warehouseFeeId.length == 0) {
+			deleteAll("warehouse");
 			return;
 		}
 		
-		ArrayList<Fee> fees = feeDAO.getByType("gsi");		
-		for(int i = 0; i < gsiFeeId.length; i++) {
-			if (gsiFeeId[i].equals("new")) {
+		ArrayList<Fee> fees = feeDAO.getByType("warehouse");		
+		for(int i = 0; i < warehouseFeeId.length; i++) {
+			if (warehouseFeeId[i].equals("new")) {
 				Fee f = new Fee();	
-				f.setCostName(gsiFeeName[i]);
-				if (gsiFeeFlag[i].equals("p")) {
+				f.setCostName(warehouseFeeName[i]);
+				if (warehouseFeeFlag[i].equals("p")) {
 					f.setFlag("p");
-					f.setAttribute(gsiFeeAttribute[i]);
-					f.setPercentage((int) Math.round(Double.parseDouble(gsiFeePercentage[i]) * 100));
-				} else if (gsiFeeFlag[i].equals("v")) {
+					f.setAttribute(warehouseFeeAttribute[i]);
+					f.setPercentage((int) Math.round(Double.parseDouble(warehouseFeePercentage[i]) * 100));
+				} else if (warehouseFeeFlag[i].equals("v")) {
 					f.setFlag("v");
-					f.setValue((int) Math.round(Double.parseDouble(gsiFeeValue[i]) * 100));
+					f.setValue((int) Math.round(Double.parseDouble(warehouseFeeValue[i]) * 100));
 				}	
-				f.setShippingType("gsi");
+				f.setShippingType("warehouse");
 				feeDAO.createFee(f);
 			} else {
-				Fee f = findById(fees, Integer.parseInt(gsiFeeId[i]));
-				f.setCostName(gsiFeeName[i]);
+				Fee f = findById(fees, Integer.parseInt(warehouseFeeId[i]));
+				f.setCostName(warehouseFeeName[i]);
 
-				if (gsiFeeFlag[i].equals("p")) {
+				if (warehouseFeeFlag[i].equals("p")) {
 					f.setFlag("p");
-					f.setAttribute(gsiFeeAttribute[i]);
-					f.setPercentage((int) Math.round(Double.parseDouble(gsiFeePercentage[i]) * 100));
-				} else if (gsiFeeFlag[i].equals("v")) {
+					f.setAttribute(warehouseFeeAttribute[i]);
+					f.setPercentage((int) Math.round(Double.parseDouble(warehouseFeePercentage[i]) * 100));
+				} else if (warehouseFeeFlag[i].equals("v")) {
 					f.setFlag("v");
-					f.setValue((int) Math.round(Double.parseDouble(gsiFeeValue[i]) * 100));
+					f.setValue((int) Math.round(Double.parseDouble(warehouseFeeValue[i]) * 100));
 				}			
 				feeDAO.updateFee(f);
 			}			
@@ -126,8 +125,8 @@ public class CostCalculationAction extends ActionSupport {
 		for (int i = 0; i < fees.size(); i++) {
 			Fee f = fees.get(i);
 			boolean maintain = false;
-			for (int j = 0; j < gsiFeeId.length && !maintain; j++) {
-				if (Integer.parseInt(gsiFeeId[j]) == f.getCostId()) maintain = true;
+			for (int j = 0; j < warehouseFeeId.length && !maintain; j++) {
+				if (Integer.parseInt(warehouseFeeId[j]) == f.getCostId()) maintain = true;
 			}
 			if (maintain == false) feeDAO.deleteFee(f);
 		}
@@ -253,52 +252,52 @@ public class CostCalculationAction extends ActionSupport {
 	public void setStoreFeeValue(String[] storeFeeValue) {
 		this.storeFeeValue = storeFeeValue;
 	}
-	public String[] getGsiFeeName() {
-		return gsiFeeName;
+	public String[] getWarehouseFeeName() {
+		return warehouseFeeName;
 	}
 
-	public void setGsiFeeName(String[] gsiFeeName) {
-		this.gsiFeeName = gsiFeeName;
+	public void setWarehouseFeeName(String[] warehouseFeeName) {
+		this.warehouseFeeName = warehouseFeeName;
 	}
 
-	public String[] getGsiFeeId() {
-		return gsiFeeId;
+	public String[] getwarehouseFeeId() {
+		return warehouseFeeId;
 	}
 
-	public void setGsiFeeId(String[] gsiFeeId) {
-		this.gsiFeeId = gsiFeeId;
+	public void setwarehouseFeeId(String[] warehouseFeeId) {
+		this.warehouseFeeId = warehouseFeeId;
 	}
 
-	public String[] getGsiFeeFlag() {
-		return gsiFeeFlag;
+	public String[] getWarehouseFeeFlag() {
+		return warehouseFeeFlag;
 	}
 
-	public void setGsiFeeFlag(String[] gsiFeeFlag) {
-		this.gsiFeeFlag = gsiFeeFlag;
+	public void setWarehouseFeeFlag(String[] warehouseFeeFlag) {
+		this.warehouseFeeFlag = warehouseFeeFlag;
 	}
 
-	public String[] getGsiFeePercentage() {
-		return gsiFeePercentage;
+	public String[] getWarehouseFeePercentage() {
+		return warehouseFeePercentage;
 	}
 
-	public void setGsiFeePercentage(String[] gsiFeePercentage) {
-		this.gsiFeePercentage = gsiFeePercentage;
+	public void setWarehouseFeePercentage(String[] warehouseFeePercentage) {
+		this.warehouseFeePercentage = warehouseFeePercentage;
 	}
 
-	public String[] getGsiFeeAttribute() {
-		return gsiFeeAttribute;
+	public String[] getWarehouseFeeAttribute() {
+		return warehouseFeeAttribute;
 	}
 
-	public void setGsiFeeAttribute(String[] gsiFeeAttribute) {
-		this.gsiFeeAttribute = gsiFeeAttribute;
+	public void setWarehouseFeeAttribute(String[] warehouseFeeAttribute) {
+		this.warehouseFeeAttribute = warehouseFeeAttribute;
 	}
 
-	public String[] getGsiFeeValue() {
-		return gsiFeeValue;
+	public String[] getWarehouseFeeValue() {
+		return warehouseFeeValue;
 	}
 
-	public void setGsiFeeValue(String[] gsiFeeValue) {
-		this.gsiFeeValue = gsiFeeValue;
+	public void setWarehouseFeeValue(String[] warehouseFeeValue) {
+		this.warehouseFeeValue = warehouseFeeValue;
 	}
 
 	public String[] getVendorFeeName() {
