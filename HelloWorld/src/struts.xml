@@ -34,10 +34,13 @@
       </action>
       <action name="gotonewbizrulelist" class="com.dicks.action.Redirect" method="gotonewbizrulelist">
           <result name="gotonewbizrulelist">/newRules.jsp</result>
-      </action>
-      <action name="gotoruleprioritylist" class="com.dicks.action.Redirect" method="gotoruleprioritylist">
-          <result name="success">/rulePriority.jsp</result>
       </action>-->
+      <action name="gotoruleprioritylist" class="com.dicks.action.RulePriority" method="gotoruleprioritylist">
+          <result name="success" type="dispatcher">/rulePriority.jsp</result>
+      </action>
+      <action name="reRank" class="com.dicks.action.RulePriority" method="reRank">
+          <result name="success" type="dispatcher">/rulePriority.jsp</result>
+      </action>
       <action name="gotonewbizrulelist" class="com.dicks.action.CreateNewBizRule" method="gotonewbizrulelist">
           <result name="success" type="dispatcher">/newRules.jsp</result>
       </action>
@@ -52,6 +55,9 @@
       </action>
        <action name="newrule" class="com.dicks.action.CreateNewBizRule" method="newrule">
           <result name="newrule" type="dispatcher">/newRules.jsp</result>
+      </action>
+      <action name="specialRoutes" class="com.dicks.action.CreateNewBizRule" method="specialRoutes">
+          <result name="specialRoutes" type="dispatcher">/newRules.jsp</result>
       </action>
       <action name="newrulePriority" class="com.dicks.action.CreateNewBizRule" method="ranking">
           <result name="newrulePriority" type="dispatcher">/RuleList.jsp</result>

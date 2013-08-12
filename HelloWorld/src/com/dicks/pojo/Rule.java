@@ -156,12 +156,13 @@ public class Rule implements java.io.Serializable {
 			this.action = translate(actionBuffer, actions);
 			this.route =translate(routeBuffer, routes);
 		}
-		else if (type.equalsIgnoreCase("Store Filter")){
+		else if (type.equalsIgnoreCase("3")){
 			this.object = translate(objectBuffer, objects);
 			this.attribute = translate(attributeBuffer, attributes);
 			this.operator = translate(operatorBuffer, operators);
 			this.value = translate(valueBuffer, values);
 			this.action = translate(actionBuffer, actions);
+			this.route =translate(routeBuffer, routes);
 		}
 		else{
 			System.out.println("Error, Invalid Rule Type Added");
@@ -321,7 +322,11 @@ public class Rule implements java.io.Serializable {
 
 	public String[] translateBack(String s1){
 		String[] s2 = s1.split(",");
-		System.out.println("translated back"+s2);
+		System.out.println("translated back");
+		for (int i = 0;i<s2.length;i++){
+			System.out.print(s2[i]);
+		}
+		System.out.println();
 		return s2;
 	}	
 

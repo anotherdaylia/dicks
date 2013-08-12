@@ -58,20 +58,27 @@
  
  function SubmitForm()
  {
-	 var rulename = '${rulename}';
+	 var nameList ="";
 	 var table = document.getElementById("sort");
-	 var row = table.rows[0];
+	 var row = table.rows[1];
+	 var col = row.cells[1];
+	 nameList += col.innerText;
+	 
 	    //iterate through rows
 	    //rows would be accessed using the "row" variable assigned in the for loop
-	    for (var j = 0, col; col = row.cells[j]; j++) {
-	      if (col.innerText == rulename){
-	    	  console.log("caonimabi");
-	      }
-	    	//iterate through columns
-	      
-	      //columns would be accessed using the "col" variable assigned in the for loop
-	    }  
+	 for (var i = 2, row; row = table.rows[i]; i++){
+		    //iterate through rows
+		    //rows would be accessed using the "row" variable assigned in the for loop
+		    nameList +=",";
+		    col = row.cells[1];
+			nameList += col.innerText;
+	}  
 	 
+	
+	    
+	    
+	console.log("rule list"+nameList);
+	document.getElementById('ruleString').value= nameList;
    document.forms['myForm'].submit() ;
  }
  window.onload =pageOnLoad;
@@ -101,12 +108,13 @@
         </div>
         
         <div><br/>
-            <form name = "myForm" action= "placeorder">
+            <form name = "myForm" action= "reRank">
 
             <h4 class="grey">Hint: Please drag and drop the rule to sort the rule priority</h4>
             
             <div id ="haha">   
-            <table id="sort" class="grid" border="0" style="border-collapse:collapse;width:100%;font-size:12px;">
+            <c:set var="ruleNum" value ="1" />
+            <table class="grid" border="0" style="border-collapse:collapse;width:100%;font-size:12px;">
 			<thead>
                 <tr style="height:30px;background-color:#f1f1f1;border-bottom:none;">
                     <th style="text-align:center;color:#666;">Rule#</th>
@@ -115,26 +123,46 @@
                     <th style="text-align:left;color:#666;">Stage</th>
                 </tr>
                     </thead>
-   			<c:set var="ruleNum" value ="1" />
-            <c:forEach var="allRule" items="${allRule}" >
+   			
+            <c:forEach var="preRule" items="${preRule}" >
 	            <tr style="height:30px;">
                     <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;">${ruleNum}</td>
-                    <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;">${allRule.ruleName}</td>
-                    <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;">${allRule.ruleDescr}</td>
+                    <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;">${preRule.ruleName}</td>
+                    <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;">${preRule.ruleDescr}</td>
                     <td></td>
                 </tr>
                 <c:set var="ruleNum" value="${ruleNum+1}" />   
 				</c:forEach>
-				<tr style="height:30px;background-color:8CEEF5">
-                    <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;background-color:#8CEEF5">Your New Rule</td>
-                    <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">${rulename}</td>
-                    <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">This is your new rule</td>
+				
+				
+				
+            </table>
+			<table  id="sort" class="grid" border="0" style="border-collapse:collapse;width:100%;font-size:12px;">
+			 <c:forEach var="midRule" items="${midRule}" >
+	            <tr style="height:30px;">
+                    <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;background-color:#FFDBE7">${ruleNum}</td>
+                    <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#FFDBE7">${midRule.ruleName}</td>
+                    <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#FFDBE7">${midRule.ruleDescr}</td>
                     <td></td>
                 </tr>
-            </table>
+                <c:set var="ruleNum" value="${ruleNum+1}" />   
+				</c:forEach>
+			</table>
+            <table  class="grid" border="0" style="border-collapse:collapse;width:100%;font-size:12px;">
+			 <c:forEach var="lastRule" items="${lastRule}" >
+	            <tr style="height:30px;">
+                    <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;">${ruleNum}</td>
+                    <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;">${lastRule.ruleName}</td>
+                    <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;">${lastRule.ruleDescr}</td>
+                    <td></td>
+                </tr>
+                <c:set var="ruleNum" value="${ruleNum+1}" />   
+				</c:forEach>
+			</table>
             	<br/>
+            	<input type="hidden" id="ruleString" name="ruleString"> 
             	<a class="button" href="#">Cancel</a>
-                <input type="submit" value="Submit" class="button" id="add-to-cart">
+                <a class="button" onclick='SubmitForm()'>Submit</a>
             </div>
             
             <div id="priorityTable">
