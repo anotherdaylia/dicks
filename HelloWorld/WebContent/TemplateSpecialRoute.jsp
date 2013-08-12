@@ -28,18 +28,10 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
-        </li>
-        <li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
-            <ul class="nav-two" id="navtwo">
-                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-		</li>   
+        </li>   
     </ul>
     </div>
  <script>
@@ -197,9 +189,6 @@ function goBack(){
 }
 </script>
 
-
-
-
     <!-- menu bar ends -->
 
     <!-- content starts -->
@@ -240,7 +229,7 @@ function goBack(){
                 </tr>
                 <tr>
                     <td>Stage:</td>
-                    <td>Stage1 - preprocessing</td>
+                    <td>Stage1 - Pre-processing</td>
                 </tr>
                 <tr>
                     <td>Rule Template&#58;</td>
@@ -255,7 +244,7 @@ function goBack(){
                         <div id ="operatorDiv" style="padding-bottom:10px;">
                         <select style="width:120px;" name="operator" >
                                 <option value="&lt;">More Than</option> 
-                                <option value="=">Equal</option>
+                                <option value="=">Equal to</option>
                                 <option value="&gt;">Less than</option>
                             </select>&nbsp;&nbsp;
                             <input type="text" name="productcount" style="width:50px;"> 
@@ -276,10 +265,9 @@ function goBack(){
                     </div>
                     </td>
                 </tr>
-                <tr id = "buttons">
-                    <td style = "text-align:right"><a class="button"  onclick='show()'>Next</a></td>
-                    <td>
-                    <a class="button" href="#">Cancel</a></td>
+                <tr>
+                    <td><a class="button" href="#">Cancel</a></td>
+                    <td><a class="button"  onclick='show()'>Continue</a>
                    
                 </tr>
             </table>
@@ -311,12 +299,11 @@ function goBack(){
 
                             <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">This is your new rule</td>
                 </tr>
-                
             </table>
             		
             		<a class="button" onclick="goBack()">Back</a>
                     <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a>
-                    <a class="button" onclick='SubmitForm()'>Create</a>
+                    <input type="submit" value="Create" class="button" onclick='SubmitForm()'>Create</a>
                 
             </div>   
             </form>
@@ -331,7 +318,7 @@ function goBack(){
       
     
 
-      <div class="footer"><span>©2013 eBusiness Team</span></div>
+      <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
     <!-- footer ends -->
     
 </body>
