@@ -7,10 +7,10 @@
  <jsp:include page="template_top.jsp" />
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
-            memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Category List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Category</a><span class="normal">&nbsp;</span></li>  
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
         <li class=""><a class="recordable open" href="#" id="toggletwo"
@@ -64,43 +64,8 @@
   } 
 
   function pageOnLoad() {
-	  console.log("logged");
 	  close();
   }
-  
-  /*function deleteRow(tableID) {
-    try {
-        var table = document.getElementById(tableID);
-        var rowCount = table.rows.length;
- 
-        for(var i=0; i<rowCount; i++) {
-            var row = table.rows[i];
-            var chkbox = row.cells[0].childNodes[0];
-            if(null != chkbox && true == chkbox.checked) {
-                table.deleteRow(i);
-                rowCount--;
-                i--;
-            }
-        }
-    }catch(e) {
-        alert(e);
-    }
-  }*/
-
-//style="margin-left:50px;float:left;width:800px;"
- function deleteRow(row){
-    var i = row.parentNode.parentNode.rowIndex;
-
-    var x;
-    var r = confirm("Do you really want to delete this rule?");
-    if(r == true){
-        document.getElementById('sort').deleteRow(i);
-    }
-    else{
-        ;
-    }
- }
- 
  
  function SubmitForm()
  {
@@ -112,7 +77,6 @@
 	    //iterate through rows
 	    //rows would be accessed using the "row" variable assigned in the for loop
 	    for (var j = 0, col; col = row.cells[j]; j++) {
-	    	console.log("caonimabi"+j);
 	      if (col.innerText == rulename){
 
 	    	  document.getElementById('priorityId').value= i;
@@ -311,13 +275,13 @@ function goBack(){
 
                             <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">This is your new rule</td>
                 </tr>
-                <tr>
-                    <td><input type="button" value="Back" onclick="goBack()" class="button">
-                    <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>
-                    <td style = "text-align:right">
-                	<a class="button" onclick='SubmitForm()'>Create</a></td>
-                </tr>
+                
             </table>
+            		
+            		<a class="button" onclick="goBack()">Back</a>
+                    <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a>
+                    <a class="button" onclick='SubmitForm()'>Create</a>
+                
             </div>
             </form>
         </div>

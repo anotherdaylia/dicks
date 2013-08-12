@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
-    <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
@@ -58,69 +58,85 @@
             <h1 class="l">Edit Business Rule</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
-
+        <div>
             <li style="list-style:none;"><span><a href="#">Home</a><span> > </span></span>
                 <span><a href="#">Manage Business Rule</a><span> > </span></span>
                 <span><a href="#">Business Rule List</a><span> > </span></span>
                 <span>Edit Rule</span>
             </li>
-            
+        </div>
             <!-- Success Message and Error Message -->
             <div class="success_area" style="display:none">successMessage</div>
             <div class="warning" style="display:none">errorMessage</div>
             <!-- Success Message and Error Message -->
         </div>
+        <div>
             <form action="#">
             <table class="text">
                 <tr>
-                    <td>Rule Name:</td>
-                    <td>Result Ranking</td>
-                </tr>   
-                <tr>
-                    <td>Rule Description:</td>
-                    <td>Set ranking methods of the result.</td>
+                    <td>Rule Name&#58;</td>
+                    <td>Set Store Threshold</td>
                 </tr>
                 <tr>
-                    <td>Group:</td>
-                    <td>All</td>
+                    <td>Rule Description&#58;</td>
+                    <td>Set store threshold.</td>
                 </tr>
                 <tr>
-                    <td>Stage:</td>
-                    <td>Stage3: Evaluation</td>
+                    <td>Group&#58;</td>
+                    <td>Store1&#44;&nbsp;Hub Stores</td>
                 </tr>
                 <tr>
-                    <td>Rule Template:</td>
-                    <td>Candidate Evaluate</td>
+                    <td>Stage&#58;</td>
+                    <td>Stage1 - Prefiltering</td>
+                </tr>
+                <tr>
+                    <td>Rule Template&#58;</td>
+                    <td>Store Threshold</td>
                 </tr>
                 <tr class="drl-height">
-                    <td>Rule Editor:</td>
-                    <td>
-                    <div class="drl"> 
-                        
-                        <div>Rank the routing candidates according to&#58;<br/><br/></div> 
-                        <div><input type="radio" name="cost" value="cost">Fulfillment cost<br>
-                             <input type="radio" name="margin" value="margin">Total margin of the order 
-                         </div>
-                         <br/>
-                          
+                    <td>Rule Editor&#58;</td>
+                    <td style="width:500px;">
+                    <div class="drl">
+                         
+                         <div> If the specific fulfillment source shipped 
+                            <select style="width:90px;">
+                                <option value="#">more than</option>
+                                <option value="#">less than</option>
+                            </select> 
+                            <input type="text" name="storethreshold" style="width:50px;"> orders on the day&#44;
+                            <br/><br/>
+                        </div>
+                        <div> Perform the following action&#58;</div>
+                        <br/>
+                        <div>
+                            <select style="width:300px;">
+                                <option value="#">Lower the priority of this fulfillment source</option>
+                                <option value="#">Increase the priority of this fulfillment source</option>
+                                <option value="#">Filter out the fulfillment source</option>
+                            </select> 
+                            <br/><br/>
+                        </div>
+
                     </div>
-                    </td>
                 </tr>
                 <tr>
-                    <td><a class="button" href="rulelist.html">Cancel</a></td>  
+                    <td><a class="button" href="rulelist.html">Cancel</a></td>
                     <td><a class="button" href="rulelist.html">Update</a></td>
                 </tr>
-            </table>   
+            </table>
             </form>
         </div>
-    
+            
+     
+    </div>  
+
     <!-- content ends -->
 
                 
     <!-- footer starts -->
-        </div>
+    
             <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
-        </div>
+        
     <!-- footer ends -->
 
     </div>

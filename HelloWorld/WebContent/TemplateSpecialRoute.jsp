@@ -10,10 +10,10 @@
 <jsp:include page="template_top.jsp" />
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
-            memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Category List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Category</a><span class="normal">&nbsp;</span></li>  
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
         <li class=""><a class="recordable open" href="#" id="toggletwo"
@@ -43,6 +43,9 @@
     </ul>
     </div>
  <script>
+ 
+
+ 
     $(function() {
     var availableTags = [
       "All",
@@ -117,7 +120,7 @@ function addSpecialRoute(myDiv) {
 
   newdiv.setAttribute('id',divIdName);
 
-  newdiv.innerHTML = '<div style=\'padding-top:10px;padding-bottom:10px;\'>If the product quantity is more than <input type=\'text\' name=\'productcount\' style=\'width:50px;\'> </div><div style=\'padding-bottom:10px;\'><div style=\'padding-bottom:10px;float:left;\'>Ship the product from&#58;&nbsp;&nbsp;</div><div style=\'padding-bottom:10px;float:left;\'class=\'ui-widget\'><textarea id=\'tags\' name = \'sources\' style=\'overflow:hidden;max-width:300px;width:300px;height:15px;\' onkeyup=\'textAreaAdjust(this)\' placeholder=\'Type in fulfillment sources&hellip;\' ></textarea></div> <a href=\'javascript:;\' onclick=\'removeElement('+divIdName+')\'>Remove</a></div><br/>';
+  newdiv.innerHTML = '<div style=\'padding-top:10px;padding-bottom:10px;\'>If the product quantity is&nbsp&nbsp&nbsp&nbsp </div><div style=\'padding-bottom:10px;\'><select style=\'width:120px;\' name=\'operator\' ><option value=\'&lt;\'>More Than</option> <option value=\'=\'>Equal</option><option value=\'&gt;\'>Less than</option></select>&nbsp;&nbsp; <input type=\'text\' name=\'productcount\' style=\'width:50px;\'> </div><div style=\'padding-bottom:10px;\'><div style=\'padding-bottom:10px;float:left;\'>Ship the product from&#58;&nbsp;&nbsp;</div><div style=\'padding-bottom:10px;float:left;\'class=\'ui-widget\'><textarea id=\'tags\' name = \'sources\' style=\'overflow:hidden;max-width:300px;width:300px;height:15px;\' onkeyup=\'textAreaAdjust(this)\' placeholder=\'Type in fulfillment sources&hellip;\' ></textarea></div> <a href=\'javascript:;\' onclick=\'removeElement('+divIdName+')\'>Remove</a></div><br/>';
 
                         
 
@@ -136,11 +139,67 @@ function removeElement(divNum) {
 
 };
 </script>
-<script>
+  <script>
+  
+  $(function() {
+    $("#sort tbody").sortable().disableSelection();
+  });
+
+  //var rule = allRule;
+    function show() {
+        
+	    document.getElementById('secondStep').style.display='block';
+	    document.getElementById('firstStep').style.display='none';
+	    document.getElementById('buttons').style.display='none';
+}
+  
+  function close() {
+	  document.getElementById('secondStep').style.display='none';
+	  document.getElementById('firstStep').style.display='block';
+      document.getElementById('buttons').style.display='block';    
+      
+
+
+      
+  } 
+
+  function pageOnLoad() {
+	  close();
+  }
+ 
+ function SubmitForm()
+ {
+	 console.log("start");
+	 var rulename = '${rulename.replace("%20"," ")}';
+	 console.log("searching"+rulename);
+	 var table = document.getElementById("sort");
+	 for (var i = 0, row; row = table.rows[i]; i++){
+	    //iterate through rows
+	    //rows would be accessed using the "row" variable assigned in the for loop
+	    for (var j = 0, col; col = row.cells[j]; j++) {
+	      if (col.innerText == rulename){
+
+	    	  document.getElementById('priorityId').value= i;
+
+	      }
+	    	//iterate through columns
+	     //columns would be accessed using the "col" variable assigned in the for loop
+	    }  
+	 }
+   document.forms['myForm'].submit() ;
+ }
+ window.onload =pageOnLoad;
+ 
+ </script>
+ <script>
 function goBack(){
 	window.history.go(-1);
 }
 </script>
+
+
+
+
     <!-- menu bar ends -->
 
     <!-- content starts -->
@@ -165,7 +224,7 @@ function goBack(){
             <!-- Success Message and Error Message -->
           </div>
 
-            <form action="specialroute">
+            <form name ="myForm" action="specialRoutes">
             <table id="rule" class="text">
                 <tr>
                     <td>Rule Name&#58;</td>
@@ -190,9 +249,17 @@ function goBack(){
                 <tr class="drl-height">
                     <td>Rule Editor&#58;</td>
                     <td style="width:500px;">
-                    <div class="drl"> 
+                    <div id ="firstStep" class="drl"> 
                       <div id="specialroute1">
-                        <div style="padding-bottom:10px;">If the product quantity is more than <input type="text" name="productcount" style="width:50px;"> </div>
+                        <div style="padding-bottom:10px;">If the product quantity is &nbsp;&nbsp;&nbsp;</div>
+                        <div id ="operatorDiv" style="padding-bottom:10px;">
+                        <select style="width:120px;" name="operator" >
+                                <option value="&lt;">More Than</option> 
+                                <option value="=">Equal</option>
+                                <option value="&gt;">Less than</option>
+                            </select>&nbsp;&nbsp;
+                            <input type="text" name="productcount" style="width:50px;"> 
+                           </div>
                         <div style="padding-bottom:10px;float:left;">Ship the product from&#58;&nbsp;&nbsp;</div>
                         <div style="padding-bottom:10px;float:left;"class="ui-widget"><textarea id="tags" name = "sources" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in fulfillment sources&hellip;" ></textarea></div>
                       </div>
@@ -202,17 +269,55 @@ function goBack(){
                         <div id="myDiv"></div>
    
                      <input type="hidden" name="rulename"  value=<%=request.getAttribute("rulename")%> />
-                <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
-                <input type="hidden" name="categoryname"  value=<%=request.getAttribute("categoryname")%> />
-           		<input type="hidden" id="priorityId" name="priority">   
+	                <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
+	                <input type="hidden" name="categoryname"  value=<%=request.getAttribute("categoryname")%> />
+	           		<input type="hidden" id="priorityId" name="priority">   
                     </div>
                     </td>
                 </tr>
-                <tr>
-                    <td><input type="button" value="Back" onclick="goBack()" class="button"> <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>  
-                    <td><input type="submit" value="Create" class="button"></td>
+                <tr id = "buttons">
+                    <td style = "text-align:right"><a class="button"  onclick='show()'>Next</a></td>
+                    <td>
+                    <a class="button" href="#">Cancel</a></td>
+                   
                 </tr>
-            </table>   
+            </table>
+            
+            <div id = "secondStep">
+            <table id="sort" class="grid" border="0" style="border-collapse:collapse;width:100%;font-size:12px;">
+			<thead>
+                        <tr style="height:30px;background-color:#f1f1f1;border-bottom:none;">
+                            <th style="text-align:center;color:#666;">Rule Number</th>
+                            <th style="text-align:left;color:#666;">Rule Name</th>
+                            <th style="text-align:left;color:#666;">Rule Description</th>
+                        </tr>
+                    </thead>
+   			<c:set var="ruleNum" value ="1" />
+            <c:forEach var="allRule" items="${allRule}" >
+            
+            		<tr style="height:30px;">
+            				
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;">${ruleNum}</td>
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;">${allRule.ruleName}</td>
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;">${allRule.ruleDescr}</td>
+                        </tr>
+                 <c:set var="ruleNum" value="${ruleNum+1}" />   
+				</c:forEach>
+				<tr style="height:30px;background-color:8CEEF5">
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;background-color:#8CEEF5">Your New Rule</td>
+
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">${rulename.replace("%20"," ")}</td>
+
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">This is your new rule</td>
+                </tr>
+                
+            </table>
+            		
+            		<a class="button" onclick="goBack()">Back</a>
+                    <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a>
+                    <a class="button" onclick='SubmitForm()'>Create</a>
+                
+            </div>   
             </form>
           </div>
         </div>

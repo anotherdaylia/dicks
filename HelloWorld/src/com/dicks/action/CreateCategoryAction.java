@@ -19,12 +19,16 @@ public class CreateCategoryAction extends ActionSupport {
 	private String productType;
 	private String brand;
 	private String productSKU;
-	private String flag;
+	private String act;
 
 	private static final long serialVersionUID = 1L;
 	
-	public String createProductCategory() throws Exception{
-		if("store".equals(flag)){
+	public String goToNewCategory(){
+		return SUCCESS;
+	}
+	
+	public String createCategory() throws Exception{
+		if("store".equals(act)){
 			String[] ids = storeId.split(",");
 //			System.out.println("!!!"+ids);
 			int cateId = StoreCateDAO.getInstance().getNewId();
@@ -35,7 +39,7 @@ public class CreateCategoryAction extends ActionSupport {
 				StoreCate storeCate = new StoreCate(storeCateId, null, categoryName, categoryDes);
 				StoreCateDAO.getInstance().createCategory(storeCate);
 			}
-		}else if("product".equals(flag)){
+		}else if("product".equals(act)){
 			String[] skus = productSKU.split(",");
 			int cateId = ProdCateDAO.getInstance().getNewId();
 			int[] ids = ProductDAO.getInstance().getProductIdsBySKUList(skus);
@@ -129,11 +133,11 @@ public class CreateCategoryAction extends ActionSupport {
 		return serialVersionUID;
 	}
 
-	public String getFlag() {
-		return flag;
+	public String getAct() {
+		return act;
 	}
 
-	public void setFlag(String flag) {
-		this.flag = flag;
+	public void setAct(String flag) {
+		this.act = flag;
 	}
 }

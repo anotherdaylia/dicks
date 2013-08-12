@@ -21,7 +21,7 @@ public class CategoryListAction extends ActionSupport {
 		if("product".equals(act)){
 			try {
 				ProdCate[] all = ProdCateDAO.getInstance().getProdCategoryList();
-				this.setProdCategoryList(filterProdCate(all));	
+				this.setProdCategoryList(all);	
 			} catch (Exception e) {
 				return ERROR;
 			}
@@ -29,7 +29,7 @@ public class CategoryListAction extends ActionSupport {
 		}else if("store".equals(act)){ 
 			try {
 				StoreCate[] all = StoreCateDAO.getInstance().getStoreCategoryList();
-				this.setStoreCategoryList(filterStoreCate(all));
+				this.setStoreCategoryList(all);
 			} catch (Exception e) {
 				return ERROR;
 			}
@@ -64,40 +64,40 @@ public class CategoryListAction extends ActionSupport {
 		this.storeCategoryList = storeCategoryList;
 	}
 	
-	private ProdCate[] filterProdCate(ProdCate[] prodCates){
-		if(prodCates==null) return null;
-		List<ProdCate> productCates = new ArrayList<ProdCate>();
-		int id = 0;
-		for(int i=0; i<prodCates.length ; i++){
-			if(i==0){
-				id=	prodCates[i].getId().getCateProdId();
-				productCates.add(prodCates[i]);
-			}
-			if(prodCates[i].getId().getCateProdId()!=id){
-				productCates.add(prodCates[i]);
-				id =prodCates[i].getId().getCateProdId();
-			}
-		}
-		return (ProdCate[])productCates.toArray(new ProdCate[productCates.size()]); 
-	} 
-	
-	private StoreCate[] filterStoreCate(StoreCate[] storeCates){
-		
-		if(storeCates==null) return null;
-		List<StoreCate> storeCates1 = new ArrayList<StoreCate>();
-		int id = 0;
-		for(int i=0; i<storeCates.length ; i++){
-			if(i==0){
-				id=	storeCates[i].getId().getCateStoreId();
-				storeCates1.add(storeCates[i]);
-			}
-			if(storeCates[i].getId().getCateStoreId()!=id){
-				storeCates1.add(storeCates[i]);
-				id =storeCates[i].getId().getCateStoreId();
-			}
-		}
-		 StoreCate[] result = (StoreCate[])storeCates1.toArray(new StoreCate[storeCates1.size()]); 
-		 return result;
-	} 
+//	private ProdCate[] filterProdCate(ProdCate[] prodCates){
+//		if(prodCates==null) return null;
+//		List<ProdCate> productCates = new ArrayList<ProdCate>();
+//		int id = 0;
+//		for(int i=0; i<prodCates.length ; i++){
+//			if(i==0){
+//				id=	prodCates[i].getId().getCateProdId();
+//				productCates.add(prodCates[i]);
+//			}
+//			if(prodCates[i].getId().getCateProdId()!=id){
+//				productCates.add(prodCates[i]);
+//				id =prodCates[i].getId().getCateProdId();
+//			}
+//		}
+//		return (ProdCate[])productCates.toArray(new ProdCate[productCates.size()]); 
+//	} 
+//	
+//	private StoreCate[] filterStoreCate(StoreCate[] storeCates){
+//		
+//		if(storeCates==null) return null;
+//		List<StoreCate> storeCates1 = new ArrayList<StoreCate>();
+//		int id = 0;
+//		for(int i=0; i<storeCates.length ; i++){
+//			if(i==0){
+//				id=	storeCates[i].getId().getCateStoreId();
+//				storeCates1.add(storeCates[i]);
+//			}
+//			if(storeCates[i].getId().getCateStoreId()!=id){
+//				storeCates1.add(storeCates[i]);
+//				id =storeCates[i].getId().getCateStoreId();
+//			}
+//		}
+//		 StoreCate[] result = (StoreCate[])storeCates1.toArray(new StoreCate[storeCates1.size()]); 
+//		 return result;
+//	} 
 } 
 

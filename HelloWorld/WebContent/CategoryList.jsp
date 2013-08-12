@@ -1,5 +1,4 @@
-
-    <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
@@ -27,7 +26,6 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
@@ -90,9 +88,11 @@
 						<hr/>
 					</div>
 
-					<li style="list-style: none;"><span><a href="#">Home</a><span>
-								&gt; </span></span> <span><a href="">Manage Group</a><span><span>
-									&gt; </span> <span>Group List<span></li>
+					<li style="list-style: none;">
+						<span><a href="#">Home</a><span> &gt; </span></span>
+						<span><a href="">Manage Group</a></span><span> &gt; </span>
+						<span>Group List</span>
+					</li>
 
 					<!-- Success Message and Error Message -->
 					<div class="success_area" style="display: none">successMessage</div>
@@ -101,23 +101,22 @@
 
 					<br />
 
-					<div>
-						<a class="button" id="add-to-cart" href="#">Delete Selected </a>&nbsp;
-						| &nbsp; <a href="CreateCategory.html" class="button"> + New
-							Group</a>
+					<div id="Outline" class="table-list">
+						<form action="">
+							Group Type: <input type="radio" name="category_type" value="Store" id="category_store" onClick="displayCategoryList(this);" checked="checked">Fulfillment Method
+							<input type="radio" name="category_type" value="Product" id="category_product" onClick="displayCategoryList(this);">Product
+						<br/><hr/>
+						<br/>
+						
+						<div>
+						<a class="button" id="add-to-cart" href="#">Delete Selected </a>&nbsp;| &nbsp; 
+						<a href="<%=basePath%>gotonewcategory.action" class="button"> + New Group</a>
 						<div class="r">
 							<input type="text" class="searchtext" placeholder="Category name" />
 							<a href="#" class="button">Search</a>
 						</div>
 					</div>
 					<br />
-					<div id="Outline" class="table-list">
-						<form action="">
-							Group Type: <input type="radio" name="category_type"
-								value="Store" id="category_store" onClick="displayCategoryList(this);">Fulfillment
-							<input type="radio" name="category_type" value="Product"
-								id="category_product" onClick="displayCategoryList(this);">Product
-
 							<div id="store_category_list">
 								<table cellspacing="0" cellpadding="0" class="list">
 									<tbody>
@@ -154,7 +153,6 @@
 										</tr>
 										<c:choose>
 											<c:when test="${ (empty prodCategoryList) }">
-											
 											</c:when>
 											<c:otherwise>
 												<c:forEach var="prodCategory" items="${prodCategoryList}">
@@ -163,7 +161,7 @@
 												<td class="">${prodCategory.id.cateProdId}</td>
 												<td class="">${prodCategory.cateName}</td>
 												<td class="">${prodCategory.cateDescr}</td>
-												<td class=""><a class="button" href="<%=basePath%>gotoviewcategory.action">View</a>
+												<td class=""><a class="button" href="<%=basePath%>viewProdCategory.action?categoryId=${prodCategory.id.cateProdId}">View</a>
 												<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a></td>
 											</tr>
 										</c:forEach>
