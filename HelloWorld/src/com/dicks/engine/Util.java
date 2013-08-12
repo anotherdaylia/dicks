@@ -14,22 +14,61 @@ import com.dicks.dao.FeeDAO;
 import com.dicks.dao.InventoryDAO;
 import com.dicks.dao.OrderDetailDAO;
 import com.dicks.dao.ProductDAO;
+import com.dicks.dao.ShipmentDAO;
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.Inventory;
 import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
+import com.dicks.pojo.Shipment;
 import com.dicks.pojo.Store;
 
 public class Util {
+	static String operator = "";
+	static String attribute = "";
 	static Random r = new Random();
 	
 	public static double getShippingDays() {
 		return r.nextInt(7);
 	}
 	
-	public static double getShippingCosts() {
-		return new Random().nextDouble();
+	public static double getShippingCosts(Parcel parcel, Store store) throws Exception {
+		int supplyZip = Integer.parseInt(parcel.getPack().getOrder().getShippingZip());
+		int destinationZip = Integer.parseInt(store.getZip());
+		Shipment shipment = ShipmentDAO.getInstance().getShipmentByOriginSupply(supplyZip, destinationZip);
+		
+		return shipment.getNormalRate();
+	}
+	
+	public static void calculateAttribute(ParcelResult parcelR) {
+		if (attribute.equals("retailPrice")) {
+			Parcel parcel = parcelR.getParcel();
+			Store store = parcelR.getSource();
+			
+			ArrayList<Inventory> inventories = InventoryDAO.getInstance().getInventoryByParcelStore(parcel, store);
+			int attribute = 0;			
+			for (Inventory inventory : inventories) {
+				attribute += inventory.getRetailPrice();
+			}			
+			parcelR.setAttribute((double) attribute / 100.0);
+		} else if (attribute.equals("shippingCost")) {
+			
+		} else if (attribute.equals("margin")) {
+			
+		} else if (attribute.equals("proximity")) {
+			
+		} else if (attribute.equals("totalCost")) {
+			parcelR.setAttribute(parcelR.getCost());
+		}
+	}
+	
+	public static int compareParcelResult(ParcelResult arg0, ParcelResult arg1) {
+		if (Util.operator.equals("max")) {
+			return Double.compare(arg1.getAttribute(), arg0.getAttribute());
+		} else if (Util.operator.equals("min")) {
+			return Double.compare(arg0.getAttribute(), arg1.getAttribute());
+		}
+		return 0;
 	}
 	
 	public static double calculateCosts(Parcel parcel, Store store) {
@@ -92,7 +131,7 @@ public class Util {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
+		
 		return ((double) totalCosts) / 100.0;
 	}
 	

@@ -6,6 +6,8 @@ public class ParcelResult {
 	private Parcel parcel;
 	private Store source;
 	private double cost;
+	private double attribute;
+	private double shippingCost;
 	
 	public ParcelResult(Parcel parcel) {
 		this.parcel = parcel;
@@ -33,6 +35,22 @@ public class ParcelResult {
 	@Override
 	public String toString() {
 		return this.parcel + ", source: " + this.source + ", cost: " + this.cost;
+	}
+
+	public double getAttribute() {
+		return attribute;
+	}
+
+	public void setAttribute(double attribute) {
+		this.attribute = attribute;
+	}
+
+	public double getShippingCost() {
+		return shippingCost;
+	}
+
+	public void setShippingCost(double shippingCost) {
+		this.shippingCost = shippingCost;
 	}
 	
 }

@@ -140,7 +140,11 @@ public class Allocate {
 		Collection<Store> leftStores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 		Collection<PackageTestResult> allocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
 
-		this.logs = engineLogger.getLogs();
+		engineLogger.addLog("----Minimum Packages---");
+		
+		for (PackageE pack : packages) {
+			engineLogger.addLog(pack.toString());
+		}
 		
 		System.out.println("---------------------------------");
 		System.out.println("package size: " + packages.size());
@@ -157,8 +161,8 @@ public class Allocate {
 
 		ksession.dispose();
 		
-		Split split = new Split(packages, leftStores);
-
+		Split split = new Split(packages, leftStores, engineLogger);
+		this.logs = engineLogger.getLogs();
 	}
 
 	private static void setUpProduct(Product p, String name, double price) {

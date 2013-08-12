@@ -2,7 +2,14 @@ package com.sample;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
+
+import com.dicks.dao.OrderDetailDAO;
+import com.dicks.dao.OrdersDAO;
+import com.dicks.pojo.OrderDetail;
+import com.dicks.pojo.Product;
+import com.dicks.pojo.Orders;
 
 public class Store {
 	private int storeID;
@@ -16,22 +23,16 @@ public class Store {
 		this.zoneID = zoneID;
 		stock = new HashMap<Product, Inventory>();
 	}
+
 	
-	public void addItem(Product product, int instockNum, int safetyStock){
-		stock.put(product, new Inventory(instockNum, safetyStock));
-	}
-	
-	public void sellItem(Product product, int quantity) {
-		stock.get(product).instockNum--;
-	}
-	
-	public boolean containProductsInOrder(Order order) {
-		Set<Product> products = order.getProductList().keySet();
+	public boolean containProductsInOrder(Orders order) throws Exception {
+		List<OrderDetail> details = OrderDetailDAO.getInstance().getOrderDetailsByOrder(order);
 		int notContainingNum = 0;
-		for (Product p : products) {
-			if (!this.containProduct(p)) notContainingNum++;
+		for (OrderDetail d : details) {
+			if (!this.containProduct(d.getProduct())) notContainingNum++;
 		}
-		return notContainingNum < order.getProducts().size();
+		return notContainingNum < 
+					OrderDetailDAO.getInstance().getOrderDetailsByOrder(order).size();
 	}
 	
 	public boolean containParcel(Parcel parcel) {
@@ -52,7 +53,7 @@ public class Store {
 	public boolean containProducts(ArrayList<Product> products) {
 		for (Product p : products) {
 			if (!this.containProduct(p)) {
-				System.out.println("rule out product: " + p.getProductName());
+				System.out.println("rule out product: " + p.getProdName());
 				return false;
 			}
 		}		
@@ -84,14 +85,7 @@ public class Store {
 		}
 	}
 	
-	public void change(int a){
-		this.value = value +a;
-		
-	}
 	
-	public int getValue(){
-		return value;
-	}
 	
 	public boolean checkProduct(Product product, String operator , int mar) {
 		//System.out.println("-----------");
@@ -102,7 +96,6 @@ public class Store {
 			//System.out.println(">>>>>>>>>>>>"+in.getMargin());
 			if (in == null || in.getMargin() <= mar) 
 			{
-				
 				//System.out.println("filter2 return false");
 				return false;
 			}
@@ -166,8 +159,6 @@ public class Store {
 			
 			return this.checkProduct(product, operator, mar);
 		}
-		
-		
 		
 		else{
 			return false;
