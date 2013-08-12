@@ -142,6 +142,7 @@ function goBack(){
                                 <option value="any">Any</option>
                             </select> of the following conditions are met&#58;
                         </div>  
+                        <br/> 
                         <div>
                             <select style="width:70px;" name="attribute">
                                 <option value="Length">Length</option> 
@@ -160,10 +161,11 @@ function goBack(){
                                 <option value="#">lbs</option>
                             </select>
                         </div>
+                        <br/> 
                         <div>
                             <select style="width:70px;" name="attribute">
-                                <option value="Length">Length</option> 
-                                <option value="Width">Width</option>
+                                <option value="Width">Width</option> 
+                                <option value="Length">Length</option>
                                 <option value="Height">Height</option>
                                 <option value="Weight">Weight</option>
                             </select>&nbsp;&nbsp;
@@ -178,11 +180,12 @@ function goBack(){
                                 <option value="#">lbs</option>
                             </select>
                         </div>
+                        <br/> 
                         <div>
                             <select style="width:70px;" name="attribute">
-                                <option value="Length">Length</option> 
+                                <option value="Height">Height</option> 
                                 <option value="Width">Width</option>
-                                <option value="Height">Height</option>
+                                <option value="Length">Length</option>
                                 <option value="Weight">Weight</option>
 
                             </select>&nbsp;&nbsp;
@@ -197,12 +200,13 @@ function goBack(){
                                 <option value="#">lbs</option>
                             </select>
                         </div>
+                        <br/> 
                          <div>
                             <select style="width:70px;" name="attribute">
-                                <option value="Length">Length</option> 
+                                <option value="Weight">Weight</option> 
                                 <option value="Width">Width</option>
                                 <option value="Height">Height</option>
-                                <option value="Weight">Weight</option>
+                                <option value="Length">Length</option>
 
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;" name="operator" >
@@ -211,11 +215,12 @@ function goBack(){
                                 <option value="&gt;">&lt;</option>
                             </select>&nbsp;&nbsp;
                             <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:70px;">
-                                <option value="#">inches</option> 
+                                <option value="#">lbs</option> 
                                 <option value="#">feet</option>
-                                <option value="#">lbs</option>
+                                <option value="#">inches</option>
                             </select>
                         </div>
+                          <br/> 
                         <div>Perform the following action&#58;</div>
                         <div><select name="actions">
                                 <option value="miniumPackage">Ship this product separately</option>
