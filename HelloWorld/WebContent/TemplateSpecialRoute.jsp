@@ -202,8 +202,9 @@ function goBack(){
             <br/><br/><div><hr/></div>
           
             <div>
-            <li style="list-style:none;"><span><a href="#">Home</a><span> > </span></span></span>
-                <span><a href="#">Manage Business Rule</a><span> > </span></span>
+            <li style="list-style:none;">
+            	<span><a href="#">Home</a><span> &gt; </span></span>
+                <span><a href="#">Manage Business Rule</a><span> &gt; </span></span>
                 <span>New Business Rule</span>
             </li>
             </div>
@@ -303,7 +304,7 @@ function goBack(){
             		
             		<a class="button" onclick="goBack()">Back</a>
                     <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a>
-                    <input type="submit" value="Create" class="button" onclick='SubmitForm()'>Create</a>
+                    <input type="submit" value="Create" class="button" onclick='SubmitForm()' />
                 
             </div>   
             </form>
@@ -315,8 +316,6 @@ function goBack(){
 
                 
     <!-- footer starts -->
-      
-    
 
       <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
     <!-- footer ends -->

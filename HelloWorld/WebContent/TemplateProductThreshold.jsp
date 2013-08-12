@@ -100,8 +100,9 @@ function goBack(){
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
 
-            <li style="list-style:none;"><span><a href="#">Home</a><span> > </span></span></span>
-                <span><a href="#">Manage Business Rule</a><span> > </span></span>
+            <li style="list-style:none;">
+            	<span><a href="#">Home</a><span> &gt; </span></span>
+                <span><a href="#">Manage Business Rule</a><span> &gt; </span></span>
                 <span>New Business Rule</span>
             </li>
             
@@ -124,7 +125,7 @@ function goBack(){
                 </tr>
                 <tr>
                     <td>Stage:</td>
-                    <td>Stage1 - Pre-processing</td>
+                    <td>Stage1 - Fulfillment Eligibility</td>
                 </tr>
                 <tr>
                     <td>Rule Template&#58;</td>
