@@ -181,7 +181,7 @@
                 </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
-                    <td style="width:200px;"><textarea style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" ></textarea></td>
+                    <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" ></textarea></td>
                 </tr>
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
