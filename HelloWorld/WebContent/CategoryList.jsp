@@ -26,15 +26,13 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
-                
+                <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li> 
             </ul>
         </li>
     </ul>
     </div>
 
   <script defer="defer" >
- 
  	 window.onload=function(){
 
  		var act =  document.getElementById('act').value;
@@ -46,12 +44,10 @@
         } else if(act=="product") {
             document.getElementById('product_category_list').style.display = 'block';
             document.getElementById('store_category_list').style.display = 'none';
-            document.getElementById('Paging').style.display = 'block';
-            
+            document.getElementById('Paging').style.display = 'block';            
             document.getElementById('category_product').checked =true;
         }
  	 }   
- 
  	</script>
 <script>
  function displayCategoryList(obj) {
@@ -64,6 +60,40 @@
     } else if(type=="Product") {
         window.location.href="displayCategoryList.action?act=product";   
     };
+ }
+ 
+ function deleteSelect(){
+	if(document.getElementById('category_store').checked ==true){
+		var storeCateList = document.getElementsByName('storeList');
+		var string="";
+		for(var i=0; i<storeCateList.length;i++){
+			if(storeCateList[i].checked ==true){
+				string += storeCateList[i].value+",";
+			}
+		}
+		var l = string.length;
+		if(l!=0){
+			string=string.substring(0,l-1);
+			window.location.href="deleteCategory.action?act=store&ids="+string;  
+		}
+     	
+	}else if(document.getElementById('category_product').checked ==true){
+		var prodCateList = document.getElementsByName('prodList');
+		var string="";
+		for(var i=0; i<prodCateList.length;i++){
+			if(prodCateList[i].checked ==true){
+				string += prodCateList[i].value+",";
+			}
+		}
+		var l = string.length;
+		if(l!=0){
+			string=string.substring(0,l-1);
+		    window.location.href="deleteCategory.action?act=product&ids="+string; 
+		}
+		 
+	}
+		
+	 
  }
 </script>
  
@@ -129,7 +159,7 @@
 										</tr>
 										<c:forEach var="storeCategory" items="${storeCategoryList}">
 											<tr>
-												<td class=""><input type="checkbox" class="case" /></td>
+												<td class=""><input name="storeList" value="${storeCategory.id.cateStoreId}" type="checkbox" class="case" /></td>
 												<td class="">${storeCategory.id.cateStoreId}</td>
 												<td class="">${storeCategory.cateName}</td>
 												<td class="">${storeCategory.cateDescr}</td>
@@ -157,7 +187,7 @@
 											<c:otherwise>
 												<c:forEach var="prodCategory" items="${prodCategoryList}">
 												<tr>
-												<td class=""><input type="checkbox" class="case" /></td>
+												<td class=""><input type="checkbox" name="prodList" value="${prodCategory.id.cateProdId}" class="case" /></td>
 												<td class="">${prodCategory.id.cateProdId}</td>
 												<td class="">${prodCategory.cateName}</td>
 												<td class="">${prodCategory.cateDescr}</td>
@@ -203,7 +233,7 @@
 							group?</div>
 
 						<div class="r" style="margin-right: 20px;">
-							<a class="button" onclick="closePop()" type="submit">Yes</a> <a
+							<a class="button" onclick="deleteSelect()" type="submit">Yes</a> <a
 								class="button" onclick="closePop()" type="button">No</a>
 						</div>
 					</div>

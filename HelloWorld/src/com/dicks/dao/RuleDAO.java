@@ -63,4 +63,7 @@ public class RuleDAO extends BaseDao<Rule> {
 		}
 	}
 	
+	public void update(Rule rule) throws Exception{
+		super.update(rule);
+	}
 }
