@@ -212,6 +212,8 @@ public class RuleList {
 			this.vendorFeeList = feeDAO.getByType("vendor");
 			
 			return "goToCostCalculation";
+		} else if (thisRule.getType().equals("6")) {
+			return "goToCostCalculation";
 		} else {
 			return "goToEditProductThreshold";
 		}

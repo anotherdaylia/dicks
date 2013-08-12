@@ -183,8 +183,8 @@
                         <br/> 
                         <div>
                             <select style="width:70px;"name="attribute">
-                                <option value="Length" <c:if test="${attribute[1] == 'Length'}">selected="selected"</c:if>>Length</option> 
-                                <option value="Width" <c:if test="${attribute[1] == 'Width'}">selected="selected"</c:if>>Width</option>
+                                <option value="Width" <c:if test="${attribute[1] == 'Length'}">selected="selected"</c:if>>Width</option> 
+                                <option value="Length" <c:if test="${attribute[1] == 'Width'}">selected="selected"</c:if>>Length</option>
                                 <option value="Height" <c:if test="${attribute[1] == 'Height'}">selected="selected"</c:if>>Height</option>
                                 <option value="Weight" <c:if test="${attribute[1] == 'Weight'}">selected="selected"</c:if>>Weight</option>
                             </select>&nbsp;&nbsp;
@@ -204,9 +204,9 @@
                         <br/> 
                         <div>
                             <select style="width:70px;"name="attribute">
-                                <option value="Length" <c:if test="${attribute[2] == 'Length'}">selected="selected"</c:if>>Length</option> 
+                                <option value="Height" <c:if test="${attribute[2] == 'Length'}">selected="selected"</c:if>>Height</option> 
                                 <option value="Width" <c:if test="${attribute[2] == 'Width'}">selected="selected"</c:if>>Width</option>
-                                <option value="Height" <c:if test="${attribute[2] == 'Height'}">selected="selected"</c:if>>Height</option>
+                                <option value="Length" <c:if test="${attribute[2] == 'Height'}">selected="selected"</c:if>>Length</option>
                                 <option value="Weight" <c:if test="${attribute[2] == 'Weight'}">selected="selected"</c:if>>Weight</option>
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;" name="operator">
@@ -225,10 +225,10 @@
                         <br/> 
                          <div>
                             <select style="width:70px;"name="attribute">
-                                <option value="Length" <c:if test="${attribute[3] == 'Length'}">selected="selected"</c:if>>Length</option> 
+                                <option value="Weight" <c:if test="${attribute[3] == 'Length'}">selected="selected"</c:if>>Weight</option> 
                                 <option value="Width" <c:if test="${attribute[3] == 'Width'}">selected="selected"</c:if>>Width</option>
                                 <option value="Height" <c:if test="${attribute[3] == 'Height'}">selected="selected"</c:if>>Height</option>
-                                <option value="Weight" <c:if test="${attribute[3] == 'Weight'}">selected="selected"</c:if>>Weight</option>
+                                <option value="Length" <c:if test="${attribute[3] == 'Weight'}">selected="selected"</c:if>>Length</option>
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;" name="operator">
                             	<option value="&gt" <c:if test="${operator[3] == '>'}">selected="selected"</c:if>>&gt;</option> 
@@ -237,9 +237,9 @@
                             </select>&nbsp;&nbsp;
                             <input style="width:50px;" type="text" name="value" value ="${value[3]}">&nbsp;&nbsp;
                             <select style="width:70px;">
-                                <option value="inches">inches</option> 
+                                <option value="inches">lbs</option> 
                                 <option value="feet">feet</option>
-                                <option value="lbs">lbs</option>
+                                <option value="lbs">inches</option>
                             </select>
                         </div>
 

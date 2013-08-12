@@ -30,18 +30,10 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
-        </li>
-        <li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
-            <ul class="nav-two" id="navtwo">
-                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-		</li>   
+        </li>  
     </ul>
     </div>
 
@@ -71,9 +63,10 @@
 
         </div>
         
-            <li style="list-style:none;"><span><a href="#">Home</a><span> &gt; </span></span></span>
-                <span><a href="#">Manage Category</a><span> &gt; </span></span>
-                <span>View Category</span>
+            <li style="list-style:none;">
+            	<span><a href="#">Home</a><span> &gt; </span></span>
+                <span><a href="<%=basePath%>gotocategorylist.action?act=store">Manage Group</a><span> &gt; </span></span>
+                <span>View Group</span>
             </li>
             <!-- Success Message and Error Message -->
             <div class="success_area" style="display:none">successMessage</div>
@@ -84,18 +77,18 @@
             <form action="#">
             <div id="tabs">
               <ul>
-                <li><a href="#tabs-1">Category: ${categoryName}</a></li>
+                <li><a href="#tabs-1">Group Name: ${categoryName}</a></li>
               </ul>
               <div id="tabs-1">
               <table id="category" border="0" style="margin-left:50px;width:750px;">
                 <tr style="height:40px;">
-                    <td><div class="form-title" style="width:150px;">Category Name:<span class="red">*</span>:</div></td>
+                    <td><div class="form-title" style="width:150px;">Group Name:<span class="red">*</span>:</div></td>
                     <td style="width:600px;"><input type="text" style="width:300px;" name="" value="${categoryName}" disabled></td>
                     <td></td>
                 </tr>
                     
                 <tr style="height:40px;">
-                    <td><div class="form-title" style="width:150px;">Category Description:</div></td>
+                    <td><div class="form-title" style="width:150px;">Group Description:</div></td>
                     <td style="width:500px;">
                       <textarea placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;" disabled>${categoryDescr}</textarea>
                     </td>

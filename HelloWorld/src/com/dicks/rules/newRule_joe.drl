@@ -67,8 +67,8 @@ rule  "Special Route0"
     when
         $order : Orders()
         $orderE : OrderE()
-        $product : Product($id: prodId, sku.equals("1"))
-        eval ($orderE.getProductQty($id) >2)
+        $product : Product($id: prodId, sku.equals("NK-SH-KB"))
+        eval ($orderE.getProductQty($id) > 2)
         $s : Store( storeId == 1)
         eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
         $logger: EngineLog()

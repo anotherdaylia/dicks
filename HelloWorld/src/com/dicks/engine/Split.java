@@ -50,7 +50,7 @@ public class Split {
 		SplitGenerater.cache(10);
 		SplitGenerater.buildIndex(10);
 		
-		ArrayList<Rule> rules = RuleDAO.getInstance().getRuleByType("e");
+		ArrayList<Rule> rules = RuleDAO.getInstance().getRuleByType("6");
 		Rule rule = rules.get(0);
 		synchronized (Util.operator) {
 			Util.operator = rule.getOperator();

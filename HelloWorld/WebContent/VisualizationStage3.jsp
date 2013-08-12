@@ -68,7 +68,7 @@
                 <span><a href="#">Home</a><span> &gt; </span></span>
                 <span><a href="#">Visualization Dashboard</a><span> &gt; </span></span>
                 <span><a href="#">Order List</a><span> &gt; </span></span>                
-                <span>Order Routing Visualization<span>   
+                <span>Order Routing Visualization</span>   
             </li>
 
             <!-- Success Message and Error Message -->
