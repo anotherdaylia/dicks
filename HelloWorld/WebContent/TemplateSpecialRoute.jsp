@@ -112,7 +112,7 @@ function addSpecialRoute(myDiv) {
 
   newdiv.setAttribute('id',divIdName);
 
-  newdiv.innerHTML = '<div style=\'padding-top:10px;padding-bottom:10px;\'>If the product quantity is&nbsp&nbsp&nbsp&nbsp </div><div style=\'padding-bottom:10px;\'><select style=\'width:120px;\' name=\'operator\' ><option value=\'&lt;\'>More Than</option> <option value=\'=\'>Equal</option><option value=\'&gt;\'>Less than</option></select>&nbsp;&nbsp; <input type=\'text\' name=\'productcount\' style=\'width:50px;\'> </div><div style=\'padding-bottom:10px;\'><div style=\'padding-bottom:10px;float:left;\'>Ship the product from&#58;&nbsp;&nbsp;</div><div style=\'padding-bottom:10px;float:left;\'class=\'ui-widget\'><textarea id=\'tags\' name = \'sources\' style=\'overflow:hidden;max-width:300px;width:300px;height:15px;\' onkeyup=\'textAreaAdjust(this)\' placeholder=\'Type in fulfillment sources&hellip;\' ></textarea></div> <a href=\'javascript:;\' onclick=\'removeElement('+divIdName+')\'>Remove</a></div><br/>';
+  newdiv.innerHTML = '<div style=\'padding-top:10px;padding-bottom:10px;\'>If the product quantity is&nbsp&nbsp&nbsp&nbsp </div><div style=\'padding-bottom:10px;\'><select style=\'width:120px;\' name=\'operator\' ><option value=\'&lt;\'>more than</option> <option value=\'=\'>equal to</option><option value=\'&gt;\'>less than</option></select>&nbsp;&nbsp; <input type=\'text\' name=\'productcount\' style=\'width:50px;\'> </div><div style=\'padding-bottom:10px;\'><div style=\'padding-bottom:10px;float:left;\'>Ship the product from&#58;&nbsp;&nbsp;</div><div style=\'padding-bottom:10px;float:left;\'class=\'ui-widget\'><textarea id=\'tags\' name = \'sources\' style=\'overflow:hidden;max-width:300px;width:300px;height:15px;\' onkeyup=\'textAreaAdjust(this)\' placeholder=\'Type in fulfillment sources&hellip;\' ></textarea></div> <a href=\'javascript:;\' onclick=\'removeElement('+divIdName+')\'>Remove</a></div><br/>';
 
                         
 
@@ -230,7 +230,7 @@ function goBack(){
                 </tr>
                 <tr>
                     <td>Stage:</td>
-                    <td>Stage1 - Pre-processing</td>
+                    <td>Stage1 - Prefiltering</td>
                 </tr>
                 <tr>
                     <td>Rule Template&#58;</td>
@@ -241,21 +241,21 @@ function goBack(){
                     <td style="width:500px;">
                     <div id ="firstStep" class="drl"> 
                       <div id="specialroute1">
+                      <a class="button" href="javascript:;" onclick="addSpecialRoute(myDiv);" style="float:right;">+ Add Special Route</a>
                         <div style="padding-bottom:10px;">If the product quantity is &nbsp;&nbsp;&nbsp;</div>
                         <div id ="operatorDiv" style="padding-bottom:10px;">
                         <select style="width:120px;" name="operator" >
-                                <option value="&lt;">More Than</option> 
-                                <option value="=">Equal to</option>
-                                <option value="&gt;">Less than</option>
+                                <option value="&lt;">more than</option> 
+                                <option value="=">equal to</option>
+                                <option value="&gt;">less than</option>
                             </select>&nbsp;&nbsp;
                             <input type="text" name="productcount" style="width:50px;"> 
                            </div>
                         <div style="padding-bottom:10px;float:left;">Ship the product from&#58;&nbsp;&nbsp;</div>
-                        <div style="padding-bottom:10px;float:left;"class="ui-widget"><textarea id="tags" name = "sources" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in fulfillment sources&hellip;" ></textarea></div>
+                        <div style="padding-bottom:10px;float:left;"class="ui-widget"><textarea id="tags" name = "sources" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in fulfillment sources&hellip;" ></textarea></div><br/><br/>
                       </div>
                       
                       <input type="hidden" value="1" id="theValue"/>
-                        <a class="button" href="javascript:;" onclick="addSpecialRoute(myDiv);">+ Add Special Route</a>
                         <div id="myDiv"></div>
    
                      <input type="hidden" name="rulename"  value=<%=request.getAttribute("rulename")%> />
