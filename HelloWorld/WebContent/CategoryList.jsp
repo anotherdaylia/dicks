@@ -107,7 +107,7 @@
 		</div>
 		<div class="main" id="main-body">
 			<div class="content clearfix">
-				<div class="title-bar clearfix">
+				<div class="title-bar clearfix" style="height:80px;">
 					<h1 class="l">Manage Group</h1>
 					<div id="Date" class="date l"></div>
 					<a id='ReportTipIco' class="report-help open l recordable"
@@ -129,7 +129,7 @@
 					<div class="warning" style="display: none">errorMessage</div>
 					<!-- Success Message and Error Message -->
 
-					<br />
+					</div>
 
 					<div id="Outline" class="table-list">
 						<form action="">
@@ -163,8 +163,10 @@
 												<td class="">${storeCategory.id.cateStoreId}</td>
 												<td class="">${storeCategory.cateName}</td>
 												<td class="">${storeCategory.cateDescr}</td>
-												<td class=""><a class="button" href="viewStoreCategory.action?categoryId=${storeCategory.id.cateStoreId}">View</a>
-										<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a></td>
+												<td class="">
+													<a class="button" href="viewStoreCategory.action?categoryId=${storeCategory.id.cateStoreId}">View</a>
+													<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -175,7 +177,7 @@
 								<table cellspacing="0" cellpadding="0" class="list">
 									<tbody>
 										<tr class="title">
-											<th><input type="checkbox" id="selectall" /></th>
+											<th><input type="checkbox" id="selectalltwo" /></th>
 											<th>Group ID</th>
 											<th>Group Name</th>
 											<th>Description</th>
@@ -191,8 +193,10 @@
 												<td class="">${prodCategory.id.cateProdId}</td>
 												<td class="">${prodCategory.cateName}</td>
 												<td class="">${prodCategory.cateDescr}</td>
-												<td class=""><a class="button" href="<%=basePath%>viewProdCategory.action?categoryId=${prodCategory.id.cateProdId}">View</a>
-												<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a></td>
+												<td class="">
+													<a class="button" href="<%=basePath%>viewProdCategory.action?categoryId=${prodCategory.id.cateProdId}">View</a>
+													<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a>
+												</td>
 											</tr>
 										</c:forEach>
 				       							 
