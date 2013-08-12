@@ -111,13 +111,15 @@
 				href="javascript:void(0);">&nbsp;</a> <br />
 			<br />
 			<div>
-				<hr />
+			<hr />
 			</div>
 
-			<li style="list-style: none;"><span><a href="#">Home</a><span>
-						&gt; </span></span> <span><a href="<%=basePath%>gotorulelist.action">Manage
-						Business Rule</a><span> &gt; </span></span> <span>Business Rule
-					Priority</span></li>
+			<li style="list-style: none;">
+				<span><a href="#">Home</a><span> &gt; </span></span> 
+				<span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a><span> &gt; </span></span>
+				<span>Business Rule Priority</span>
+			</li>
+			
 			<!-- Success Message and Error Message -->
 			<div class="success_area" style="display: none">successMessage</div>
 			<div class="warning" style="display: none">errorMessage</div>
