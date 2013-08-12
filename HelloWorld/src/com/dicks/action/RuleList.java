@@ -3,7 +3,10 @@ package com.dicks.action;
 import java.util.ArrayList;
 
 import com.dicks.dao.OrdersDAO;
+import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.RuleDAO;
+import com.dicks.engine.CreateTemplate;
+import com.dicks.engine.UpdateTemplate;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Rule;
 
@@ -11,7 +14,6 @@ public class RuleList {
 	public String[] ruleList;
 	public Rule[] allRule;
 	public String ruleString;
-	private String rulename;
 	public Rule[] preRule;
 	public Rule[] midRule;
 	public Rule[] lastRule;
@@ -20,7 +22,48 @@ public class RuleList {
 	public String[] attribute;
 	public String[] operator;
 	public String[] value;
+	public String cates;
+	public String rulename;
+	public String ruleDess;
+	public String condition;
+	public String conditions;
+	public String prodCate;
+	public String des;
+	public String[] action;
+
+	public String categoryname;
 	
+	
+	public String getCategory(){
+		return categoryname;
+	}
+	public void setCategory(String a){
+		this.categoryname = a;
+	}
+	
+	public String getDes(){
+		return des;
+	}
+	
+	public void setDes(String des){
+		this.des = des;
+	}
+	
+	public String getConditions() {
+		return conditions;
+	}
+
+	public void setConditions(String conditions) {
+		this.conditions = conditions;
+	}
+	
+	public void setProdCate(String prodCate){
+		this.prodCate = prodCate;
+	}
+	
+	public String getProdCate(){
+		return prodCate;
+	}
 	public String getRuleId(){
 		return  ruleId;
 	}
@@ -51,6 +94,9 @@ public class RuleList {
 	public void setRuleString(String ruleString){
 		this.ruleString = ruleString;
 	}
+	
+	
+	
 	public String gotorulelist(){
 		
 		int pre = 0;
@@ -100,7 +146,26 @@ public class RuleList {
 	
 	
 	public String goToEdit(){
-		System.out.println("WTF"+ruleId);
+		
+		String[] tmp2 = null;
+		try {
+			tmp2 = ProdCateDAO.getInstance().getProdCateNames();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		StringBuffer cate = new StringBuffer();
+		cate.append(tmp2[0]);
+		for (int i = 1;i<tmp2.length;i++){
+			System.out.println(tmp2[i]);
+			cate.append(","+tmp2[i]);
+		}
+		
+		
+		prodCate = cate.toString();
+		
+		
+		System.out.println("WTF"+prodCate);
 		Rule thisRule = new Rule();
 		try {
 			thisRule = RuleDAO.getInstance().getRuleById(ruleId);
@@ -108,9 +173,19 @@ public class RuleList {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		condition = thisRule.getCondition();
+		if (condition.equals("||"))
+			condition = "ALL";
+		else
+			condition = "Any";
+		rulename = thisRule.getRuleName();
+		ruleDess = thisRule.getRuleDescr();
+		System.out.println("jj"+ruleDess);
 		attribute = thisRule.getAttributes();
 		operator = thisRule.getOperators();
 		value = thisRule.getValues();
+		//get current cate here;
+		cates = "Nike Shits,";
 		for (int i = 0;i<attribute.length;i++){
 			System.out.println("product "+attribute[i]);
 			System.out.println("operator "+operator[i]);
@@ -165,5 +240,50 @@ public class RuleList {
 			}
 		}
 		return thisRule;
+	}
+	
+	public String updateRule(){
+		
+		categoryname =categoryname.replace("%20", " ");
+		rulename = rulename.replace("%20", " ");
+		des = des.replace("%20", " ");
+		
+		System.out.println("input category"+categoryname);
+		String[] categoryList= categoryname.split(",");
+
+
+		int cateLength = 0;
+		for (int j = 0 ; j<categoryList.length;j++){
+			if ((categoryList[j] != null) && (!categoryList[j].equals(" "))){
+				cateLength++;
+			}
+		}
+
+		String [] cateList = new String[cateLength];
+		for (int i = 0; i<cateList.length;i++){
+			cateList[i] = categoryList[i];
+		}
+		String type = null;
+		
+		String[] product = null;
+
+		//System.out.println("first instance of catelist is "+cateList[0]);
+		try {
+			product = ProdCateDAO.getInstance().getSKUByCategory(cateList);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("product length is "+ product.length);
+		System.out.println("hahahah first product in the list is "+product[0]);
+		
+		String[] action = new String[1];
+		action[0] = "";
+		
+		String[] route = new String[1];
+		route[0] = "";
+		UpdateTemplate test= new UpdateTemplate(rulename,des,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A");
+
+		return "success";
 	}
 }

@@ -53,6 +53,13 @@ public class RuleDAO extends BaseDao<Rule> {
 		return (ArrayList<Rule>) super.getList(criterions);
 	}
 	
+	public Rule getRuleByName(String ruleName) throws Exception{
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion = Restrictions.eq("ruleName", Integer.valueOf(ruleName));
+		criterions.add(criterion);
+		return super.get(criterions);
+	}
+	
 	public void createRule(Rule rule) throws Exception {
 		super.create(rule);
 	}

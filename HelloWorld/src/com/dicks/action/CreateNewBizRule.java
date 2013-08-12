@@ -24,9 +24,18 @@ public class CreateNewBizRule {
 	public String[] test;
 	public String[] productcount;
 	public String[] sources;
+	public String des;
 
 	public String prodCate;
 	
+	
+	public String getDes(){
+		return des;
+	}
+	
+	public void setDes(String des){
+		this.des = des;
+	}
 	public void setProdCate(String prodCate){
 		this.prodCate = prodCate;
 	}
@@ -176,6 +185,7 @@ public class CreateNewBizRule {
 			System.out.println("rule name  11111"+allRule[i].getRuleName());
 			System.out.println("rule desc  1111"+ allRule[i].getRuleDescr());
 			}*/
+			des = des.replace(" ","%20");
 			rulename = rulename.replace(" ","%20");
 			categoryname = categoryname.replace(" ","%20");
 			return "goToTemplate";
@@ -188,6 +198,7 @@ public class CreateNewBizRule {
 				e1.printStackTrace();
 			}
 			setAllRule(allRule);
+			des = des.replace(" ","%20");
 			rulename = rulename.replace(" ","%20");
 			categoryname = categoryname.replace(" ","%20");
 			return "goToSpecial";
@@ -200,6 +211,7 @@ public class CreateNewBizRule {
 				e1.printStackTrace();
 			}
 			setAllRule(allRule);
+			des = des.replace(" ","%20");
 			rulename = rulename.replace(" ","%20");
 			categoryname = categoryname.replace(" ","%20");
 			return "goToStore";
@@ -212,7 +224,8 @@ public class CreateNewBizRule {
 
 		categoryname =categoryname.replace("%20", " ");
 		rulename = rulename.replace("%20", " ");
-
+		des = des.replace("%20", " ");
+		
 		System.out.println("input category"+categoryname);
 		String[] categoryList= categoryname.split(",");
 
@@ -250,7 +263,7 @@ public class CreateNewBizRule {
 		
 		String[] route = new String[1];
 		route[0] = "";
-		CreateTemplate test= new CreateTemplate(rulename,type,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
+		CreateTemplate test= new CreateTemplate(rulename,des,type,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
 
 		return "newrule";
 	}
@@ -262,7 +275,7 @@ public class CreateNewBizRule {
 		//get sku from category
 		categoryname =categoryname.replace("%20", " ");
 		rulename = rulename.replace("%20", " ");
-
+		des = des.replace("%20", " ");
 		System.out.println("input category"+categoryname);
 		String[] categoryList= categoryname.split(",");
 
@@ -325,7 +338,7 @@ public class CreateNewBizRule {
 		 action[0] = "special";
 		 
 		 String flag = "TH-A,ST-A,SP-B";
-		CreateTemplate test= new CreateTemplate(rulename,type,product,attribute,operator,productcount,null,sources,action,flag,Integer.parseInt(priority));
+		CreateTemplate test= new CreateTemplate(rulename,des,type,product,attribute,operator,productcount,null,sources,action,flag,Integer.parseInt(priority));
 		
 		
 		

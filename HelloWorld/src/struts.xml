@@ -45,7 +45,9 @@
            <result name="goToEditStoreThreshold" type="dispatcher">/TemplateSpecialRoute.jsp</result>
            <result name="goToSpecialRoute" type="dispatcher">/TemplateStoreThreshold.jsp</result>
       </action>
-      
+      <action name="updateRule" class="com.dicks.action.RuleList" method="updateRule">
+          <result name="success" type="dispatcher">/RuleList.jsp</result>
+      </action>
       <action name="gotoruleprioritylist" class="com.dicks.action.RulePriority" method="gotoruleprioritylist">
           <result name="success" type="dispatcher">/rulePriority.jsp</result>
       </action>

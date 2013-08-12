@@ -22,13 +22,14 @@ public class CreateTemplate {
     public static Rule[] ruleFile = new Rule[100];
     public static Rule[] ruleFiles = null;
     public static int ruleInt;
+    public String typeString;
     
     
     public static Product[] product = new Product[3];
     
    
     
-	public CreateTemplate  (String ruleName, String type, String[] objects, String[] attributes, 
+	public CreateTemplate  (String ruleName, String description,String type, String[] objects, String[] attributes, 
 			String[] operators, String[] values, String conditions, String[] routes, String[] actions, String flag, int ruleInt ){
 		System.out.println("route!!"+routes);
 		ruleInt --;
@@ -151,13 +152,16 @@ public class CreateTemplate {
 
 	      if (type.equalsIgnoreCase("Threshold")){
 	    	  type = "1";
+	    	  typeString = "Threshold";
 	      }
 	      if (type.equalsIgnoreCase("Store Filter")){
 	    	  type = "2";
+	    	  typeString = "Store Filter";
 	      }
 	      if (type.equalsIgnoreCase("Special Route")){
 	    	  type = "3";
 	    	  System.out.println("nimabi!!!!!!!!!!!!");
+	    	  typeString = "Special Route";
 	      }
 
 	      if (type.equalsIgnoreCase("1")||type.equalsIgnoreCase("2")){
@@ -170,11 +174,11 @@ public class CreateTemplate {
 
 
 
-					 ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFiles[ruleInt-1].getPriority()-2,type,objects,
+					 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()-2,type,objects,
 							 					attributes,operators,values,condition, routes,actions,flag, "1",false);
 				 }
 			  else{
-					 ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFiles[ruleInt-1].getPriority()+2,type,objects,
+					 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()+2,type,objects,
 							 attributes,operators,values,condition, routes,actions,flag, "1",false);
 			  }
 	    	  
@@ -184,12 +188,12 @@ public class CreateTemplate {
 		    	  System.out.println("type!!!!"+type);
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
-		    	  	ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFiles[ruleInt-1].getPriority()-2,type,objects,attributes,operators,values,condition, routes,actions,flag, "1",false);
+		    	  	ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()-2,type,objects,attributes,operators,values,condition, routes,actions,flag, "1",false);
 
 				 }
 			  else{
 
-					 ruleFiles[ruleInt] = new Rule(ruleName, "", "\""+type+ruleInt+"\"", ruleFiles[ruleInt-1].getPriority()+2,type,objects,
+					 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()+2,type,objects,
 							 attributes,operators,values,condition, routes,actions,flag, "1",false);
 			  }
 
@@ -277,21 +281,21 @@ public class CreateTemplate {
 		            	 //conditon added
 		            	 if (ruleFiles[i].getType().equalsIgnoreCase("1")){
 		            		 System.out.println("This is the new Threshold rule created by the system");
-		            		 byte[] contentInBytes = createThreshold(ruleFiles[i].getType(),ruleFiles[i].getPriority(),
+		            		 byte[] contentInBytes = createThreshold(ruleFiles[i].getRuleName(),ruleFiles[i].getType(),ruleFiles[i].getPriority(),
 		            				 ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues(),
 		            				 ruleFiles[i].getCondition(),ruleFiles[i].getActions(),ruleFiles[i].getFlag()).getBytes();
 		            		 fos.write(contentInBytes);
 		            	 }
 		            	 else if (ruleFiles[i].getType().equalsIgnoreCase("2")){
 		            		 System.out.println("This is the new Store Filter rule created by the system!!!!");
-		            		 byte[] contentInBytes = createStoreRule(ruleFiles[i].getType(),ruleFiles[i].getPriority(),
+		            		 byte[] contentInBytes = createStoreRule(ruleFiles[i].getRuleName(),ruleFiles[i].getType(),ruleFiles[i].getPriority(),
 		            				 ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues(),
 		            				 ruleFiles[i].getActions(),ruleFiles[i].getFlag()).getBytes();
 		            		 fos.write(contentInBytes);
 		            	 }
 		            	 else if (ruleFiles[i].getType().equalsIgnoreCase("3")){
 		            		 System.out.println("This is the new Special route rule created by the system!!!!");
-		            		 byte[] contentInBytes = createSpecialRoute(ruleFiles[i].getType(),ruleFiles[i].getPriority(),
+		            		 byte[] contentInBytes = createSpecialRoute(ruleFiles[i].getRuleName(),ruleFiles[i].getType(),ruleFiles[i].getPriority(),
 		            				 ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues()
 		            				 ,ruleFiles[i].getActions(),ruleFiles[i].getRoutes()[0],ruleFiles[i].getFlag()).getBytes();
 		            		 	
@@ -329,7 +333,7 @@ public class CreateTemplate {
 
 
 
-	   public String createThreshold(String type, int priority, String[] object, String[] attribute, 
+	   public String createThreshold(String ruleName,String type, int priority, String[] object, String[] attribute, 
 			   String[] operator, String[] values,String condition, String[] actions,String flag){
 		   //System.out.println("type  "+type);
 		   //System.out.println("objects  "+object);
@@ -337,17 +341,17 @@ public class CreateTemplate {
 		   //System.out.println("operator "+ operator);
 		   //System.out.println("Values "+values);
 		   StringBuffer newRule = new StringBuffer();
-		   newRule.append(writeRuleType(type,priority));
+		   newRule.append(writeRuleType(ruleName,priority));
 		   newRule.append(writeWhenThreshold(object,attribute,operator,values,condition,flag));
 		   newRule.append(writeThenThreshold(actions));
 		   System.out.println(newRule.toString());
 		   return newRule.toString();
 	   }
 
-	   public String createStoreRule(String type, int priority, String[] object, String[] attribute, 
+	   public String createStoreRule(String ruleName,String type, int priority, String[] object, String[] attribute, 
 			   String[] operator, String[] values,String[] actions,String flag){
 		   StringBuffer newRule = new StringBuffer();
-		   newRule.append(writeRuleType(type,priority));
+		   newRule.append(writeRuleType(ruleName,priority));
 		   newRule.append(writeWhenStoreRule(object,attribute,operator,values,flag));
 		   newRule.append(writeThenStoreRule(actions));
 		   System.out.println(newRule.toString());
@@ -365,10 +369,10 @@ public class CreateTemplate {
 		   return newRule.toString();
 	   }*/
 
-	   public String createSpecialRoute(String type, int priority, String[] object, String[] attribute, 
+	   public String createSpecialRoute(String ruleName,String type, int priority, String[] object, String[] attribute, 
 			   String[] operator, String[] values,String[] actions,String routes,String flag){
 		   StringBuffer newRule = new StringBuffer();
-		   newRule.append(writeRuleType(type,priority));
+		   newRule.append(writeRuleType(ruleName,priority));
 		   System.out.println("rule title"+newRule.toString());
 		   newRule.append(writeWhenSpecialRoute(object,attribute,operator,values,routes,flag));
 		   System.out.println("when"+newRule.toString());
@@ -378,7 +382,7 @@ public class CreateTemplate {
 	   
 	   public String writeRuleType(String type, int priority){
 		   StringBuffer tmp = new StringBuffer();
-		   tmp.append("rule  \""+type+ruleCount+"\""+myReturn);
+		   tmp.append("rule  \""+type+"\""+myReturn);
 		   tmp.append(myTab+"salience "+priority+myReturn);
 		   //need to add more statement such as no-loop true dialect "java", will decide later
 		   return tmp.toString();

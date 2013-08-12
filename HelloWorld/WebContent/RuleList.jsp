@@ -105,6 +105,7 @@
 				</c:forEach>
                 <input type="hidden" id="ruleId" name="ruleId"> 
                 <input type="hidden" id="ruleType" name="ruleType"> 
+                 <input type="hidden" id="prodCate" name="prodCate"> 
                 
                 </tbody>
             </table>

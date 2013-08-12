@@ -91,7 +91,7 @@ public class TestUtil {
 			parcel.addProduct(hat);
 			parcel.addProduct(shirt);
 			
-			System.out.println(inventoryDAO.containAllroductsParcel(store, parcel));
+			System.out.println(inventoryDAO.containAllProductsParcel(store, parcel));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

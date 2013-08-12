@@ -242,6 +242,7 @@ function goBack(){
                 <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />
                 <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
                 <input type="hidden" name="categoryname"  value=<%=request.getAttribute("categoryname")%> />
+                <input type="hidden" name="des"  value=<%=request.getAttribute("des")%> />
            		<input type="hidden" id="priorityId" name="priority"> 
            
                     

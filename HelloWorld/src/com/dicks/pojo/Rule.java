@@ -267,6 +267,7 @@ public class Rule implements java.io.Serializable {
 	public void setValue(String value) {
 		this.value = value;
 	}
+	
 
 	public String getRoute() {
 		return this.route;
@@ -332,6 +333,31 @@ public class Rule implements java.io.Serializable {
 
 	public String[] getObjects(){
 		return translateBack(object);
+	}
+	
+	public void setObjects(String[] objects){
+		StringBuffer objectBuffer = new StringBuffer();
+		this.object = translate(objectBuffer, objects);
+	}
+	
+	public void setAttributes(String[] attributes){
+		StringBuffer attributeBuffer = new StringBuffer();
+		this.attribute = translate(attributeBuffer, attributes);
+	}
+	
+	public void setValues(String[] values){
+		StringBuffer valueBuffer = new StringBuffer();
+		this.value = translate(valueBuffer, values);
+	}
+	
+	public void setRoutes(String[] routes){
+		StringBuffer routeBuffer = new StringBuffer();
+		this.route = translate(routeBuffer, routes);
+	}
+	
+	public void setActions(String[] actions){
+		StringBuffer actionBuffer = new StringBuffer();
+		this.value = translate(actionBuffer, actions);
 	}
 
 	public String[] getAttributes(){
