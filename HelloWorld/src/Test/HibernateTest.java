@@ -14,6 +14,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.ProductDAO;
+import com.dicks.dao.RuleCateDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.dao.StoreCateDAO;
 import com.dicks.pojo.Customer;
@@ -24,6 +25,8 @@ import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.PackageDetail;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
+import com.dicks.pojo.RuleCate;
+import com.dicks.pojo.RuleCateId;
 import com.dicks.pojo.Store;
 import com.dicks.pojo.User;
 import com.dicks.pojo.Vendor;
@@ -36,9 +39,25 @@ public class HibernateTest
 	
 	public static void main(String[] args) throws Exception
 	{
-
-
-		System.out.println(ProductDAO.getInstance().getProductById("JC-SP-KY").getProdName());
+		
+		
+		System.out.println(RuleCateDAO.getInstance().getCateNamesByRuleId("2").length);
+		
+		
+		
+		
+//		RuleCate cate1 = new RuleCate(new RuleCateId(1, 2), null, true);
+//		RuleCate cate2 = new RuleCate(new RuleCateId(2, 2), null, true);
+//		RuleCate cate3 = new RuleCate(new RuleCateId(3, 2), null, true);
+//		RuleCate cate4 = new RuleCate(new RuleCateId(4, 2), null, false);
+//		RuleCate cate5 = new RuleCate(new RuleCateId(5, 2), null, false);
+//		
+//		getCateNamesByRuleId
+//		RuleCateDAO.getInstance().create(cate2);
+//		RuleCateDAO.getInstance().create(cate3);
+//		RuleCateDAO.getInstance().create(cate4);
+//		RuleCateDAO.getInstance().create(cate5);
+		
 //		ProductDAO pDAO = ProductDAO.getInstance();
 //		Product p = pDAO.getById(1);
 //		

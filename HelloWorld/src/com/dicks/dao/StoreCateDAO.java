@@ -91,4 +91,12 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		 StoreCate[] result = (StoreCate[])storeCates1.toArray(new StoreCate[storeCates1.size()]); 
 		 return result;
 	} 
+	
+	
+//	public StoreCate getCategoryById(int categoryId) throws Exception {
+//		List<Criterion> criterions = new ArrayList<Criterion>();
+//		Criterion criterion = Restrictions.eq("id.cateStoreId", categoryId);
+//		criterions.add(criterion);
+//		return super.get(criterions);
+//	}
 }
