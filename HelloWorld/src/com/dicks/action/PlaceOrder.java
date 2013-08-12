@@ -14,6 +14,7 @@ public class PlaceOrder {
 	private String shippingzipcode;	
 	
 	private String id;
+	private ArrayList<String> logs;
 	
 	public String[] getQuantity(){
 		return quantity;
@@ -65,10 +66,13 @@ public class PlaceOrder {
 			System.out.println("quantity :"+quantity[i]);
 			System.out.println("product :"+product[i]);
 		}
+		System.out.println("product length: " + product.length);
+		System.out.println("quantity length: " + quantity.length);
 		
 		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
 		System.out.println("order id in place order: " + test.getOrderId());
 		this.id = test.getOrderId();
+		this.logs = test.getLogs();
 		return "success";	
 	}
 
@@ -78,6 +82,14 @@ public class PlaceOrder {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public ArrayList<String> getLogs() {
+		return logs;
+	}
+
+	public void setLogs(ArrayList<String> logs) {
+		this.logs = logs;
 	}
 
 }

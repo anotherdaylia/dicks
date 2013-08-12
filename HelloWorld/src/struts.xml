@@ -71,7 +71,8 @@
       <action name="placeorder" class="com.dicks.action.PlaceOrder" method="placeorder">
           <result name="success" type="chain">
             <param name="actionName">orderdetail</param>
-          	<param name="id">${id}</param>    
+          	<param name="id">${id}</param>   
+          	<param name="logs">${logs}</param> 
           </result>      
       </action>
 

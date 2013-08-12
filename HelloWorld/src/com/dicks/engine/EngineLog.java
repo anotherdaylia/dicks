@@ -14,6 +14,6 @@ public class EngineLog {
 	}
 	
 	public void addLog(String log) {
-		
+		logs.add(log);
 	}
 }

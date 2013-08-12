@@ -17,6 +17,7 @@ public class OrderDetailAction {
 	private String id;
 	private ArrayList<OrderDetail> details;
 	private Orders order;
+	private ArrayList<String> logs;
 	
 	public Orders getOrder() {
 		return order;
@@ -82,5 +83,13 @@ public class OrderDetailAction {
 		details= OrderDetailDAO.getInstance().getOrderDetailsByOrder(order);
 		
 		return "success";
+	}
+
+	public ArrayList<String> getLogs() {
+		return logs;
+	}
+
+	public void setLogs(ArrayList<String> logs) {
+		this.logs = logs;
 	}
 }

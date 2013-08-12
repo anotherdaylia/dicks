@@ -197,7 +197,9 @@
                                     </table>
                                 </div>
                                 <div>
-                                	
+                                	<c:forEach var="log" items="${logs}">
+										<div> ${log} </div>
+									</c:forEach>
                                 </div>
                             </div>
                         </div>
@@ -207,8 +209,6 @@
             <!-- form ends -->
             <!-- form ends -->
 
-
-           
         </div>
 
         </div>
