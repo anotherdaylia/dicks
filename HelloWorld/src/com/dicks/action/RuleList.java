@@ -2,11 +2,13 @@ package com.dicks.action;
 
 import java.util.ArrayList;
 
+import com.dicks.dao.FeeDAO;
 import com.dicks.dao.OrdersDAO;
 import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.engine.CreateTemplate;
 import com.dicks.engine.UpdateTemplate;
+import com.dicks.pojo.Fee;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Rule;
 
@@ -34,6 +36,10 @@ public class RuleList {
 
 	public String categoryname;
 	
+	private ArrayList<Fee> storeFeeList;
+	private ArrayList<Fee> warehouseFeeList;
+	private ArrayList<Fee> vendorFeeList;
+
 	public String getRuleNames(){
 		return rulenames;
 	}
@@ -46,15 +52,15 @@ public class RuleList {
 	public void setCategory(String a){
 		this.categoryname = a;
 	}
-	
+
 	public String getDes(){
 		return des;
 	}
-	
+
 	public void setDes(String des){
 		this.des = des;
 	}
-	
+
 	public String getConditions() {
 		return conditions;
 	}
@@ -62,30 +68,30 @@ public class RuleList {
 	public void setConditions(String conditions) {
 		this.conditions = conditions;
 	}
-	
+
 	public void setProdCate(String prodCate){
 		this.prodCate = prodCate;
 	}
-	
+
 	public String getProdCate(){
 		return prodCate;
 	}
 	public String getRuleId(){
 		return  ruleId;
 	}
-	
+
 	public void setRuleId(String ruleId){
 		this.ruleId = ruleId;
 	}
-	
+
 	public String getRuleType(){
 		return  ruleType;
 	}
-	
+
 	public void setRuleType(String ruleType){
 		this.ruleType = ruleType;
 	}
-	
+
 	public String getRulename() {
 		return rulename;
 	}
@@ -96,15 +102,15 @@ public class RuleList {
 	public String getRuleString(){
 		return ruleString;
 	}
-	
+
 	public void setRuleString(String ruleString){
 		this.ruleString = ruleString;
 	}
-	
-	
-	
+
+
+
 	public String gotorulelist(){
-		
+
 		int pre = 0;
 		int mid = 0;
 		int last = 0;
@@ -114,7 +120,7 @@ public class RuleList {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		for (int i = 0; i<allRule.length;i++){
 			if (allRule[i].getType().equals("n")){
 				if (allRule[i].getPriority()>0){
@@ -145,13 +151,13 @@ public class RuleList {
 			lastRule[j] = allRule[i];
 			System.out.println("Last Rule"+allRule[i].getRuleName());
 		}
-		
-		
+
+
 		return "success";
 	}
-	
-	
-	public String goToEdit(){
+
+
+	public String goToEdit() throws Exception{
 		Rule thisRule = new Rule();
 		try {
 			thisRule = RuleDAO.getInstance().getRuleById(ruleId);
@@ -173,13 +179,11 @@ public class RuleList {
 				System.out.println(tmp2[i]);
 				cate.append(","+tmp2[i]);
 			}
-			
-			
+
 			prodCate = cate.toString();
-			
-			
+
 			System.out.println("WTF"+prodCate);
-			
+
 			condition = thisRule.getCondition();
 			if (condition.equals("||"))
 				condition = "ALL";
@@ -198,11 +202,17 @@ public class RuleList {
 				System.out.println("product "+attribute[i]);
 				System.out.println("operator "+operator[i]);
 				System.out.println("value "+value[i]);
-				
+
 			}
 			return "goToEditProductThreshold";
-		}
-		else{
+		} else if (thisRule.getType().equals("5")) {
+			FeeDAO feeDAO = FeeDAO.getInstance();
+			this.storeFeeList = feeDAO.getByType("store");
+			this.warehouseFeeList = feeDAO.getByType("warehouse");
+			this.vendorFeeList = feeDAO.getByType("vendor");
+			
+			return "goToCostCalculation";
+		} else {
 			return "goToEditProductThreshold";
 		}
 	}
@@ -239,11 +249,11 @@ public class RuleList {
 			newRule[i] = findRule(allRule, ruleStringList[i]);
 			System.out.println("New rule "+i+" "+newRule[i].getRuleName());
 		}
-		
-		
+
+
 		return "success";
 	}
-	
+
 	public Rule findRule(Rule[] rule, String find){
 		Rule thisRule = new Rule();
 		for (int i = 0; i<rule.length; i++){
@@ -253,19 +263,19 @@ public class RuleList {
 		}
 		return thisRule;
 	}
-	
+
 	public String updateRule(){
-		
+
 		categoryname =categoryname.replace("%20", " ");
 		rulename = rulename.replace("%20", " ");
 		des = des.replace("%20", " ");
-		
+
 		System.out.println("input rule"+rulename);
 		String[] categoryList= categoryname.split(",");
 
 		Rule hahaRule = new Rule();
 		Rule[] ruleList = null;
-		
+
 		try{
 				//hahaRule = RuleDAO.getInstance().getRuleByName(rulename);
 				//System.out.println("this rule Id is !!!!!!!!!"+hahaRule.getRuleId());
@@ -283,7 +293,7 @@ public class RuleList {
 				break;
 			}
 		}
-		
+
 		int cateLength = 0;
 		for (int j = 0 ; j<categoryList.length;j++){
 			if ((categoryList[j] != null) && (!categoryList[j].equals(" "))){
@@ -296,7 +306,7 @@ public class RuleList {
 			cateList[i] = categoryList[i];
 		}
 		String type = null;
-		
+
 		String[] product = null;
 
 		//System.out.println("first instance of catelist is "+cateList[0]);
@@ -308,10 +318,10 @@ public class RuleList {
 		}
 		System.out.println("product length is "+ product.length);
 		System.out.println("hahahah first product in the list is "+product[0]);
-		
+
 		String[] action = new String[1];
 		action[0] = "";
-		
+
 		String[] route = new String[1];
 		route[0] = "";
 		System.out.println("rule id "+hahaRule.getRuleId());
@@ -320,5 +330,23 @@ public class RuleList {
 		UpdateTemplate test= new UpdateTemplate(hahaRule.getRuleId(),rulename,rulenames,des,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A");
 
 		return "success";
+	}
+	public ArrayList<Fee> getStoreFeeList() {
+		return storeFeeList;
+	}
+	public void setStoreFeeList(ArrayList<Fee> storeFeeList) {
+		this.storeFeeList = storeFeeList;
+	}
+	public ArrayList<Fee> getWarehouseFeeList() {
+		return warehouseFeeList;
+	}
+	public void setWarehouseFeeList(ArrayList<Fee> warehouseFeeList) {
+		this.warehouseFeeList = warehouseFeeList;
+	}
+	public ArrayList<Fee> getVendorFeeList() {
+		return vendorFeeList;
+	}
+	public void setVendorFeeList(ArrayList<Fee> vendorFeeList) {
+		this.vendorFeeList = vendorFeeList;
 	}
 }

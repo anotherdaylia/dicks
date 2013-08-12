@@ -69,7 +69,7 @@
 		console.log("logged");
 	}
 
-	function SubmitForm() {
+	function submitForm() {
 		var nameList = "";
 		var table = document.getElementById("sort");
 		var row = table.rows[0];
@@ -89,6 +89,7 @@
 		console.log("rule list" + nameList);
 		document.getElementById('ruleString').value = nameList;
 		document.forms['myForm'].submit();
+		
 	}
 	window.onload = pageOnLoad;
 </script>
@@ -111,13 +112,15 @@
 				href="javascript:void(0);">&nbsp;</a> <br />
 			<br />
 			<div>
-				<hr />
+			<hr />
 			</div>
 
-			<li style="list-style: none;"><span><a href="#">Home</a><span>
-						&gt; </span></span> <span><a href="<%=basePath%>gotorulelist.action">Manage
-						Business Rule</a><span> &gt; </span></span> <span>Business Rule
-					Priority</span></li>
+			<li style="list-style: none;">
+				<span><a href="#">Home</a><span> &gt; </span></span> 
+				<span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a><span> &gt; </span></span>
+				<span>Business Rule Priority</span>
+			</li>
+			
 			<!-- Success Message and Error Message -->
 			<div class="success_area" style="display: none">successMessage</div>
 			<div class="warning" style="display: none">errorMessage</div>
@@ -194,8 +197,7 @@
 						</c:forEach>
 					</table>
 					<br /> <input type="hidden" id="ruleString" name="ruleString">
-					<a class="button" href="#">Cancel</a> <a class="button"
-						onclick='SubmitForm()'>Submit</a>
+					<a class="button" href="#">Cancel</a> <a class="button" id="add-to-cart" >Submit</a>
 				</div>
 
 				<div id="priorityTable"></div>
@@ -218,7 +220,7 @@
 				rule's priority?</div>
 
 			<div class="r" style="margin-right: 20px;">
-				<input class="button" onclick="closePop()" type="submit" value="Yes" />
+				<input class="button" onclick="submitForm()" type="submit" value="Yes"  />
 				<a class="button" onclick="closePop()" type="button">No</a>
 			</div>
 		</div>

@@ -6,56 +6,37 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
-    
-    
 
 <jsp:include page="template_top.jsp" />
 <ul class="nav">
 	<li class=""><a class="recordable open" id="toggleone" href="#"
-		memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
+		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
 		<ul class="nav-two" id="navone">
 			<li class="" id="catelist"><a
-				href="<%=basePath%>gotocategorylist.action">Category List</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
 			<li class="" id="newcatelist"><a
-				href="<%=basePath%>gotonewcategory.action">New Category</a><span
-				class="normal">&nbsp;</span></li>
-		</ul></li>
+				href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>
+		</ul>
+	</li>
 	<li class=""><a class="recordable open" href="#" id="toggletwo"
-		memo="{id:'21',type:'menu',global:1,status:''}">Manage Business
-			Rule</a>
+		memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
 		<ul class="nav-two" id="navtwo">
 			<li class="" id="bizrulelist"><a
-				href="<%=basePath%>gotorulelist.action">Business Rule List</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotorulelist.action">Business Rule List</a><span class="normal">&nbsp;</span></li>
 			<li class="" id="newbizrulelist"><a
-				href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span class="normal">&nbsp;</span></li>
 			<li class="" id="ruleprioritylist"><a
-				href="<%=basePath%>gotoruleprioritylist.action">Business Rule
-					Priority</a><span class="normal">&nbsp;</span></li>
-		</ul></li>
+				href="<%=basePath%>gotoruleprioritylist.action">Business Rule Priority</a><span class="normal">&nbsp;</span></li>
+		</ul>
+	</li>
 	<li class=""><a class="recordable open" href="#" id="togglethree"
-		memo="{id:'21',type:'menu',global:1,status:''}">Visualization
-			Dashboard</a>
+		memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
 		<ul class="nav-two" id="navthree">
 			<li class=""><a id="orderlist" onclick="f(this)"
-				href="<%=basePath%>gotoorderlist.action">Order List</a><span
-				class="normal">&nbsp;</span></li>
-			<li class="" id="routelist"><a href="#">Routing
-					visualization</a><span class="normal">&nbsp;</span></li>
-			<li class="" id="statlist"><a href="statistics.html">Statistics</a><span
-				class="normal">&nbsp;</span></li>
-
-		</ul></li>
-	<li class=""><a class="recordable open" href="#" id="togglefour"
-		memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
-		<ul class="nav-two" id="navtwo">
-			<li class="" id="neworderlist"><a
-				href="<%=basePath%>gotoplaceorder.action">New Order</a><span
-				class="normal">&nbsp;</span></li>
-
-		</ul></li>
+				href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
+			<li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+		</ul>
+	</li>
 </ul>
 </div>
 
@@ -129,9 +110,10 @@
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
     
-            <li style="list-style:none;"><span><a href="#">Home</a><span> > </span></span>
-                <span><a href="#">Manage Business Rule</a><span> > </span></span>
-                <span><a href="#">Business Rule List</a><span> > </span></span>
+            <li style="list-style:none;">
+            	<span><a href="#">Home</a><span> &gt; </span></span>
+                <span><a href="#">Manage Business Rule</a><span> &gt; </span></span>
+                <span><a href="#">Business Rule List</a><span> &gt; </span></span>
                 <span>Edit Rule</span>
             </li>
             
@@ -144,7 +126,7 @@
         <div>
 
             <form name ="myForm" action="updateRule">
-            <table class="text">
+            <table class="text" >
                 <tr>
                     <td>Rule Name&#58;</td>
                     <td><input style="width:200px;" type="text" name="rulenames" value ="${rulename}">&nbsp;&nbsp;</td>
@@ -155,12 +137,13 @@
                 </tr>
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
-                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" >${cates}</textarea></td>
-                    <td class="grey">&nbsp;&nbsp;If not found, <a href="createcategory.html">new Group</a>.</td>
-                </tr>
+                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" >${cates}</textarea>
+                    If not found, <a href="createcategory.html">new Group</a>.
+                    </td>
+                    
                 <tr>
                     <td>Stage&#58;</td>
-                    <td>Stage 1 - Prefiltering</td>
+                    <td>Stage 1 - Fulfillment Eligibility</td>
                 </tr>
                 <tr>
                     <td>Rule Template&#58;</td>

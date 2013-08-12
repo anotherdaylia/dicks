@@ -9,50 +9,32 @@
 <jsp:include page="template_top.jsp" />
 <ul class="nav">
 	<li class=""><a class="recordable open" id="toggleone" href="#"
-		memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
+		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
 		<ul class="nav-two" id="navone">
 			<li class="" id="catelist"><a
-				href="<%=basePath%>gotocategorylist.action">Category List</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
 			<li class="" id="newcatelist"><a
-				href="<%=basePath%>gotonewcategory.action">New Category</a><span
-				class="normal">&nbsp;</span></li>
-		</ul></li>
+				href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>
+		</ul>
+	</li>
 	<li class=""><a class="recordable open" href="#" id="toggletwo"
-		memo="{id:'21',type:'menu',global:1,status:''}">Manage Business
-			Rule</a>
+		memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
 		<ul class="nav-two" id="navtwo">
-			<li class="" id="bizrulelist"><a
-				href="<%=basePath%>gotorulelist.action">Business Rule List</a><span
-				class="normal">&nbsp;</span></li>
+			<li class="" id="bizrulelist"><a class="normal">&nbsp;</span></li>
 			<li class="" id="newbizrulelist"><a
-				href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span class="normal">&nbsp;</span></li>
 			<li class="" id="ruleprioritylist"><a
-				href="<%=basePath%>gotoruleprioritylist.action">Business Rule
-					Priority</a><span class="normal">&nbsp;</span></li>
-		</ul></li>
+				href="<%=basePath%>gotoruleprioritylist.action">Business Rule Priority</a><span class="normal">&nbsp;</span></li>
+		</ul>
+	</li>
 	<li class=""><a class="recordable open" href="#" id="togglethree"
-		memo="{id:'21',type:'menu',global:1,status:''}">Visualization
-			Dashboard</a>
+		memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
 		<ul class="nav-two" id="navthree">
 			<li class=""><a id="orderlist" onclick="f(this)"
-				href="<%=basePath%>gotoorderlist.action">Order List</a><span
-				class="normal">&nbsp;</span></li>
-			<li class="" id="routelist"><a href="#">Routing
-					visualization</a><span class="normal">&nbsp;</span></li>
-			<li class="" id="statlist"><a href="statistics.html">Statistics</a><span
-				class="normal">&nbsp;</span></li>
-
-		</ul></li>
-	<li class=""><a class="recordable open" href="#" id="togglefour"
-		memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
-		<ul class="nav-two" id="navtwo">
-			<li class="" id="neworderlist"><a
-				href="<%=basePath%>gotoplaceorder.action">New Order</a><span
-				class="normal">&nbsp;</span></li>
-
-		</ul></li>
+				href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
+			<li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+		</ul>
+	</li>
 </ul>
 </div>
 <script>
@@ -113,9 +95,9 @@ function removeElement(divNum) {
             <h1 class="l">Edit Business Rule</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
-            <li style="list-style:none;"><span><a href="#">Home</a><span> > </span></span>
-                <span><a href="#">Manage Business Rule</a><span> > </span></span>
-                <span><a href="#">Business Rule List</a><span> > </span></span>
+            <li style="list-style:none;"><span><a href="#">Home</a><span> &gt; </span></span>
+                <span><a href="#">Manage Business Rule</a><span> &gt; </span></span>
+                <span><a href="#">Business Rule List</a><span> &gt; </span></span>
                 <span>Edit Rule</span>
             </li>
             <!-- Success Message and Error Message -->

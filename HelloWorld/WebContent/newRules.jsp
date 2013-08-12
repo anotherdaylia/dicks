@@ -201,7 +201,7 @@
                 <tr></tr>
                 <tr>  
                     <td><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>
-                    <td><input type="submit" value="Create" class="button"></td>
+                    <td><input type="submit" value="Continue" class="button"></td>
                     <input type="hidden" id="prodCate" name="prodCate"> 
            
                 </tr>

@@ -28,18 +28,10 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
-        </li>
-        <li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
-            <ul class="nav-two" id="navtwo">
-                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-		</li>   
+        </li>   
     </ul>
     </div>
  <script>
@@ -120,7 +112,7 @@ function addSpecialRoute(myDiv) {
 
   newdiv.setAttribute('id',divIdName);
 
-  newdiv.innerHTML = '<div style=\'padding-top:10px;padding-bottom:10px;\'>If the product quantity is&nbsp&nbsp&nbsp&nbsp </div><div style=\'padding-bottom:10px;\'><select style=\'width:120px;\' name=\'operator\' ><option value=\'&lt;\'>More Than</option> <option value=\'=\'>Equal</option><option value=\'&gt;\'>Less than</option></select>&nbsp;&nbsp; <input type=\'text\' name=\'productcount\' style=\'width:50px;\'> </div><div style=\'padding-bottom:10px;\'><div style=\'padding-bottom:10px;float:left;\'>Ship the product from&#58;&nbsp;&nbsp;</div><div style=\'padding-bottom:10px;float:left;\'class=\'ui-widget\'><textarea id=\'tags\' name = \'sources\' style=\'overflow:hidden;max-width:300px;width:300px;height:15px;\' onkeyup=\'textAreaAdjust(this)\' placeholder=\'Type in fulfillment sources&hellip;\' ></textarea></div> <a href=\'javascript:;\' onclick=\'removeElement('+divIdName+')\'>Remove</a></div><br/>';
+  newdiv.innerHTML = '<div style=\'padding-top:10px;padding-bottom:10px;\'>If the product quantity is&nbsp&nbsp&nbsp&nbsp </div><div style=\'padding-bottom:10px;\'><select style=\'width:120px;\' name=\'operator\' ><option value=\'&lt;\'>more than</option> <option value=\'=\'>equal to</option><option value=\'&gt;\'>less than</option></select>&nbsp;&nbsp; <input type=\'text\' name=\'productcount\' style=\'width:50px;\'> </div><div style=\'padding-bottom:10px;\'><div style=\'padding-bottom:10px;float:left;\'>Ship the product from&#58;&nbsp;&nbsp;</div><div style=\'padding-bottom:10px;float:left;\'class=\'ui-widget\'><textarea id=\'tags\' name = \'sources\' style=\'overflow:hidden;max-width:300px;width:300px;height:15px;\' onkeyup=\'textAreaAdjust(this)\' placeholder=\'Type in fulfillment sources&hellip;\' ></textarea></div> <a href=\'javascript:;\' onclick=\'removeElement('+divIdName+')\'>Remove</a></div><br/>';
 
                         
 
@@ -197,9 +189,6 @@ function goBack(){
 }
 </script>
 
-
-
-
     <!-- menu bar ends -->
 
     <!-- content starts -->
@@ -213,8 +202,9 @@ function goBack(){
             <br/><br/><div><hr/></div>
           
             <div>
-            <li style="list-style:none;"><span><a href="#">Home</a><span> > </span></span></span>
-                <span><a href="#">Manage Business Rule</a><span> > </span></span>
+            <li style="list-style:none;">
+            	<span><a href="#">Home</a><span> &gt; </span></span>
+                <span><a href="#">Manage Business Rule</a><span> &gt; </span></span>
                 <span>New Business Rule</span>
             </li>
             </div>
@@ -240,7 +230,7 @@ function goBack(){
                 </tr>
                 <tr>
                     <td>Stage:</td>
-                    <td>Stage1 - preprocessing</td>
+                    <td>Stage1 - Prefiltering</td>
                 </tr>
                 <tr>
                     <td>Rule Template&#58;</td>
@@ -251,21 +241,21 @@ function goBack(){
                     <td style="width:500px;">
                     <div id ="firstStep" class="drl"> 
                       <div id="specialroute1">
+                      <a class="button" href="javascript:;" onclick="addSpecialRoute(myDiv);" style="float:right;">+ Add Special Route</a>
                         <div style="padding-bottom:10px;">If the product quantity is &nbsp;&nbsp;&nbsp;</div>
                         <div id ="operatorDiv" style="padding-bottom:10px;">
                         <select style="width:120px;" name="operator" >
-                                <option value="&lt;">More Than</option> 
-                                <option value="=">Equal</option>
-                                <option value="&gt;">Less than</option>
+                                <option value="&lt;">more than</option> 
+                                <option value="=">equal to</option>
+                                <option value="&gt;">less than</option>
                             </select>&nbsp;&nbsp;
                             <input type="text" name="productcount" style="width:50px;"> 
                            </div>
                         <div style="padding-bottom:10px;float:left;">Ship the product from&#58;&nbsp;&nbsp;</div>
-                        <div style="padding-bottom:10px;float:left;"class="ui-widget"><textarea id="tags" name = "sources" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in fulfillment sources&hellip;" ></textarea></div>
+                        <div style="padding-bottom:10px;float:left;"class="ui-widget"><textarea id="tags" name = "sources" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in fulfillment sources&hellip;" ></textarea></div><br/><br/>
                       </div>
                       
                       <input type="hidden" value="1" id="theValue"/>
-                        <a class="button" href="javascript:;" onclick="addSpecialRoute(myDiv);">+ Add Special Route</a>
                         <div id="myDiv"></div>
    
                      <input type="hidden" name="rulename"  value=<%=request.getAttribute("rulename")%> />
@@ -276,10 +266,9 @@ function goBack(){
                     </div>
                     </td>
                 </tr>
-                <tr id = "buttons">
-                    <td style = "text-align:right"><a class="button"  onclick='show()'>Next</a></td>
-                    <td>
-                    <a class="button" href="#">Cancel</a></td>
+                <tr>
+                    <td><a class="button" href="#">Cancel</a></td>
+                    <td><a class="button"  onclick='show()'>Continue</a>
                    
                 </tr>
             </table>
@@ -311,12 +300,11 @@ function goBack(){
 
                             <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">This is your new rule</td>
                 </tr>
-                
             </table>
             		
             		<a class="button" onclick="goBack()">Back</a>
                     <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a>
-                    <a class="button" onclick='SubmitForm()'>Create</a>
+                    <input type="submit" value="Create" class="button" onclick='SubmitForm()' />
                 
             </div>   
             </form>
@@ -328,10 +316,8 @@ function goBack(){
 
                 
     <!-- footer starts -->
-      
-    
 
-      <div class="footer"><span>©2013 eBusiness Team</span></div>
+      <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
     <!-- footer ends -->
     
 </body>
