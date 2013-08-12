@@ -174,7 +174,7 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 		}
 		Collections.sort(parcelResults, new Comparator<ParcelResult>() {
 			@Override
-			public int compare(PatrcelResult arg0, ParcelResult arg1) {
+			public int compare(ParcelResult arg0, ParcelResult arg1) {
 				return Util.compareParcelResult(arg0, arg1); 
 			}			
 		});
