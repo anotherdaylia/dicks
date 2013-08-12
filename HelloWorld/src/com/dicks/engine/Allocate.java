@@ -49,6 +49,7 @@ public class Allocate {
     public static Rule[] ruleFile = new Rule[100];
     public static int ruleInt;
     
+    private String orderId;
     
     public static Product[] product = new Product[5]; 
     
@@ -65,6 +66,8 @@ public class Allocate {
 									shippingAddress, shippingZipcode, "412-622-3748", "");
 		
 		OrdersDAO.getInstance().createOrder(order);
+		
+		this.setOrderId(order.getOrderId() + "");
 		
 		Product[] products = ProductDAO.getInstance().getProductsBySKUList(skus);
 		System.out.println(products.length);
@@ -159,5 +162,13 @@ public class Allocate {
 	private static void setUpProduct(Product p, String name, double price) {
 		/*p.setPrice(price);
 		p.setProductName(name);*/
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 }

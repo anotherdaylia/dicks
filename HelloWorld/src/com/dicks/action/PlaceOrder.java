@@ -13,6 +13,8 @@ public class PlaceOrder {
 	private String shippingaddress;
 	private String shippingzipcode;	
 	
+	private String id;
+	
 	public String[] getQuantity(){
 		return quantity;
 	}
@@ -65,7 +67,17 @@ public class PlaceOrder {
 		}
 		
 		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
-		return "placeorder";	
+		System.out.println("order id in place order: " + test.getOrderId());
+		this.id = test.getOrderId();
+		return "success";	
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

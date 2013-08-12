@@ -52,7 +52,10 @@
           <result name="specialroute" type="dispatcher">/RuleList.jsp</result>
       </action>
       <action name="placeorder" class="com.dicks.action.PlaceOrder" method="placeorder">
-          <result name="placeorder" type="dispatcher">/placeOrder.jsp</result>
+          <result name="success" type="chain">
+            <param name="actionName">orderdetail</param>
+          	<param name="id">${id}</param>    
+          </result>      
       </action>
 
       <action name="displayCategoryList" class="com.dicks.action.CategoryListAction" method="displayCategory">

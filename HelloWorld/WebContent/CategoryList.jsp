@@ -87,7 +87,7 @@
 						href="javascript:void(0);">&nbsp;</a> <br />
 					<br />
 					<div>
-						<hr />
+						<hr/>
 					</div>
 
 					<li style="list-style: none;"><span><a href="#">Home</a><span>

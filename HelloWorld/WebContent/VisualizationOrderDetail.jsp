@@ -25,7 +25,7 @@
   $(function() {
     $( "#accordion" ).accordion({
         collapsible: true,
-        active: false,
+        active: 0,
     });
   });
   </script>
@@ -54,6 +54,7 @@
        <!-- <a href="javascript:void(0)" class="fold recordable" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;0&quot;}" id="menu-toggle"></a>
         -->
     </div>
+
     <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
@@ -107,40 +108,45 @@
             <!-- Success Message and Error Message -->
             <br/>
             <!-- form starts-->
-            <div style="padding-left:5px;width:760px;">
-                <div id="block1" style="float:left;height:465px;width:150px;border:1px solid #ccc;border-radius:5px;margin-right:1px;">
-                <div id="accordion" style="float:left;width:150px;margin-top:-3px;">
-                
-                    <h3>Stage 1</h3>
-                    <div>
-                        <ul>
-                            <li class="" style="height:30px;"><a href="#">All Rules</li>
-                            <li class="" style="height:30px;"><a href="javascript:;"onclick="showContent(rule1Div)">Rule 1</li>
-                            <li class="" style="height:30px;"><a href="javascript:;"onclick="showContent(rule2Div)">Rule 2</li>
-                            <li class="" style="height:30px;"><a href="javascript:;"onclick="showContent(rule3Div)">Rule 3</li>
-                            
-                        </ul>
+            
+            <!-- form starts Ying edit according to html -->
+            <div style="padding-left:5px;width:890px;">
+                <div id="accordion" style="float:left;width:280px;margin-top:-3px;">
+                        <h3>Order Details</h3>
+                        <div>
+                            <ul>
+                                <li class="" style="height:30px;"><a href="VisualizationOrderDetail.html">Order Details</a></li>
+                            </ul>
+                        </div>
+
+                        <h3>Stage 1 - Prefiltering</h3>
+                        <div>
+                            <ul>
+                                <li class="" style="height:30px;"><a href="VisualizationStage1AllRules.html">All Rules</a></li>
+                                <li class="" style="height:30px;"><a href="VisualizationStage1Rule1.html">Rule 1</a></li>
+                                <li class="" style="height:30px;"><a href="VisualizationStage1Rule2.html">Rule 2</a></li>
+                                <li class="" style="height:30px;"><a href="VisualizationStage1Rule3.html">Rule 3</a></li>
+                            </ul>
+                        </div>
+                        
+                        <h3>Stage 2 - Candidate Determination</h3>
+                        <div>
+                            <ul>
+                                <li style="height:30px;"><a href="VisualizationStage2-1.html">Package 1</a></li>
+                                <li style="height:30px;"><a href="VisualizationStage2-2.html">Package 2</a></li>
+                                <li style="height:30px;"><a href="VisualizationStage2-3.html">Package 3</a></li> 
+                            </ul>
+                        </div>
+                    
+                        <h3>Stage 3 - Evaluation</h3>
+                        <div>
+                            <ul>
+                                <li class="" style="height:30px;"><a href="VisualizationStage3-1.html">Route 1</a></li>
+                                <li class="" style="height:30px;"><a href="VisualizationStage3-2.html">Route 2</a></li>
+                                <li class="" style="height:30px;"><a href="VisualizationStage3-3.html">Route 3</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <h3>Stage 2</h3>
-                    <div>
-                        <ul>
-                            <li class="" style="height:30px;"><a href="#">Package 1</a></li>
-                            <li class="" style="height:30px;"><a href="#">Package 2</a></li>
-                            <li class="" style="height:30px;"><a href="#">Package 3</a></li> 
-                        </ul>
-                    </div>
-                    <h3>Stage 3</h3>
-                    <div>
-                        <ul>
-                            <li class="" style="height:30px;"><a href="#">Route 1</a></li>
-                            <li class="" style="height:30px;"><a href="#">Route 2</a></li>
-                            <li class="" style="height:30px;"><a href="#">Route 3</a></li>
-                            <li class="" style="height:30px;"><a href="#">Route 4</a></li>
-                            <li class="" style="height:30px;"><a href="#">Route 5</a></li>
-                        </ul>
-                    </div>
-                </div>
-                </div>
                 
                 <div id="block2" style="float:left;height:465px;width:600px;border:1px solid #ccc;border-radius:5px;overflow-y:scroll;">
                     <form>
@@ -168,29 +174,17 @@
                         						<td>${orderdetail.qty}</td>
                     						</tr>
                   						</c:forEach>
-                                        <!-- <tr>
-                                            <td>Kayak</td>
-                                            <td>1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Shoes</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                              <td>Hat</td>
-                                            <td>1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Shirt</td>
-                                            <td>1</td>
-                                        </tr> -->
                                     </table>
+                                </div>
+                                <div>
+                                	
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+            <!-- form ends -->
             <!-- form ends -->
 
 

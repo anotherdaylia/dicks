@@ -72,6 +72,9 @@
                 <th>Status</th>
                 <th>Action</th>
                 </tr>
+                
+                
+                
                 <tr>
                     <td class=""><input type="checkbox" class="case"/></td>
                     <td class="">005</td>

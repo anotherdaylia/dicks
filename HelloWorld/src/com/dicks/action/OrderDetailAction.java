@@ -34,9 +34,9 @@ public class OrderDetailAction {
 		this.details = details;
 	}
 
-	public int getId() {
+	public String getId() {
 		
-		return Integer.parseInt(id);
+		return id;
 	}
 
 	public void setId(String id) {
@@ -76,9 +76,11 @@ public class OrderDetailAction {
 	}
 	
 	public String showDetails() throws Exception{
+		System.out.println("id in order detail: " + this.id);
 		order = OrdersDAO.getInstance().getById(Integer.parseInt(id));
 		details = new ArrayList<OrderDetail>();
 		details= OrderDetailDAO.getInstance().getOrderDetailsByOrder(order);
+		
 		return "success";
 	}
 }
