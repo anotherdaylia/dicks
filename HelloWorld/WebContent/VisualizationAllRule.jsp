@@ -77,7 +77,7 @@
                 <div id="block1" style="float:left;height:465px;width:150px;border:1px solid #ccc;border-radius:5px;margin-right:1px;">
                 <div id="accordion" style="float:left;width:150px;margin-top:-3px;">
                 
-                    <h3>Stage 1</h3>
+                    <h3>Stage 1 - Fulfillment Eligibility</h3>
                     <div style="border: 1px solid #aaaaaa;">
                         <ul>
                             <li class="" style="height:30px;"><a href="#">All Rules</li>
@@ -87,16 +87,16 @@
                             
                         </ul>
                     </div>
-                    <h3>Stage 2</h3>
-                    <div>
+                    <h3>Stage 2 - Delivery Optimization</h3>
+                    <div style="border: 1px solid #aaaaaa;">
                         <ul>
                             <li class="" style="height:30px;"><a href="#">Package 1</a></li>
                             <li class="" style="height:30px;"><a href="#">Package 2</a></li>
                             <li class="" style="height:30px;"><a href="#">Package 3</a></li> 
                         </ul>
                     </div>
-                    <h3>Stage 3</h3>
-                    <div>
+                    <h3>Stage 3 - Allocation Optimization</h3>
+                    <div style="border: 1px solid #aaaaaa;">
                         <ul>
                             <li class="" style="height:30px;"><a href="#">Route 1</a></li>
                             <li class="" style="height:30px;"><a href="#">Route 2</a></li>

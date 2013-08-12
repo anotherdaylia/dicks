@@ -83,7 +83,7 @@
             <div style="padding-left:5px;width:890px;">
                 <div id="accordion" style="float:left;width:280px;margin-top:-3px;">
                         <h3>Order Details</h3>
-                        <div>
+                        <div style="border: 1px solid #aaaaaa;">
                             <ul>
                                 <li class="" style="height:30px;"><a href="VisualizationOrderDetail.html">Order Details</a></li>
                             </ul>
@@ -100,7 +100,7 @@
                         </div>
                         
                         <h3>Stage 2 - Candidate Determination</h3>
-                        <div>
+                        <div style="border: 1px solid #aaaaaa;">
                             <ul>
                                 <li style="height:30px;"><a href="VisualizationStage2-1.html">Package 1</a></li>
                                 <li style="height:30px;"><a href="VisualizationStage2-2.html">Package 2</a></li>
@@ -109,7 +109,7 @@
                         </div>
                     
                         <h3>Stage 3 - Evaluation</h3>
-                        <div>
+                        <div style="border: 1px solid #aaaaaa;">
                             <ul>
                                 <li class="" style="height:30px;"><a href="VisualizationStage3-1.html">Route 1</a></li>
                                 <li class="" style="height:30px;"><a href="VisualizationStage3-2.html">Route 2</a></li>

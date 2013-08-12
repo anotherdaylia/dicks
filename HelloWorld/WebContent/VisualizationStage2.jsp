@@ -92,7 +92,7 @@
                         </div>
                         
                         <h3>Stage 2 - Delivery Optimization</h3>
-                        <div>
+                        <div style="border: 1px solid #aaaaaa;">
                             <ul>
                                 <c:forEach items="${packages}" var="package">
                                 	<li style="height:30px;"><a href="#">${package}</li>
@@ -101,7 +101,7 @@
                         </div>
                     
                         <h3>Stage 3 - Allocation Optimization</h3>
-                        <div>
+                        <div style="border: 1px solid #aaaaaa;">
                             <ul>
                                 <c:forEach items="${routes}" var="route">
                                 	<li style="height:30px;"><a href="#">${route}</li>
