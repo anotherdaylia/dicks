@@ -101,8 +101,6 @@ public class RuleList {
 		this.ruleString = ruleString;
 	}
 	
-	
-	
 	public String gotorulelist(){
 		
 		int pre = 0;
@@ -171,7 +169,7 @@ public class RuleList {
 		prodCate = cate.toString();
 		
 		
-		System.out.println("WTF"+prodCate);
+		System.out.println(prodCate);
 		Rule thisRule = new Rule();
 		try {
 			thisRule = RuleDAO.getInstance().getRuleById(ruleId);
@@ -179,6 +177,8 @@ public class RuleList {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+
+		
 		condition = thisRule.getCondition();
 		if (condition.equals("||"))
 			condition = "ALL";

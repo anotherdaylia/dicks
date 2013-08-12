@@ -33,10 +33,10 @@ public class Util {
 	}
 	
 	public static double getShippingCosts(Parcel parcel, Store store) throws Exception {
-		int supplyZip = Integer.parseInt(parcel.getPack().getOrder().getShippingZip());
-		int destinationZip = Integer.parseInt(store.getZip());
+		int supplyZip = Integer.parseInt(parcel.getPack().getOrder().getShippingZip()+"1");
+		int destinationZip = Integer.parseInt(store.getZip()+"1");
 		Shipment shipment = ShipmentDAO.getInstance().getShipmentByOriginSupply(supplyZip, destinationZip);
-		
+		if (shipment == null) return 0;
 		return shipment.getNormalRate();
 	}
 	

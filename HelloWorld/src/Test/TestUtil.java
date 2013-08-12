@@ -51,6 +51,21 @@ public class TestUtil {
 	}
 
 	@Test
+	public void testRule() {
+		try {
+			Rule r = RuleDAO.getInstance().getRuleById(1+"");
+			r.setRuleName("");
+			r.setValue("1");
+			RuleDAO.getInstance().update(r);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+//	@Test
 	public void testParcel() {
 		class MyIntComparable implements Comparator<Integer>{
 			 

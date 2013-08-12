@@ -156,7 +156,7 @@ function PackageTestResult getBestResult(ArrayList results) {
 function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 	PackageTestResult r = new PackageTestResult(test);
 	ArrayList parcels = test.getParcels();
-	
+	System.out.println("in get test result");
 	for (int i = 0; i < parcels.size(); i++) {
 		Parcel p = (Parcel) parcels.get(i);
 		ArrayList parcelResults = new ArrayList();
@@ -166,6 +166,7 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 			if (parcelR != null) {
 				parcelResults.add(parcelR);
 				Util.calculateAttribute(parcelR);
+				System.out.println("in get test result attribute");
 			}
 		}
 		if (parcelResults.size() < 1) {
