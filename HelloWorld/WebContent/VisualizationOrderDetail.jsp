@@ -89,8 +89,8 @@
                             </ul>
                         </div>
 
-                        <h3>Stage 1 - Prefiltering</h3>
-                        <div>
+                        <h3>Stage 1 - Fulfillment Eligibility</h3>
+                        <div style="border: 1px solid #aaaaaa;">
                             <ul>
                                 <li class="" style="height:30px;"><a href="VisualizationStage1AllRules.html">All Rules</a></li>
                                 <li class="" style="height:30px;"><a href="VisualizationStage1Rule1.html">Rule 1</a></li>

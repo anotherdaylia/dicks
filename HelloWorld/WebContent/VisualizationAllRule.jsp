@@ -64,7 +64,7 @@
                 <span><a href="#">Home</a><span> &gt; </span></span>
                 <span><a href="#">Visualization Dashboard</a><span> &gt; </span></span>
                 <span><a href="#">Order List</a><span> &gt; </span></span>                
-                <span>Order Routing Visualization<span>   
+                <span>Order Routing Visualization</span>   
             </li>
 
             <!-- Success Message and Error Message -->
@@ -78,7 +78,7 @@
                 <div id="accordion" style="float:left;width:150px;margin-top:-3px;">
                 
                     <h3>Stage 1</h3>
-                    <div>
+                    <div style="border: 1px solid #aaaaaa;">
                         <ul>
                             <li class="" style="height:30px;"><a href="#">All Rules</li>
                             <li class="" style="height:30px;"><a href="#">Rule 1</li>
