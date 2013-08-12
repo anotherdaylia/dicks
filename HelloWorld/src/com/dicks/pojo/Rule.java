@@ -350,6 +350,11 @@ public class Rule implements java.io.Serializable {
 		this.value = translate(valueBuffer, values);
 	}
 	
+	public void setOperators(String[] operators){
+		StringBuffer operatorBuffer = new StringBuffer();
+		this.operator = translate(operatorBuffer, operators);
+	}
+	
 	public void setRoutes(String[] routes){
 		StringBuffer routeBuffer = new StringBuffer();
 		this.route = translate(routeBuffer, routes);

@@ -147,7 +147,7 @@
             <table class="text">
                 <tr>
                     <td>Rule Name&#58;</td>
-                    <td><input style="width:200px;" type="text" name="rulename" value ="${rulename}">&nbsp;&nbsp;</td>
+                    <td><input style="width:200px;" type="text" name="rulenames" value ="${rulename}">&nbsp;&nbsp;</td>
                 </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
@@ -190,7 +190,7 @@
                                 <option value="=" <c:if test="${operator[0] == '='}">selected="selected"</c:if>>=</option>
                                 <option value="&lt;" <c:if test="${operator[0] == '<'}">selected="selected"</c:if>>&lt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" value ="${value[0]}">&nbsp;&nbsp;
+                            <input style="width:50px;" type="text" name="value" value ="${value[0]}">&nbsp;&nbsp;
                             <select style="width:70px;">
                                 <option value="inches">inches</option> 
                                 <option value="feet">feet</option>
@@ -210,7 +210,7 @@
                                 <option value="=" <c:if test="${operator[1] == '='}">selected="selected"</c:if>>=</option>
                                 <option value="&lt;" <c:if test="${operator[1] == '<'}">selected="selected"</c:if>>&lt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" value ="${value[1]}">&nbsp;&nbsp;
+                            <input style="width:50px;" type="text" name="value" value ="${value[1]}">&nbsp;&nbsp;
                             <select style="width:70px;">
                                 <option value="inches">inches</option> 
                                 <option value="feet">feet</option>
@@ -231,7 +231,7 @@
                                 <option value="=" <c:if test="${operator[2] == '='}">selected="selected"</c:if>>=</option>
                                 <option value="&lt;" <c:if test="${operator[2] == '<'}">selected="selected"</c:if>>&lt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" value ="${value[2]}">&nbsp;&nbsp;
+                            <input style="width:50px;" type="text" name="value" value ="${value[2]}">&nbsp;&nbsp;
                             <select style="width:70px;">
                                 <option value="inches">inches</option> 
                                 <option value="feet">feet</option>
@@ -252,7 +252,7 @@
                                 <option value="=" <c:if test="${operator[3] == '='}">selected="selected"</c:if>>=</option>
                                 <option value="&lt;" <c:if test="${operator[3] == '<'}">selected="selected"</c:if>>&lt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" value ="${value[3]}">&nbsp;&nbsp;
+                            <input style="width:50px;" type="text" name="value" value ="${value[3]}">&nbsp;&nbsp;
                             <select style="width:70px;">
                                 <option value="inches">inches</option> 
                                 <option value="feet">feet</option>
@@ -276,6 +276,8 @@
                     <td><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>  
                     <td><input type="submit" value="Update" class="button"></td>
                      <input type="hidden" id="prodCate" name="prodCate"> 
+                      <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />
+                
                 </tr>
             </table>   
             </form>

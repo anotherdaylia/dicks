@@ -24,6 +24,7 @@ public class RuleList {
 	public String[] value;
 	public String cates;
 	public String rulename;
+	public String rulenames;
 	public String ruleDess;
 	public String condition;
 	public String conditions;
@@ -33,7 +34,12 @@ public class RuleList {
 
 	public String categoryname;
 	
-	
+	public String getRuleNames(){
+		return rulenames;
+	}
+	public void setRuleNames(String rulenames){
+		this.rulenames = rulenames;
+	}
 	public String getCategory(){
 		return categoryname;
 	}
@@ -180,6 +186,7 @@ public class RuleList {
 			condition = "Any";
 		rulename = thisRule.getRuleName();
 		ruleDess = thisRule.getRuleDescr();
+		rulename = rulename.replace(" ","%20");
 		System.out.println("jj"+ruleDess);
 		attribute = thisRule.getAttributes();
 		operator = thisRule.getOperators();
@@ -248,10 +255,29 @@ public class RuleList {
 		rulename = rulename.replace("%20", " ");
 		des = des.replace("%20", " ");
 		
-		System.out.println("input category"+categoryname);
+		System.out.println("input rule"+rulename);
 		String[] categoryList= categoryname.split(",");
 
-
+		Rule hahaRule = new Rule();
+		Rule[] ruleList = null;
+		
+		try{
+				//hahaRule = RuleDAO.getInstance().getRuleByName(rulename);
+				//System.out.println("this rule Id is !!!!!!!!!"+hahaRule.getRuleId());
+				ruleList =RuleDAO.getInstance().getAllSortedList();
+		}
+		catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		for (int i = 0; i<ruleList.length;i++){
+			System.out.println(ruleList[i].getRuleName());
+			if (ruleList[i].getRuleName().equals(rulename)){
+				System.out.println("found it");
+				hahaRule = ruleList[i];
+			}
+		}
+		
 		int cateLength = 0;
 		for (int j = 0 ; j<categoryList.length;j++){
 			if ((categoryList[j] != null) && (!categoryList[j].equals(" "))){
@@ -282,7 +308,7 @@ public class RuleList {
 		
 		String[] route = new String[1];
 		route[0] = "";
-		UpdateTemplate test= new UpdateTemplate(rulename,des,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A");
+		UpdateTemplate test= new UpdateTemplate(hahaRule.getRuleId(),rulename,rulenames,des,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A");
 
 		return "success";
 	}

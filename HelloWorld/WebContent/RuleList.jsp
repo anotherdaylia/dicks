@@ -106,6 +106,8 @@
                 <input type="hidden" id="ruleId" name="ruleId"> 
                 <input type="hidden" id="ruleType" name="ruleType"> 
                  <input type="hidden" id="prodCate" name="prodCate"> 
+                 <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />
+                
                 
                 </tbody>
             </table>
