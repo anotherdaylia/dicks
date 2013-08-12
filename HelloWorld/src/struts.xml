@@ -32,13 +32,11 @@
       <action name="gotonewbizrulelist" class="com.dicks.action.Redirect" method="gotonewbizrulelist">
           <result name="gotonewbizrulelist">/newRules.jsp</result>
       </action>-->
-<<<<<<< HEAD
-      
-=======
+
             <action name="gotoorderlist" class="com.dicks.action.Redirect" method="gotoorderlist">
           <result name="gotoorderlist">/OrderList.jsp</result>
       </action>
->>>>>>> refs/remotes/origin/master
+
       <action name="gotorulelist" class="com.dicks.action.RuleList" method="gotorulelist">
           <result name="success" type="dispatcher">/RuleList.jsp</result>
       </action>

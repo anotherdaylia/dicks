@@ -110,8 +110,8 @@ public class RulePriority {
 		for (int i = 0;i<pre;i++){
 			pRule[i] = allRule[i];
 		}
-
-		for (int i = mid, j = 0;i<(pre+mid);i++,j++){
+		
+		for (int i = pre, j = 0;i<(pre+mid);i++,j++){
 			pRule[i] = findRule(allRule,ruleStringList[j]);
 			System.out.println("pre priority"+pRule[i].getPriority());
 			System.out.println("computing priority"+pRule[i-1].getPriority());
@@ -120,8 +120,9 @@ public class RulePriority {
 			System.out.println("first new Rule"+ruleStringList[j]);
 		}
 
-		for (int i = (mid+pre), j=0;i<allRule.length;i++,j++){
-			pRule[i] = allRule[j];
+		
+		for (int i = (mid+pre);i<allRule.length;i++){
+			pRule[i] = allRule[i];
 		}
 
 		for (int i = 0;i<pRule.length;i++){
