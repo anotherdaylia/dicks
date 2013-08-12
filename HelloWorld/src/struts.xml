@@ -145,7 +145,13 @@
        <action name="editrule" class="com.dicks.action.EditRuleAction" method="editRule">
           <result name="success">/Edit_TemplateResultRanking.jsp</result>
       </action>
+      <action name="deleteCategory" class="com.dicks.action.DeleteCategoryAction">
+          <result name="success" type="chain">
+          <param name="actionName">displayCategoryList</param>
+          <param name="act">${act}</param>
+          </result>
+      </action>
       
-      
+  
    </package>
 </struts>

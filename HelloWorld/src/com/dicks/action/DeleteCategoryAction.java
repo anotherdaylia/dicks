@@ -15,7 +15,6 @@ public class DeleteCategoryAction extends ActionSupport{
 		if("store".equals(act)){
 			StoreCateDAO.getInstance().deleteCategorys(idArray);
 		}else if("product".equals(act)){
-			System.out.println("!!!!!!!!!!!!!"+ids);
 			ProdCateDAO.getInstance().deleteCategorys(idArray);
 		}
 		return SUCCESS;
