@@ -15,6 +15,7 @@ import com.dicks.engine.Parcel
 import com.dicks.engine.ParcelResult
 import com.dicks.engine.PackageTest
 import com.dicks.engine.PackageTestResult
+import com.dicks.engine.EngineLog
 import java.util.ArrayList
 import java.*;
 import java.String.*;
@@ -30,8 +31,10 @@ rule "Explode Cart"
     when
         $order : Orders()
         $item : Product() from OrderDetailDAO.getInstance().getProductsByOrder($order)
+        $logger : EngineLog()
     then
         insert( $item );
+        $logger.addLog("product"+$item.getSku());
         System.out.println("product"+$item.getSku());
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
 //        System.out.println("order quantity: " + $order.getQuantity());
@@ -47,11 +50,7 @@ end
 		$order : Orders()
 		eval ($orderE.getProductQty($id) > 2)
 		$s : Store( storeId == 1 )
-		eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
-
-
-
-	
+		eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))	
 	then
 		System.out.println("yes you can!"+$orderE.getProductQty($id));
         PackageE p = new PackageE($order);
@@ -72,7 +71,9 @@ rule  "Special Route0"
         eval ($orderE.getProductQty($id) >2)
         $s : Store( storeId == 1)
         eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+        $logger: EngineLog()
     then
+    	$logger.addLog("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
         System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
         PackageE p = new PackageE($order);
         p.addProduct($product, $orderE.getProductQty($id));
@@ -89,6 +90,7 @@ rule  "Special Route0"
 		
         PackageTestResult packageR = new PackageTestResult(test);
         packageR.addResult(parcelR);
+        $logger.addLog(packageR.toString());       
         System.out.println(packageR);
         insert(packageR);
         retract(p);

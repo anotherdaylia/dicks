@@ -11,9 +11,11 @@ import org.apache.commons.lang3.text.WordUtils;
 
 import com.dicks.dao.FeeDAO;
 import com.dicks.dao.FeeDAO;
+import com.dicks.dao.InventoryDAO;
 import com.dicks.dao.OrderDetailDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.pojo.Fee;
+import com.dicks.pojo.Inventory;
 import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
@@ -74,7 +76,12 @@ public class Util {
 							attributeValue += attribute * qty;
 						}
 					} else if (names[1].equals("inventory")) {
+						ArrayList<Inventory> inventories = InventoryDAO.getInstance().getInventoryByParcelStore(parcel, store);
 						
+						for (Inventory inventory : inventories) {
+							attributeValue += getAttribute(inventory, Inventory.class, names[0]) * parcel.getProductQty(inventory.getProduct());
+//							System.out.println("product: " + p.getProdName());
+						}					
 					} else if (names[1].equals("order")) {
 						attributeValue = getAttribute(parcel.getPack().getOrder(), Orders.class, names[0]);
 					}

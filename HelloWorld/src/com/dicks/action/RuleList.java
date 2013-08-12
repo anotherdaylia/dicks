@@ -7,7 +7,7 @@ import com.dicks.dao.RuleDAO;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Rule;
 
-public class RulePriority {
+public class RuleList {
 	public String[] ruleList;
 	public Rule[] allRule;
 	public String ruleString;
@@ -15,6 +15,27 @@ public class RulePriority {
 	public Rule[] preRule;
 	public Rule[] midRule;
 	public Rule[] lastRule;
+	public String ruleId;
+	public String ruleType;
+	public String[] attribute;
+	public String[] operator;
+	public String[] value;
+	
+	public String getRuleId(){
+		return  ruleId;
+	}
+	
+	public void setRuleId(String ruleId){
+		this.ruleId = ruleId;
+	}
+	
+	public String getRuleType(){
+		return  ruleType;
+	}
+	
+	public void setRuleType(String ruleType){
+		this.ruleType = ruleType;
+	}
 	
 	public String getRulename() {
 		return rulename;
@@ -30,7 +51,7 @@ public class RulePriority {
 	public void setRuleString(String ruleString){
 		this.ruleString = ruleString;
 	}
-	public String gotoruleprioritylist(){
+	public String gotorulelist(){
 		
 		int pre = 0;
 		int mid = 0;
@@ -43,7 +64,7 @@ public class RulePriority {
 		}
 		
 		for (int i = 0; i<allRule.length;i++){
-			if (allRule[i].getType().equals("9")){
+			if (allRule[i].getType().equals("n")){
 				if (allRule[i].getPriority()>0){
 					pre++;
 				}
@@ -76,6 +97,28 @@ public class RulePriority {
 		
 		return "success";
 	}
+	
+	
+	public String goToEdit(){
+		System.out.println("WTF"+ruleId);
+		Rule thisRule = new Rule();
+		try {
+			thisRule = RuleDAO.getInstance().getRuleById(ruleId);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		attribute = thisRule.getAttributes();
+		operator = thisRule.getOperators();
+		value = thisRule.getValues();
+		for (int i = 0;i<attribute.length;i++){
+			System.out.println("product "+attribute[i]);
+			System.out.println("operator "+operator[i]);
+			System.out.println("value "+value[i]);
+			
+		}
+		return "goToEditProductThreshold";
+	}
 	public String reRank(){
 		System.out.println("!!!!!!!!!!!"+ruleString);
 		int pre = 0;
@@ -89,7 +132,7 @@ public class RulePriority {
 		}
 		Rule[] preRule = null;
 		for (int i = 0; i<allRule.length;i++){
-			if (allRule[i].getType().equals("9")){
+			if (allRule[i].getType().equals("n")){
 				if (allRule[i].getPriority()>0){
 					pre++;
 				}
@@ -104,35 +147,12 @@ public class RulePriority {
 		System.out.println("mid rule number is "+mid);
 		System.out.println("last rule number is "+last);
 		String[] ruleStringList = ruleString.split(",");
-		System.out.println("hahahahah"+ruleString);
-		
-		Rule[] pRule = new Rule[allRule.length];
-		for (int i = 0;i<pre;i++){
-			pRule[i] = allRule[i];
+		Rule[] newRule = new Rule[allRule.length];
+		for (int i = 0 ; i < newRule.length; i++){
+			newRule[i] = findRule(allRule, ruleStringList[i]);
+			System.out.println("New rule "+i+" "+newRule[i].getRuleName());
 		}
 		
-		for (int i = pre, j = 0;i<(pre+mid);i++,j++){
-			pRule[i] = findRule(allRule,ruleStringList[j]);
-			System.out.println("pre priority"+pRule[i].getPriority());
-			System.out.println("computing priority"+pRule[i-1].getPriority());
-			pRule[i].setPriority(pRule[i-1].getPriority()-2);
-			System.out.println("after priority"+pRule[i].getPriority());
-			System.out.println("first new Rule"+ruleStringList[j]);
-		}
-		
-		for (int i = (mid+pre), j=0;i<allRule.length;i++,j++){
-			pRule[i] = allRule[j];
-		}
-		
-		for (int i = 0;i<pRule.length;i++){
-			System.out.println("rule "+i+" "+pRule[i].getRuleName());
-		}
-		try {
-			RuleDAO.getInstance().updatePriorities(pRule);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
 		
 		return "success";
 	}

@@ -15,10 +15,10 @@ public class Redirect {
 		this.ordersList = ordersList;
 	}
 
-	public String gotorulelist() {
-
-		return "gotorulelist";
-	}
+//	public String gotorulelist() {
+//
+//		return "gotorulelist";
+//	}
 
 	public String gotoorderlist() throws Exception {
 		ordersList = new ArrayList<Orders>();

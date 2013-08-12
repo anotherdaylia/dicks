@@ -33,12 +33,19 @@
       <action name="gotoorderlist" class="com.dicks.action.Redirect" method="gotoorderlist">
           <result name="gotoorderlist">/OrderList.jsp</result>
       </action>
-      <action name="gotorulelist" class="com.dicks.action.Redirect" method="gotorulelist">
-          <result name="gotorulelist">/RuleList.jsp</result>
-      </action>
+
       <action name="gotonewbizrulelist" class="com.dicks.action.Redirect" method="gotonewbizrulelist">
           <result name="gotonewbizrulelist">/newRules.jsp</result>
       </action>-->
+      <action name="gotorulelist" class="com.dicks.action.RuleList" method="gotorulelist">
+          <result name="success" type="dispatcher">/RuleList.jsp</result>
+      </action>
+      <action name="goToEdit" class="com.dicks.action.RuleList" method="goToEdit">
+           <result name="goToEditProductThreshold" type="dispatcher">/Edit_TemplateProductThreshold.jsp</result>
+           <result name="goToEditStoreThreshold" type="dispatcher">/TemplateSpecialRoute.jsp</result>
+           <result name="goToSpecialRoute" type="dispatcher">/TemplateStoreThreshold.jsp</result>
+      </action>
+      
       <action name="gotoruleprioritylist" class="com.dicks.action.RulePriority" method="gotoruleprioritylist">
           <result name="success" type="dispatcher">/rulePriority.jsp</result>
       </action>
@@ -69,7 +76,11 @@
           <result name="specialroute" type="dispatcher">/RuleList.jsp</result>
       </action>
       <action name="placeorder" class="com.dicks.action.PlaceOrder" method="placeorder">
-          <result name="placeorder" type="dispatcher">/placeOrder.jsp</result>
+          <result name="success" type="chain">
+            <param name="actionName">orderdetail</param>
+          	<param name="id">${id}</param>   
+          	<param name="logs">${logs}</param> 
+          </result>      
       </action>
 
       <action name="displayCategoryList" class="com.dicks.action.CategoryListAction" method="displayCategory">
@@ -103,6 +114,7 @@
       </action>-->
 
      <action name="viewStoreCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="viewStoreCategory">
+
       		<result name="success">/ViewStoreCategory.jsp</result>
       </action> 
       <action name="viewProdCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="viewProdCategory">
@@ -123,6 +135,10 @@
         <action name="viewProdCate2EditProdCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditCate">
       		<result name="success">/EditProdCategory.jsp</result>
       </action> 
+       <action name="deleteCategory" class="com.dicks.action.DeleteCategoryAction">
+      		<result name="success">/CategoryList.jsp</result>
+      		<param name="act">${act}</param>
+      </action> 
 
        <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
           <result name="success">/RuleList.jsp</result>
@@ -130,7 +146,7 @@
        <action name="storethreshold" class="com.dicks.action.StoreThresholdAction" method="storeThreshold">
           <result name="success">/RuleList.jsp</result>
       </action>
-       <action name="editRuleRanking" class="com.dicks.action.ResultRankingAction" method="editResultRankingTemplate">
+       <action name="editrule" class="com.dicks.action.EditRuleAction" method="editRule">
           <result name="success">/Edit_TemplateResultRanking.jsp</result>
       </action>
       

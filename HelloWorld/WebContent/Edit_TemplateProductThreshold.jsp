@@ -107,7 +107,6 @@
                     <td>Rule Editor&#58;</td>
                     <td style="width:500px;">
                     <div class="drl"> 
-                         
                          <div> If
                             <select style="width:50px;">
                                 <option value="#">All</option> 
@@ -117,20 +116,20 @@
                         <br/> 
                         <div>
                             <select style="width:70px;">
-                                <option value="#">Length</option> 
-                                <option value="#">Width</option>
-                                <option value="#">Height</option>
-                                <option value="#">Weight</option>
+                                <option value="Length" <c:if test="${attribute[0] == 'Length'}">selected="selected"</c:if>>Length</option> 
+                                <option value="Width" <c:if test="${attribute[0] == 'Width'}">selected="selected"</c:if>>Width</option>
+                                <option value="Height" <c:if test="${attribute[0] == 'Height'}">selected="selected"</c:if>>Height</option>
+                                <option value="Weight" <c:if test="${attribute[0] == 'Weight'}">selected="selected"</c:if>>Weight</option>
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;">
-                                <option value="#">&gt;</option> 
-                                <option value="#">=</option>
-                                <option value="#">&lt;</option>
+                            	<option value="&gt" <c:if test="${operator[0] == '>'}">selected="selected"</c:if>>&gt;</option> 
+                                <option value="=" <c:if test="${operator[0] == '='}">selected="selected"</c:if>>=</option>
+                                <option value="&lt;" <c:if test="${operator[0] == '<'}">selected="selected"</c:if>>&lt;</option>
                             </select>&nbsp;&nbsp;
                             <input style="width:50px;" type="text">&nbsp;&nbsp;<select style="width:70px;">
-                                <option value="#">inches</option> 
-                                <option value="#">feet</option>
-                                <option value="#">lbs</option>
+                                <option value="inches" <c:if test="${operator[0] == '>'}">selected="selected"</c:if>>inches</option> 
+                                <option value="feet">feet</option>
+                                <option value="lbs">lbs</option>
                             </select>
                         </div>
                         <br/> 

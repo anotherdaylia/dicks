@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import com.dicks.pojo.Category;
 import com.dicks.pojo.ProdCate;
 import com.dicks.pojo.Product;
+import com.dicks.pojo.Rule;
 import com.dicks.pojo.RuleCate;
 import com.dicks.pojo.StoreCate;
 
@@ -54,5 +55,41 @@ public class RuleCateDAO extends BaseDao<RuleCate> {
 		
 		return names;
 	}
+
+	public void deleteCategory(String cateId, int[] stordIds) throws Exception {
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion = Restrictions.eq("id.categoryId", Integer.valueOf(cateId));
+		criterions.add(criterion);
+		List<RuleCate> result =  super.getList(criterions);
+		
+		if(result==null||result.size()==0) return;
+		Rule[] rules = new Rule[result.size()];
+		int i = 0;
+		for(RuleCate rc: result){
+			rules[i] = rc.getRule();
+			i++;
+			super.delete(rc);
+		}
+		RuleDAO.getInstance().updateStoreObject(rules,stordIds);
+	}
+
+	public void deleteCategory(String cateId, String[] skus) throws Exception {
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion = Restrictions.eq("id.categoryId", Integer.valueOf(cateId));
+		criterions.add(criterion);
+		List<RuleCate> result =  super.getList(criterions);	
+		
+		if(result==null||result.size()==0) return;
+		Rule[] rules = new Rule[result.size()];
+		int i = 0;
+		for(RuleCate rc: result){
+			rules[i] = rc.getRule();
+			i++;
+			super.delete(rc);
+		}
+		RuleDAO.getInstance().updateProdObject(rules,skus);		
+	}
+
+
 	
 }

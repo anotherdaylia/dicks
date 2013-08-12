@@ -1,10 +1,11 @@
 package com.dicks.action;
 
+import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.StoreCateDAO;
 import com.dicks.pojo.StoreCate;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class DeleteCategory extends ActionSupport{
+public class DeleteCategoryAction extends ActionSupport{
 	
 	private String act;
 	private String ids;
@@ -12,10 +13,10 @@ public class DeleteCategory extends ActionSupport{
 	public String execute() throws Exception {
 		String[] idArray =ids.split(",");
 		if("store".equals(act)){
-			
-			//StoreCateDAO.getInstance().deleteCategory
-		}else if("product".equals(ids)){
-			
+			StoreCateDAO.getInstance().deleteCategorys(idArray);
+		}else if("product".equals(act)){
+			System.out.println("!!!!!!!!!!!!!"+ids);
+			ProdCateDAO.getInstance().deleteCategorys(idArray);
 		}
 		return SUCCESS;
 	}
