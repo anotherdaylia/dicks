@@ -18,7 +18,6 @@
           <result name="error">/login.jsp</result>
           <result name="success">/OrderList.jsp</result>
       </action>
-      
   		<action name="gotocategorylist" class="com.dicks.action.CategoryListAction" method="displayCategory">
           <result name="success">/CategoryList.jsp?act=store</result>
           </action>       
@@ -33,7 +32,13 @@
       <action name="gotonewbizrulelist" class="com.dicks.action.Redirect" method="gotonewbizrulelist">
           <result name="gotonewbizrulelist">/newRules.jsp</result>
       </action>-->
+<<<<<<< HEAD
       
+=======
+            <action name="gotoorderlist" class="com.dicks.action.Redirect" method="gotoorderlist">
+          <result name="gotoorderlist">/OrderList.jsp</result>
+      </action>
+>>>>>>> refs/remotes/origin/master
       <action name="gotorulelist" class="com.dicks.action.RuleList" method="gotorulelist">
           <result name="success" type="dispatcher">/RuleList.jsp</result>
       </action>
@@ -44,13 +49,17 @@
            <result name="goToCostCalculation" type="dispatcher">/TemplateCostCalculation.jsp</result>
       </action>
       <action name="updateRule" class="com.dicks.action.RuleList" method="updateRule">
-          <result name="success" type="dispatcher">/RuleList.jsp</result>
+          <result name="success" type="chain">
+            <param name="actionName">gotorulelist</param>
+          </result> 
       </action>
       <action name="gotoruleprioritylist" class="com.dicks.action.RulePriority" method="gotoruleprioritylist">
           <result name="success" type="dispatcher">/rulePriority.jsp</result>
       </action>
       <action name="reRank" class="com.dicks.action.RulePriority" method="reRank">
-          <result name="success" type="dispatcher">/rulePriority.jsp</result>
+          <result name="success" type="chain">
+            <param name="actionName">gotoruleprioritylist</param>
+          </result>   
       </action>
       <action name="gotonewbizrulelist" class="com.dicks.action.CreateNewBizRule" method="gotonewbizrulelist">
           <result name="success" type="dispatcher">/newRules.jsp</result>

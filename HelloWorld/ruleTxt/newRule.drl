@@ -43,7 +43,7 @@ rule  "Mininum Packagethreshold0"
 end
 
 
-rule  "da shabi cwc"
+rule  "fasjdfalksjf"
     salience 848
     when
         $o : Order()
@@ -56,8 +56,21 @@ rule  "da shabi cwc"
         retract($i);
 end
 
-rule  "New Special"
+rule  "Product Threshold9"
     salience 846
+    when
+        $o : Order()
+        $i : Product( ((Length < 4)||( Width < 3)||( Height < 2)||( Weight < 1))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB"))|| (sku.equals("NK-CL-KD"))|| (sku.equals("NK-SH-AJ")))&& (flag.equals("TH-A,ST-A,SP-A")))
+    then
+        Package p = new Package($o);
+        p.addProduct($i);
+        insert (p);
+        $i.minPackage();
+        retract($i);
+end
+
+rule  "New Special"
+    salience 844
     when
         $order : Orders()
         $orderE : OrderE()
@@ -72,19 +85,6 @@ rule  "New Special"
         insert (p);
         p.setAllocated(true); 
         retract($product);
-end
-
-rule  "Product Threshold9"
-    salience 844
-    when
-        $o : Order()
-        $i : Product( ((Length < 4)||( Width < 3)||( Height < 2)||( Weight < 1))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB"))|| (sku.equals("NK-CL-KD"))|| (sku.equals("NK-SH-AJ")))&& (flag.equals("TH-A,ST-A,SP-A")))
-    then
-        Package p = new Package($o);
-        p.addProduct($i);
-        insert (p);
-        $i.minPackage();
-        retract($i);
 end
 
 rule "summarize"   
