@@ -44,7 +44,7 @@
            <result name="goToEditProductThreshold" type="dispatcher">/Edit_TemplateProductThreshold.jsp</result>
            <result name="goToEditStoreThreshold" type="dispatcher">/TemplateSpecialRoute.jsp</result>
            <result name="goToSpecialRoute" type="dispatcher">/TemplateStoreThreshold.jsp</result>
-           <result name="goToCostCalculation" type="dispatcher">/TemplateCostCalculation.jsp</result>
+           <result name="goToCostCalculation" type="dispatcher">/Edit_TemplateCostCalculation.jsp</result>
       </action>
       <action name="updateRule" class="com.dicks.action.RuleList" method="updateRule">
           <result name="success" type="chain">

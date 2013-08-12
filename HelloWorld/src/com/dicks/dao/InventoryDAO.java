@@ -144,8 +144,7 @@ public class InventoryDAO extends BaseDao<Inventory> {
 	public boolean checkProduct(Store store, Product product, String operator, int mar) throws Exception {
 		Inventory in = getInventoryByStoreProduct(store.getStoreId(), product.getProdId());
 		
-		if (in != null){
-			
+		if (in != null){		
 			System.out.println("margin!"+(in.getInventory() - in.getSafetyStock()));
 		}
 		
