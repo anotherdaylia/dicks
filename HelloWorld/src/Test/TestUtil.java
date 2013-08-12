@@ -1,7 +1,10 @@
 package Test;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
@@ -49,8 +52,28 @@ public class TestUtil {
 
 	@Test
 	public void testParcel() {
-		
+		class MyIntComparable implements Comparator<Integer>{
+			 
+		    @Override
+		    public int compare(Integer o1, Integer o2) {
+		        return (o1>o2 ? 1 : (o1==o2 ? 0 : -1));
+		    }
+		} 
+
+	    List<Integer> list = new ArrayList<Integer>();
+	    list.add(5);
+	    list.add(4);
+	    list.add(3);
+	    list.add(7);
+	    list.add(2);
+	    list.add(1);
+	    Collections.sort(list, new MyIntComparable());
+	    for (Integer integer : list) {
+	      System.out.println(integer);
+	    }
+
 	}
+
 	
 //	@Test
 	public void testInventoryEvaluate() {
@@ -262,7 +285,7 @@ public class TestUtil {
 		}		
 	}	
 	
-	@Test
+//	@Test
 	public void testCosts() {
 		try {
 			Orders orders = OrdersDAO.getInstance().getById(3);

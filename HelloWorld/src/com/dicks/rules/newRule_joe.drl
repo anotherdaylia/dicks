@@ -34,7 +34,7 @@ rule "Explode Cart"
         $logger : EngineLog()
     then
         insert( $item );
-        $logger.addLog("product"+$item.getSku());
+        $logger.addLog("product "+$item.getSku());
         System.out.println("product"+$item.getSku());
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
 //        System.out.println("order quantity: " + $order.getQuantity());
@@ -90,19 +90,13 @@ rule  "Special Route0"
 		
         PackageTestResult packageR = new PackageTestResult(test);
         packageR.addResult(parcelR);
-        $logger.addLog(packageR.toString());       
+        $logger.addLog($product + "get inserted into a new package by speical route rule"); 
+        $logger.addLog(packageR.toString());      
         System.out.println(packageR);
         insert(packageR);
         retract(p);
         retract($product);
 end
-
-
-
-
-
-
-
 
 
 /*rule  "Special routespecial route0"
@@ -135,10 +129,12 @@ rule "filter stock"
 	salience 13
 	//agenda-group "first"
     when    	
-    	$item : Product()
     	$store : Store()
-    	eval(!InventoryDAO.getInstance().containProduct($store, $item))
+    	$order : Orders()
+    	eval(!InventoryDAO.getInstance().containAnyProductOrder($store, $order))
+    	$logger : EngineLog()
     then
+    	$logger.addLog("store "+ $store.getStoreId()+ " retracted by rule filter stock");
     	System.out.println("store "+ $store.getStoreId()+ " retracted by rule filter stock");
         retract($store);
 end
@@ -151,9 +147,10 @@ rule "filter stock2"
         $item : Product()
     	$store : Store()
         //eval($store.checkStore($item, $o,"zone","<",2))
-        eval(InventoryDAO.getInstance().checkProduct($store, $item,">",2)) 
+        eval(InventoryDAO.getInstance().checkProduct($store, $item,">",2))
+        $logger : EngineLog() 
     then
-    	
+    	$logger.addLog("store "+$store.getStoreId()+ " retracted by rule filter stock2");
     	System.out.println("store "+$store.getStoreId()+ " retracted by rule filter stock2");
         retract($store);
 end
@@ -169,9 +166,6 @@ end
         retract($store);
 end*/
 
-
-
-
 rule  "special 1"
 	salience 9
 	//agenda-group "special"
@@ -180,8 +174,10 @@ rule  "special 1"
         $orderE : OrderE()
         $i : Product(  ( prodId == 3 ))
         $s : Store( storeId == 4 )
+        $logger : EngineLog()
         //eval(!$s.checkProduct($i,">",1))
 	then
+		$logger.addLog("product "+$i.getProdId()+" get inserted into a new package by speical route rule");
 		System.out.println("product "+$i.getProdId()+" get inserted into a new package by speical route rule");
         PackageE p = new PackageE($o);
         p.addProduct($i, $orderE.getProductQty($i.getProdId()));
@@ -199,6 +195,7 @@ rule  "Mininum Packagethreshold0"
 //        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
 //        $i : Product(weight >= 10 && special == null)
         $i : Product(weight > 2000)
+        $logger : EngineLog()
     then     
     	PackageE p = new PackageE($o);
     	p.addProduct($i, $orderE.getProductQty($i.getProdId()));

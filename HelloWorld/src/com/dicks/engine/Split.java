@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
+import org.drools.compiler.lang.DRL5Expressions.operator_key_return;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.ClassObjectFilter;
 import org.kie.internal.KnowledgeBase;
@@ -21,9 +22,11 @@ import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
 import com.dicks.pojo.Orders;
+import com.dicks.pojo.Rule;
 import com.dicks.dao.InventoryDAO;
 import com.dicks.dao.OrdersDAO;
 import com.dicks.dao.ProductDAO;
+import com.dicks.dao.RuleDAO;
 import com.dicks.dao.StoreDAO;
 import com.dicks.engine.PackageTest;
 import com.dicks.engine.PackageTestResult;
@@ -43,9 +46,18 @@ public class Split {
 //		}		
 	}
 	
-	public Split(Collection<PackageE> packages, Collection<Store> stores) {
+	public Split(Collection<PackageE> packages, Collection<Store> stores, EngineLog engineLogger) throws Exception {
 		SplitGenerater.cache(10);
 		SplitGenerater.buildIndex(10);
+		
+		ArrayList<Rule> rules = RuleDAO.getInstance().getRuleByType("e");
+		Rule rule = rules.get(0);
+		synchronized (Util.operator) {
+			Util.operator = rule.getOperator();
+		}
+		synchronized (Util.attribute) {
+			Util.attribute = rule.getAttribute();
+		}
 
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
@@ -82,6 +94,8 @@ public class Split {
 			ksession.insert(store);
 			System.out.println(store);
 		}
+		
+		ksession.insert(engineLogger);
 
 		System.out.println("----------------------");
 

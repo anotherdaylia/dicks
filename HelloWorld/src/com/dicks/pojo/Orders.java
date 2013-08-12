@@ -16,7 +16,6 @@ import com.dicks.pojo.Product;
 public class Orders implements java.io.Serializable {
 
 	// Fields
-
 	private Integer orderId;
 	private Customer customer;
 	private Integer totAmt;

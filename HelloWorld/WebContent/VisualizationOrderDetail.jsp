@@ -52,18 +52,6 @@
 </head>
 
 <body>
-    <div class="header">
-    <div class="header-content">
-        <div class="logo">
-            <a href="../Dropbox/Practicum/DSG UI/orderlist.html"><img src="../Dropbox/Practicum/DSG UI/image/logo.png" /></a></div>
-        <div class="top-nav">
-            <a href="#" target="_blank" class="trackable">
-            <span class="nav-icon help-icon"></span>Help</a>|
-            <a href="#" target="_blank" class="trackable">Account</a>|
-            <a href="#">Log out</a>
-        </div>
-    </div>
-    </div>
     
    
     <div class="body clearfix">

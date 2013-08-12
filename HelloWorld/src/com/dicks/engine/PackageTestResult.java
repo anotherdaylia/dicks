@@ -9,6 +9,7 @@ public class PackageTestResult {
 	private PackageTest test;
 	private Store source;
 	private double cost;
+	private double attribute;
 	private ArrayList<ParcelResult> results = new ArrayList<ParcelResult>();
 	
 	public PackageTestResult(PackageTest test) {
@@ -58,5 +59,13 @@ public class PackageTestResult {
 	@Override
 	public String toString() {		
 		return "Package result: " + " result: " + Arrays.toString(results.toArray()) + ", Total cost: " + this.cost;
+	}
+
+	public double getAttribute() {
+		return attribute;
+	}
+
+	public void setAttribute(double attribute) {
+		this.attribute = attribute;
 	}
 }
