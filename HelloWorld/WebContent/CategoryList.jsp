@@ -161,7 +161,7 @@
 												<td class="">${prodCategory.id.cateProdId}</td>
 												<td class="">${prodCategory.cateName}</td>
 												<td class="">${prodCategory.cateDescr}</td>
-												<td class=""><a class="button" href="<%=basePath%>gotoviewcategory.action">View</a>
+												<td class=""><a class="button" href="<%=basePath%>viewProdCategory.action?categoryId=${prodCategory.id.cateProdId}">View</a>
 												<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a></td>
 											</tr>
 										</c:forEach>

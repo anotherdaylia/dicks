@@ -72,6 +72,13 @@ public class ProductDAO extends BaseDao<Product> {
 		}
 	}
 	
+	public Product getProductById(String sku) throws Exception{
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion = Restrictions.eq("sku", sku);
+		criterions.add(criterion);
+		return super.get(criterions);
+	}
+	
 	
 	
 }

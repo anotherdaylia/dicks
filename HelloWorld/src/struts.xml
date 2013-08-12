@@ -18,14 +18,18 @@
           <result name="error">/login.jsp</result>
           <result name="success">/OrderList.jsp</result>
       </action>
-
-      <!--  <action name="gotocategorylist" class="com.dicks.action.Redirect" method="gotocategorylist">
+      
+  		<action name="gotocategorylist" class="com.dicks.action.CategoryListAction" method="displayCategory">
+          <result name="success">/CategoryList.jsp?act=store</result>
+          </action>
+          
+          
+       <!-- <action name="gotocategorylist" class="com.dicks.action.Redirect" method="gotocategorylist">
           <result name="goToCategoryList">/CategoryList.jsp</result>
 
-      <action name="gotocategorylist" class="com.dicks.action.CategoryListAction" method="displayCategory">
-          <result name="success">/CategoryList.jsp?act=store</result>
+    
 
-      </action>
+      
       <action name="gotoorderlist" class="com.dicks.action.Redirect" method="gotoorderlist">
           <result name="gotoorderlist">/OrderList.jsp</result>
       </action>
@@ -48,7 +52,6 @@
           <result name="gotoplaceorder">/placeOrder.jsp</result>
       </action>
       <action name="gototemplate" class="com.dicks.action.CreateNewBizRule" method="gototemplate">
-
            <result name="goToTemplate" type="dispatcher">/TemplateProductThreshold.jsp</result>
            <result name="goToSpecial" type="dispatcher">/TemplateSpecialRoute.jsp</result>
            <result name="goToStore" type="dispatcher">/TemplateStoreThreshold.jsp</result>
@@ -86,8 +89,9 @@
       <action name="orderlist" class="com.dicks.action.OrderList" method="getOrderList">
           <result name="success">/OrderList.jsp</result>
       </action>
-      <action name="createStoreRule" class="com.dicks.action.CreateCategoryAction" method="createProductCategory">
-          <result name="success">/OrderList.jsp</result>
+      <action name="createCategory" class="com.dicks.action.CreateCategoryAction" method="createCategory">
+          <result name="success" type="chain">displayCategoryList</result>
+          <param name="act">store</param>
       </action>
 
     <action name="gotoviewcategory" class="com.dicks.action.CategoryListAction" method="displayCategory">
@@ -101,12 +105,23 @@
      <action name="viewStoreCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="viewStoreCategory">
       		<result name="success">/ViewStoreCategory.jsp</result>
       </action> 
+      <action name="viewProdCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="viewProdCategory">
+      	<result name="success">/ViewProdCategory.jsp</result>
+      </action> 
       <action name="editStoreCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="editStoreCategory">
       		<result name="success">/ViewStoreCategory.jsp</result>
+      </action>
+ 		<action name="editProdCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="editProdCategory">
+      		<result name="success">/ViewProdCategory.jsp</result>
+      		<param name="act">product</param>
       </action> 
 
-       <action name="viewStoreCate2EditStoreCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewStoreCate2EditStoreCate">
+       <action name="viewStoreCate2EditStoreCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditCate">
       		<result name="success">/EditStoreCategory.jsp</result>
+      </action> 
+
+        <action name="viewProdCate2EditProdCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditCate">
+      		<result name="success">/EditProdCategory.jsp</result>
       </action> 
 
        <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
@@ -118,5 +133,7 @@
        <action name="editRuleRanking" class="com.dicks.action.ResultRankingAction" method="editResultRankingTemplate">
           <result name="success">/Edit_TemplateResultRanking.jsp</result>
       </action>
+      
+      
    </package>
 </struts>

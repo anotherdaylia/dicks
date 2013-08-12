@@ -105,7 +105,28 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 		}
 		ProdCate[] result = (ProdCate[])storeCates1.toArray(new ProdCate[storeCates1.size()]); 
 		 return result;
+	}
+
+	public ProdCate[] getProdCategoryListById(String id) throws Exception {
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion = Restrictions.eq("id.cateProdId", Integer.valueOf(id));
+		criterions.add(criterion);
+		ArrayList<ProdCate> finalResult = (ArrayList<ProdCate>)super.getList(criterions);
+		return (ProdCate[])finalResult.toArray(new ProdCate[finalResult.size()]);
 	} 
+	
+	
+	public void update(ProdCate[] prodCates) throws Exception{
+		String cateId = prodCates[0].getId().getCateProdId()+"";
+		ProdCate[] preview = getProdCategoryListById(cateId);
+		for(ProdCate sc: preview){
+			super.delete(sc);
+		}
+		for(ProdCate sc: prodCates){
+			createCategory(sc);
+		}
+		
+	}
 	
 
 }

@@ -71,7 +71,6 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 			createCategory(sc);
 		}
 		
-		System.out.println("!!!"+storeCates.length);
 	}
 	
 	private StoreCate[] filterCate(StoreCate[] storeCates){
