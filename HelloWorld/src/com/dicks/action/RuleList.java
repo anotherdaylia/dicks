@@ -152,26 +152,6 @@ public class RuleList {
 	
 	
 	public String goToEdit(){
-		
-		String[] tmp2 = null;
-		try {
-			tmp2 = ProdCateDAO.getInstance().getProdCateNames();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		StringBuffer cate = new StringBuffer();
-		cate.append(tmp2[0]);
-		for (int i = 1;i<tmp2.length;i++){
-			System.out.println(tmp2[i]);
-			cate.append(","+tmp2[i]);
-		}
-		
-		
-		prodCate = cate.toString();
-		
-		
-		System.out.println("WTF"+prodCate);
 		Rule thisRule = new Rule();
 		try {
 			thisRule = RuleDAO.getInstance().getRuleById(ruleId);
@@ -179,27 +159,52 @@ public class RuleList {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		condition = thisRule.getCondition();
-		if (condition.equals("||"))
-			condition = "ALL";
-		else
-			condition = "Any";
-		rulename = thisRule.getRuleName();
-		ruleDess = thisRule.getRuleDescr();
-		rulename = rulename.replace(" ","%20");
-		System.out.println("jj"+ruleDess);
-		attribute = thisRule.getAttributes();
-		operator = thisRule.getOperators();
-		value = thisRule.getValues();
-		//get current cate here;
-		cates = "Nike Shits,";
-		for (int i = 0;i<attribute.length;i++){
-			System.out.println("product "+attribute[i]);
-			System.out.println("operator "+operator[i]);
-			System.out.println("value "+value[i]);
+		if (thisRule.getType().equals("1")){
+			String[] tmp2 = null;
+			try {
+				tmp2 = ProdCateDAO.getInstance().getProdCateNames();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			StringBuffer cate = new StringBuffer();
+			cate.append(tmp2[0]);
+			for (int i = 1;i<tmp2.length;i++){
+				System.out.println(tmp2[i]);
+				cate.append(","+tmp2[i]);
+			}
 			
+			
+			prodCate = cate.toString();
+			
+			
+			System.out.println("WTF"+prodCate);
+			
+			condition = thisRule.getCondition();
+			if (condition.equals("||"))
+				condition = "ALL";
+			else
+				condition = "Any";
+			rulename = thisRule.getRuleName();
+			ruleDess = thisRule.getRuleDescr();
+			rulename = rulename.replace(" ","%20");
+			System.out.println("jj"+ruleDess);
+			attribute = thisRule.getAttributes();
+			operator = thisRule.getOperators();
+			value = thisRule.getValues();
+			//get current cate here;
+			cates = "Nike Shits,";
+			for (int i = 0;i<attribute.length;i++){
+				System.out.println("product "+attribute[i]);
+				System.out.println("operator "+operator[i]);
+				System.out.println("value "+value[i]);
+				
+			}
+			return "goToEditProductThreshold";
 		}
-		return "goToEditProductThreshold";
+		else{
+			return "goToEditProductThreshold";
+		}
 	}
 	public String reRank(){
 		System.out.println("!!!!!!!!!!!"+ruleString);
