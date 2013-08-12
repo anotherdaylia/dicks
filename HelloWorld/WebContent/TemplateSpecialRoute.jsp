@@ -9,7 +9,7 @@
 
 <jsp:include page="template_top.jsp" />
  <ul class="nav">
-        <li class=""><a class="recordable open" id="toggleone" href="#" 
+        <li class=""><a class="recordable open" id="toggleone" href="<%=basePath%>gotocategorylist.action?act=store" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
                 <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
