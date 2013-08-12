@@ -4,14 +4,11 @@ package com.dicks.pojo;
  * ProdCate entity. @author MyEclipse Persistence Tools
  */
 
-public class ProdCate implements java.io.Serializable {
+public class ProdCate extends Category implements java.io.Serializable  {
 
 	// Fields
-
 	private ProdCateId id;
 	private Product product;
-	private String cateName;
-	private String cateDescr;
 
 	// Constructors
 
@@ -23,7 +20,7 @@ public class ProdCate implements java.io.Serializable {
 	public ProdCate(ProdCateId id, Product product, String cateName) {
 		this.id = id;
 		this.product = product;
-		this.cateName = cateName;
+		super.setCateName(cateName);
 	}
 
 	/** full constructor */
@@ -31,8 +28,8 @@ public class ProdCate implements java.io.Serializable {
 			String cateDescr) {
 		this.id = id;
 		this.product = product;
-		this.cateName = cateName;
-		this.cateDescr = cateDescr;
+		super.setCateName(cateName);
+		super.setCateDescr(cateDescr);
 	}
 
 	// Property accessors
@@ -53,20 +50,6 @@ public class ProdCate implements java.io.Serializable {
 		this.product = product;
 	}
 
-	public String getCateName() {
-		return this.cateName;
-	}
 
-	public void setCateName(String cateName) {
-		this.cateName = cateName;
-	}
-
-	public String getCateDescr() {
-		return this.cateDescr;
-	}
-
-	public void setCateDescr(String cateDescr) {
-		this.cateDescr = cateDescr;
-	}
 
 }
