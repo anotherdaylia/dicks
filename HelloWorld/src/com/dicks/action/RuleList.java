@@ -15,6 +15,27 @@ public class RuleList {
 	public Rule[] preRule;
 	public Rule[] midRule;
 	public Rule[] lastRule;
+	public String ruleId;
+	public String ruleType;
+	public String[] attribute;
+	public String[] operator;
+	public String[] value;
+	
+	public String getRuleId(){
+		return  ruleId;
+	}
+	
+	public void setRuleId(String ruleId){
+		this.ruleId = ruleId;
+	}
+	
+	public String getRuleType(){
+		return  ruleType;
+	}
+	
+	public void setRuleType(String ruleType){
+		this.ruleType = ruleType;
+	}
 	
 	public String getRulename() {
 		return rulename;
@@ -75,6 +96,28 @@ public class RuleList {
 		
 		
 		return "success";
+	}
+	
+	
+	public String goToEdit(){
+		System.out.println("WTF"+ruleId);
+		Rule thisRule = new Rule();
+		try {
+			thisRule = RuleDAO.getInstance().getRuleById(ruleId);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		attribute = thisRule.getAttributes();
+		operator = thisRule.getOperators();
+		value = thisRule.getValues();
+		for (int i = 0;i<attribute.length;i++){
+			System.out.println("product "+attribute[i]);
+			System.out.println("operator "+operator[i]);
+			System.out.println("value "+value[i]);
+			
+		}
+		return "goToEditProductThreshold";
 	}
 	public String reRank(){
 		System.out.println("!!!!!!!!!!!"+ruleString);
