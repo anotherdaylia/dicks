@@ -49,6 +49,8 @@ public class Allocate {
     public static Rule[] ruleFile = new Rule[100];
     public static int ruleInt;
     
+    private String orderId;
+    private ArrayList<String> logs;
     
     public static Product[] product = new Product[5]; 
     
@@ -66,9 +68,11 @@ public class Allocate {
 		
 		OrdersDAO.getInstance().createOrder(order);
 		
-		Product[] products = ProductDAO.getInstance().getProductsBySKUList(skus);
-		System.out.println(products.length);
+		this.setOrderId(order.getOrderId() + "");
 		
+		Product[] products = ProductDAO.getInstance().getProductsBySKUList(skus);
+		System.out.println("product length: " + products.length);
+		System.out.println("quantity length: " + quantities.length);
 		for (int i = 0; i < products.length; i++) {
 			Product product = products[i];
 			Integer qty = Integer.parseInt(quantities[i]);
@@ -119,6 +123,7 @@ public class Allocate {
 		}
 
 		OrderE orderE = new OrderE(order);
+		EngineLog engineLogger = new EngineLog();
 		
 		if (stores != null) {
 			for (Store store : stores) {
@@ -127,15 +132,15 @@ public class Allocate {
 		}
 		
 		ksession.insert(order);
-
 		ksession.insert(orderE);
-
+		ksession.insert(engineLogger);
 		ksession.fireAllRules();
 
 		Collection<PackageE> packages = (Collection<PackageE>) ksession.getObjects( new ClassObjectFilter(PackageE.class) );
 		Collection<Store> leftStores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 		Collection<PackageTestResult> allocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
 
+		this.logs = engineLogger.getLogs();
 		
 		System.out.println("---------------------------------");
 		System.out.println("package size: " + packages.size());
@@ -159,5 +164,21 @@ public class Allocate {
 	private static void setUpProduct(Product p, String name, double price) {
 		/*p.setPrice(price);
 		p.setProductName(name);*/
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public ArrayList<String> getLogs() {
+		return logs;
+	}
+
+	public void setLogs(ArrayList<String> logs) {
+		this.logs = logs;
 	}
 }

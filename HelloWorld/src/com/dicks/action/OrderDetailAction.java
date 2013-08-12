@@ -17,6 +17,7 @@ public class OrderDetailAction {
 	private String id;
 	private ArrayList<OrderDetail> details;
 	private Orders order;
+	private ArrayList<String> logs;
 	
 	public Orders getOrder() {
 		return order;
@@ -34,9 +35,9 @@ public class OrderDetailAction {
 		this.details = details;
 	}
 
-	public int getId() {
+	public String getId() {
 		
-		return Integer.parseInt(id);
+		return id;
 	}
 
 	public void setId(String id) {
@@ -76,9 +77,19 @@ public class OrderDetailAction {
 	}
 	
 	public String showDetails() throws Exception{
+		System.out.println("id in order detail: " + this.id);
 		order = OrdersDAO.getInstance().getById(Integer.parseInt(id));
 		details = new ArrayList<OrderDetail>();
 		details= OrderDetailDAO.getInstance().getOrderDetailsByOrder(order);
+		
 		return "success";
+	}
+
+	public ArrayList<String> getLogs() {
+		return logs;
+	}
+
+	public void setLogs(ArrayList<String> logs) {
+		this.logs = logs;
 	}
 }
