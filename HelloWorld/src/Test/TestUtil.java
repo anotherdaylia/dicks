@@ -51,6 +51,14 @@ public class TestUtil {
 	}
 
 	@Test
+	public void testRule2() throws Exception {
+		Rule[] allRule = RuleDAO.getInstance().getAllSortedList() ;
+		for (Rule rule : allRule) {
+			System.out.println(rule.getRuleName());
+		}
+	}
+	
+//	@Test
 	public void testRule() {
 		try {
 			Rule r = RuleDAO.getInstance().getRuleById(1+"");
