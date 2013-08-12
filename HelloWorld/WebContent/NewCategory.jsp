@@ -532,7 +532,7 @@
                 <li><a href="#tabs-2">Product Group</a></li>
               </ul>
               <div id="tabs-1">
-              <form action="createStoreRule.action">
+              <form action="createCategory.action">
               <table id="category" border="0" style="margin-left:50px;width:750px;">
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Group Name<font color="red">*</font>:</div></td>
@@ -581,7 +581,7 @@
 
                 <tr style="height:40px;">
                     <td><a class="button" href="<%=basePath%>gotocategorylist.action" onclick=""/>Cancel</a></td>
-                    <td><input type="submit" value="Create" class="button"><input type="hidden" name="flag" value="store"/>
+                    <td><input type="submit" value="Create" class="button"><input type="hidden" name="act" value="store"/>
                     </td>  
                     <td></td>
                 </tr>
@@ -590,7 +590,7 @@
               </div>
 
               <div id="tabs-2">
-              <form action="createProductRule.action">
+              <form action="createCategory.action">
               <table id="category2" border="0" style="margin-left:50px;width:760px;">
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Group Name<font color="red">*</font>:</div></td>
@@ -637,7 +637,7 @@
                     <td><a class="button" href="<%=basePath%>gotocategorylist.action" onclick=""/>Cancel</a></td>
                     <td>
                       <input type="submit" value="Create" class="button"/>
-                      <input type="hidden" name="flag" value="product"/>
+                      <input type="hidden" name="act" value="product"/>
                     </td>  
                     <td></td>
                 </tr>

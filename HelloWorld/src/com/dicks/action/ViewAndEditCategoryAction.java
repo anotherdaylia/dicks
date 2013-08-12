@@ -1,6 +1,10 @@
 package com.dicks.action;
 
+import com.dicks.dao.ProdCateDAO;
+import com.dicks.dao.ProductDAO;
 import com.dicks.dao.StoreCateDAO;
+import com.dicks.pojo.ProdCate;
+import com.dicks.pojo.ProdCateId;
 import com.dicks.pojo.StoreCate;
 import com.dicks.pojo.StoreCateId;
 import com.opensymphony.xwork2.ActionSupport;
@@ -10,6 +14,7 @@ public class ViewAndEditCategoryAction extends ActionSupport{
 	private String categoryName;
 	private String categoryDescr;
 	private String storeIdString;
+	private String skuString;
 	
 	public String viewStoreCategory(){
 		if(categoryId!= null){
@@ -30,7 +35,27 @@ public class ViewAndEditCategoryAction extends ActionSupport{
 		}else{
 			return ERROR;
 		}
+	}
 	
+	public String viewProdCategory(){
+		if(categoryId!= null){
+			try{
+				ProdCate[] prodCates = ProdCateDAO.getInstance().getProdCategoryListById(getCategoryId());
+				this.setCategoryName(prodCates[0].getCateName());
+				this.setCategoryDescr(prodCates[0].getCateDescr());
+				StringBuffer sb = new StringBuffer();
+				for(int i = 0; i<prodCates.length;i++){
+					sb.append(prodCates[i].getProduct().getSku()).append(",");
+				}
+				sb.deleteCharAt(sb.length()-1);
+				this.setSkuString(sb.toString());
+			} catch (Exception e) {
+				return ERROR;
+			}
+			return SUCCESS;
+		}else{
+			return ERROR;
+		}
 	}
 	
 	public String editStoreCategory(){
@@ -49,7 +74,25 @@ public class ViewAndEditCategoryAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	public String viewStoreCate2EditStoreCate(){
+	public String editProdCategory(){
+		String[] skus = skuString.split(",");
+		ProdCate[] news = new ProdCate[skus.length];
+		try {
+		for(int i=0; i<skus.length; i++){
+			int prodId = ProductDAO.getInstance().getProductById(skus[i]).getProdId();
+			ProdCateId prodCateId = new ProdCateId(Integer.valueOf(categoryId), prodId) ;
+			ProdCate prodCate = new ProdCate(prodCateId, null, categoryName, categoryDescr);	
+			news[i] = prodCate;
+		}
+		
+		ProdCateDAO.getInstance().update(news);
+		} catch (Exception e) {
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+	
+	public String viewCate2EditCate(){
 		return SUCCESS;
 	}
 	
@@ -78,6 +121,14 @@ public class ViewAndEditCategoryAction extends ActionSupport{
 	}
 	public void setStoreIdString(String storeIdString) {
 		this.storeIdString = storeIdString;
+	}
+
+	public String getSkuString() {
+		return skuString;
+	}
+
+	public void setSkuString(String skuString) {
+		this.skuString = skuString;
 	}
 	
 	
