@@ -43,7 +43,7 @@ public class RulePriority {
 		}
 		
 		for (int i = 0; i<allRule.length;i++){
-			if (allRule[i].getType().equals("n")){
+			if (allRule[i].getType().equals("9")){
 				if (allRule[i].getPriority()>0){
 					pre++;
 				}
@@ -89,7 +89,7 @@ public class RulePriority {
 		}
 		Rule[] preRule = null;
 		for (int i = 0; i<allRule.length;i++){
-			if (allRule[i].getType().equals("n")){
+			if (allRule[i].getType().equals("9")){
 				if (allRule[i].getPriority()>0){
 					pre++;
 				}
@@ -104,12 +104,37 @@ public class RulePriority {
 		System.out.println("mid rule number is "+mid);
 		System.out.println("last rule number is "+last);
 		String[] ruleStringList = ruleString.split(",");
-		Rule[] newRule = new Rule[allRule.length];
-		for (int i = 0 ; i < newRule.length; i++){
-			newRule[i] = findRule(allRule, ruleStringList[i]);
-			System.out.println("New rule "+i+" "+newRule[i].getRuleName());
+		System.out.println("hahahahah"+ruleString);
+		
+		Rule[] pRule = new Rule[allRule.length];
+		for (int i = 0;i<pre;i++){
+			pRule[i] = allRule[i];
+			System.out.println("before i: " + i);
+		}
+//		System.out.println("before i: " + mid);
+		for (int i = pre, j = 0;i<(pre+mid);i++,j++){
+			System.out.println("in i: " + i);
+			pRule[i] = findRule(allRule,ruleStringList[j]);
+			System.out.println("pre priority"+pRule[i].getPriority());
+			System.out.println("computing priority"+pRule[i-1].getPriority());
+			pRule[i].setPriority(pRule[i-1].getPriority()-2);
+			System.out.println("after priority"+pRule[i].getPriority());
+			System.out.println("first new Rule"+ruleStringList[j]);
 		}
 		
+		for (int i = (mid+pre), j=0;i<allRule.length;i++,j++){
+			pRule[i] = allRule[j];
+		}
+		
+		for (int i = 0;i<pRule.length;i++){
+			System.out.println("rule "+i+" "+pRule[i].getRuleName());
+		}
+		try {
+			RuleDAO.getInstance().updatePriorities(pRule);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		
 		return "success";
 	}
