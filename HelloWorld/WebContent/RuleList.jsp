@@ -72,30 +72,23 @@
                 <th>Status</th>
                 <th>Action</th>
                 </tr>
-                <tr>
-                    <td class=""><input type="checkbox" class="case"/></td>
-                    <td class="">005</td>
-                    <td class="">Rule1</td>
-                    <td class="">In market store</td>
-                    <td><a class="button toggle">Disable</a></td>
-                    <td class=""><a class="button" href="viewrule.jsp">View</a>  <a class="button" href="<%=basePath%>editRuleRanking.action">Edit</a></td>
-                </tr>
-                    <tr>
-                    <td class=""><input type="checkbox" class="case"/></td>
-                    <td class="">033</td>
-                    <td class="">Rule2</td>
-                    <td class="">Safety stock</td>
-                    <td><a class="button toggle">Disable</a></td>
-                    <td class=""><a class="button" href="#">View</a>  <a class="button" href="editrule.jsp">Edit</a></td>
-                </tr>
-                <tr class="last">
-                    <td class=""><input type="checkbox" class="case"/></td>
-                    <td class="">039</td>
-                    <td class="">Rule3</td>
-                    <td class="">Ship Complete</td>
-                    <td><a class="button toggle">Disable</a></td>
-                    <td class=""><a class="button" href="#">View</a>  <a class="button" href="editrule.jsp">Edit</a></td>
-                </tr>
+                
+                
+                 <c:forEach var="allRule" items="${allRule}" >
+            
+            		<tr style="height:30px;">
+            				<td class=""><input type="checkbox" class="case"/></td>
+		                    <td class="">${allRule.ruleId}</td>
+		                    <td class="">${allRule.ruleName}</td>
+		                    <td class="">${allRule.ruleDescr}</td>
+		                    <td><a class="button toggle">Disable</a></td>
+		                    <td class=""><a class="button" href="#">View</a>  <a class="button" href="editrule.jsp">Edit</a></td>
+		            		 </tr>
+                
+				</c:forEach>
+                
+                
+                
                 </tbody>
             </table>
             <div id="Paging">

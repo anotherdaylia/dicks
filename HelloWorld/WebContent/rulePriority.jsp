@@ -73,9 +73,6 @@
 		    col = row.cells[1];
 			nameList += col.innerText;
 	}  
-	 
-	
-	    
 	    
 	console.log("rule list"+nameList);
 	document.getElementById('ruleString').value= nameList;
