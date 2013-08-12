@@ -286,10 +286,11 @@ public class RuleList {
 			e1.printStackTrace();
 		}
 		for (int i = 0; i<ruleList.length;i++){
-			System.out.println(ruleList[i].getRuleName());
-			if (ruleList[i].getRuleName().equals(rulename)){
+			System.out.println("!!fsdfjdsakfasdkfjasdlkfjadslkjflkasjflkasdjfl"+ruleList[i].getRuleName()+"  "+rulename);
+			if ((ruleList[i].getRuleName().replace("%20"," ")).equals(rulename)){
 				System.out.println("found it");
 				hahaRule = ruleList[i];
+				break;
 			}
 		}
 
@@ -323,6 +324,9 @@ public class RuleList {
 
 		String[] route = new String[1];
 		route[0] = "";
+		System.out.println("rule id "+hahaRule.getRuleId());
+		System.out.println("rulename pre "+rulename);
+		System.out.println("rulename after "+rulenames);
 		UpdateTemplate test= new UpdateTemplate(hahaRule.getRuleId(),rulename,rulenames,des,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A");
 
 		return "success";

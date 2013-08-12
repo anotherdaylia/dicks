@@ -13,35 +13,26 @@
 		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
 		<ul class="nav-two" id="navone">
 			<li class="" id="catelist"><a
-				href="<%=basePath%>gotocategorylist.action">Group List</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
 			<li class="" id="newcatelist"><a
-				href="<%=basePath%>gotonewcategory.action">New Group</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>
 		</ul></li>
 	<li class=""><a class="recordable open" href="#" id="toggletwo"
-		memo="{id:'21',type:'menu',global:1,status:''}">Manage Business
-			Rule</a>
+		memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
 		<ul class="nav-two" id="navtwo">
 			<li class="" id="bizrulelist"><a
-				href="<%=basePath%>gotorulelist.action">Business Rule List</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotorulelist.action">Business Rule List</a><span class="normal">&nbsp;</span></li>
 			<li class="" id="newbizrulelist"><a
-				href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span class="normal">&nbsp;</span></li>
 			<li class="selected" id="ruleprioritylist"><a
-				href="<%=basePath%>gotoruleprioritylist.action">Business Rule
-					Priority</a><span class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotoruleprioritylist.action">Business Rule Priority</a><span class="normal">&nbsp;</span></li>
 		</ul></li>
 	<li class=""><a class="recordable open" href="#" id="togglethree"
-		memo="{id:'21',type:'menu',global:1,status:''}">Visualization
-			Dashboard</a>
+		memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
 		<ul class="nav-two" id="navthree">
 			<li class=""><a id="orderlist" onclick="f(this)"
-				href="<%=basePath%>gotoorderlist.action">Order List</a><span
-				class="normal">&nbsp;</span></li>
-			<li class="" id="statlist"><a href="statistics.html">Statistics</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
+			<li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
 		</ul></li>
 </ul>
 </div>
@@ -72,13 +63,13 @@
 	function submitForm() {
 		var nameList = "";
 		var table = document.getElementById("sort");
-		var row = table.rows[1];
+		var row = table.rows[0];
 		var col = row.cells[1];
 		nameList += col.innerText;
 
 		//iterate through rows
 		//rows would be accessed using the "row" variable assigned in the for loop
-		for ( var i = 2, row; row = table.rows[i]; i++) {
+		for ( var i = 1, row; row = table.rows[i]; i++) {
 			//iterate through rows
 			//rows would be accessed using the "row" variable assigned in the for loop
 			nameList += ",";

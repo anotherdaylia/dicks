@@ -49,13 +49,17 @@
            <result name="goToCostCalculation" type="dispatcher">/TemplateCostCalculation.jsp</result>
       </action>
       <action name="updateRule" class="com.dicks.action.RuleList" method="updateRule">
-          <result name="success" type="dispatcher">/RuleList.jsp</result>
+          <result name="success" type="chain">
+            <param name="actionName">gotorulelist</param>
+          </result> 
       </action>
       <action name="gotoruleprioritylist" class="com.dicks.action.RulePriority" method="gotoruleprioritylist">
           <result name="success" type="dispatcher">/rulePriority.jsp</result>
       </action>
       <action name="reRank" class="com.dicks.action.RulePriority" method="reRank">
-          <result name="success" type="dispatcher">/rulePriority.jsp</result>
+          <result name="success" type="chain">
+            <param name="actionName">gotoruleprioritylist</param>
+          </result>   
       </action>
       <action name="gotonewbizrulelist" class="com.dicks.action.CreateNewBizRule" method="gotonewbizrulelist">
           <result name="success" type="dispatcher">/newRules.jsp</result>
