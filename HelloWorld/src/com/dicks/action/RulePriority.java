@@ -120,8 +120,9 @@ public class RulePriority {
 			System.out.println("first new Rule"+ruleStringList[j]);
 		}
 		
-		for (int i = (mid+pre), j=0;i<allRule.length;i++,j++){
-			pRule[i] = allRule[j];
+
+		for (int i = (mid+pre);i<allRule.length;i++){
+			pRule[i] = allRule[i];
 		}
 		
 		for (int i = 0;i<pRule.length;i++){

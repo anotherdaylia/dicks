@@ -135,10 +135,6 @@
         <action name="viewProdCate2EditProdCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditCate">
       		<result name="success">/EditProdCategory.jsp</result>
       </action> 
-       <action name="deleteCategory" class="com.dicks.action.DeleteCategoryAction">
-      		<result name="success">/CategoryList.jsp</result>
-      		<param name="act">${act}</param>
-      </action> 
 
        <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
           <result name="success">/RuleList.jsp</result>

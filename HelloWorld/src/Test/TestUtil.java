@@ -1,7 +1,10 @@
 package Test;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
@@ -48,9 +51,52 @@ public class TestUtil {
 	}
 
 	@Test
-	public void testParcel() {
+	public void testRule2() throws Exception {
+		Rule[] allRule = RuleDAO.getInstance().getAllSortedList() ;
+		for (Rule rule : allRule) {
+			System.out.println(rule.getRuleName());
+		}
+	}
+	
+//	@Test
+	public void testRule() {
+		try {
+			Rule r = RuleDAO.getInstance().getRuleById(1+"");
+			r.setRuleName("");
+			r.setValue("1");
+			RuleDAO.getInstance().update(r);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
+	
+//	@Test
+	public void testParcel() {
+		class MyIntComparable implements Comparator<Integer>{
+			 
+		    @Override
+		    public int compare(Integer o1, Integer o2) {
+		        return (o1>o2 ? 1 : (o1==o2 ? 0 : -1));
+		    }
+		} 
+
+	    List<Integer> list = new ArrayList<Integer>();
+	    list.add(5);
+	    list.add(4);
+	    list.add(3);
+	    list.add(7);
+	    list.add(2);
+	    list.add(1);
+	    Collections.sort(list, new MyIntComparable());
+	    for (Integer integer : list) {
+	      System.out.println(integer);
+	    }
+
+	}
+
 	
 //	@Test
 	public void testInventoryEvaluate() {
@@ -68,7 +114,7 @@ public class TestUtil {
 			parcel.addProduct(hat);
 			parcel.addProduct(shirt);
 			
-			System.out.println(inventoryDAO.containAllroductsParcel(store, parcel));
+			System.out.println(inventoryDAO.containAllProductsParcel(store, parcel));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -262,7 +308,7 @@ public class TestUtil {
 		}		
 	}	
 	
-	@Test
+//	@Test
 	public void testCosts() {
 		try {
 			Orders orders = OrdersDAO.getInstance().getById(3);

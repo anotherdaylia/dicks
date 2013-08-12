@@ -11,7 +11,7 @@
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
@@ -181,7 +181,7 @@
                 </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
-                    <td style="width:200px;"><textarea style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" ></textarea></td>
+                    <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" ></textarea></td>
                 </tr>
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
@@ -201,7 +201,7 @@
                 <tr></tr>
                 <tr>  
                     <td><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>
-                    <td><input type="submit" value="Create" class="button"></td>
+                    <td><input type="submit" value="Continue" class="button"></td>
                     <input type="hidden" id="prodCate" name="prodCate"> 
            
                 </tr>

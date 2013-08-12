@@ -86,11 +86,12 @@ public class CostCalculationAction extends ActionSupport {
 	}
 	
 	public void updateWarehouseFees() throws Exception {
+		System.out.println("1");
 		if (warehouseFeeId == null || warehouseFeeId.length == 0) {
 			deleteAll("warehouse");
 			return;
 		}
-		
+		System.out.println("2");
 		ArrayList<Fee> fees = feeDAO.getByType("warehouse");		
 		for(int i = 0; i < warehouseFeeId.length; i++) {
 			if (warehouseFeeId[i].equals("new")) {
@@ -106,6 +107,7 @@ public class CostCalculationAction extends ActionSupport {
 				}	
 				f.setShippingType("warehouse");
 				feeDAO.createFee(f);
+				System.out.println("3");
 			} else {
 				Fee f = findById(fees, Integer.parseInt(warehouseFeeId[i]));
 				f.setCostName(warehouseFeeName[i]);
@@ -119,9 +121,11 @@ public class CostCalculationAction extends ActionSupport {
 					f.setValue((int) Math.round(Double.parseDouble(warehouseFeeValue[i]) * 100));
 				}			
 				feeDAO.updateFee(f);
+				System.out.println("4");
 			}			
 		}
 		
+		System.out.println("5");
 		for (int i = 0; i < fees.size(); i++) {
 			Fee f = fees.get(i);
 			boolean maintain = false;
@@ -264,7 +268,7 @@ public class CostCalculationAction extends ActionSupport {
 		return warehouseFeeId;
 	}
 
-	public void setwarehouseFeeId(String[] warehouseFeeId) {
+	public void setWarehouseFeeId(String[] warehouseFeeId) {
 		this.warehouseFeeId = warehouseFeeId;
 	}
 

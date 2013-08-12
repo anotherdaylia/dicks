@@ -13,7 +13,7 @@ import com.dicks.pojo.Product;
 import com.dicks.pojo.Vendor;
 import com.dicks.pojo.Rule;
 
-public class CreateTemplate {
+public class UpdateTemplate {
     public String myTab ="    ";
     public String myReturn = "\n";
     public String mySpace = " ";
@@ -29,13 +29,21 @@ public class CreateTemplate {
     
    
     
-	public CreateTemplate  (String ruleName, String description,String type, String[] objects, String[] attributes, 
-			String[] operators, String[] values, String conditions, String[] routes, String[] actions, String flag, int ruleInt ){
+	public UpdateTemplate  (int ruleId, String ruleName,String ruleNames, String description,String[] objects, String[] attributes, 
+			String[] operators, String[] values, String conditions, String[] routes, String[] actions, String flag){
+		
+		System.out.println("pre name "+ruleName);
+		System.out.println("changed name "+ruleNames);
+		for (int i = 0; i<values.length;i++){
+			System.out.println("valueasdfads "+values[i]);
+		}
+		
+		int ruleInt = 0;
 		System.out.println("route!!"+routes);
-		ruleInt --;
+		System.out.println("condition is!!!"+conditions);
 		String condition = null;
 		if (conditions != null){
-			if (conditions.equals("all")){
+			if (conditions.equals("All")){
 				condition = "||";
 			}
 			else{
@@ -60,55 +68,36 @@ public class CreateTemplate {
 		  rules[3] = "./ruleTxt/rule3.txt";
 		  */
 		  System.out.println("--------------Start Adding New Rule--------------------------");
-		  Product shoes = new Product();
-			shoes.setProdName("shoes");
-			shoes.setFactoryPrice(50);
-			shoes.setWeight(10);
-			shoes.setWidth(2.0);
-			shoes.setSku("11");
-			//System.out.println("????"+shoes.getSku());
-			Product hat = new Product();
-			hat.setProdName("hat");
-			hat.setFactoryPrice(10);
-			hat.setWeight(4);
-			hat.setWidth(2.0);
-			hat.setSku("22");
-
-			Product shirt = new Product();
-			shirt.setProdName("shirt");
-			shirt.setFactoryPrice(20);
-			shirt.setWeight(8);
-			shirt.setWidth(5.0);
-			shirt.setSku("33");
-
-			product[0] = shoes;
-			product[1] = hat;
-			product[2] = shirt;
-
+		 
 			//System.out.println("!!!!"+shoes.getSku());
 
 
 			try {
-				ruleFile = RuleDAO.getInstance().getAllSortedList() ;
+				ruleFiles = RuleDAO.getInstance().getAllSortedList();
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			ruleFiles = new Rule[ruleFile.length+1];
-
-			for (int i = 0 ; i < ruleFile.length; i++){
-				ruleFiles[i] = ruleFile[i];
-			}
-
-			for (int i = 0 ; i < ruleFiles.length-1; i++){
+			System.out.println("three is "+ruleFiles.length);
+			System.out.println("checking!! "+ruleName);
+			for (int i = 0 ; i < ruleFiles.length; i++){
+				System.out.println("checking "+ruleFiles[i].getRuleName());
+				if ((ruleFiles[i].getRuleName().replace("%20"," ")).equals(ruleName)){
+					ruleInt = i;
+					System.out.println("num "+i);
+					System.out.println("ruleID "+ruleFiles[i].getRuleId());
+				}
 				//System.out.println(i+" "+ruleFiles[i].getRuleDescr());
 
 			}
+			/*Rule updateRule = new Rule();
+			try {
+				updateRule = RuleDAO.getInstance().getRuleById(ruleId);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}*/
 			
-			System.out.println("rule length"+ruleFile.length);
-			System.out.println("rules length"+ruleFiles.length);
-			
-			System.out.println("type"+type);
 			//System.out.println("!!!!!!!!!!!rule is "+ruleFile.length);
 		  /*if (ruleFile[0] == null){
 			  ruleFile[0] = new Rule("abc", "/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule1.txt","\"Explode Cart\"",100);
@@ -127,7 +116,7 @@ public class CreateTemplate {
 		  //get priority, hardcoded for 2 for demo
 		  System.out.println("Rules before editing");
 		  int i = 0;
-		  for (i = 0; i<ruleFile.length;i++){
+		  for (i = 0; i<ruleFiles.length;i++){
 	    	  System.out.println ("Rule :"+i+"  "+ ruleFiles[i].getRuleName()+" Priority: "+ruleFiles[i].getPriority());
 
 
@@ -140,68 +129,35 @@ public class CreateTemplate {
 
 	      //System.out.println("rule is at  " +ruleInt + "current rule number is "+i);
 
-	      reRank(ruleInt);
-	      ruleFiles[ruleInt] = new Rule();
 	      //System.out.println("nnnnnnnn");
 	      /*for (i = 0 ; i<ruleFiles.length;i++){
 	    	  System.out.println("rule "+i+" "+ruleFiles[i].getRuleName());
 	      }*/
-	      checkFlag(type, objects, flag);
-	      String[] r = new String[1];
-	      r[0] = "haha";
-
-	      if (type.equalsIgnoreCase("Threshold")){
-	    	  type = "1";
-	    	  typeString = "Threshold";
+	     
+	      System.out.println("rule name"+ruleName);
+	      System.out.println("rule des"+description);
+	      System.out.println("rule condi"+conditions);
+	      for (i = 0 ; i<attributes.length;i++){
+	    	  System.out.println(attributes[i]);
+	    	  System.out.println(operators[i]);
+	    	  System.out.println(values[i]);
 	      }
-	      if (type.equalsIgnoreCase("Store Filter")){
-	    	  type = "2";
-	    	  typeString = "Store Filter";
-	      }
-	      if (type.equalsIgnoreCase("Special Route")){
-	    	  type = "3";
-	    	  System.out.println("nimabi!!!!!!!!!!!!");
-	    	  typeString = "Special Route";
-	      }
-
-	      if (type.equalsIgnoreCase("1")||type.equalsIgnoreCase("2")){
-	    	  //System.out.println("Heresdlfjsdlkfjsdlfjsdl");
-	    	  //System.out.println("object length "+objects.length);
-	    	  if (ruleInt > 0){
-					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
-								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
-
-
-
-
-					 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()-2,type,objects,
-							 					attributes,operators,values,condition, routes,actions,flag, "1",false);
-				 }
-			  else{
-					 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()+2,type,objects,
-							 attributes,operators,values,condition, routes,actions,flag, "1",false);
-			  }
-	    	  
-	      }    
-	      else {
-		      if (ruleInt > 0){
-		    	  System.out.println("type!!!!"+type);
-					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
-								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
-		    	  	ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()-2,type,objects,attributes,operators,values,condition, routes,actions,flag, "1",false);
-
-				 }
-			  else{
-
-					 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()+2,type,objects,
-							 attributes,operators,values,condition, routes,actions,flag, "1",false);
-			  }
-
-
-	      }
+	      ruleFiles[ruleInt].setRuleName(ruleNames);
+	      ruleFiles[ruleInt].setRuleDescr(description);
+	      ruleFiles[ruleInt].setObjects(objects);
+	      ruleFiles[ruleInt].setAttributes(attributes);
+	      ruleFiles[ruleInt].setOperators(operators);
+	      ruleFiles[ruleInt].setValues(values);
+	      ruleFiles[ruleInt].setOperators(operators);
+	      //System.out.println("RIRIRIIRIRIRI"+ruleFiles[ruleInt].getValue());
+	      ruleFiles[ruleInt].setCondition(condition);
+	      /*ruleFiles[ruleInt].setRoutes(routes);
+	      ruleFiles[ruleInt].setActions(actions);
+	      ruleFiles[ruleInt].setFlag(flag);*/
+		
 
 	      try {
-				RuleDAO.getInstance().createRule(ruleFiles[ruleInt]);
+				RuleDAO.getInstance().update(ruleFiles[ruleInt]);
 			} catch (Exception e) {
 				System.out.println("eeeeeeror"+e);// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -250,7 +206,14 @@ public class CreateTemplate {
 		     catch (IOException e) {
 		    	 e.printStackTrace();
 		     }			 
-		    */		 
+		    */		
+	      
+	      try {
+				ruleFiles = RuleDAO.getInstance().getAllSortedList();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		    //combining all rules
 		     try {
 	             File file = new File("ruleTxt/newRule.drl");         
@@ -298,9 +261,6 @@ public class CreateTemplate {
 		            		 byte[] contentInBytes = createSpecialRoute(ruleFiles[i].getRuleName(),ruleFiles[i].getType(),ruleFiles[i].getPriority(),
 		            				 ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues()
 		            				 ,ruleFiles[i].getActions(),ruleFiles[i].getRoutes()[0],ruleFiles[i].getFlag()).getBytes();
-		            		 	
-		            		 
-		            		 
 		            		 fos.write(contentInBytes);
 		            	 }
 
@@ -335,11 +295,14 @@ public class CreateTemplate {
 
 	   public String createThreshold(String ruleName,String type, int priority, String[] object, String[] attribute, 
 			   String[] operator, String[] values,String condition, String[] actions,String flag){
-		   //System.out.println("type  "+type);
-		   //System.out.println("objects  "+object);
-		   //System.out.println("attribute" +attribute);
-		   //System.out.println("operator "+ operator);
-		   //System.out.println("Values "+values);
+		   
+		   System.out.println("type  "+type);
+		   System.out.println("objects  "+object);
+		   for (int i = 0;i<attribute.length;i++){
+		   System.out.println("attribute" +attribute);
+		   System.out.println("operator "+ operator);
+		   System.out.println("Values "+values);
+		   }
 		   StringBuffer newRule = new StringBuffer();
 		   newRule.append(writeRuleType(ruleName,priority));
 		   newRule.append(writeWhenThreshold(object,attribute,operator,values,condition,flag));

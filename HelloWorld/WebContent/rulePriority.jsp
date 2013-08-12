@@ -72,13 +72,13 @@
 	function SubmitForm() {
 		var nameList = "";
 		var table = document.getElementById("sort");
-		var row = table.rows[0];
+		var row = table.rows[1];
 		var col = row.cells[1];
 		nameList += col.innerText;
 
 		//iterate through rows
 		//rows would be accessed using the "row" variable assigned in the for loop
-		for ( var i = 1, row; row = table.rows[i]; i++) {
+		for ( var i = 2, row; row = table.rows[i]; i++) {
 			//iterate through rows
 			//rows would be accessed using the "row" variable assigned in the for loop
 			nameList += ",";

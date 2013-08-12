@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
+import org.drools.compiler.lang.DRL5Expressions.operator_key_return;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.ClassObjectFilter;
 import org.kie.internal.KnowledgeBase;
@@ -21,9 +22,11 @@ import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
 import com.dicks.pojo.Orders;
+import com.dicks.pojo.Rule;
 import com.dicks.dao.InventoryDAO;
 import com.dicks.dao.OrdersDAO;
 import com.dicks.dao.ProductDAO;
+import com.dicks.dao.RuleDAO;
 import com.dicks.dao.StoreDAO;
 import com.dicks.engine.PackageTest;
 import com.dicks.engine.PackageTestResult;
@@ -43,9 +46,18 @@ public class Split {
 //		}		
 	}
 	
-	public Split(Collection<PackageE> packages, Collection<Store> stores) {
+	public Split(Collection<PackageE> packages, Collection<Store> stores, EngineLog engineLogger) throws Exception {
 		SplitGenerater.cache(10);
 		SplitGenerater.buildIndex(10);
+		
+		ArrayList<Rule> rules = RuleDAO.getInstance().getRuleByType("e");
+		Rule rule = rules.get(0);
+		synchronized (Util.operator) {
+			Util.operator = rule.getOperator();
+		}
+		synchronized (Util.attribute) {
+			Util.attribute = rule.getAttribute();
+		}
 
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
@@ -82,6 +94,8 @@ public class Split {
 			ksession.insert(store);
 			System.out.println(store);
 		}
+		
+		ksession.insert(engineLogger);
 
 		System.out.println("----------------------");
 
@@ -126,38 +140,38 @@ public class Split {
 		return packageTests;
 	}
 
-	public static PackageTestResult getTestResult(final Orders order, Parcel test, ArrayList<Store> stores) throws Exception {
-		ArrayList<Store> testStores = new ArrayList<Store>();
-		for (int j = 0; j < stores.size(); j++) {
-			Store s = stores.get(j);
-			if (InventoryDAO.getInstance().containAllroductsParcel(s, test)) {
-				testStores.add(s);
-			} else {
-				System.out.println("filter out: " + s.getStoreId());
-			}
-		}
-
-		if (testStores.size() == 0) return null;
-
-		// possible problem
-		PackageTestResult r = new PackageTestResult(test);
-		Collections.sort(testStores, new Comparator<Store>() {
-			@Override
-			public int compare(Store arg0, Store arg1) {
-				return (int) (Util.getShippingCosts() 
-								- Util.getShippingCosts()); 
-			}
-
-		});
-
-		System.out.println("stores: " + Arrays.toString(stores.toArray()));
-
-		Store source = testStores.get(0);
-		//System.out.println("source: " + source.getZoneID());
-		r.setSource(source);
-		r.setCost(Util.getShippingCosts());
-		return r;
-	}
+//	public static PackageTestResult getTestResult(final Orders order, Parcel test, ArrayList<Store> stores) throws Exception {
+//		ArrayList<Store> testStores = new ArrayList<Store>();
+//		for (int j = 0; j < stores.size(); j++) {
+//			Store s = stores.get(j);
+//			if (InventoryDAO.getInstance().containAllProductsParcel(s, test)) {
+//				testStores.add(s);
+//			} else {
+//				System.out.println("filter out: " + s.getStoreId());
+//			}
+//		}
+//
+//		if (testStores.size() == 0) return null;
+//
+//		// possible problem
+//		PackageTestResult r = new PackageTestResult(test);
+//		Collections.sort(testStores, new Comparator<Store>() {
+//			@Override
+//			public int compare(Store arg0, Store arg1) {
+//				return (int) (Util.getShippingCosts() 
+//								- Util.getShippingCosts()); 
+//			}
+//
+//		});
+//
+//		System.out.println("stores: " + Arrays.toString(stores.toArray()));
+//
+//		Store source = testStores.get(0);
+//		//System.out.println("source: " + source.getZoneID());
+//		r.setSource(source);
+//		r.setCost(Util.getShippingCosts());
+//		return r;
+//	}
 
 	public static Combination[][] setUpMatrix(Product[] a) {
 		Combination[][] matrix = new Combination[a.length][a.length];

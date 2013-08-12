@@ -72,7 +72,7 @@ public class InventoryDAO extends BaseDao<Inventory> {
 		return containNumProduct(store, product, 1);
 	}
 
-	public boolean containAllroductsParcel(Store store, Parcel parcel) throws Exception {
+	public boolean containAllProductsParcel(Store store, Parcel parcel) throws Exception {
 		HashMap<Product, Integer> products = parcel.getProducts();
 		Set<Product> productSet = products.keySet();
 		

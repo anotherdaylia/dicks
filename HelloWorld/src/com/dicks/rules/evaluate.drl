@@ -14,6 +14,7 @@ import com.dicks.engine.Parcel
 import com.dicks.engine.Split
 import com.dicks.engine.SplitGenerater
 import com.dicks.engine.Util
+import com.dicks.engine.EngineLog
 
 import com.dicks.dao.InventoryDAO;
 
@@ -34,7 +35,9 @@ rule "Explode Package"
     dialect "java"
     when
         $p : PackageE()
+        $logger : EngineLog()
     then
+    	$logger.addLog("For Package: " + $p.toString());
         System.out.println($p);
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
 //        System.out.println("order quantity: " + $order.getQuantity());
@@ -47,6 +50,7 @@ rule "for splitable packages"
 	agenda-group "split"
 	when
 		$p : PackageE(isSplitable() && !isAllocated())
+		$logger : EngineLog()
 	then	
 //		System.out.println($p);
 		ArrayList r = SplitGenerater.getTests($p);
@@ -54,6 +58,7 @@ rule "for splitable packages"
 		for (int i = 0; i < r.size(); i++) {
 			PackageTest t = (PackageTest) r.get(i);
 			insert (t);
+			$logger.addLog("--Test: " + t);
 			System.out.println("test: " + t);
 		}		
 //		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
@@ -64,13 +69,15 @@ rule "generate test results"
 	agenda-group "split"
 	when
 		$test : PackageTest(!isTested())
-		$pack : PackageE($test.getPack() == $pack)
+		$pack : PackageE($test.getPack() == $pack && !isAllocated())
 		$stores : ArrayList( ) from collect( Store () )
+		$logger : EngineLog()
 	then	
 		PackageTestResult testR = getTestResult($test, $stores);
 		if (testR != null) {
 			insert(testR);
 			modify($pack){ setAllocated(true); }
+			$logger.addLog("**Test result: " + testR);
 			System.out.println("test result: " + testR);
 		}		
 		modify($test){ setTested(true); }
@@ -81,8 +88,10 @@ rule "add splits"
 	agenda-group "split"
 	when
 		$p : PackageE(isSplitable() && !isAllocated())
+		$logger : EngineLog()
 	then
 		modify ($p) { setSplitNum($p.getSplitNum() + 1) }
+		$logger.addLog("--Package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
 		System.out.println("package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
 end
 
@@ -92,10 +101,12 @@ rule "for not splitable packages"
 	agenda-group "split"
 	when
 		$p : PackageE((!$p.isSplitable()) && !isAllocated())
+		$logger : EngineLog()
 	then
 //		System.out.println("split num: " + $p.getSplitNum());
 //		System.out.println("product size: " + $p.getProducts().size());
 //		System.out.println("eval: " + (($p.getSplitNum() == $p.getProducts().size()&& !$p.isAllocated())));
+		$logger.addLog("--Unable to handle this package " + $p + ", handed to vendor");
 		System.out.println("Unable to handle this package " + $p + ", handed to vendor");
 		modify ($p) {setAllocated(true);}
 //		System.out.println("handle this package " + $p);
@@ -107,7 +118,9 @@ rule "get to evaluate"
 	agenda-group "split"
 	when
 		$p : PackageE(isAllocated())
+		$logger : EngineLog()
 	then
+		$logger.addLog("**" + $p + " has been allocated.");
 		System.out.println($p + " has been allocated.");
 		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "evaluate" ).setFocus();
 end
@@ -118,8 +131,11 @@ rule "evaluate package results"
 	when
 		$p : PackageE(isAllocated())
 		$results : ArrayList( ) from collect( PackageTestResult(getTest().getPack() == $p) )
+		$logger : EngineLog()
 	then
 		PackageTestResult r = getBestResult($results);
+		$logger.addLog("**For package: " + $p);
+		$logger.addLog("**Evaluate Result: " + r);
 		System.out.println("Evaluate Result: " + r);
 
 end
@@ -140,14 +156,18 @@ function PackageTestResult getBestResult(ArrayList results) {
 function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 	PackageTestResult r = new PackageTestResult(test);
 	ArrayList parcels = test.getParcels();
-	
+	System.out.println("in get test result");
 	for (int i = 0; i < parcels.size(); i++) {
 		Parcel p = (Parcel) parcels.get(i);
 		ArrayList parcelResults = new ArrayList();
 		for (int j = 0; j < stores.size(); j++) {
 			Store s = (Store) stores.get(j);
 			ParcelResult parcelR = getParcelResult(p, s);
-			if (parcelR != null) parcelResults.add(parcelR);
+			if (parcelR != null) {
+				parcelResults.add(parcelR);
+				Util.calculateAttribute(parcelR);
+				System.out.println("in get test result attribute");
+			}
 		}
 		if (parcelResults.size() < 1) {
 			System.out.println("in test result: no result for " + test);
@@ -156,27 +176,34 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 		Collections.sort(parcelResults, new Comparator<ParcelResult>() {
 			@Override
 			public int compare(ParcelResult arg0, ParcelResult arg1) {
-				return (int) (arg0.getCost() - arg1.getCost()); 
+				return Util.compareParcelResult(arg0, arg1); 
 			}			
 		});
 		r.addResult((ParcelResult) parcelResults.get(0));
 	}
 	
 	double cost = 0;
+	double attribute = 0;
+	double shippingCost = 0;
 	ArrayList parcelResults = r.getResults();
 	for (int i = 0; i < parcelResults.size(); i++) {
 		cost += ((ParcelResult) parcelResults.get(i)).getCost();
+		attribute += ((ParcelResult) parcelResults.get(i)).getAttribute();
+		shippingCost += ((ParcelResult) parcelResults.get(i)).getShippingCost();
 	}
 	r.setCost(cost);
+	r.setAttribute(attribute);
+	r.setShippingCost(shippingCost);
 	return r;
 }
 
 function ParcelResult getParcelResult(Parcel parcel, Store store) {
-	if (!InventoryDAO.getInstance().containAllroductsParcel(store, parcel)) return null;
+	if (!InventoryDAO.getInstance().containAllProductsParcel(store, parcel)) return null;
 
 	ParcelResult r = new ParcelResult(parcel);
 	r.setSource(store);
 	r.setCost(Util.calculateCosts(parcel, store));
+	r.setShippingCost(Util.getShippingCosts(parcel, store));
 	return r;
 }
 

@@ -9,7 +9,7 @@
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
@@ -25,18 +25,10 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
-        </li>
-        <li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
-            <ul class="nav-two" id="navtwo">
-                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-		</li>   
+        </li> 
     </ul>
     </div>
   <script>
@@ -103,21 +95,23 @@ function goBack(){
     <div class="main"  id="main-body">
         <div class="content clearfix">
                 
-        <div class="title-bar clearfix"></div>
+        <div class="title-bar clearfix">
             <h1 class="l">New Business Rule</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
 
-            <li style="list-style:none;"><span><a href="#">Home</a><span> > </span></span></span>
-                <span><a href="#">Manage Business Rule</a><span> > </span></span>
+            <li style="list-style:none;">
+            	<span><a href="#">Home</a><span> &gt; </span></span>
+                <span><a href="#">Manage Business Rule</a><span> &gt; </span></span>
                 <span>New Business Rule</span>
             </li>
             
             <!-- Success Message and Error Message -->
-            <div class="success_area">successMessage</div>
-            <div class="warning">errorMessage</div>
+            <div class="success_area" style="display:none">successMessage</div>
+            <div class="warning" style="display:none">errorMessage</div>
             <!-- Success Message and Error Message -->
-
+		</div>
+		
             <form name ="myForm" action="newrule">
             
             <table class="text">
@@ -131,21 +125,17 @@ function goBack(){
                 </tr>
                 <tr>
                     <td>Stage:</td>
-                    <td>Stage1</td>
+                    <td>Stage1 - Fulfillment Eligibility</td>
                 </tr>
                 <tr>
                     <td>Rule Template&#58;</td>
                     <td>Set Store Threshold</td>
                 </tr>
                 <tr class="drl-height">
-                    <td colspan="2" >Rule Editor&#58;</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
+                    <td>Rule Editor&#58;</td>
                     <td>
                     <div id ="firstStep" class="drl"> 
-                         <div style="padding-left:100px">
+                         <div>
                          <div> If
                             <select style="width:50px;" name="conditions">
                                 <option value="all">All</option> 
@@ -234,19 +224,19 @@ function goBack(){
                         </div>
                     </div>
                 </tr>
-                <tr id = "buttons">
-                    <td style = "text-align:right"><a class="button"  onclick='show()'>Next</a></td>
-                    <td>
-                    <a class="button" href="#">Cancel</a></td>
+                <tr>
+                    <td><a class="button" href="#">Cancel</a></td>
+                    <td><input type="submit" value="Continue" class="button"  onclick='show()' /></td>
                     
                 <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />
                 <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
                 <input type="hidden" name="categoryname"  value=<%=request.getAttribute("categoryname")%> />
+                <input type="hidden" name="des"  value=<%=request.getAttribute("des")%> />
            		<input type="hidden" id="priorityId" name="priority"> 
            
                     
                 </tr>
-                 </table>   
+               	</table>   
             
             <div id = "secondStep">
             <table id="sort" class="grid" border="0" style="border-collapse:collapse;width:100%;font-size:12px;">
@@ -286,16 +276,11 @@ function goBack(){
             </form>
         </div>
 
-
-
-
-    
     <!-- content ends -->
-
-                
+         
     <!-- footer starts -->
  
-            <div class="footer"><span>©2013 eBusiness Team</span></div>
+            <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
         
     <!-- footer ends -->
 
