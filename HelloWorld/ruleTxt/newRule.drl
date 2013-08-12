@@ -43,11 +43,47 @@ rule  "Mininum Packagethreshold0"
 end
 
 
-rule  "fasjdfalksjf"
+rule  "New Special"
     salience 848
     when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id: prodId, sku.equals("1"))
+        eval ($orderE.getProductQty($id)<500)
+        $s : Store( storeId == 800)
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, "<", $orderE.getProductQty($id)))
+    then
+        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        PackageE p = new PackageE($order);
+        p.addProduct($product);
+        insert (p);
+        p.setAllocated(true); 
+        retract($product);
+end
+
+rule  "special3"
+    salience 846
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id: prodId, sku.equals("1"))
+        eval ($orderE.getProductQty($id)<50)
+        $s : Store( storeId == s2)
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, "<", $orderE.getProductQty($id)))
+    then
+        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        PackageE p = new PackageE($order);
+        p.addProduct($product);
+        insert (p);
+        p.setAllocated(true); 
+        retract($product);
+end
+
+rule  "fasjdfalksjf"
+    salience 844
+    when
         $o : Order()
-        $i : Product( ((Width = 2)&&( Width > 3)&&( Weight < 4)&&( Length > 5))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB"))|| (sku.equals("NK-CL-KD"))|| (sku.equals("NK-SH-AJ")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((Width = 5)&&( Width > 3)&&( Weight < 4)&&( Length > 9))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB"))|| (sku.equals("NK-CL-KD"))|| (sku.equals("NK-SH-AJ")))&& (flag.equals("TH-A,ST-A,SP-A")))
     then
         Package p = new Package($o);
         p.addProduct($i);
@@ -57,7 +93,7 @@ rule  "fasjdfalksjf"
 end
 
 rule  "Product Threshold9"
-    salience 846
+    salience 842
     when
         $o : Order()
         $i : Product( ((Length < 4)||( Width < 3)||( Height < 2)||( Weight < 1))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB"))|| (sku.equals("NK-CL-KD"))|| (sku.equals("NK-SH-AJ")))&& (flag.equals("TH-A,ST-A,SP-A")))
@@ -69,14 +105,14 @@ rule  "Product Threshold9"
         retract($i);
 end
 
-rule  "New Special"
-    salience 844
+rule  "Special2"
+    salience 842
     when
         $order : Orders()
         $orderE : OrderE()
         $product : Product($id: prodId, sku.equals("1"))
-        eval ($orderE.getProductQty($id)<500)
-        $s : Store( storeId == 800)
+        eval ($orderE.getProductQty($id)<100)
+        $s : Store( storeId == s1)
         eval(InventoryDAO.getInstance().checkProduct($s, $product, "<", $orderE.getProductQty($id)))
     then
         System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
