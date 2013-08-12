@@ -69,7 +69,7 @@
 		console.log("logged");
 	}
 
-	function SubmitForm() {
+	function submitForm() {
 		var nameList = "";
 		var table = document.getElementById("sort");
 		var row = table.rows[1];
@@ -89,6 +89,7 @@
 		console.log("rule list" + nameList);
 		document.getElementById('ruleString').value = nameList;
 		document.forms['myForm'].submit();
+		
 	}
 	window.onload = pageOnLoad;
 </script>
@@ -196,8 +197,7 @@
 						</c:forEach>
 					</table>
 					<br /> <input type="hidden" id="ruleString" name="ruleString">
-					<a class="button" href="#">Cancel</a> <a class="button"
-						onclick='SubmitForm()'>Submit</a>
+					<a class="button" href="#">Cancel</a> <a class="button" id="add-to-cart" >Submit</a>
 				</div>
 
 				<div id="priorityTable"></div>
@@ -220,7 +220,7 @@
 				rule's priority?</div>
 
 			<div class="r" style="margin-right: 20px;">
-				<input class="button" onclick="closePop()" type="submit" value="Yes" />
+				<input class="button" onclick="submitForm()" type="submit" value="Yes"  />
 				<a class="button" onclick="closePop()" type="button">No</a>
 			</div>
 		</div>
