@@ -129,7 +129,7 @@
 			<form name="myForm" action="reRank">
 
 				<h4 class="grey" style="padding-bottom:10px;">Hint: Please only drag and drop the rules with blue background to sort
-					the rule priority. Do not drag other rules, otherwise the system function will be interrupted.</h4>
+					the rule priority. <br/>Do not drag other rules, otherwise the system function will be interrupted.</h4>
 
 				<div id="haha">
 					<c:set var="ruleNum" value="1" />
