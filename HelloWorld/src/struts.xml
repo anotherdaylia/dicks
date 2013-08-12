@@ -64,6 +64,7 @@
            <result name="goToTemplate" type="dispatcher">/TemplateProductThreshold.jsp</result>
            <result name="goToSpecial" type="dispatcher">/TemplateSpecialRoute.jsp</result>
            <result name="goToStore" type="dispatcher">/TemplateStoreThreshold.jsp</result>
+           <result name="goToCostCalculation" type="dispatcher">/TemplateCostCalculation.jsp</result>
       </action>
        <action name="newrule" class="com.dicks.action.CreateNewBizRule" method="newrule">
           <result name="newrule" type="dispatcher">/newRules.jsp</result>
