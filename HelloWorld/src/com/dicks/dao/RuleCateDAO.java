@@ -90,6 +90,22 @@ public class RuleCateDAO extends BaseDao<RuleCate> {
 		RuleDAO.getInstance().updateProdObject(rules,skus);		
 	}
 
+	public Rule[] getRuleListByCateId(String cateId) throws Exception{
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion = Restrictions.eq("id.categoryId", Integer.valueOf(cateId));
+		criterions.add(criterion);
+		List<RuleCate> result =  super.getList(criterions);	
+		System.out.println("!!!");
+		if(result==null||result.size()==0) return null;
+
+		Rule[] rules = new Rule[result.size()];
+		int i = 0;
+		for(RuleCate rc: result){
+			rules[i] = rc.getRule();
+			i++;
+		}
+		return rules;
+	}
 
 	
 }
