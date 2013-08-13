@@ -159,6 +159,7 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 	System.out.println("in get test result");
 	for (int i = 0; i < parcels.size(); i++) {
 		Parcel p = (Parcel) parcels.get(i);
+		
 		ArrayList parcelResults = new ArrayList();
 		for (int j = 0; j < stores.size(); j++) {
 			Store s = (Store) stores.get(j);

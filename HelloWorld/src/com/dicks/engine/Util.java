@@ -24,6 +24,8 @@ import com.dicks.pojo.Shipment;
 import com.dicks.pojo.Store;
 
 public class Util {
+	public final static int OVER_SIZE_THRESHOLD = 50;
+	public final static int OVER_WEIGHT_THRESHOLD = 50;
 	static String operator = "";
 	static String attribute = "";
 	static Random r = new Random();

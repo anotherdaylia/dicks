@@ -8,9 +8,22 @@ import com.dicks.pojo.Product;
 public class Parcel {
 	private HashMap<Product, Integer> products = new HashMap<Product, Integer>();
 	private PackageE pack;	
+	private int weight;
+	private double length;
+	private double width;
+	private double height;
+	private boolean overSize;
+	private boolean overWeight;
 	
 	public Parcel(PackageE pack) {
 		this.setPack(pack);
+	}
+	
+	public void shipmentPreparation() {
+		int totalWeight = 0;
+		
+		
+		
 	}
 	
 	public void addProduct(Product p) {
@@ -51,6 +64,55 @@ public class Parcel {
 		list.addAll(products.keySet());
 		return list;
 	}
+	
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
+	public Double getLength() {
+		return length;
+	}
+
+	public void setLength(Double length) {
+		this.length = length;
+	}
+
+	public Double getWidth() {
+		return width;
+	}
+
+	public void setWidth(Double width) {
+		this.width = width;
+	}
+
+	public Double getHeight() {
+		return height;
+	}
+
+	public void setHeight(Double height) {
+		this.height = height;
+	}
+
+	public boolean isOverSize() {
+		return overSize;
+	}
+
+	public void setOverSize(boolean overSize) {
+		this.overSize = overSize;
+	}
+
+	public boolean isOverWeight() {
+		return overWeight;
+	}
+
+	public void setOverWeight(boolean overWeight) {
+		this.overWeight = overWeight;
+	}
+	
 	
 	@Override
 		public String toString() {
