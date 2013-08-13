@@ -76,35 +76,11 @@ $( "#datepickerend" ).datepicker();
         </div>
         
         <div>
-            <p class="title">&nbsp;Today's Summary</p>
-            
-            <div id="Outline" class="table-list">
-            <table cellspacing="0" cellpadding="0" class="list">
-                <tbody>
-                    <tr class="title">
-                        <th>Order Status</th>
-                        <th>Received</th>
-                        <th>Processed</th>
-                        <th>Allocated</th>
-                        <th>Reallocated</th> 
-                    </tr>
-                    <tr>
-                        <td>Numbers</td>
-                        <td>10000</td>
-                        <td>10000</td>
-                        <td>9000</td>
-                        <td>1000</td> 
-                    </tr>
-                </tbody>
-            </table>
-            </div>
-            <br/>
-            <hr/>
-            <br/>
+           
             
             <div>
-            <span>Start Date: <input type="text" id="datepickerstart" /></span>&nbsp;&nbsp;
-            <span>End Date: <input type="text" id="datepickerend" /></span>&nbsp;&nbsp;
+            <span>Start Date: <input type="date" id="datepickerstart" /></span>&nbsp;&nbsp;
+            <span>End Date: <input type="date" id="datepickerend" /></span>&nbsp;&nbsp;
             <span>Order Status: 
             <select class="search"><option>All</option><option>Received</option><option>In Process</option><option>Allocated</option><option>Reallocated</option>
             </select></span>&nbsp;&nbsp;
