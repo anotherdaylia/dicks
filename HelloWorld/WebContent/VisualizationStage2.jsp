@@ -7,11 +7,13 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
  <jsp:include page="template_top.jsp" />
+ <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
@@ -80,8 +82,8 @@
             <div style="padding-left:5px;width:760px;">
                 <div id="block1" style="float:left;height:465px;width:150px;border:1px solid #ccc;border-radius:5px;margin-right:1px;">
                     <div id="accordion" style="float:left;width:150px;margin-top:-3px;">
-                        <h3>Stage 1</h3>
-                        <div>
+                        <h3>Stage 1 - Fulfillment Eligibility</h3>
+                        <div style="border: 1px solid #aaaaaa;">
                             <ul>
                             	<c:forEach items="${appliedRules}" var="appliedrule">
                                 	<li style="height:30px;"><a href="#">${appliedrule}</li>
@@ -89,8 +91,8 @@
                             </ul>
                         </div>
                         
-                        <h3>Stage 2</h3>
-                        <div>
+                        <h3>Stage 2 - Delivery Optimization</h3>
+                        <div style="border: 1px solid #aaaaaa;">
                             <ul>
                                 <c:forEach items="${packages}" var="package">
                                 	<li style="height:30px;"><a href="#">${package}</li>
@@ -98,8 +100,8 @@
                             </ul>
                         </div>
                     
-                        <h3>Stage 3</h3>
-                        <div>
+                        <h3>Stage 3 - Allocation Optimization</h3>
+                        <div style="border: 1px solid #aaaaaa;">
                             <ul>
                                 <c:forEach items="${routes}" var="route">
                                 	<li style="height:30px;"><a href="#">${route}</li>
@@ -173,7 +175,7 @@
     <!-- content ends -->        
     <!-- footer starts -->
         </div>
-            <div class="footer"><span>©2013 eBusiness Team</span></div>
+            <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
         </div>
     <!-- footer ends -->
 

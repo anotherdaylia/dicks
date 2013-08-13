@@ -14,36 +14,29 @@
 		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
 		<ul class="nav-two" id="navone">
 			<li class="" id="catelist"><a
-				href="<%=basePath%>gotocategorylist.action">Group List</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
 			<li class="" id="newcatelist"><a
-				href="<%=basePath%>gotonewcategory.action">New Group</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>
 		</ul></li>
 	<li class=""><a class="recordable open" href="#" id="toggletwo"
-		memo="{id:'21',type:'menu',global:1,status:''}">Manage Business
-			Rule</a>
+		memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
 		<ul class="nav-two" id="navtwo">
 			<li class="" id="bizrulelist"><a
-				href="<%=basePath%>gotorulelist.action">Business Rule List</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotorulelist.action">Business Rule List</a><span class="normal">&nbsp;</span></li>
 			<li class="" id="newbizrulelist"><a
-				href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span
-				class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span class="normal">&nbsp;</span></li>
 			<li class="selected" id="ruleprioritylist"><a
-				href="<%=basePath%>gotoruleprioritylist.action">Business Rule
-					Priority</a><span class="normal">&nbsp;</span></li>
-		</ul></li>
+				href="<%=basePath%>gotoruleprioritylist.action">Business Rule Priority</a><span class="normal">&nbsp;</span></li>
+		</ul>
+	</li>
 	<li class=""><a class="recordable open" href="#" id="togglethree"
-		memo="{id:'21',type:'menu',global:1,status:''}">Visualization
-			Dashboard</a>
+		memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
 		<ul class="nav-two" id="navthree">
 			<li class=""><a id="orderlist" onclick="f(this)"
-				href="<%=basePath%>gotoorderlist.action">Order List</a><span
-				class="normal">&nbsp;</span></li>
-			<li class="" id="statlist"><a href="statistics.html">Statistics</a><span
-				class="normal">&nbsp;</span></li>
-		</ul></li>
+				href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
+			<li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+		</ul>
+	</li>
 </ul>
 </div>
  <script>
@@ -71,7 +64,7 @@
                 <span><a href="#">Home</a><span> &gt; </span></span>
                 <span><a href="#">Visualization Dashboard</a><span> &gt; </span></span>
                 <span><a href="#">Order List</a><span> &gt; </span></span>                
-                <span>Order Routing Visualization<span>   
+                <span>Order Routing Visualization</span>   
             </li>
 
             <!-- Success Message and Error Message -->
@@ -84,8 +77,8 @@
                 <div id="block1" style="float:left;height:465px;width:150px;border:1px solid #ccc;border-radius:5px;margin-right:1px;">
                 <div id="accordion" style="float:left;width:150px;margin-top:-3px;">
                 
-                    <h3>Stage 1</h3>
-                    <div>
+                    <h3>Stage 1 - Fulfillment Eligibility</h3>
+                    <div style="border: 1px solid #aaaaaa;">
                         <ul>
                             <li class="" style="height:30px;"><a href="#">All Rules</li>
                             <li class="" style="height:30px;"><a href="#">Rule 1</li>
@@ -94,16 +87,16 @@
                             
                         </ul>
                     </div>
-                    <h3>Stage 2</h3>
-                    <div>
+                    <h3>Stage 2 - Delivery Optimization</h3>
+                    <div style="border: 1px solid #aaaaaa;">
                         <ul>
                             <li class="" style="height:30px;"><a href="#">Package 1</a></li>
                             <li class="" style="height:30px;"><a href="#">Package 2</a></li>
                             <li class="" style="height:30px;"><a href="#">Package 3</a></li> 
                         </ul>
                     </div>
-                    <h3>Stage 3</h3>
-                    <div>
+                    <h3>Stage 3 - Allocation Optimization</h3>
+                    <div style="border: 1px solid #aaaaaa;">
                         <ul>
                             <li class="" style="height:30px;"><a href="#">Route 1</a></li>
                             <li class="" style="height:30px;"><a href="#">Route 2</a></li>
@@ -192,7 +185,7 @@
     <!-- content ends -->        
     <!-- footer starts -->
         </div>
-            <div class="footer"><span>©2013 eBusiness Team</span></div>
+            <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
         </div>
     <!-- footer ends -->
 

@@ -7,11 +7,13 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
  <jsp:include page="template_top.jsp" />
+ <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
@@ -81,14 +83,14 @@
             <div style="padding-left:5px;width:890px;">
                 <div id="accordion" style="float:left;width:280px;margin-top:-3px;">
                         <h3>Order Details</h3>
-                        <div>
+                        <div style="border: 1px solid #aaaaaa;">
                             <ul>
                                 <li class="" style="height:30px;"><a href="VisualizationOrderDetail.html">Order Details</a></li>
                             </ul>
                         </div>
 
-                        <h3>Stage 1 - Prefiltering</h3>
-                        <div>
+                        <h3>Stage 1 - Fulfillment Eligibility</h3>
+                        <div style="border: 1px solid #aaaaaa;">
                             <ul>
                                 <li class="" style="height:30px;"><a href="VisualizationStage1AllRules.html">All Rules</a></li>
                                 <li class="" style="height:30px;"><a href="VisualizationStage1Rule1.html">Rule 1</a></li>
@@ -98,7 +100,7 @@
                         </div>
                         
                         <h3>Stage 2 - Candidate Determination</h3>
-                        <div>
+                        <div style="border: 1px solid #aaaaaa;">
                             <ul>
                                 <li style="height:30px;"><a href="VisualizationStage2-1.html">Package 1</a></li>
                                 <li style="height:30px;"><a href="VisualizationStage2-2.html">Package 2</a></li>
@@ -107,7 +109,7 @@
                         </div>
                     
                         <h3>Stage 3 - Evaluation</h3>
-                        <div>
+                        <div style="border: 1px solid #aaaaaa;">
                             <ul>
                                 <li class="" style="height:30px;"><a href="VisualizationStage3-1.html">Route 1</a></li>
                                 <li class="" style="height:30px;"><a href="VisualizationStage3-2.html">Route 2</a></li>

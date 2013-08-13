@@ -37,8 +37,7 @@ import com.dicks.pojo.Store;
 import com.dicks.engine.Util;
 
 public class Split {
-	public static void main(String[] args) {	
-				
+	public static void main(String[] args) {					
 //		ArrayList<PackageTestResult> results = getTestResult(p1, order);
 //		
 //		for (PackageTestResult r : results) {

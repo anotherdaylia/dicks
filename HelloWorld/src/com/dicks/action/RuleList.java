@@ -275,11 +275,24 @@ public class RuleList {
 			if (viewEdit.equals("view")){
 				return "goToViewSpecialRoute";
 			}
+
 			else if (viewEdit.equals("edit")){
 				return "goToEditSpecialRoute";
 			}
 		}
-		else {
+
+
+		else if (thisRule.getType().equals("5")) {
+			FeeDAO feeDAO = FeeDAO.getInstance();
+			this.storeFeeList = feeDAO.getByType("store");
+			this.warehouseFeeList = feeDAO.getByType("warehouse");
+			this.vendorFeeList = feeDAO.getByType("vendor");
+			
+			return "goToCostCalculation";
+		} else if (thisRule.getType().equals("6")) {
+			return "goToCostCalculation";
+		} else {
+
 			return "goToEditProductThreshold";
 		}
 		System.out.println("Wrong input for viewEdit rule list page");

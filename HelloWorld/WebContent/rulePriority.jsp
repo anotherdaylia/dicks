@@ -8,6 +8,7 @@
 			+ path + "/";
 %>
 <jsp:include page="template_top.jsp" />
+
 <ul class="nav">
 	<li class=""><a class="recordable open" id="toggleone" href="#"
 		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
@@ -69,16 +70,16 @@
 		console.log("logged");
 	}
 
-	function submitForm() {
+	function SubmitForm() {
 		var nameList = "";
 		var table = document.getElementById("sort");
-		var row = table.rows[0];
+		var row = table.rows[1];
 		var col = row.cells[1];
 		nameList += col.innerText;
 
 		//iterate through rows
 		//rows would be accessed using the "row" variable assigned in the for loop
-		for ( var i = 1, row; row = table.rows[i]; i++) {
+		for ( var i = 2, row; row = table.rows[i]; i++) {
 			//iterate through rows
 			//rows would be accessed using the "row" variable assigned in the for loop
 			nameList += ",";
@@ -89,7 +90,7 @@
 		console.log("rule list" + nameList);
 		document.getElementById('ruleString').value = nameList;
 		document.forms['myForm'].submit();
-		
+
 	}
 	window.onload = pageOnLoad;
 </script>
@@ -112,7 +113,7 @@
 				href="javascript:void(0);">&nbsp;</a> <br />
 			<br />
 			<div>
-			<hr />
+				<hr />
 			</div>
 
 			<li style="list-style: none;">
@@ -120,7 +121,8 @@
 				<span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a><span> &gt; </span></span>
 				<span>Business Rule Priority</span>
 			</li>
-			
+
+
 			<!-- Success Message and Error Message -->
 			<div class="success_area" style="display: none">successMessage</div>
 			<div class="warning" style="display: none">errorMessage</div>
@@ -168,14 +170,14 @@
 						style="border-collapse: collapse; width:100%; font-size: 12px;">
 						<tbody>
 							<c:forEach var="midRule" items="${midRule}">
-								<tr style="height: 30px;">
-									<td
-										style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: center; color: #666; background-color: #75a8d8;">${ruleNum}</td>
-									<td
-										style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8 ">${midRule.ruleName}</td>
-									<td
-										style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8 ">${midRule.ruleDescr}</td>
-									<td style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8">${midRule.stage}</td>
+
+								<tr class="priority" style="height: 30px;">
+									<td>&uarr;&darr;</td>
+									<td>${ruleNum}</td>
+									<td>${midRule.ruleName}</td>
+									<td>${midRule.ruleDescr}</td>
+									<td>${midRule.stage}</td>
+
 								</tr>
 								<c:set var="ruleNum" value="${ruleNum+1}" />
 							</c:forEach>
@@ -185,19 +187,16 @@
 						style="border-collapse: collapse; width: 100%; font-size: 12px;">
 						<c:forEach var="lastRule" items="${lastRule}">
 							<tr style="height: 30px;">
-								<td
-									style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: center; color: #666;">${ruleNum}</td>
-								<td
-									style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${lastRule.ruleName}</td>
-								<td
-									style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${lastRule.ruleDescr}</td>
+								<td style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: center; color: #666;">${ruleNum}</td>
+								<td style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${lastRule.ruleName}</td>
+								<td style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${lastRule.ruleDescr}</td>
 								<td style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${lastRule.stage}</td>
 							</tr>
 							<c:set var="ruleNum" value="${ruleNum+1}" />
 						</c:forEach>
 					</table>
 					<br /> <input type="hidden" id="ruleString" name="ruleString">
-					<a class="button" href="#">Cancel</a> <a class="button" id="add-to-cart" >Submit</a>
+					<a class="button" href="#">Cancel</a> <a class="button" onclick='SubmitForm()'>Submit</a>
 				</div>
 
 				<div id="priorityTable"></div>
@@ -220,7 +219,7 @@
 				rule's priority?</div>
 
 			<div class="r" style="margin-right: 20px;">
-				<input class="button" onclick="submitForm()" type="submit" value="Yes"  />
+				<input class="button" onclick="closePop()" type="submit" value="Yes" />
 				<a class="button" onclick="closePop()" type="button">No</a>
 			</div>
 		</div>

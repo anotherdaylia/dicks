@@ -18,17 +18,14 @@
           <result name="error">/login.jsp</result>
           <result name="success">/OrderList.jsp</result>
       </action>
+      
   		<action name="gotocategorylist" class="com.dicks.action.CategoryListAction" method="displayCategory">
           <result name="success">/CategoryList.jsp?act=store</result>
-          </action>
-          
+          </action>       
           
        <!-- <action name="gotocategorylist" class="com.dicks.action.Redirect" method="gotocategorylist">
           <result name="goToCategoryList">/CategoryList.jsp</result>
-
-    
-
-      
+  
       <action name="gotoorderlist" class="com.dicks.action.Redirect" method="gotoorderlist">
           <result name="gotoorderlist">/OrderList.jsp</result>
       </action>
@@ -36,7 +33,7 @@
       <action name="gotonewbizrulelist" class="com.dicks.action.Redirect" method="gotonewbizrulelist">
           <result name="gotonewbizrulelist">/newRules.jsp</result>
       </action>-->
-            <action name="gotoorderlist" class="com.dicks.action.Redirect" method="gotoorderlist">
+      <action name="gotoorderlist" class="com.dicks.action.Redirect" method="gotoorderlist">
           <result name="gotoorderlist">/OrderList.jsp</result>
       </action>
       <action name="gotorulelist" class="com.dicks.action.RuleList" method="gotorulelist">
@@ -46,22 +43,20 @@
            <result name="goToEditProductThreshold" type="dispatcher">/Edit_TemplateProductThreshold.jsp</result>
            <result name="goToViewProductThreshold" type="dispatcher">/View_TemplateProductThreshold.jsp</result>
            <result name="goToEditStoreThreshold" type="dispatcher">/TemplateSpecialRoute.jsp</result>
+
            <result name="goToEditSpecialRoute" type="dispatcher">/Edit_TemplateSpecialRoute.jsp</result>
            <result name="goToViewSpecialRoute" type="dispatcher">/View_TemplateSpecialRoute.jsp</result>
-           <result name="goToCostCalculation" type="dispatcher">/TemplateCostCalculation.jsp</result>
+
+           <result name="goToSpecialRoute" type="dispatcher">/TemplateStoreThreshold.jsp</result>
+           <result name="goToCostCalculation" type="dispatcher">/Edit_TemplateCostCalculation.jsp</result>
+
       </action>
-      <action name="updateRule" class="com.dicks.action.RuleList" method="updateRule">
-          <result name="success" type="chain">
-            <param name="actionName">gotorulelist</param>
-          </result> 
-      </action>
+      
       <action name="gotoruleprioritylist" class="com.dicks.action.RulePriority" method="gotoruleprioritylist">
           <result name="success" type="dispatcher">/rulePriority.jsp</result>
       </action>
       <action name="reRank" class="com.dicks.action.RulePriority" method="reRank">
-          <result name="success" type="chain">
-            <param name="actionName">gotoruleprioritylist</param>
-          </result>   
+          <result name="success" type="dispatcher">/rulePriority.jsp</result>
       </action>
       <action name="gotonewbizrulelist" class="com.dicks.action.CreateNewBizRule" method="gotonewbizrulelist">
           <result name="success" type="dispatcher">/newRules.jsp</result>
@@ -156,7 +151,13 @@
        <action name="editrule" class="com.dicks.action.EditRuleAction" method="editRule">
           <result name="success">/Edit_TemplateResultRanking.jsp</result>
       </action>
+      <action name="deleteCategory" class="com.dicks.action.DeleteCategoryAction">
+          <result name="success" type="chain">
+          <param name="actionName">displayCategoryList</param>
+          <param name="act">${act}</param>
+          </result>
+      </action>
       
-      
+  
    </package>
 </struts>

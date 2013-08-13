@@ -57,7 +57,7 @@ rule "Filter Stock for Stock whose margin is less than 2"
         $item : Product()
     	$store : Store()
         //eval($store.checkStore($item, $o,"zone","<",2))
-        eval(InventoryDAO.getInstance().checkProduct($store, $item,"<",2))
+        eval(InventoryDAO.getInstance().checkProduct($store, $item,">",2))
         $logger : EngineLog() 
     then
     	$logger.addLog("");
@@ -88,7 +88,7 @@ rule  "Special Route for Tmac"
         $order : Orders()
         $orderE : OrderE()
         $product : Product($id: prodId, sku.equals("AD-SH-TM"))
-        eval ($orderE.getProductQty($id)>3)
+        eval ($orderE.getProductQty($id)>5)
         $s : Store( storeId == 1)
         eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
         $logger: EngineLog()

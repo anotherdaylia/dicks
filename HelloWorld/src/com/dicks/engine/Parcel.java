@@ -8,9 +8,39 @@ import com.dicks.pojo.Product;
 public class Parcel {
 	private HashMap<Product, Integer> products = new HashMap<Product, Integer>();
 	private PackageE pack;	
+	private int weight;
+	private double girth;
+	private boolean overSize;
+	private boolean overWeight;
 	
 	public Parcel(PackageE pack) {
 		this.setPack(pack);
+	}
+	
+	public void shipmentPreparation() {
+		int totalWeight = 0;
+		double maxWidth = 0;
+		double totalHeight = 0;
+		double maxLength = 0;
+				
+		for (Product product : products.keySet()) {
+			totalWeight += product.getWeight();
+			if (product.getWidth() > maxWidth) maxWidth = product.getWidth();
+			if (product.getLength() > maxLength) maxLength = product.getLength();
+			totalHeight += product.getHeight();
+		}
+		
+		double length = 0;
+		double width = maxWidth;
+		double height = 0;
+		if (totalHeight > maxLength) {
+			length = totalHeight;
+			height = maxLength;
+		}
+		this.girth = length + width * 2 + height * 2;
+		this.weight = totalWeight;
+		this.overSize = this.girth > Util.OVER_SIZE_THRESHOLD;
+		this.overWeight = this.weight > Util.OVER_WEIGHT_THRESHOLD;
 	}
 	
 	public void addProduct(Product p) {
@@ -52,6 +82,32 @@ public class Parcel {
 		return list;
 	}
 	
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
+
+	public boolean isOverSize() {
+		return overSize;
+	}
+
+	public void setOverSize(boolean overSize) {
+		this.overSize = overSize;
+	}
+
+	public boolean isOverWeight() {
+		return overWeight;
+	}
+
+	public void setOverWeight(boolean overWeight) {
+		this.overWeight = overWeight;
+	}
+	
+	
 	@Override
 		public String toString() {
 			StringBuilder sb = new StringBuilder();
@@ -73,5 +129,13 @@ public class Parcel {
 
 	public void setPack(PackageE pack) {
 		this.pack = pack;
+	}
+
+	public double getGirth() {
+		return girth;
+	}
+
+	public void setGirth(double girth) {
+		this.girth = girth;
 	}
 }
