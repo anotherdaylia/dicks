@@ -102,6 +102,7 @@ function addOtherCost(myDiv, storeType) {
   
   var selectFlag = document.createElement("select");
   selectFlag.name = storeType + "Flag";
+  selectFlag.style.width = '120px';
   var option = document.createElement("option");
   option.value = 'p';
   option.innerHTML = "Percentage";
@@ -130,17 +131,18 @@ function addOtherCost(myDiv, storeType) {
   selectFlag.appendChild(option);
   newdiv.appendChild(selectFlag);
   
-  var divPercentage = document.createElement("div");
+  var divPercentage = document.createElement("span");
   divPercentage.id = divIdName+"P";
   var inputP = document.createElement("input");
   inputP.type = "text";
   inputP.name = storeType+'Percentage';
-  inputP.style.width = '50px';
+  inputP.style.width = '40px';
   divPercentage.appendChild(inputP);
   
   divPercentage.innerHTML = divPercentage.innerHTML + ' % of ';
-  divPercentage.style.width = "250px";
+  divPercentage.style.width = '200px';
   var selectAttribute = document.createElement("select");
+  selectAttribute.style.width = '200px';
   selectAttribute.name = storeType + "Attribute";
   option = document.createElement("option");
   option.value = 'retailPrice,inventory';
@@ -166,13 +168,13 @@ function addOtherCost(myDiv, storeType) {
   
   newdiv.appendChild(divPercentage);
   
-  var divValue = document.createElement("div");
+  var divValue = document.createElement("span");
   divValue.id = divIdName+"V";
   divValue.hidden = "true";
   var inputV = document.createElement("input");
   inputV.type = "text";
   inputV.name = storeType+'Value';
-  inputV.style.width = '50px';
+  inputV.style.width = '40px';
   divValue.appendChild(inputV);
   
   divValue.innerHTML = divValue.innerHTML + ' dollar per unit ';
@@ -256,10 +258,10 @@ function goBack(){
 		<!-- Success Message and Error Message -->
 
 		<form action="costcalculation">
-			<table class="text" style="width: 750px;">
+			<table class="text" style="width: 850px;">
 				<tr>
 					<td style="width: 150px;">Rule Name&#58;</td>
-					<td style="width: 600px;">Cost Calculate</td>
+					<td style="width: 700px;">Cost Calculate</td>
 				</tr>
 				<tr>
 					<td>Rule Description&#58;</td>
@@ -295,22 +297,22 @@ function goBack(){
 									<table>
 										<c:forEach var="storeFee" items="${storeFeeList}">
 											<tr id="storeFee${storeFee.costId}">
-												<td style="width: 200px;"><input type="text"
+												<td ><input style="width:150px;" type="text"
 													name="storeFeeName" value="${storeFee.getCostName()}" /></td>
 												<c:choose>
 													<c:when test="${ (storeFee.flag == 'p') }">
 														<input type="hidden"  name="storeFeeId"
 															value="${storeFee.costId}" />
-														<td><select name="storeFeeFlag"
+														<td style="width:120px;"><select name="storeFeeFlag"
 															onchange="chooseFormat(this.value, 'storeFee', '${storeFee.costId}')">
 																<option selected="selected" value="p">
 																	Percentage</option>
 																<option value="v">Value</option>
 														</select></td>
-														<td style="width: 600px;" id="storeFeeP${storeFee.costId}"><input
+														<td  id="storeFeeP${storeFee.costId}"><input style="width:40px;"
 															name="storeFeePercentage" type="text"
-															value="${storeFee.percentage/100.0}" style="width: 50px;">
-															% of <select name="storeFeeAttribute">
+															value="${storeFee.percentage/100.0}" >
+															% of <select style="width:200px;"name="storeFeeAttribute">
 																<option value="retailPrice,inventory"
 																	<c:if test="${storeFee.attribute == 'retailPrice,inventory'}">selected="selected"</c:if>>
 																	Net Merchandise Sales</option>
@@ -331,8 +333,8 @@ function goBack(){
 													</c:when>
 													<c:otherwise>
 														<input type="hidden" type="text" name="storeFeeId"
-															value="${storeFee.costId}" />
-														<td><select name="storeFeeFlag"
+															value="${storeFee.costId}" style="width:150px;"/>
+														<td><select style="width:120px;"name="storeFeeFlag"
 															onchange="chooseFormat(this.value, 'storeFee', '${storeFee.costId}')">
 																<option value="p">Percentage</option>
 																<option selected="selected" value="v">Value</option>
@@ -340,8 +342,8 @@ function goBack(){
 														<td hidden="true" style="width: 600px;"
 															id="storeFeeP${storeFee.costId}"><input
 															name="storeFeePercentage" type="text" value=""
-															style="width: 50px;"> % of <select
-															name="storeFeeAttribute">
+															style="width: 40px;"> % of <select
+															name="storeFeeAttribute" style="width:200px;">
 																<option value="retailPrice,inventory">Net
 																	Merchandise Sales</option>
 																<option value="unitPrice,orderDetail">Order
@@ -372,21 +374,21 @@ function goBack(){
 									<table>
 										<c:forEach var="warehouseFee" items="${warehouseFeeList}">
 											<tr id="warehouseFee${warehouseFee.costId}">
-												<td style="width: 200px;"><input type="text"
+												<td style="width: 150px;"><input type="text"
 													name="warehouseFeeName" value="${warehouseFee.getCostName()}" /></td>
 												<c:choose>
 													<c:when test="${ (warehouseFee.flag == 'p') }">
 														<input type="hidden"  name="warehouseFeeId" value="${warehouseFee.costId}" />
 														<td><select name="warehouseFeeFlag"
-															onchange="chooseFormat(this.value, 'warehouseFee', '${warehouseFee.costId}')">
+															onchange="chooseFormat(this.value, 'warehouseFee', '${warehouseFee.costId}')" style="width:120px;">
 																<option selected="selected" value="p">
 																	Percentage</option>
 																<option value="v">Value</option>
 														</select></td>
 														<td style="width: 600px;" id="warehouseFeeP${warehouseFee.costId}"><input
 															name="warehouseFeePercentage" type="text"
-															value="${warehouseFee.percentage/100.0}" style="width: 50px;">
-															% of <select name="warehouseFeeAttribute">
+															value="${warehouseFee.percentage/100.0}" style="width: 40px;">
+															% of <select style="width:200px;"name="warehouseFeeAttribute">
 																<option value="retailPrice,inventory"
 																	<c:if test="${warehouseFee.attribute == 'retailPrice,inventory'}">selected="selected"</c:if>>
 																	Net Merchandise Sales</option>
@@ -406,9 +408,9 @@ function goBack(){
 															style="width: 50px;"> dollar per unit</td>
 													</c:when>
 													<c:otherwise>
-														<input type="hidden" type="text" name="warehouseFeeId"
+														<input style="width: 150px;" type="hidden" type="text" name="warehouseFeeId"
 															value="${warehouseFee.costId}" />
-														<td><select name="warehouseFeeFlag"
+														<td><select style="width: 120px;"name="warehouseFeeFlag"
 															onchange="chooseFormat(this.value, 'warehouseFee', '${warehouseFee.costId}')">
 																<option value="p">Percentage</option>
 																<option selected="selected" value="v">Value</option>
@@ -416,8 +418,8 @@ function goBack(){
 														<td hidden="true" style="width: 600px;"
 															id="warehouseFeeP${warehouseFee.costId}"><input
 															name="warehouseFeePercentage" type="text" value=""
-															style="width: 50px;"> % of <select
-															name="warehouseFeeAttribute">
+															style="width: 40px;"> % of <select
+															name="warehouseFeeAttribute" style="width: 200px;">
 																<option value="retailPrice,inventory">Net
 																	Merchandise Sales</option>
 																<option value="unitPrice,orderDetail">Order
@@ -448,13 +450,13 @@ function goBack(){
 									<table>
 										<c:forEach var="vendorFee" items="${vendorFeeList}">
 											<tr id="vendorFee${vendorFee.costId}">
-												<td style="width: 200px;"><input type="text"
+												<td style="width: 150px;"><input type="text"
 													name="vendorFeeName" value="${vendorFee.getCostName()}" /></td>
 												<c:choose>
 													<c:when test="${ (vendorFee.flag == 'p') }">
 														<input type="hidden"  name="vendorFeeId"
 															value="${vendorFee.costId}" />
-														<td><select name="vendorFeeFlag"
+														<td><select style="width: 120px;"name="vendorFeeFlag"
 															onchange="chooseFormat(this.value, 'vendorFee', '${vendorFee.costId}')">
 																<option selected="selected" value="p">
 																	Percentage</option>
@@ -462,8 +464,8 @@ function goBack(){
 														</select></td>
 														<td style="width: 600px;" id="vendorFeeP${vendorFee.costId}"><input
 															name="vendorFeePercentage" type="text"
-															value="${vendorFee.percentage/100.0}" style="width: 50px;">
-															% of <select name="vendorFeeAttribute">
+															value="${vendorFee.percentage/100.0}" style="width: 40px;">
+															% of <select style="width: 200px;"name="vendorFeeAttribute">
 																<option value="retailPrice,inventory"
 																	<c:if test="${vendorFee.attribute == 'retailPrice,inventory'}">selected="selected"</c:if>>
 																	Net Merchandise Sales</option>
@@ -485,7 +487,7 @@ function goBack(){
 													<c:otherwise>
 														<input type="hidden" type="text" name="vendorFeeId"
 															value="${vendorFee.costId}" />
-														<td><select name="vendorFeeFlag"
+														<td><select style="width: 120px;"name="vendorFeeFlag"
 															onchange="chooseFormat(this.value, 'vendorFee', '${vendorFee.costId}')">
 																<option value="p">Percentage</option>
 																<option selected="selected" value="v">Value</option>
@@ -493,8 +495,8 @@ function goBack(){
 														<td hidden="true" style="width: 600px;"
 															id="vendorFeeP${vendorFee.costId}"><input
 															name="vendorFeePercentage" type="text" value=""
-															style="width: 50px;"> % of <select
-															name="vendorFeeAttribute">
+															style="width: 40px;"> % of <select
+															name="vendorFeeAttribute" style="width: 200px;">
 																<option value="retailPrice,inventory">Net
 																	Merchandise Sales</option>
 																<option value="unitPrice,orderDetail">Order
