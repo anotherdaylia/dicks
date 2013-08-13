@@ -16,6 +16,7 @@ import com.dicks.dao.OrderDetailDAO;
 import com.dicks.dao.OrdersDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.dao.RuleDAO;
+import com.dicks.dao.ShipmentDAO;
 import com.dicks.dao.StoreDAO;
 import com.dicks.dao.VendorDAO;
 import com.dicks.pojo.Customer;
@@ -27,6 +28,7 @@ import com.dicks.pojo.OrderDetailId;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
+import com.dicks.pojo.Shipment;
 import com.dicks.pojo.Store;
 import com.dicks.pojo.Vendor;
 
@@ -51,6 +53,29 @@ public class TestUtil {
 	}
 
 	@Test
+	public void testShipment() {
+		try {
+//			ArrayList<Shipment> ships = ShipmentDAO.getInstance().getShipmentByRate(842);
+//			System.out.println("size: " + ships.size());
+//			for (Shipment shipment : ships) {
+//				System.out.println(shipment);
+//			}
+			
+//			ships = ShipmentDAO.getInstance().getShipmentByDestin(15213);
+//			System.out.println("size: " + ships.size());
+//			for (Shipment shipment : ships) {
+//				System.out.println(shipment);
+//			}
+			
+			Shipment ship = ShipmentDAO.getInstance().getShipmentBySupplyDesitin(33925, 15213);
+			System.out.println("shipment rate: " + ship);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+//	@Test
 	public void testRule2() throws Exception {
 		Rule[] allRule = RuleDAO.getInstance().getAllSortedList() ;
 		for (Rule rule : allRule) {
