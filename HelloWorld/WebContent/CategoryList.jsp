@@ -34,7 +34,6 @@
 
   <script defer="defer" >
  	 window.onload=function(){
-
  		var act =  document.getElementById('act').value;
         if(act=="store") {
             document.getElementById('store_category_list').style.display = 'block';
@@ -157,12 +156,13 @@
 											<th>Description</th>
 											<th>Action</th>
 										</tr>
+										
 										<c:forEach var="storeCategory" items="${storeCategoryList}">
 											<tr>
 												<td class=""><input name="storeList" value="${storeCategory.id.cateStoreId}" type="checkbox" class="case" /></td>
-												<td class="">${storeCategory.id.cateStoreId}</td>
 												<td class="">${storeCategory.cateName}</td>
 												<td class="">${storeCategory.cateDescr}</td>
+												<td class="">${storeCategory.appliedRuleList}</td>
 												<td class="">
 													<a class="button" href="viewStoreCategory.action?categoryId=${storeCategory.id.cateStoreId}">View</a>
 													<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a>
@@ -190,9 +190,9 @@
 												<c:forEach var="prodCategory" items="${prodCategoryList}">
 												<tr>
 												<td class=""><input type="checkbox" name="prodList" value="${prodCategory.id.cateProdId}" class="case" /></td>
-												<td class="">${prodCategory.id.cateProdId}</td>
 												<td class="">${prodCategory.cateName}</td>
 												<td class="">${prodCategory.cateDescr}</td>
+												<td class="">${prodCategory.appliedRuleList}</td>
 												<td class="">
 													<a class="button" href="<%=basePath%>viewProdCategory.action?categoryId=${prodCategory.id.cateProdId}">View</a>
 													<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a>

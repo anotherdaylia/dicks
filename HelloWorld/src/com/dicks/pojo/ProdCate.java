@@ -9,6 +9,7 @@ public class ProdCate extends Category implements java.io.Serializable  {
 	// Fields
 	private ProdCateId id;
 	private Product product;
+	private String appliedRuleList;
 
 	// Constructors
 
@@ -50,6 +51,14 @@ public class ProdCate extends Category implements java.io.Serializable  {
 		this.product = product;
 	}
 
+	public String getAppliedRuleList() {
+		return appliedRuleList;
+	}
 
+	public void setAppliedRuleList(String appliedRuleList) {
+		this.appliedRuleList = appliedRuleList;
+	}
+
+	
 
 }
