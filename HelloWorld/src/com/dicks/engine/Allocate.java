@@ -72,7 +72,6 @@ public class Allocate {
 		OrdersDAO.getInstance().createOrder(order);
 		
 		this.setOrderId(order.getOrderId() + "");
-		
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		for (int i = 0; i < skus.length; i++) {
 			map.put(skus[i], Integer.parseInt(quantities[i]));

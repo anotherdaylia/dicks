@@ -72,7 +72,7 @@ public class CreateNewBizRule {
 	public void setTest(String[] a){
 		this.test = a;
 		for (int i = 0; i<test.length; i++){
-			System.out.println("haha"+test[i]);
+			//System.out.println("haha"+test[i]);
 		}
 	}
 
@@ -157,7 +157,7 @@ public class CreateNewBizRule {
 		StringBuffer cate = new StringBuffer();
 		cate.append(tmp2[0]);
 		for (int i = 1;i<tmp2.length;i++){
-			System.out.println(tmp2[i]);
+			//System.out.println(tmp2[i]);
 			cate.append(","+tmp2[i]);
 		}
 		
@@ -175,7 +175,7 @@ public class CreateNewBizRule {
 		if(templatename.equals("product_threshold")){
 			
 			try {
-				allRule = RuleDAO.getInstance().getAllSortedList() ;
+				allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -192,7 +192,7 @@ public class CreateNewBizRule {
 		}
 		else if(templatename.equals("special_route")){
 			try {
-				allRule = RuleDAO.getInstance().getAllSortedList() ;
+				allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -205,7 +205,7 @@ public class CreateNewBizRule {
 		}
 		else if(templatename.equals("store_threshold")){
 			try {
-				allRule = RuleDAO.getInstance().getAllSortedList() ;
+				allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -220,8 +220,9 @@ public class CreateNewBizRule {
 	}
 
 	public String newrule(){
-		System.out.println("prio   "+priority);
-
+		System.out.println("new rule action");
+		System.out.println("inserting position"+priority);
+		
 		categoryname =categoryname.replace("%20", " ");
 		rulename = rulename.replace("%20", " ");
 		des = des.replace("%20", " ");
@@ -258,11 +259,24 @@ public class CreateNewBizRule {
 		System.out.println("hahahah first product in the list is "+product[0]);
 		
 		String[] action = new String[1];
-		action[0] = actions;
+		action[0] = "miniumPackage";
 		System.out.println("actions!!"+actions);
 		
 		String[] route = new String[1];
-		route[0] = "";
+		route[0] = "a";
+		
+		System.out.println("rulename "+rulename);
+		System.out.println("des "+des);
+		for (int i = 0;i<product.length;i++){
+			System.out.println("prod "+product[i]);
+		}
+		for (int i = 0; i < attribute.length; i++){
+			System.out.println("att "+attribute[i]);
+			System.out.println("oper "+operator[i]);
+			System.out.println("value "+value[i]);
+		}
+		
+		
 		CreateTemplate test= new CreateTemplate(rulename,des,type,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
 
 		return "newrule";
@@ -324,11 +338,7 @@ public class CreateNewBizRule {
 			System.out.println("sources"+sources[i]);
 		}
 		
-		
-		
-		 product = new String[1];
-		 product[0] ="1";
-		 //product[1] ="002";
+		//product[1] ="002";
 		 //product[1] = "def234";
 		 //product[2] ="ghi456";
 		 attribute = new String[2];

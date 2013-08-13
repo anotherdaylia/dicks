@@ -317,18 +317,18 @@ public class Rule implements java.io.Serializable {
 				s1.append(",");
 				s1.append(s2[i]);
 		}
-		System.out.println("translated"+s1.toString());
+		//System.out.println("translated"+s1.toString());
 		return s1.toString();
 
 	}
 
 	public String[] translateBack(String s1){
 		String[] s2 = s1.split(",");
-		System.out.println("translated back");
+		//System.out.println("translated back");
 		for (int i = 0;i<s2.length;i++){
-			System.out.print(s2[i]);
+			//System.out.print(s2[i]);
 		}
-		System.out.println();
+		//System.out.println();
 		return s2;
 	}	
 

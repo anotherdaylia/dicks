@@ -6,6 +6,7 @@ import com.dicks.dao.OrdersDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Rule;
+import com.dicks.engine.ReMakeTemplate;
 
 public class RulePriority {
 	public String[] ruleList;
@@ -36,7 +37,7 @@ public class RulePriority {
 		int mid = 0;
 		int last = 0;
 		try {
-			allRule = RuleDAO.getInstance().getAllSortedList() ;
+			allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -82,7 +83,7 @@ public class RulePriority {
 		int mid = 0;
 		int last = 0;
 		try {
-			allRule = RuleDAO.getInstance().getAllSortedList() ;
+			allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -135,6 +136,7 @@ public class RulePriority {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+		ReMakeTemplate rmk = new ReMakeTemplate();
 
 		return "success";
 	}

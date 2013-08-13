@@ -33,12 +33,11 @@
     
     
     <script>
-    function SubmitForm(rule,type)
+    function SubmitForm(rule,view)
     {
    	 console.log(rule);
-   	 console.log(type);
+   	 document.getElementById('viewEdit').value= view;
    	 document.getElementById('ruleId').value= rule;
-   	 document.getElementById('ruleType').value= type;
 
       document.forms['myForm'].submit() ;
     }
@@ -97,16 +96,15 @@
 		                    <td class="">${allRule.ruleName}</td>
 		                    <td class="">${allRule.type}</td>
 		                    <td><a class="button toggle">Disable</a></td>
-		                    <td class=""><a class="button" href="#">View</a>  
-		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},${allRule.type})'>Edit</a>
+		                    <td class="">
+		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"view")'>View</a> 
+		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"edit")'>Edit</a>
 		                    
 		            	 </tr>
                 
 				</c:forEach>
                 <input type="hidden" id="ruleId" name="ruleId"> 
-                <input type="hidden" id="ruleType" name="ruleType"> 
-                 <input type="hidden" id="prodCate" name="prodCate"> 
-                 <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />
+                <input type="hidden" id="viewEdit" name="viewEdit"> 
                 
                 
                 </tbody>

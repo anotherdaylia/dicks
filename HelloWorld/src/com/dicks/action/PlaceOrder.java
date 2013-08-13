@@ -74,6 +74,7 @@ public class PlaceOrder {
 		System.out.println("product length: " + product.length);
 		System.out.println("quantity length: " + quantity.length);
 		
+		
 		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
 		System.out.println("order id in place order: " + test.getOrderId());
 		this.id = test.getOrderId();

@@ -77,7 +77,7 @@ public class TestUtil {
 	
 //	@Test
 	public void testRule2() throws Exception {
-		Rule[] allRule = RuleDAO.getInstance().getAllSortedList() ;
+		Rule[] allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
 		for (Rule rule : allRule) {
 			System.out.println(rule.getRuleName());
 		}

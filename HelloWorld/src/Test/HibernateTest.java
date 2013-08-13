@@ -40,7 +40,7 @@ public class HibernateTest
 	public static void main(String[] args) throws Exception
 	{
 		
-		
+	
 
 		Rule[] allRule = RuleCateDAO.getInstance().getRuleListByCateId("2");
 		for (Rule rule : allRule) {
