@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import com.dicks.pojo.ProdCate;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.StoreCate;
+import com.dicks.pojo.StoreCateId;
 
 public class StoreCateDAO extends BaseDao<StoreCate> {
 	private static StoreCateDAO instance = new StoreCateDAO();
@@ -66,7 +67,6 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		for(StoreCate sc: preview){
 			super.delete(sc);
 		}
-		System.out.println("!!!"+preview.length);
 		for(StoreCate sc: storeCates){
 			createCategory(sc);
 		}
@@ -90,8 +90,26 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		}
 		 StoreCate[] result = (StoreCate[])storeCates1.toArray(new StoreCate[storeCates1.size()]); 
 		 return result;
+	}
+
+	public void deleteCategorys(String[] idArray) throws Exception {
+		for(String id: idArray){
+			StoreCate[] scs = getStoreCategoryListById(id);
+			int[] stordIds = new int[scs.length];
+			for(int i =0; i <scs.length; i++ ){
+				stordIds[i]=scs[i].getId().getStoreId();
+			}
+			RuleCateDAO.getInstance().deleteCategory(id, stordIds);
+			for(StoreCate sc :scs){
+				super.delete(sc);
+			}
+		}	
 	} 
 	
+	public void delete(int cateid, int storeId ) throws Exception{
+		StoreCate sc = new StoreCate(new StoreCateId(cateid, storeId), null, null, null);
+		super.delete(sc);
+	}
 	
 //	public StoreCate getCategoryById(int categoryId) throws Exception {
 //		List<Criterion> criterions = new ArrayList<Criterion>();

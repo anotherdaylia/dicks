@@ -34,10 +34,11 @@ rule "Explode Package"
     salience 100
     dialect "java"
     when
+    	$store : Store()
         $p : PackageE()
         $logger : EngineLog()
     then
-    	$logger.addLog("For Package: " + $p.toString());
+    	//$logger.addLog("For Package: " + $p.toString());
         System.out.println($p);
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
 //        System.out.println("order quantity: " + $order.getQuantity());
@@ -58,7 +59,7 @@ rule "for splitable packages"
 		for (int i = 0; i < r.size(); i++) {
 			PackageTest t = (PackageTest) r.get(i);
 			insert (t);
-			$logger.addLog("--Test: " + t);
+			//$logger.addLog("--Test: " + t);
 			System.out.println("test: " + t);
 		}		
 //		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
@@ -77,7 +78,7 @@ rule "generate test results"
 		if (testR != null) {
 			insert(testR);
 			modify($pack){ setAllocated(true); }
-			$logger.addLog("**Test result: " + testR);
+			//$logger.addLog("**Test result: " + testR);
 			System.out.println("test result: " + testR);
 		}		
 		modify($test){ setTested(true); }
@@ -91,7 +92,7 @@ rule "add splits"
 		$logger : EngineLog()
 	then
 		modify ($p) { setSplitNum($p.getSplitNum() + 1) }
-		$logger.addLog("--Package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
+		//$logger.addLog("--Package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
 		System.out.println("package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
 end
 
@@ -106,7 +107,7 @@ rule "for not splitable packages"
 //		System.out.println("split num: " + $p.getSplitNum());
 //		System.out.println("product size: " + $p.getProducts().size());
 //		System.out.println("eval: " + (($p.getSplitNum() == $p.getProducts().size()&& !$p.isAllocated())));
-		$logger.addLog("--Unable to handle this package " + $p + ", handed to vendor");
+		//$logger.addLog("--Unable to handle this package " + $p + ", handed to vendor");
 		System.out.println("Unable to handle this package " + $p + ", handed to vendor");
 		modify ($p) {setAllocated(true);}
 //		System.out.println("handle this package " + $p);
@@ -120,7 +121,7 @@ rule "get to evaluate"
 		$p : PackageE(isAllocated())
 		$logger : EngineLog()
 	then
-		$logger.addLog("**" + $p + " has been allocated.");
+		//$logger.addLog("**" + $p + " has been allocated.");
 		System.out.println($p + " has been allocated.");
 		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "evaluate" ).setFocus();
 end
@@ -134,8 +135,8 @@ rule "evaluate package results"
 		$logger : EngineLog()
 	then
 		PackageTestResult r = getBestResult($results);
-		$logger.addLog("**For package: " + $p);
-		$logger.addLog("**Evaluate Result: " + r);
+		//$logger.addLog("**For package: " + $p);
+		//$logger.addLog("**Evaluate Result: " + r);
 		System.out.println("Evaluate Result: " + r);
 
 end
@@ -159,6 +160,7 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 	System.out.println("in get test result");
 	for (int i = 0; i < parcels.size(); i++) {
 		Parcel p = (Parcel) parcels.get(i);
+		p.shipmentPreparation();
 		ArrayList parcelResults = new ArrayList();
 		for (int j = 0; j < stores.size(); j++) {
 			Store s = (Store) stores.get(j);
@@ -202,8 +204,9 @@ function ParcelResult getParcelResult(Parcel parcel, Store store) {
 
 	ParcelResult r = new ParcelResult(parcel);
 	r.setSource(store);
-	r.setCost(Util.calculateCosts(parcel, store));
 	r.setShippingCost(Util.getShippingCosts(parcel, store));
+	r.setCost(Util.calculateCosts(parcel, store) + r.getShippingCost());	
+	System.out.println("shipping costs: " + r.getShippingCost());
 	return r;
 }
 

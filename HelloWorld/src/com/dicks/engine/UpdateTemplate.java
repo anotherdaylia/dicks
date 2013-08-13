@@ -73,7 +73,7 @@ public class UpdateTemplate {
 
 
 			try {
-				ruleFiles = RuleDAO.getInstance().getAllSortedList();
+				ruleFiles = RuleDAO.getInstance().getAllSortedListFromStageOne();
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -82,7 +82,7 @@ public class UpdateTemplate {
 			System.out.println("checking!! "+ruleName);
 			for (int i = 0 ; i < ruleFiles.length; i++){
 				System.out.println("checking "+ruleFiles[i].getRuleName());
-				if (ruleFiles[i].getRuleName().equals(ruleName)){
+				if ((ruleFiles[i].getRuleName().replace("%20"," ")).equals(ruleName)){
 					ruleInt = i;
 					System.out.println("num "+i);
 					System.out.println("ruleID "+ruleFiles[i].getRuleId());
@@ -209,7 +209,7 @@ public class UpdateTemplate {
 		    */		
 	      
 	      try {
-				ruleFiles = RuleDAO.getInstance().getAllSortedList();
+				ruleFiles = RuleDAO.getInstance().getAllSortedListFromStageOne();
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -230,7 +230,7 @@ public class UpdateTemplate {
 	             for (i=0; i < ruleFiles.length; i++){
 	            	 
 	            	 	System.out.println("printing file "+i);
-	            	 if (ruleFiles[i].getType().equals("n")){
+	            	 if (ruleFiles[i].getType().equals("9")){
 	            		 //System.out.println("read file");
 		            	 fis = new FileInputStream(new File(ruleFiles[i].getRuleUrl()));
 		            	 //System.out.println("Gettting new path-----"+ruleFile[i].getPath()+"i is  "+i);

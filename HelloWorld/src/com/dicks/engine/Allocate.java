@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.ClassObjectFilter;
@@ -50,7 +51,9 @@ public class Allocate {
     public static int ruleInt;
     
     private String orderId;
-    private ArrayList<String> logs;
+    private EngineLog stage1;
+    private EngineLog stage2;
+	private EngineLog stage3;
     
     public static Product[] product = new Product[5]; 
     
@@ -69,18 +72,23 @@ public class Allocate {
 		OrdersDAO.getInstance().createOrder(order);
 		
 		this.setOrderId(order.getOrderId() + "");
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		for (int i = 0; i < skus.length; i++) {
+			map.put(skus[i], Integer.parseInt(quantities[i]));
+		}
 		
 		Product[] products = ProductDAO.getInstance().getProductsBySKUList(skus);
 		System.out.println("product length: " + products.length);
 		System.out.println("quantity length: " + quantities.length);
 		for (int i = 0; i < products.length; i++) {
 			Product product = products[i];
-			Integer qty = Integer.parseInt(quantities[i]);
+			Integer qty = map.get(product.getSku());
 			System.out.println("qty: " + qty);
+			System.out.println("prod! "+product);
 			OrderDetail detail = new OrderDetail(new OrderDetailId(order.getOrderId(), product.getProdId()), 
 					                               product, order, product.getFactoryPrice() + 1000, qty);
 			OrderDetailDAO.getInstance().createOrderDetail(detail);
-		}	
+		}		
 		
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
@@ -123,7 +131,7 @@ public class Allocate {
 		}
 
 		OrderE orderE = new OrderE(order);
-		EngineLog engineLogger = new EngineLog();
+		this.stage1 = new EngineLog(1);
 		
 		if (stores != null) {
 			for (Store store : stores) {
@@ -133,17 +141,18 @@ public class Allocate {
 		
 		ksession.insert(order);
 		ksession.insert(orderE);
-		ksession.insert(engineLogger);
+		ksession.insert(stage1);
 		ksession.fireAllRules();
 
 		Collection<PackageE> packages = (Collection<PackageE>) ksession.getObjects( new ClassObjectFilter(PackageE.class) );
 		Collection<Store> leftStores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 		Collection<PackageTestResult> allocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
 
-		engineLogger.addLog("----Minimum Packages---");
+		this.stage2 = new EngineLog(2);
+		
 		
 		for (PackageE pack : packages) {
-			engineLogger.addLog(pack.toString());
+			stage2.addLog("Minimum Packages", pack.toString());
 		}
 		
 		System.out.println("---------------------------------");
@@ -161,8 +170,8 @@ public class Allocate {
 
 		ksession.dispose();
 		
-		Split split = new Split(packages, leftStores, engineLogger);
-		this.logs = engineLogger.getLogs();
+		Split split = new Split(packages, leftStores, stage2, allocatedResults);
+		this.setStage3(split.stage3);
 	}
 
 	private static void setUpProduct(Product p, String name, double price) {
@@ -178,11 +187,28 @@ public class Allocate {
 		this.orderId = orderId;
 	}
 
-	public ArrayList<String> getLogs() {
-		return logs;
+	public EngineLog getStage1() {
+		return stage1;
 	}
 
-	public void setLogs(ArrayList<String> logs) {
-		this.logs = logs;
+	public void setStage1(EngineLog stage1) {
+		this.stage1 = stage1;
 	}
+
+	public EngineLog getStage3() {
+		return stage3;
+	}
+
+	public void setStage3(EngineLog stage3) {
+		this.stage3 = stage3;
+	}
+	
+    public EngineLog getStage2() {
+		return stage2;
+	}
+
+	public void setStage2(EngineLog stage2) {
+		this.stage2 = stage2;
+	}
+
 }

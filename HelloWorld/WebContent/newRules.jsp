@@ -11,7 +11,7 @@
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
@@ -168,9 +168,10 @@
             <!-- Success Message and Error Message -->
             <div class="success_area" style="display:none;">successMessage</div>
             <div class="warning" style="display:none;">errorMessage</div>
+            
             <!-- Success Message and Error Message -->
         </div>
-
+		
             
             <div>
             <form action="gototemplate" method="get">
@@ -210,6 +211,7 @@
 
             </form>
             </div>
+            
         </div>
     
     <!-- content ends -->

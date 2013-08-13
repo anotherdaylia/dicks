@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.dicks.dao.FeeDAO;
 import com.dicks.dao.OrdersDAO;
 import com.dicks.dao.ProdCateDAO;
+import com.dicks.dao.RuleCateDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.engine.CreateTemplate;
 import com.dicks.engine.UpdateTemplate;
@@ -33,6 +34,32 @@ public class RuleList {
 	public String prodCate;
 	public String des;
 	public String[] action;
+	public String viewEdit;
+	public String[] sources;
+	
+	
+	public void setCates(String a){
+		this.cates = a;
+	}
+
+	public String getCates(){
+		return cates;
+	}
+	public void setSources(String[] a){
+		this.sources = a;
+	}
+
+	public String[] getSources(){
+		return sources;
+	}
+	
+	public String getViewEdit(){
+		return viewEdit;
+	}
+	
+	public void setViewEdit(String viewEdit){
+		this.viewEdit = viewEdit;
+	}
 
 	public String categoryname;
 	
@@ -115,7 +142,7 @@ public class RuleList {
 		int mid = 0;
 		int last = 0;
 		try {
-			allRule = RuleDAO.getInstance().getAllSortedList() ;
+			allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -158,6 +185,9 @@ public class RuleList {
 
 
 	public String goToEdit() throws Exception{
+		
+		System.out.println("THe view edit is "+viewEdit);
+		
 		Rule thisRule = new Rule();
 		try {
 			thisRule = RuleDAO.getInstance().getRuleById(ruleId);
@@ -166,6 +196,59 @@ public class RuleList {
 			e1.printStackTrace();
 		}
 		if (thisRule.getType().equals("1")){
+			String[] tmp2 = null;
+			try {
+				tmp2 = ProdCateDAO.getInstance().getProdCateNames();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			StringBuffer cate = new StringBuffer();
+			String[] cateList = RuleCateDAO.getInstance().getCateNamesByRuleId(thisRule.getRuleId().toString());
+			cate.append(cateList);
+			for (int i = 1;i<cateList.length;i++){
+				System.out.println(cateList[i]);
+				cate.append(","+cateList[i]);
+			}
+			cates = cate.toString();
+			System.out.println("cate list"+cates);
+
+			condition = thisRule.getCondition();
+			if (condition.equals("||"))
+				condition = "ALL";
+			else
+				condition = "Any";
+			rulename = thisRule.getRuleName();
+			ruleDess = thisRule.getRuleDescr();
+			rulename = rulename.replace(" ","%20");
+			System.out.println("jj"+ruleDess);
+			attribute = thisRule.getAttributes();
+			operator = thisRule.getOperators();
+			value = thisRule.getValues();
+			//get current cate here;
+			
+			
+			for (int i = 0;i<attribute.length;i++){
+				System.out.println("product "+attribute[i]);
+				System.out.println("operator "+operator[i]);
+				System.out.println("value "+value[i]);
+
+			}
+			if (viewEdit.equals("view")){
+				return "goToViewProductThreshold";
+			}
+			else if (viewEdit.equals("edit")){
+				return "goToEditProductThreshold";
+			}
+		} else if (thisRule.getType().equals("5")) {
+			FeeDAO feeDAO = FeeDAO.getInstance();
+			this.storeFeeList = feeDAO.getByType("store");
+			this.warehouseFeeList = feeDAO.getByType("warehouse");
+			this.vendorFeeList = feeDAO.getByType("vendor");
+			
+			return "goToCostCalculation";
+		} 
+		else if (thisRule.getType().equals("3")) {
 			String[] tmp2 = null;
 			try {
 				tmp2 = ProdCateDAO.getInstance().getProdCateNames();
@@ -183,38 +266,37 @@ public class RuleList {
 			prodCate = cate.toString();
 
 			System.out.println("WTF"+prodCate);
-
-			condition = thisRule.getCondition();
-			if (condition.equals("||"))
-				condition = "ALL";
-			else
-				condition = "Any";
 			rulename = thisRule.getRuleName();
 			ruleDess = thisRule.getRuleDescr();
-			rulename = rulename.replace(" ","%20");
-			System.out.println("jj"+ruleDess);
-			attribute = thisRule.getAttributes();
 			operator = thisRule.getOperators();
 			value = thisRule.getValues();
-			//get current cate here;
-			cates = "Nike Shits,";
-			for (int i = 0;i<attribute.length;i++){
-				System.out.println("product "+attribute[i]);
-				System.out.println("operator "+operator[i]);
-				System.out.println("value "+value[i]);
-
+			sources = thisRule.getRoutes();
+			System.out.println("rule name is"+rulename);
+			if (viewEdit.equals("view")){
+				return "goToViewSpecialRoute";
 			}
-			return "goToEditProductThreshold";
-		} else if (thisRule.getType().equals("5")) {
+
+			else if (viewEdit.equals("edit")){
+				return "goToEditSpecialRoute";
+			}
+		}
+
+
+		else if (thisRule.getType().equals("5")) {
 			FeeDAO feeDAO = FeeDAO.getInstance();
 			this.storeFeeList = feeDAO.getByType("store");
 			this.warehouseFeeList = feeDAO.getByType("warehouse");
 			this.vendorFeeList = feeDAO.getByType("vendor");
 			
 			return "goToCostCalculation";
+		} else if (thisRule.getType().equals("6")) {
+			return "goToCostCalculation";
 		} else {
+
 			return "goToEditProductThreshold";
 		}
+		System.out.println("Wrong input for viewEdit rule list page");
+		return "gotoEditProductThreshold";
 	}
 	public String reRank(){
 		System.out.println("!!!!!!!!!!!"+ruleString);
@@ -222,7 +304,7 @@ public class RuleList {
 		int mid = 0;
 		int last = 0;
 		try {
-			allRule = RuleDAO.getInstance().getAllSortedList() ;
+			allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -279,17 +361,18 @@ public class RuleList {
 		try{
 				//hahaRule = RuleDAO.getInstance().getRuleByName(rulename);
 				//System.out.println("this rule Id is !!!!!!!!!"+hahaRule.getRuleId());
-				ruleList =RuleDAO.getInstance().getAllSortedList();
+				ruleList =RuleDAO.getInstance().getAllSortedListFromStageOne();
 		}
 		catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		for (int i = 0; i<ruleList.length;i++){
-			System.out.println(ruleList[i].getRuleName());
-			if (ruleList[i].getRuleName().equals(rulename)){
+			System.out.println("!!fsdfjdsakfasdkfjasdlkfjadslkjflkasjflkasdjfl"+ruleList[i].getRuleName()+"  "+rulename);
+			if ((ruleList[i].getRuleName().replace("%20"," ")).equals(rulename)){
 				System.out.println("found it");
 				hahaRule = ruleList[i];
+				break;
 			}
 		}
 
@@ -323,6 +406,9 @@ public class RuleList {
 
 		String[] route = new String[1];
 		route[0] = "";
+		System.out.println("rule id "+hahaRule.getRuleId());
+		System.out.println("rulename pre "+rulename);
+		System.out.println("rulename after "+rulenames);
 		UpdateTemplate test= new UpdateTemplate(hahaRule.getRuleId(),rulename,rulenames,des,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A");
 
 		return "success";

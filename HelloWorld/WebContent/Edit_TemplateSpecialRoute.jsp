@@ -9,7 +9,7 @@
 
 <jsp:include page="template_top.jsp" />
  <ul class="nav">
-        <li class=""><a class="recordable open" id="toggleone" href="<%=basePath%>gotocategorylist.action?act=store" 
+        <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
                 <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
@@ -120,11 +120,7 @@ function addSpecialRoute(myDiv) {
 
   newdiv.setAttribute('id',divIdName);
 
-
-<!--  newdiv.innerHTML = '<div style=\'padding-top:10px;padding-bottom:10px;\'>If the product quantity is&nbsp&nbsp&nbsp&nbsp </div><div style=\'padding-bottom:10px;\'><select style=\'width:120px;\' name=\'operator\' ><option value=\'&gt;\'>More Than</option> <option value=\'=\'>Equal</option><option value=\'&lt;\'>Less than</option></select>&nbsp;&nbsp; <input type=\'text\' name=\'productcount\' style=\'width:50px;\'> </div><div style=\'padding-bottom:10px;\'><div style=\'padding-bottom:10px;float:left;\'>Ship the product from&#58;&nbsp;&nbsp;</div><div style=\'padding-bottom:10px;float:left;\'class=\'ui-widget\'><textarea id=\'tags\' name = \'sources\' style=\'overflow:hidden;max-width:300px;width:300px;height:15px;\' onkeyup=\'textAreaAdjust(this)\' placeholder=\'Type in fulfillment sources&hellip;\' ></textarea></div> <a href=\'javascript:;\' onclick=\'removeElement('+divIdName+')\'>Remove</a></div><br/>';
--->
-  newdiv.innerHTML = '<div style=\'padding-bottom:10px;\'>If the product quantity is&nbsp&nbsp&nbsp&nbsp<select style=\'width:100px;\' name=\'operator\' ><option value=\'&lt;\'>more than</option> <option value=\'=\'>equal to</option><option value=\'&gt;\'>less than</option></select>&nbsp;&nbsp; <input type=\'text\' name=\'productcount\' style=\'width:50px;\'> </div><div style=\'padding-bottom:10px;\'><div style=\'padding-bottom:10px;float:left;\'>Ship the product from&#58;&nbsp;&nbsp;</div><div style=\'padding-bottom:10px;float:left;\'class=\'ui-widget\'><textarea id=\'tags\' name = \'sources\' style=\'overflow:hidden;max-width:300px;width:300px;height:15px;\' onkeyup=\'textAreaAdjust(this)\' placeholder=\'Type in fulfillment sources&hellip;\' ></textarea></div> <a href=\'javascript:;\' onclick=\'removeElement('+divIdName+')\'>Remove</a></div><br/>';
-
+  newdiv.innerHTML = '<div style=\'padding-top:10px;padding-bottom:10px;\'>If the product quantity is&nbsp&nbsp&nbsp&nbsp </div><div style=\'padding-bottom:10px;\'><select style=\'width:120px;\' name=\'operator\' ><option value=\'&gt;\'>More Than</option> <option value=\'=\'>Equal</option><option value=\'&lt;\'>Less than</option></select>&nbsp;&nbsp; <input type=\'text\' name=\'productcount\' style=\'width:50px;\'> </div><div style=\'padding-bottom:10px;\'><div style=\'padding-bottom:10px;float:left;\'>Ship the product from&#58;&nbsp;&nbsp;</div><div style=\'padding-bottom:10px;float:left;\'class=\'ui-widget\'><textarea id=\'tags\' name = \'sources\' style=\'overflow:hidden;max-width:300px;width:300px;height:15px;\' onkeyup=\'textAreaAdjust(this)\' placeholder=\'Type in fulfillment sources&hellip;\' ></textarea></div> <a href=\'javascript:;\' onclick=\'removeElement('+divIdName+')\'>Remove</a></div><br/>';
 
                         
 
@@ -228,57 +224,48 @@ function goBack(){
             <!-- Success Message and Error Message -->
           </div>
 
-            <form name ="myForm" action="specialRoutes">
-            <table id="rule" class="text">
+            
+            <form name ="myForm" action="updateRule">
+            <table class="text" >
                 <tr>
                     <td>Rule Name&#58;</td>
-                    <td>Special Route</td>
+                    <td><input style="width:200px;" type="text" name="rulenames" value ="${rulename}">&nbsp;&nbsp;</td>
                 </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
-                    <td>Set special route for products</td>
+                    <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:50px;" onkeyup="textAreaAdjust(this)" >${ruleDess}</textarea></td>
                 </tr>
                 <tr>
-                    <td>Category&#58;</td>
-                    <td>Fishing&#44;&nbsp;Clothes</td>
-                </tr>
+                    <td>Group<span class="red">*</span>&#58;</td>
+                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" >${cates}</textarea>
+                    If not found, <a href="createcategory.html">new Group</a>.
+                    </td>
+                    
                 <tr>
-                    <td>Stage:</td>
-                    <td>Stage1 - preprocessing</td>
+                    <td>Stage&#58;</td>
+                    <td>Stage 1 - Fulfillment Eligibility</td>
                 </tr>
                 <tr>
                     <td>Rule Template&#58;</td>
                     <td>Special Route</td>
                 </tr>
+                
                 <tr class="drl-height">
                     <td>Rule Editor&#58;</td>
                     <td style="width:500px;">
                     <div id ="firstStep" class="drl"> 
                       <div id="specialroute1">
-<<<<<<< HEAD
                         <div style="padding-bottom:10px;">If the product quantity is &nbsp;&nbsp;&nbsp;</div>
                         <div id ="operatorDiv" style="padding-bottom:10px;">
                         <select style="width:120px;" name="operator" >
                                 <option value="&gt;">More Than</option>
                                 <option value="=">Equal</option>
                                 <option value="&lt;">Less than</option>
-=======
-                      <a class="button" href="javascript:;" onclick="addSpecialRoute(myDiv);" style="float:right;">+ Add Special Route</a>
-                        <div id ="operatorDiv" style="padding-bottom:10px;">If the product quantity is &nbsp;&nbsp;
-                        <select style="width:100px;" name="operator" >
-                                <option value="&lt;">more than</option> 
-                                <option value="=">equal to</option>
-                                <option value="&gt;">less than</option>
->>>>>>> refs/remotes/origin/master
                             </select>&nbsp;&nbsp;
                             <input type="text" name="productcount" style="width:50px;"> 
                            </div>
                         <div style="padding-bottom:10px;float:left;">Ship the product from&#58;&nbsp;&nbsp;</div>
-<<<<<<< HEAD
                         <div style="padding-bottom:10px;float:left;"class="ui-widget"><textarea id="tags" name = "sources" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in fulfillment sources&hellip;" ></textarea></div>
-=======
-                        <div style="padding-bottom:10px;float:left;"class="ui-widget"><textarea id="tags" name = "sources" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in fulfillment sources&hellip;" ></textarea></div><br/><br/><br/>
->>>>>>> refs/remotes/origin/master
                       </div>
                       
                       <input type="hidden" value="1" id="theValue"/>
@@ -333,7 +320,7 @@ function goBack(){
             		
             		<a class="button" onclick="goBack()">Back</a>
                     <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a>
-                    <a class="button" onclick='SubmitForm()'>Create</a>
+                    <a class="button" onclick='SubmitForm()'>Edit</a>
                 
             </div>   
             </form>
@@ -348,7 +335,7 @@ function goBack(){
       
     
 
-      <div class="footer"><span>©2013 eBusiness Team</span></div>
+      <div class="footer"><span>2013 eBusiness Team</span></div>
     <!-- footer ends -->
     
 </body>

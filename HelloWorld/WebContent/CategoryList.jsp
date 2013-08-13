@@ -9,7 +9,7 @@
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class="selected" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="selected" id="catelist"><a href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
@@ -34,7 +34,6 @@
 
   <script defer="defer" >
  	 window.onload=function(){
-
  		var act =  document.getElementById('act').value;
         if(act=="store") {
             document.getElementById('store_category_list').style.display = 'block';
@@ -107,7 +106,7 @@
 		</div>
 		<div class="main" id="main-body">
 			<div class="content clearfix">
-				<div class="title-bar clearfix">
+				<div class="title-bar clearfix" style="height:80px;">
 					<h1 class="l">Manage Group</h1>
 					<div id="Date" class="date l"></div>
 					<a id='ReportTipIco' class="report-help open l recordable"
@@ -129,7 +128,7 @@
 					<div class="warning" style="display: none">errorMessage</div>
 					<!-- Success Message and Error Message -->
 
-					<br />
+					</div>
 
 					<div id="Outline" class="table-list">
 						<form action="">
@@ -157,14 +156,17 @@
 											<th>Description</th>
 											<th>Action</th>
 										</tr>
+										
 										<c:forEach var="storeCategory" items="${storeCategoryList}">
 											<tr>
 												<td class=""><input name="storeList" value="${storeCategory.id.cateStoreId}" type="checkbox" class="case" /></td>
-												<td class="">${storeCategory.id.cateStoreId}</td>
 												<td class="">${storeCategory.cateName}</td>
 												<td class="">${storeCategory.cateDescr}</td>
-												<td class=""><a class="button" href="viewStoreCategory.action?categoryId=${storeCategory.id.cateStoreId}">View</a>
-										<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a></td>
+												<td class="">${storeCategory.appliedRuleList}</td>
+												<td class="">
+													<a class="button" href="viewStoreCategory.action?categoryId=${storeCategory.id.cateStoreId}">View</a>
+													<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -175,7 +177,7 @@
 								<table cellspacing="0" cellpadding="0" class="list">
 									<tbody>
 										<tr class="title">
-											<th><input type="checkbox" id="selectall" /></th>
+											<th><input type="checkbox" id="selectalltwo" /></th>
 											<th>Group ID</th>
 											<th>Group Name</th>
 											<th>Description</th>
@@ -188,11 +190,13 @@
 												<c:forEach var="prodCategory" items="${prodCategoryList}">
 												<tr>
 												<td class=""><input type="checkbox" name="prodList" value="${prodCategory.id.cateProdId}" class="case" /></td>
-												<td class="">${prodCategory.id.cateProdId}</td>
 												<td class="">${prodCategory.cateName}</td>
 												<td class="">${prodCategory.cateDescr}</td>
-												<td class=""><a class="button" href="<%=basePath%>viewProdCategory.action?categoryId=${prodCategory.id.cateProdId}">View</a>
-												<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a></td>
+												<td class="">${prodCategory.appliedRuleList}</td>
+												<td class="">
+													<a class="button" href="<%=basePath%>viewProdCategory.action?categoryId=${prodCategory.id.cateProdId}">View</a>
+													<a class="button" href="<%=basePath%>gotocreatecategory.action">Edit</a>
+												</td>
 											</tr>
 										</c:forEach>
 				       							 

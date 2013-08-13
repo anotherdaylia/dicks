@@ -24,6 +24,8 @@ import com.dicks.pojo.Shipment;
 import com.dicks.pojo.Store;
 
 public class Util {
+	public final static int OVER_SIZE_THRESHOLD = 10000;
+	public final static int OVER_WEIGHT_THRESHOLD = 10000;
 	static String operator = "";
 	static String attribute = "";
 	static Random r = new Random();
@@ -33,11 +35,23 @@ public class Util {
 	}
 	
 	public static double getShippingCosts(Parcel parcel, Store store) throws Exception {
-		int supplyZip = Integer.parseInt(parcel.getPack().getOrder().getShippingZip()+"1");
-		int destinationZip = Integer.parseInt(store.getZip()+"1");
-		Shipment shipment = ShipmentDAO.getInstance().getShipmentByOriginSupply(supplyZip, destinationZip);
-		if (shipment == null) return 0;
-		return shipment.getNormalRate();
+		int supplyZip = Integer.parseInt(store.getZip());
+		int destinationZip = Integer.parseInt(parcel.getPack().getOrder().getShippingZip());
+		System.out.println("supply: " + supplyZip + ", destination: " + destinationZip);
+		Shipment shipment = ShipmentDAO.getInstance().getShipmentBySupplyDesitin(supplyZip, destinationZip);
+		if (shipment == null) {
+			System.out.println("shipment null");
+			return Integer.MAX_VALUE;		
+		}
+		int rate = 0;
+		if (parcel.isOverWeight()) rate = shipment.getOverWeightRate();
+		else if (parcel.isOverSize()) {
+			rate = shipment.getOverSizeRate();
+		} else {
+			rate = shipment.getNormalRate();
+		}		
+		System.out.println("rate: " + rate);
+		return ((double) parcel.getWeight() * rate) / 10000.0;
 	}
 	
 	public static void calculateAttribute(ParcelResult parcelR) {
@@ -52,13 +66,15 @@ public class Util {
 			}			
 			parcelR.setAttribute((double) attribute / 100.0);
 		} else if (attribute.equals("shippingCost")) {
-			
+			System.out.println("caculate attribute: shipping costs");
+			parcelR.setAttribute(parcelR.getShippingCost());
 		} else if (attribute.equals("margin")) {
 			
 		} else if (attribute.equals("proximity")) {
 			
 		} else if (attribute.equals("totalCost")) {
 			parcelR.setAttribute(parcelR.getCost());
+			System.out.println("caculate attribute: total costs");
 		}
 	}
 	

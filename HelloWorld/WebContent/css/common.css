@@ -2323,6 +2323,15 @@ table.text .drl-height{
 	display: none;
 }
 
+.priority{
+	width:20%; 
+	border-bottom: 1px #E5E5E5 solid; 
+	padding: 6px 10px 6px 5px; 
+	text-align: center; 
+	color: #666; 
+	background-color: #ABC8E2;
+}
+
 .aside {
 	width: 239px;
 	height: 580px;
@@ -2637,7 +2646,7 @@ select {
 	line-height: 1; 
 	border-radius: 0; 
 	height: 20px; 
-	background-color: #FFFFFF;
+	background-color: #E6F1F5;
 }
 
 select.big{ 

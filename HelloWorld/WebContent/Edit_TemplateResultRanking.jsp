@@ -12,7 +12,7 @@
 		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
 		<ul class="nav-two" id="navone">
 			<li class="" id="catelist"><a
-				href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
 			<li class="" id="newcatelist"><a
 				href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>
 		</ul></li>
@@ -76,7 +76,7 @@
                 </tr>
                 <tr>
                     <td>Stage:</td>
-                    <td>Stage3: Evaluation</td>
+                    <td>Stage3: Allocation Optimization</td>
                 </tr>
                 <tr>
                     <td>Rule Template:</td>
@@ -87,9 +87,20 @@
                     <td>
                     <div class="drl"> 
                         
-                        <div>Rank the routing candidates according to&#58;<br/><br/></div> 
-                        <div><input type="radio" name="cost" value="cost">Fulfillment cost<br>
-                             <input type="radio" name="margin" value="margin">Total margin of the order 
+                        <div>Select the routing candidates which can&#58;<br/><br/></div> 
+                        <div style="padding-left:50px;"><input type="radio" name="rankOption" value="max">maximize&nbsp;
+                        	 <select style="width:200px;"><option value="margin">Total Margin</option>
+                        			 <option value="proximity">Proximity to Customer</option>
+                        			 <option value="cost">Fulfillment Cost</option>
+                        	 </select>
+                        </div>
+                        <br/>
+                        <div style="padding-left:50px;">
+                             <input type="radio" name="rankOption" value="min">minimize&nbsp;&nbsp;
+                             <select style="width:200px;"><option value="cost">Fulfillment Cost</option>
+                        			 <option value="proximity">Proximity to Customer</option>
+                        			 <option value="margin">Total Margin</option>
+                        	 </select>
                          </div>
                          <br/>
                           

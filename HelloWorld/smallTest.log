@@ -2,21 +2,161 @@
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>1</factId>
-  <objectToString>: 4</objectToString>
+  <objectToString>[Kayak1]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>2</factId>
-  <objectToString>huoying: 3</objectToString>
+  <objectToString>Store: 1</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>3</factId>
-  <objectToString>huoying: 2</objectToString>
+  <objectToString>store: 3</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>Explode Package [1, 4]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>for splitable packages [1, 4]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>add splits [1, 4]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>4</factId>
-  <objectToString>huoying: 1</objectToString>
+  <objectToString>com.dicks.engine.EngineLog@d121b88</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>Explode Package [1, 4]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>Explode Package [1, 4]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>for splitable packages [1, 4]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [5, 1, 6, 4]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1, store: 3](6); $test=Package test: [[Parcel: [Kayak1 (1) ]]](5); $logger=com.dicks.engine.EngineLog@d121b88(4); $pack=[Kayak1](1)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>5</factId>
+  <objectToString>Package test: [[Parcel: [Kayak1 (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>for splitable packages [1, 4]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [5, 1, 6, 4]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1, store: 3](6); $test=Package test: [[Parcel: [Kayak1 (1) ]]](5); $logger=com.dicks.engine.EngineLog@d121b88(4); $pack=[Kayak1](1)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>7</factId>
+  <objectToString>Package result:  result: [Parcel: [Kayak1 (1) ], source: Store: 1, cost: 0.0], Total cost: 0.0</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>Explode Package [1, 4]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>5</type>
+  <activationId>add splits [1, 4]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>get to evaluate [1, 4]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>evaluate package results [1, 8, 4]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[Package result:  result: [Parcel: [Kayak1 (1) ], source: Store: 1, cost: 0.0], Total cost: 0.0](8); $p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>1</factId>
+  <objectToString>[Kayak1]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>5</factId>
+  <objectToString>Package test: [[Parcel: [Kayak1 (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [5, 1, 6, 4]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1, store: 3](6); $test=Package test: [[Parcel: [Kayak1 (1) ]]](5); $logger=com.dicks.engine.EngineLog@d121b88(4); $pack=[Kayak1](1)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>Explode Package [1, 4]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>Explode Package [1, 4]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>get to evaluate [1, 4]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>get to evaluate [1, 4]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>evaluate package results [1, 8, 4]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[Package result:  result: [Parcel: [Kayak1 (1) ], source: Store: 1, cost: 0.0], Total cost: 0.0](8); $p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>evaluate package results [1, 8, 4]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[Package result:  result: [Parcel: [Kayak1 (1) ], source: Store: 1, cost: 0.0], Total cost: 0.0](8); $p=[Kayak1](1); $logger=com.dicks.engine.EngineLog@d121b88(4)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
 </object-stream>

@@ -126,6 +126,20 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 		
 	}
 
+	public void deleteCategorys(String[] idArray) throws Exception {
+		for(String id: idArray){
+			ProdCate[] scs = getProdCategoryListById(id);
+			String[] skus = new String[scs.length];
+			for(int i =0; i <scs.length; i++ ){
+				skus[i]=scs[i].getProduct().getSku();
+			}
+			RuleCateDAO.getInstance().deleteCategory(id, skus);
+			for(ProdCate sc :scs){
+				super.delete(sc);
+			}
+		}			
+	}
+
 
 	
 

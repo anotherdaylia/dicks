@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dicks.dao.ProdCateDAO;
+import com.dicks.dao.RuleCateDAO;
 import com.dicks.dao.StoreCateDAO;
 import com.dicks.pojo.ProdCate;
+import com.dicks.pojo.Rule;
+import com.dicks.pojo.RuleCate;
 import com.dicks.pojo.StoreCate;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -21,6 +24,20 @@ public class CategoryListAction extends ActionSupport {
 		if("product".equals(act)){
 			try {
 				ProdCate[] all = ProdCateDAO.getInstance().getProdCategoryList();
+				
+				for(int i = 0;i<all.length;i++){
+					Rule[] rules = RuleCateDAO.getInstance().getRuleListByCateId(all[i].getId().getCateProdId()+"");
+					if(rules==null){
+						prodCategoryList[i].setAppliedRuleList("No rule applied.");
+						continue;
+					}
+					StringBuffer sb = new StringBuffer();
+					for(Rule rule: rules){
+						sb.append(rule.getRuleName()).append(",");
+					}
+					sb.deleteCharAt(sb.length()-1);
+					prodCategoryList[i].setAppliedRuleList(sb.toString()); 
+				}
 				this.setProdCategoryList(all);	
 			} catch (Exception e) {
 				return ERROR;
@@ -63,6 +80,7 @@ public class CategoryListAction extends ActionSupport {
 	public void setStoreCategoryList(StoreCate[] storeCategoryList) {
 		this.storeCategoryList = storeCategoryList;
 	}
+	
 	
 //	private ProdCate[] filterProdCate(ProdCate[] prodCates){
 //		if(prodCates==null) return null;
