@@ -14,26 +14,35 @@
 		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
 		<ul class="nav-two" id="navone">
 			<li class="" id="catelist"><a
-				href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotocategorylist.action">Group List</a><span
+				class="normal">&nbsp;</span></li>
 			<li class="" id="newcatelist"><a
-				href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotonewcategory.action">New Group</a><span
+				class="normal">&nbsp;</span></li>
 		</ul></li>
 	<li class=""><a class="recordable open" href="#" id="toggletwo"
-		memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
+		memo="{id:'21',type:'menu',global:1,status:''}">Manage Business
+			Rule</a>
 		<ul class="nav-two" id="navtwo">
 			<li class="" id="bizrulelist"><a
-				href="<%=basePath%>gotorulelist.action">Business Rule List</a><span class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotorulelist.action">Business Rule List</a><span
+				class="normal">&nbsp;</span></li>
 			<li class="" id="newbizrulelist"><a
-				href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span
+				class="normal">&nbsp;</span></li>
 			<li class="selected" id="ruleprioritylist"><a
-				href="<%=basePath%>gotoruleprioritylist.action">Business Rule Priority</a><span class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotoruleprioritylist.action">Business Rule
+					Priority</a><span class="normal">&nbsp;</span></li>
 		</ul></li>
 	<li class=""><a class="recordable open" href="#" id="togglethree"
-		memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
+		memo="{id:'21',type:'menu',global:1,status:''}">Visualization
+			Dashboard</a>
 		<ul class="nav-two" id="navthree">
 			<li class=""><a id="orderlist" onclick="f(this)"
-				href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-			<li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotoorderlist.action">Order List</a><span
+				class="normal">&nbsp;</span></li>
+			<li class="" id="statlist"><a href="statistics.html">Statistics</a><span
+				class="normal">&nbsp;</span></li>
 		</ul></li>
 </ul>
 </div>
@@ -61,16 +70,16 @@
 		console.log("logged");
 	}
 
-	function submitForm() {
+	function SubmitForm() {
 		var nameList = "";
 		var table = document.getElementById("sort");
-		var row = table.rows[0];
+		var row = table.rows[1];
 		var col = row.cells[1];
 		nameList += col.innerText;
 
 		//iterate through rows
 		//rows would be accessed using the "row" variable assigned in the for loop
-		for ( var i = 1, row; row = table.rows[i]; i++) {
+		for ( var i = 2, row; row = table.rows[i]; i++) {
 			//iterate through rows
 			//rows would be accessed using the "row" variable assigned in the for loop
 			nameList += ",";
@@ -104,9 +113,9 @@
 				href="javascript:void(0);">&nbsp;</a> <br />
 			<br />
 			<div>
-			<hr />
+				<hr />
 			</div>
-
+			
 			<li style="list-style: none;">
 				<span><a href="#">Home</a><span> &gt; </span></span> 
 				<span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a><span> &gt; </span></span>
@@ -160,6 +169,7 @@
 						style="border-collapse: collapse; width:100%; font-size: 12px;">
 						<tbody>
 							<c:forEach var="midRule" items="${midRule}">
+<<<<<<< HEAD
 								<tr style="height: 30px;">
 									<td
 										style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: center; color: #666; background-color:#75a8d8;">${ruleNum}</td>
@@ -168,6 +178,14 @@
 									<td
 										style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color:#75a8d8 ">${midRule.ruleDescr}</td>
 									<td style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color:#75a8d8">${midRule.stage}</td>
+=======
+								<tr class="priority" style="height: 30px;">
+									<td>&uarr;&darr;</td>
+									<td>${ruleNum}</td>
+									<td>${midRule.ruleName}</td>
+									<td>${midRule.ruleDescr}</td>
+									<td>${midRule.stage}</td>
+>>>>>>> refs/remotes/origin/master
 								</tr>
 								<c:set var="ruleNum" value="${ruleNum+1}" />
 							</c:forEach>
@@ -177,19 +195,16 @@
 						style="border-collapse: collapse; width: 100%; font-size: 12px;">
 						<c:forEach var="lastRule" items="${lastRule}">
 							<tr style="height: 30px;">
-								<td
-									style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: center; color: #666;">${ruleNum}</td>
-								<td
-									style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${lastRule.ruleName}</td>
-								<td
-									style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${lastRule.ruleDescr}</td>
+								<td style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: center; color: #666;">${ruleNum}</td>
+								<td style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${lastRule.ruleName}</td>
+								<td style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${lastRule.ruleDescr}</td>
 								<td style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${lastRule.stage}</td>
 							</tr>
 							<c:set var="ruleNum" value="${ruleNum+1}" />
 						</c:forEach>
 					</table>
 					<br /> <input type="hidden" id="ruleString" name="ruleString">
-					<a class="button" href="#">Cancel</a> <a class="button" id="add-to-cart" >Submit</a>
+					<a class="button" href="#">Cancel</a> <a class="button" onclick='SubmitForm()'>Submit</a>
 				</div>
 
 				<div id="priorityTable"></div>
@@ -212,7 +227,7 @@
 				rule's priority?</div>
 
 			<div class="r" style="margin-right: 20px;">
-				<input class="button" onclick="submitForm()" type="submit" value="Yes"  />
+				<input class="button" onclick="closePop()" type="submit" value="Yes" />
 				<a class="button" onclick="closePop()" type="button">No</a>
 			</div>
 		</div>

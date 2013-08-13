@@ -41,6 +41,7 @@ public class HibernateTest
 	{
 		
 		
+
 //		System.out.println(RuleCateDAO.getInstance().getCateNamesByRuleId("2").length);
 		Rule[] allRule = RuleDAO.getInstance().getAllSortedList();
 		for (Rule rule : allRule) {

@@ -121,6 +121,7 @@ public class RulePriority {
 		}
 
 		
+
 		for (int i = (mid+pre);i<allRule.length;i++){
 			pRule[i] = allRule[i];
 		}
