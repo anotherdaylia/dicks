@@ -42,21 +42,21 @@ public class HibernateTest
 		
 		
 
-//		System.out.println(RuleCateDAO.getInstance().getCateNamesByRuleId("2").length);
-		Rule[] allRule = RuleDAO.getInstance().getAllSortedList();
+		Rule[] allRule = RuleCateDAO.getInstance().getRuleListByCateId("2");
 		for (Rule rule : allRule) {
 			System.out.println(rule.getRuleName());
 		}
 		
-		
-		
+//		RuleCate cate1 = new RuleCate(new RuleCateId(5, 3), null, false);
+//		RuleCate cate2 = new RuleCate(new RuleCateId(4, 3), null, true);
+//		RuleCateDAO.getInstance().create(cate1);
+//		RuleCateDAO.getInstance().create(cate2);
 //		RuleCate cate1 = new RuleCate(new RuleCateId(1, 2), null, true);
 //		RuleCate cate2 = new RuleCate(new RuleCateId(2, 2), null, true);
 //		RuleCate cate3 = new RuleCate(new RuleCateId(3, 2), null, true);
 //		RuleCate cate4 = new RuleCate(new RuleCateId(4, 2), null, false);
 //		RuleCate cate5 = new RuleCate(new RuleCateId(5, 2), null, false);
 //		
-//		getCateNamesByRuleId
 //		RuleCateDAO.getInstance().create(cate2);
 //		RuleCateDAO.getInstance().create(cate3);
 //		RuleCateDAO.getInstance().create(cate4);
