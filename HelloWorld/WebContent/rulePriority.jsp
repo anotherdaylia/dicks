@@ -8,6 +8,7 @@
 			+ path + "/";
 %>
 <jsp:include page="template_top.jsp" />
+
 <ul class="nav">
 	<li class=""><a class="recordable open" id="toggleone" href="#"
 		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
@@ -161,12 +162,12 @@
 							<c:forEach var="midRule" items="${midRule}">
 								<tr style="height: 30px;">
 									<td
-										style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: center; color: #666; background-color: #75a8d8;">${ruleNum}</td>
+										style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: center; color: #666; background-color:#75a8d8;">${ruleNum}</td>
 									<td
-										style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8 ">${midRule.ruleName}</td>
+										style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color:#75a8d8 ">${midRule.ruleName}</td>
 									<td
-										style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8 ">${midRule.ruleDescr}</td>
-									<td style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8">${midRule.stage}</td>
+										style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color:#75a8d8 ">${midRule.ruleDescr}</td>
+									<td style="width:20%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color:#75a8d8">${midRule.stage}</td>
 								</tr>
 								<c:set var="ruleNum" value="${ruleNum+1}" />
 							</c:forEach>
