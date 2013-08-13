@@ -193,7 +193,7 @@
   });
 
   $(function() {
-    var availableTags = [
+    /* var availableTags = [
       "All",
       "Store01",
       "Store02",
@@ -204,7 +204,12 @@
       "Store07",
       "Store08",
       "Store09"
-    ];
+    ]; */
+    var slist =document.getElementsByClassName("slist");
+    var availableTags= new Array();
+    for(var i = 0; i < slist.length; i++){
+    	availableTags[i]=slist[i].value;
+    }
     function split( val ) {
       return val.split( /,\s*/ );
     }
@@ -442,7 +447,7 @@
   });
 
   function getStoreTypeCheck() {
-        var sPath = "StoreTypeChk.html";
+        var sPath = "<%=basePath%>storetypecheck.action";
         strFeatures = "dialogWidth=300px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
         var strReturn = showModalDialog(sPath, "", strFeatures);
         if (strReturn != null) {
@@ -462,7 +467,7 @@
     }
 
   function getStateCheck() {
-        var sPath = "StateChk.html";
+        var sPath = "<%=basePath%>statecheck.action";
         strFeatures = "dialogWidth=650px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
         var strReturn = showModalDialog(sPath, "", strFeatures);
         if (strReturn != null) {
@@ -472,7 +477,7 @@
     }
 
   function getStoreCheck() {
-        var sPath = "StoreChk.html";
+        var sPath = "<%=basePath%>storecheck.action";
         strFeatures = "dialogWidth=750px;dialogHeight=550px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
         var strReturn = showModalDialog(sPath, "", strFeatures);
         if (strReturn != null) {
@@ -482,7 +487,7 @@
     }
 
   function getTypeCheck() {
-        var sPath = "TypeChk.html";
+        var sPath = "<%=basePath%>typecheck.action";
         strFeatures = "dialogWidth=500px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
         var strReturn = showModalDialog(sPath, "", strFeatures);
         if (strReturn != null) {
@@ -492,7 +497,7 @@
     }
 
     function getBrandCheck() {
-        var sPath = "BrandChk.html";
+        var sPath = "<%=basePath%>brandcheck.action";
         strFeatures = "dialogWidth=550px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
         var strReturn = showModalDialog(sPath, "", strFeatures);
         if (strReturn != null) {
@@ -643,6 +648,10 @@
                 </tr>
               </table>   
               </form>
+              <c:forEach items="${storeList}" var="slist">
+             	<input type="hidden" class="slist" value="${slist.storeName}">
+           	  </c:forEach>
+              
               </div>   
             </div>
          
