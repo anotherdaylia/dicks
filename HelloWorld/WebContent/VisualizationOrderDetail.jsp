@@ -146,10 +146,47 @@
                   						</c:forEach>
                                     </table>
                                 </div>
-                                <div>
-                                	<c:forEach var="log" items="${logs}">
-										<div> ${log} </div>
+                                <div style="display: block; width: 500px">
+                                	
+                                	<h1><b> Stage 1 </b></h1>
+                                	<c:forEach var="name" items="${stage1.getRuleNames()}">
+										<div> 
+											<h1> ${name} </h1>
+											<c:forEach var="logdetail" items="${stage1.getLogsByName(name)} ">
+												<p> 
+													${logdetail}
+												</p>
+											</c:forEach>
+											<br/>
+									    </div>
 									</c:forEach>
+									
+									<h1><b> Stage 2 </b></h1>
+									<c:forEach var="name" items="${stage2.getRuleNames()}">				
+										<div> 
+											<h1> ${name} </h1>
+											<c:forEach var="logdetail" items="${stage2.getLogsByName(name)} ">
+												<p> 
+													${logdetail}
+												</p>
+											</c:forEach>
+											<br/>
+									    </div>
+									</c:forEach>
+									
+									<h1><b> Stage 3 </b></h1>
+									<c:forEach var="name" items="${stage3.getRuleNames()}">				
+										<div> 
+											<h1> ${name} </h1>
+											<c:forEach var="logdetail" items="${stage3.getLogsByName(name)} ">
+												<p> 
+													${logdetail}
+												</p>
+											</c:forEach>
+											<br/>
+									    </div>
+									</c:forEach>
+									
                                 </div>
                             </div>
                         </div>

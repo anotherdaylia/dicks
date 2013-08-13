@@ -37,6 +37,9 @@ import com.dicks.pojo.Store;
 import com.dicks.engine.Util;
 
 public class Split {
+	EngineLog stage2;
+	EngineLog stage3;
+	
 	public static void main(String[] args) {					
 //		ArrayList<PackageTestResult> results = getTestResult(p1, order);
 //		
@@ -45,9 +48,12 @@ public class Split {
 //		}		
 	}
 	
-	public Split(Collection<PackageE> packages, Collection<Store> stores, EngineLog engineLogger) throws Exception {
+	public Split(Collection<PackageE> packages, Collection<Store> stores, EngineLog stage2, Collection<PackageTestResult> allocatedResults) throws Exception {
 		SplitGenerater.cache(10);
 		SplitGenerater.buildIndex(10);
+		
+		this.stage2 = stage2;
+		this.stage3 = new EngineLog(3);
 		
 		ArrayList<Rule> rules = RuleDAO.getInstance().getRuleByType("6");
 		Rule rule = rules.get(0);
@@ -94,15 +100,28 @@ public class Split {
 			System.out.println(store);
 		}
 		
-		ksession.insert(engineLogger);
+		ksession.insert(stage2);
+		ksession.insert(stage3);
 
 		System.out.println("----------------------");
 
 		ksession.fireAllRules();
 
 		// Remove comment if using logging
+
+		
+		Collection<PackageTestResult> newAllocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
+		
 		logger.close();
 		ksession.dispose();
+		
+		for (PackageTestResult r : allocatedResults) {
+			stage3.addLog("Allocated Results", r.toString());
+		}
+		
+		for (PackageTestResult r : newAllocatedResults) {
+			stage3.addLog("Allocated Results", r.toString());
+		}
 
 	}
 

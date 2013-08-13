@@ -59,7 +59,7 @@ public class PackageTestResult {
 
 	@Override
 	public String toString() {		
-		return "Package result: " + " result: " + Arrays.toString(results.toArray()) + ", Total cost: " + this.cost;
+		return "Package result: " + Arrays.toString(results.toArray()) + ", Total cost: " + this.cost;
 	}
 
 	public double getAttribute() {

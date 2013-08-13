@@ -34,7 +34,7 @@ public class ParcelResult {
 	
 	@Override
 	public String toString() {
-		return this.parcel + ", source: " + this.source + ", cost: " + this.cost;
+		return this.parcel + ", source: " + this.source + ", shippingCost: " + this.cost;
 	}
 
 	public double getAttribute() {
