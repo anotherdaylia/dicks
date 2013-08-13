@@ -89,10 +89,7 @@
 		console.log("rule list" + nameList);
 		document.getElementById('ruleString').value = nameList;
 		document.forms['myForm'].submit();
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/claire921/dicks.git
 	}
 	window.onload = pageOnLoad;
 </script>
@@ -118,19 +115,14 @@
 				<hr />
 			</div>
 
-<<<<<<< HEAD
-			<li style="list-style: none;"><span><a href="#">Home</a><span>
-						&gt; </span></span> <span><a href="<%=basePath%>gotorulelist.action">Manage
-						Business Rule</a><span> &gt; </span></span> <span>Business Rule
-					Priority</span></li>
-=======
+
 			<li style="list-style: none;">
 				<span><a href="#">Home</a><span> &gt; </span></span> 
 				<span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a><span> &gt; </span></span>
 				<span>Business Rule Priority</span>
 			</li>
 
->>>>>>> branch 'master' of https://github.com/claire921/dicks.git
+
 			<!-- Success Message and Error Message -->
 			<div class="success_area" style="display: none">successMessage</div>
 			<div class="warning" style="display: none">errorMessage</div>
