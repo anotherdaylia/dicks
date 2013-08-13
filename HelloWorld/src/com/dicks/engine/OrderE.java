@@ -24,6 +24,7 @@ public class OrderE {
 	public int getProductQty(int productId) {
 		Integer qty = products.get(productId);
 		if (qty == null) return 0;
+		System.out.println("qty is "+qty);
 		return qty;
 	}
 	

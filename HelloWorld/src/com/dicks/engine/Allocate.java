@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.ClassObjectFilter;
@@ -69,14 +70,19 @@ public class Allocate {
 		OrdersDAO.getInstance().createOrder(order);
 		
 		this.setOrderId(order.getOrderId() + "");
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		for (int i = 0; i < skus.length; i++) {
+			map.put(skus[i], Integer.parseInt(quantities[i]));
+		}
 		
 		Product[] products = ProductDAO.getInstance().getProductsBySKUList(skus);
 		System.out.println("product length: " + products.length);
 		System.out.println("quantity length: " + quantities.length);
 		for (int i = 0; i < products.length; i++) {
 			Product product = products[i];
-			Integer qty = Integer.parseInt(quantities[i]);
+			Integer qty = map.get(product.getSku());
 			System.out.println("qty: " + qty);
+			System.out.println("prod! "+product);
 			OrderDetail detail = new OrderDetail(new OrderDetailId(order.getOrderId(), product.getProdId()), 
 					                               product, order, product.getFactoryPrice() + 1000, qty);
 			OrderDetailDAO.getInstance().createOrderDetail(detail);

@@ -1,8 +1,9 @@
-rule "summarize"   
+rule "Store Summarize"   
 salience -5
     when
         store : Store()
     then
         System.out.println(store.getZoneID());
 end
+
 

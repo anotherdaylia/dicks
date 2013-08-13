@@ -1,10 +1,16 @@
-
-rule  "Mininum Packagethreshold0"
+rule  "Default Mininum Packagethreshold"
+	salience 900
+	//agenda-group "first6"
     when
-        $o : Order()
-        $i : Product( ((size bigger 4))&& (( productID == 1 ))) from $o.getProducts()
-    then
-        $i.minPackage();
-end
+        $o : Orders()
+        $orderE : OrderE()
+		$i : Product( ((weight > 10)|| ( length > 10) || (width > 10) || (height >10)))
 
+    then     
+    	PackageE p = new PackageE($o);
+    	p.addProduct($i, $orderE.getProductQty($i.getProdId()));
+    	insert (p);    
+        $i.minPackage();
+        retract($i);
+end
 

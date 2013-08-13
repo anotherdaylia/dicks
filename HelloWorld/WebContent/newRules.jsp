@@ -168,9 +168,10 @@
             <!-- Success Message and Error Message -->
             <div class="success_area" style="display:none;">successMessage</div>
             <div class="warning" style="display:none;">errorMessage</div>
+            
             <!-- Success Message and Error Message -->
         </div>
-
+		
             
             <div>
             <form action="gototemplate" method="get">
@@ -210,6 +211,7 @@
 
             </form>
             </div>
+            
         </div>
     
     <!-- content ends -->

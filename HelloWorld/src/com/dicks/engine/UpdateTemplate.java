@@ -73,7 +73,7 @@ public class UpdateTemplate {
 
 
 			try {
-				ruleFiles = RuleDAO.getInstance().getAllSortedList();
+				ruleFiles = RuleDAO.getInstance().getAllSortedListFromStageOne();
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -209,7 +209,7 @@ public class UpdateTemplate {
 		    */		
 	      
 	      try {
-				ruleFiles = RuleDAO.getInstance().getAllSortedList();
+				ruleFiles = RuleDAO.getInstance().getAllSortedListFromStageOne();
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

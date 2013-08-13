@@ -89,7 +89,7 @@ public class CreateTemplate {
 
 
 			try {
-				ruleFile = RuleDAO.getInstance().getAllSortedList() ;
+				ruleFile = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -138,17 +138,20 @@ public class CreateTemplate {
 
 	      //ruleInt = 1;
 
-	      //System.out.println("rule is at  " +ruleInt + "current rule number is "+i);
-
-	      reRank(ruleInt);
-	      ruleFiles[ruleInt] = new Rule();
+	      System.out.println("ppppp"+ruleInt+"length"+ruleFile.length);
+	      if (ruleInt == ruleFile.length){
+	    	  System.out.println("the same");
+	    	  ruleFiles[ruleInt] = new Rule();
+	      }
+	      else{
+		      reRank(ruleInt);
+		      ruleFiles[ruleInt] = new Rule();
+	      }
 	      //System.out.println("nnnnnnnn");
 	      /*for (i = 0 ; i<ruleFiles.length;i++){
 	    	  System.out.println("rule "+i+" "+ruleFiles[i].getRuleName());
 	      }*/
 	      checkFlag(type, objects, flag);
-	      String[] r = new String[1];
-	      r[0] = "haha";
 
 	      if (type.equalsIgnoreCase("Threshold")){
 	    	  type = "1";
@@ -170,12 +173,16 @@ public class CreateTemplate {
 	    	  if (ruleInt > 0){
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
-
-
-
-
-					 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()-2,type,objects,
+	    		  	 if (ruleInt == (ruleFile.length)){
+	    		  		 System.out.println("last one");
+	    		  		ruleFiles[ruleInt] = new Rule(ruleName, "", description, 800,type,objects,
+			 					attributes,operators,values,condition, routes,actions,flag, "1",false);
+	    		  	 }
+	    		  	 else
+	    		  	 {
+	    		  		 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()-2,type,objects,
 							 					attributes,operators,values,condition, routes,actions,flag, "1",false);
+	    		  	 }
 				 }
 			  else{
 					 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()+2,type,objects,
@@ -186,10 +193,16 @@ public class CreateTemplate {
 	      else {
 		      if (ruleInt > 0){
 		    	  System.out.println("type!!!!"+type);
+		    	  if (ruleInt == (ruleFile.length)){
 					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
 								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
-		    	  	ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()-2,type,objects,attributes,operators,values,condition, routes,actions,flag, "1",false);
-
+		    	  		ruleFiles[ruleInt] = new Rule(ruleName, "", description, 800,
+		    	  			type,objects,attributes,operators,values,condition, routes,actions,flag, "1",false);
+		    	  }
+		    	  else{
+		    		  	ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()-2,
+			    	  			type,objects,attributes,operators,values,condition, routes,actions,flag, "1",false);
+		      		}
 				 }
 			  else{
 
@@ -202,6 +215,13 @@ public class CreateTemplate {
 
 	      try {
 				RuleDAO.getInstance().createRule(ruleFiles[ruleInt]);
+				for (i = 0; i < ruleFiles.length;i++){
+					System.out.println("II"+i);
+					if (ruleFiles[i] == null){
+						System.out.println("!!null  "+i);
+					}
+					RuleDAO.getInstance().update(ruleFiles[i]);
+				}
 			} catch (Exception e) {
 				System.out.println("eeeeeeror"+e);// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -265,7 +285,11 @@ public class CreateTemplate {
 	             }
 
 	             for (i=0; i < ruleFiles.length; i++){
-	            	 
+	            	 /*if (!ruleFiles[i].getStage().equals("1")){
+	            		 System.out.println("not stage 1 rule");
+	            		 continue;
+	            		 
+	            	 }*/
 	            	 	System.out.println("printing file "+i);
 	            	 if (ruleFiles[i].getType().equals("9")){
 	            		 //System.out.println("read file");
@@ -439,11 +463,12 @@ public class CreateTemplate {
 
 		   StringBuffer tmp = new StringBuffer();
 		   tmp.append(myTab+"when"+myReturn);
-		   tmp.append(myTab+myTab+"$o : Order()"+myReturn);
+		   tmp.append(myTab+myTab+"$o : Orders()"+myReturn);
+		   tmp.append(myTab+myTab+"$orderE : OrderE()"+myReturn);
 		   tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+"&& (flag.equals(\""+flag+
 		   		"\")))"+myReturn);
+		   tmp.append(myTab+myTab+"$logger: EngineLog()"+myReturn);
 		   //tmp.append(myTab+myTab+"$p : Purchase( customer == $c, $"+attribute.charAt(0)+" : product."+attribute+mySpace+operator+mySpace+values+" )");
-
 		   return tmp.toString();
 	   }
 
@@ -455,11 +480,18 @@ public class CreateTemplate {
 				   if (action[i].equalsIgnoreCase("miniumPackage"))
 				   {
 					   tmp.append(myTab+"then"+myReturn);
-					   tmp.append(myTab+myTab+"Package p = new Package($o);"+myReturn);
-					   tmp.append(myTab+myTab+"p.addProduct($i);"+myReturn);
-					   tmp.append(myTab+myTab+"insert (p);"+myReturn);
-					   tmp.append(myTab+myTab+"$i.minPackage();"+myReturn);
+					   tmp.append(myTab+myTab+"for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)"+myReturn);
+					   tmp.append(myTab+myTab+"{"+myReturn);
+					   tmp.append(myTab+myTab+myTab+"$logger.addLog(\"Product #\"+i+\" \"+$i.getProdName()+\"is over weighted/sized ----Split into a separate package\");"+myReturn);
+					   tmp.append(myTab+myTab+myTab+"System.out.println(\"Product #\"+i+\" \"+$i.getProdName()+\"is over weighted/sized ----Split into a separate package\");"+myReturn);
+					   tmp.append(myTab+myTab+myTab+"PackageE p = new PackageE($o);"+myReturn);
+					   tmp.append(myTab+myTab+myTab+"p.addProduct($i,1);"+myReturn);
+					   tmp.append(myTab+myTab+myTab+"insert (p);"+myReturn);
+					   tmp.append(myTab+myTab+myTab+"$i.minPackage();"+myReturn);
+					   tmp.append(myTab+myTab+myTab+"$logger.addLog(p.toString()); "+myReturn);
+					   tmp.append(myTab+myTab+"}"+myReturn);
 					   tmp.append(myTab+myTab+"retract($i);"+myReturn);
+					   
 				   }
 		      }
 		      tmp.append("end"+myReturn+myReturn);
@@ -649,7 +681,7 @@ public class CreateTemplate {
 		   tmp.append(myTab+myTab+"eval ($orderE.getProductQty($id)"+splitOperator[0]+ splitValue[0]+")"+myReturn);
 		   tmp.append(myTab+myTab+"$s : Store( storeId == "+route+")"+myReturn);
 		   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
-		    
+		   tmp.append(myTab+myTab+"$logger: EngineLog()"+myReturn);
 		   //tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+
 		   		//"from $o.getProducts()"+myReturn);
 		   //tmp.append(myTab+myTab+"$p : Purchase( customer == $c, $"+attribute.charAt(0)+" : product."+attribute+mySpace+operator+mySpace+values+" )");
@@ -661,12 +693,26 @@ public class CreateTemplate {
 		   StringBuffer tmp = new StringBuffer();
 		   
 		   tmp.append(myTab+"then"+myReturn);
+		   tmp.append(myTab+myTab+"$logger.addLog(\"special routes for product \"+$product.getProdName()+\" with quantity \"+$orderE.getProductQty($id)+\" is successfully allocated\");"+myReturn);
 		   tmp.append(myTab+myTab+"System.out.println(\"special routes for product \"+$product.getProdName()+\" " +
 		   		"with quantity \"+$orderE.getProductQty($id)+\" is successfully allocated\");"+myReturn);
 		   tmp.append(myTab+myTab+"PackageE p = new PackageE($order);"+myReturn);
-		   tmp.append(myTab+myTab+"p.addProduct($product);"+myReturn);
+		   tmp.append(myTab+myTab+"p.addProduct($product, $orderE.getProductQty($id));"+myReturn);
 		   tmp.append(myTab+myTab+"insert (p);"+myReturn);
 		   tmp.append(myTab+myTab+"p.setAllocated(true); "+myReturn);
+		   tmp.append(myTab+myTab+"Parcel parcel = new Parcel(p);"+myReturn);
+		   tmp.append(myTab+myTab+"parcel.addNumProduct($product, $orderE.getProductQty($id));"+myReturn);
+		   tmp.append(myTab+myTab+"PackageTest test = new PackageTest(p);"+myReturn);
+		   tmp.append(myTab+myTab+"test.addParcel(parcel);"+myReturn);
+		   tmp.append(myTab+myTab+"ParcelResult parcelR = new ParcelResult(parcel);"+myReturn);
+		   tmp.append(myTab+myTab+"parcelR.setSource($s);"+myReturn);
+		   tmp.append(myTab+myTab+"PackageTestResult packageR = new PackageTestResult(test);"+myReturn);
+		   tmp.append(myTab+myTab+"packageR.addResult(parcelR);"+myReturn);
+		   tmp.append(myTab+myTab+"$logger.addLog($product + \"get inserted into a new package by speical route rule\");"+myReturn);
+		   tmp.append(myTab+myTab+"$logger.addLog(packageR.toString());      "+myReturn);
+		   tmp.append(myTab+myTab+"System.out.println(packageR);"+myReturn);
+		   tmp.append(myTab+myTab+"insert(packageR);"+myReturn);
+		   tmp.append(myTab+myTab+"retract(p);"+myReturn);
 		   tmp.append(myTab+myTab+"retract($product);"+myReturn);
 		   //add this "product/quantity", store into a new parcel result.
 		   //add this parcel result into a new package result
@@ -689,9 +735,14 @@ public class CreateTemplate {
 		   System.out.println("----------------------------------------------------------");
 		   while (ruleFiles[rank+1] != null){
 			   System.out.println("getting!!!!! "+rank);
+			   
 			   tmp2 = ruleFiles[rank+1];
 			   ruleFiles[rank+1] =tmp;
-			   ruleFiles[rank+1].setPriority(ruleFiles[rank+1].getPriority()-2);
+			   if (ruleFiles[rank+1].getPriority() > 0){
+				   ruleFiles[rank+1].setPriority(ruleFiles[rank+1].getPriority()-2);
+			   }
+			   
+			   
 			   tmp = tmp2;
 			   //System.out.println("round 1 "+"rank  ="+rank+"tmp = "+ tmp.getDescription()
 					  // +"rule[rank]"+ruleFile[rank].getDescription()+

@@ -21,18 +21,22 @@ public class RuleDAO extends BaseDao<Rule> {
 		return instance;
 	}
 
-	public Rule[] getAllSortedList() throws Exception {
-		ArrayList<Rule> ruleList = (ArrayList<Rule>) super.getList();
-
+	public Rule[] getAllSortedListFromStageOne() throws Exception {
+		
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion = Restrictions.eq("stage", "1");
+		criterions.add(criterion);	
+		ArrayList<Rule> ruleList = (ArrayList<Rule>) super.getList(criterions);
 		Collections.sort(ruleList, new Comparator<Rule>() {
 			public int compare(Rule o1, Rule o2) {
 				return o2.getPriority() - o1.getPriority();
 			}
 		});
-
 		Rule[] array = (Rule[]) ruleList.toArray(new Rule[ruleList.size()]);
 		return array;
 	}
+	
+	
 
 	public Rule[] getAllRuleList() throws Exception{
 		ArrayList<Rule> ruleList = (ArrayList<Rule>) super.getList();
