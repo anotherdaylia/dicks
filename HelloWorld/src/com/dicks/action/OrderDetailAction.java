@@ -6,8 +6,10 @@ import java.util.Date;
 
 import com.dicks.dao.OrderDetailDAO;
 import com.dicks.dao.OrdersDAO;
+import com.dicks.dao.RuleDAO;
 import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.Orders;
+import com.dicks.pojo.Rule;
 
 public class OrderDetailAction {
 	private Date date;
@@ -18,7 +20,25 @@ public class OrderDetailAction {
 	private ArrayList<OrderDetail> details;
 	private Orders order;
 	private ArrayList<String> logs;
-	
+	public ArrayList<Rule> allRule;
+	public ArrayList<Orders> oList;
+
+	public ArrayList<Orders> getoList() {
+		return oList;
+	}
+
+	public void setoList(ArrayList<Orders> oList) {
+		this.oList = oList;
+	}
+
+	public ArrayList<Rule> getAllRule() {
+		return allRule;
+	}
+
+	public void setAllRule(ArrayList<Rule> allRule) {
+		this.allRule = allRule;
+	}
+
 	public Orders getOrder() {
 		return order;
 	}
@@ -79,9 +99,12 @@ public class OrderDetailAction {
 	public String showDetails() throws Exception{
 		System.out.println("id in order detail: " + this.id);
 		order = OrdersDAO.getInstance().getById(Integer.parseInt(id));
+		oList = new ArrayList<Orders>();
+		oList = OrdersDAO.getInstance().getAllOrders();
 		details = new ArrayList<OrderDetail>();
 		details= OrderDetailDAO.getInstance().getOrderDetailsByOrder(order);
-		
+//		allRule = new ArrayList<Rule>();
+//		allRule = RuleDAO.getInstance().getAllRules();
 		return "success";
 	}
 

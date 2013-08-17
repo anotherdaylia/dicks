@@ -173,5 +173,46 @@
       <action name="typecheck" class="com.dicks.action.CheckAction" method="typeCheck">
           <result name="success">/typeCheck.jsp</result>
       </action>
+      <action name="stage1allrule" class="com.dicks.action.Redirect" method="stage1AllRules">
+          <result name="success">/VisualizationStage1AllRules.jsp</result>
+      </action>
+      <action name="costdetail" class="com.dicks.action.Redirect" method="costDetail">
+          <result name="success">/VisualizationCostDetail.jsp</result>
+      </action>
+      
+      
+      <!--  -->
+      <action name="stage1rule1" class="com.dicks.action.Redirect" method="stage1Rule1">
+          <result name="success">/VisualizationStage1Rule1.jsp</result>
+      </action>
+       <action name="stage1rule2" class="com.dicks.action.Redirect" method="stage1Rule2">
+          <result name="success">/VisualizationStage1Rule2.jsp</result>
+      </action>
+      <action name="stage1rule3" class="com.dicks.action.Redirect" method="stage1Rule3">
+          <result name="success">/VisualizationStage1Rule3.jsp</result>
+      </action>
+      <action name="stage2package1" class="com.dicks.action.Redirect" method="stage2Package1">
+          <result name="success">/VisualizationStage2Package1.jsp</result>
+      </action>
+      <action name="stage2package2" class="com.dicks.action.Redirect" method="stage2Package2">
+          <result name="success">/VisualizationStage2Package2.jsp</result>
+      </action>
+      <action name="stage2package3" class="com.dicks.action.Redirect" method="stage2Package3">
+          <result name="success">/VisualizationStage2Package3.jsp</result>
+      </action>
+      <action name="stage3rule1" class="com.dicks.action.Redirect" method="stage3Rule1">
+          <result name="success">/VisualizationStage3Rule1.jsp</result>
+      </action>
+      <action name="stage3rule2" class="com.dicks.action.Redirect" method="stage3Rule2">
+          <result name="success">/VisualizationStage3Rule2.jsp</result>
+      </action>
+      <action name="stage3rule3" class="com.dicks.action.Redirect" method="stage3Rule3">
+          <result name="success">/VisualizationStage3Rule3.jsp</result>
+      </action>
+      <!--  -->
+      
+      <action name="stage1" class="com.dicks.action.VisualizationAction" method="stage1Visual">
+          <result name="success">/VisualizationStage1.jsp</result>
+      </action>
    </package>
 </struts>
